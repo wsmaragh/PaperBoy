@@ -65,6 +65,7 @@
 		237E0940215C23C00039FE28 /* SmallArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallArticleCell.swift; sourceTree = "<group>"; };
 		237E0942215C23EE0039FE28 /* SmallArticleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallArticleCell.xib; sourceTree = "<group>"; };
 		237E0944215C30B50039FE28 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		237E0946215C38020039FE28 /* News.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = News.mp4; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				23E06F242144236300F89F9D /* Assets.xcassets */,
+				237E0946215C38020039FE28 /* News.mp4 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -156,7 +158,6 @@
 				23E06F4B2144236F00F89F9D /* Model */,
 				23E06F4C2144237700F89F9D /* View */,
 				23E06F4D2144237D00F89F9D /* Presenter */,
-				23E06F1C2144236100F89F9D /* MainVC.swift */,
 			);
 			path = PaperBoy;
 			sourceTree = "<group>";
@@ -207,6 +208,7 @@
 		23E06F4D2144237D00F89F9D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				23E06F1C2144236100F89F9D /* MainVC.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
