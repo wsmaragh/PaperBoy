@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="articleImageView" destination="Cs3-gX-fCG" id="Agh-tj-gss"/>
                 <outlet property="authorLabel" destination="hJ4-s8-Sot" id="AkR-ht-lgY"/>
+                <outlet property="browserButton" destination="qD3-TZ-Fzn" id="3vY-MK-jKl"/>
                 <outlet property="dateLabel" destination="9Xr-Wg-6Tk" id="boc-MD-j7v"/>
                 <outlet property="fullLabel" destination="eE1-Sr-ckf" id="scq-Dh-60i"/>
                 <outlet property="subtitleLabel" destination="Lnz-hC-ic2" id="DAI-I9-J0g"/>
@@ -44,7 +45,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-gX-fCG">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-gX-fCG">
                     <rect key="frame" x="16" y="163.5" width="343" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -70,6 +71,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD3-TZ-Fzn">
+                    <rect key="frame" x="262" y="32" width="97" height="28"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="View in Browser">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="broswerButtonPressed:" destination="-1" eventType="touchUpInside" id="2mm-I3-hld"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -81,6 +93,7 @@
                 <constraint firstItem="9Xr-Wg-6Tk" firstAttribute="top" secondItem="Cs3-gX-fCG" secondAttribute="bottom" constant="5" id="MA3-an-sgW"/>
                 <constraint firstItem="Lnz-hC-ic2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="MlW-FG-fCF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eE1-Sr-ckf" secondAttribute="trailing" constant="16" id="TaA-VW-5yT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qD3-TZ-Fzn" secondAttribute="trailing" constant="16" id="UlT-QY-RXe"/>
                 <constraint firstItem="eE1-Sr-ckf" firstAttribute="top" secondItem="hJ4-s8-Sot" secondAttribute="bottom" constant="12" id="VLv-Y1-W9m"/>
                 <constraint firstItem="eE1-Sr-ckf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="WBi-aO-yFA"/>
                 <constraint firstItem="Lnz-hC-ic2" firstAttribute="top" secondItem="li8-i1-Icg" secondAttribute="bottom" constant="8" id="bJu-5s-yDf"/>
@@ -90,6 +103,7 @@
                 <constraint firstItem="Cs3-gX-fCG" firstAttribute="top" secondItem="Lnz-hC-ic2" secondAttribute="bottom" constant="8" id="k91-S9-e01"/>
                 <constraint firstItem="hJ4-s8-Sot" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="kQi-AI-U4p"/>
                 <constraint firstAttribute="trailing" secondItem="Lnz-hC-ic2" secondAttribute="trailing" constant="16" id="uKS-o9-fUB"/>
+                <constraint firstItem="qD3-TZ-Fzn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="vXA-UP-q6x"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eE1-Sr-ckf" secondAttribute="bottom" constant="16" id="ydY-ns-utX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cs3-gX-fCG" secondAttribute="trailing" constant="16" id="zOe-eg-xrU"/>
             </constraints>
@@ -97,4 +111,7 @@
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+        <image name="newspaper" width="320" height="275"/>
+    </resources>
 </document>

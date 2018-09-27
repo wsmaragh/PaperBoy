@@ -9,6 +9,11 @@
 import UIKit
 
 
+@objc protocol ArticleViewDelegate {
+    @objc func browserButtonPressed()
+}
+
+
 @IBDesignable
 class ArticleView: UIView {
     
@@ -19,8 +24,12 @@ class ArticleView: UIView {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var fullLabel: UITextView!
+    @IBOutlet weak var browserButton: UIButton!
     
     var contentView : UIView?
+    
+    weak var delegate: ArticleViewDelegate?
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,5 +66,10 @@ class ArticleView: UIView {
         dateLabel.text = article.publishedAt ?? "No date"
         fullLabel.text = article.content ?? "No Full details"
     }
-
+    
+    @IBAction func broswerButtonPressed(_ sender: UIButton) {
+        print("browser button pressed")
+        delegate?.browserButtonPressed()
+    }
+    
 }

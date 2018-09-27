@@ -11,15 +11,15 @@ import UIKit
 
 class ArticleVC: UIViewController {
 
-    var article: Article!
     @IBOutlet var articleView: ArticleView!
-    
+
+    var article: Article!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupPageFromArticle()
-        
+        articleView.delegate = self
     }
     
     private func setupNavBar(){
@@ -36,12 +36,23 @@ class ArticleVC: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ArticleVCToWebVC" {
+            guard let webVC = segue.destination as? WebVC else {return}
+            webVC.article = article
+        }
+    }
+
 
 }
 
 
 
-extension ArticleVC {
-    
-    
+extension ArticleVC: ArticleViewDelegate {
+    func browserButtonPressed() {
+        print("In VC, browser pressed ")
+        performSegue(withIdentifier: "ArticleVCToWebVC", sender: self)
+    }
+
 }
