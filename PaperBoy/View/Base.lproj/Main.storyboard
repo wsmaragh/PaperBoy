@@ -51,10 +51,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="foQ-eV-iW0">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="baw-h9-n2y"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="1OM-D6-MfT"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
                         <outlet property="topicCollectionView" destination="l1p-Z9-X6z" id="6Ri-QS-9N0"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="MainVCToArticleVC" id="vkQ-dw-QYf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -62,29 +64,22 @@
             <point key="canvasLocation" x="1496.8" y="685.90704647676171"/>
         </scene>
         <!--ArticleVC-->
-        <scene sceneID="b1g-gh-1he">
+        <scene sceneID="kb5-C1-3gT">
             <objects>
-                <viewController id="DE8-55-Rru" customClass="ArticleVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HxW-z6-CKQ">
+                <viewController id="TBN-oa-63T" customClass="ArticleVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NJh-MS-asM" customClass="ArticleView" customModule="PaperBoy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-dd-Je9" customClass="ArticleView" customModule="PaperBoy" customModuleProvider="target">
-                                <rect key="frame" x="67" y="99" width="249" height="204"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="udO-Yu-8Zi"/>
+                        <viewLayoutGuide key="safeArea" id="quw-zx-mXy"/>
                     </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Ae8-KX-eLg"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="articleView" destination="NJh-MS-asM" id="nS7-68-5DB"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="brk-fY-I5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-4c-VEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2344.8000000000002" y="685.90704647676171"/>
+            <point key="canvasLocation" x="2336.8000000000002" y="685.90704647676171"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="INX-ld-5Hg">
@@ -108,6 +103,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorites" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
     </resources>
 </document>

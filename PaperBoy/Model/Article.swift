@@ -25,5 +25,5 @@ struct Article: Codable {
 }
 
 struct ArticleSource: Codable {
-    var name: String? //"Apkmania.live"
+    var name: String?
 }

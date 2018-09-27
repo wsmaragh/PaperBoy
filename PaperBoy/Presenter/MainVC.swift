@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MainVC: UIViewController {
 
     @IBOutlet weak var topicCollectionView: UICollectionView!
@@ -57,7 +58,6 @@ class MainVC: UIViewController {
     }
     
     fileprivate func addRefreshControl() {
-        //Add refresh control
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
@@ -72,7 +72,7 @@ class MainVC: UIViewController {
     
     @objc private func refreshData(){
         fetchArticles(topic: selectedtopic)
-        refreshControl.endRefreshing() //end refreshing spinner
+        refreshControl.endRefreshing()
     }
     
     private func setupCollectionView() {
@@ -101,7 +101,7 @@ class MainVC: UIViewController {
         }
     }
     
-    func animateTable() {
+    fileprivate func animateTable() {
         self.tableView.reloadData()
         let cells = tableView.visibleCells
         let tableHeight: CGFloat = tableView.bounds.size.height
@@ -114,11 +114,20 @@ class MainVC: UIViewController {
     }
     
     
-    private func showAlert(title: String, message: String) {
+    fileprivate func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) {alert in }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MainVCToArticleVC" {
+            guard let articleVC = segue.destination as? ArticleVC else {print("Error downcasting destination to DetailExerciseVC in Segue"); return}
+            guard let indexPath = tableView.indexPathForSelectedRow else {print("Error getting indexPath in Segue"); return}
+            let article = articles[indexPath.row]
+            articleVC.article = article
+        }
     }
 
 }
@@ -206,7 +215,7 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35.0
+        return 30.0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -214,13 +223,10 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = articles[indexPath.row]
-        let articleVC = ArticleVC(article: article)
-        self.navigationController?.pushViewController(articleVC, animated: true)
+        performSegue(withIdentifier: "MainVCToArticleVC", sender: self)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            //using scrollview for updating the refresh control
             let offset = (scrollView.contentOffset.y * -1)
             var message: String = "Keep Pulling."
             switch offset {
@@ -246,6 +252,7 @@ extension MainVC: ArticleCellDelegate {
     }
     
     func sharePressed() {
+        #warning ("get row and article to change link below")
         let activityVC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }

@@ -22,9 +22,8 @@
 		237E094A215C400E0039FE28 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0949215C400E0039FE28 /* TopicCell.swift */; };
 		237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E094B215C5E2E0039FE28 /* ImageService.swift */; };
 		237E094E215C60FD0039FE28 /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E094D215C60FD0039FE28 /* ArticleVC.swift */; };
-		237E0950215C674D0039FE28 /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E094F215C674D0039FE28 /* ArticleView.xib */; };
-		237E0952215C683D0039FE28 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0951215C683D0039FE28 /* ArticleView.swift */; };
 		237E0954215C7D490039FE28 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0953215C7D490039FE28 /* UIView+.swift */; };
+		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* MainVC.swift */; };
 		23E06F202144236100F89F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F1E2144236100F89F9D /* Main.storyboard */; };
@@ -34,6 +33,8 @@
 		23E06F332144236300F89F9D /* PaperBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F322144236300F89F9D /* PaperBoyTests.swift */; };
 		23E06F3E2144236300F89F9D /* PaperBoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */; };
 		23E06F512144240B00F89F9D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F502144240B00F89F9D /* CoreDataService.swift */; };
+		23F33B64215D734900F7853C /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F33B63215D734900F7853C /* ArticleView.swift */; };
+		23F33B66215D735400F7853C /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleView.xib */; };
 		574BB9C6701A53FC014CE92A /* Pods_PaperBoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */; };
 		9F5C8FD66E997DA6CCAFB3DD /* Pods_PaperBoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */; };
 		A1EEB92BB257CDF3A7F08B0A /* Pods_PaperBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */; };
@@ -75,9 +76,8 @@
 		237E0949215C400E0039FE28 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		237E094B215C5E2E0039FE28 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		237E094D215C60FD0039FE28 /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
-		237E094F215C674D0039FE28 /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
-		237E0951215C683D0039FE28 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		237E0953215C7D490039FE28 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -93,6 +93,8 @@
 		23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperBoyUITests.swift; sourceTree = "<group>"; };
 		23E06F3F2144236300F89F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23E06F502144240B00F89F9D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		23F33B63215D734900F7853C /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		23F33B65215D735400F7853C /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
 		4CA2533F5F6123F7CCF38919 /* Pods-PaperBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy.release.xcconfig"; sourceTree = "<group>"; };
 		6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,8 +216,8 @@
 				237E093E215C195F0039FE28 /* ArticleCell.xib */,
 				237E0940215C23C00039FE28 /* SmallArticleCell.swift */,
 				237E0942215C23EE0039FE28 /* SmallArticleCell.xib */,
-				237E0951215C683D0039FE28 /* ArticleView.swift */,
-				237E094F215C674D0039FE28 /* ArticleView.xib */,
+				23F33B63215D734900F7853C /* ArticleView.swift */,
+				23F33B65215D735400F7853C /* ArticleView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 			children = (
 				23E06F1C2144236100F89F9D /* MainVC.swift */,
 				237E094D215C60FD0039FE28 /* ArticleVC.swift */,
+				23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -245,9 +248,9 @@
 		23E06F4F214423F900F89F9D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				237E094B215C5E2E0039FE28 /* ImageService.swift */,
 				23E06F502144240B00F89F9D /* CoreDataService.swift */,
 				23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */,
-				237E094B215C5E2E0039FE28 /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -389,8 +392,8 @@
 				237E0948215C3DF80039FE28 /* TopicCell.xib in Resources */,
 				23E06F202144236100F89F9D /* Main.storyboard in Resources */,
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
+				23F33B66215D735400F7853C /* ArticleView.xib in Resources */,
 				237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */,
-				237E0950215C674D0039FE28 /* ArticleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +495,7 @@
 			files = (
 				237E0945215C30B50039FE28 /* Date+.swift in Sources */,
 				23E06F512144240B00F89F9D /* CoreDataService.swift in Sources */,
+				23F33B64215D734900F7853C /* ArticleView.swift in Sources */,
 				237E0931215BEA390039FE28 /* ArticleAPIService.swift in Sources */,
 				237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */,
 				237E094E215C60FD0039FE28 /* ArticleVC.swift in Sources */,
@@ -502,8 +506,8 @@
 				237E0954215C7D490039FE28 /* UIView+.swift in Sources */,
 				237E0939215C05090039FE28 /* ArticleCell.swift in Sources */,
 				237E092F215BEA1B0039FE28 /* Article.swift in Sources */,
-				237E0952215C683D0039FE28 /* ArticleView.swift in Sources */,
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
+				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23E06F232144236100F89F9D /* PaperBoy.xcdatamodeld in Sources */,
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
