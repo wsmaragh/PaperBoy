@@ -17,23 +17,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Business" translatesAutoresizingMaskIntoConstraints="NO" id="4Nq-z4-hhY">
-                    <rect key="frame" x="12" y="12" width="178" height="186"/>
+                    <rect key="frame" x="40.5" y="36.5" width="121" height="121"/>
                     <color key="tintColor" red="0.85904947919999997" green="0.34816251860000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4Nq-z4-hhY" secondAttribute="height" multiplier="1:1" id="gpj-gf-0mL"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-w5-x2c">
-                    <rect key="frame" x="67" y="95" width="68.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="12" y="191.5" width="178" height="13.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="Th9-w5-x2c" firstAttribute="centerY" secondItem="4Nq-z4-hhY" secondAttribute="centerY" id="4yW-Rr-LdW"/>
-                <constraint firstItem="4Nq-z4-hhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="8IP-gd-f9f"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Nq-z4-hhY" secondAttribute="trailing" constant="12" id="adR-8V-QzR"/>
-                <constraint firstItem="4Nq-z4-hhY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="h6D-w6-upd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Th9-w5-x2c" secondAttribute="bottom" constant="5" id="1XU-Xy-kn2"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-8" id="30l-gu-Isq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Th9-w5-x2c" secondAttribute="trailing" constant="12" id="cP0-UM-47K"/>
                 <constraint firstItem="Th9-w5-x2c" firstAttribute="centerX" secondItem="4Nq-z4-hhY" secondAttribute="centerX" id="hPo-Q7-hMP"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Nq-z4-hhY" secondAttribute="bottom" constant="12" id="rAj-rp-L8H"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="jmY-Mc-L0W"/>
+                <constraint firstItem="Th9-w5-x2c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="mPb-6E-Hdt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

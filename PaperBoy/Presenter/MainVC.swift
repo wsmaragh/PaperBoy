@@ -13,6 +13,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
     
     var topics: [ArticleTopic] = ArticleTopic.allCases
     var selectedtopic: ArticleTopic!
@@ -27,6 +28,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
+        addRefreshControl()
         setupCollectionView()
         fetchArticles(topic: .Headlines)
         topicCollectionView.selectItem(at: IndexPath(item: 1, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
@@ -44,12 +46,33 @@ class MainVC: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 120.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         let updatedCellNib = UINib(nibName: UpdatedCell.id, bundle: nil)
         tableView.register(updatedCellNib, forCellReuseIdentifier: UpdatedCell.id)
         let articleCellNib = UINib(nibName: ArticleCell.id, bundle: nil)
         tableView.register(articleCellNib, forCellReuseIdentifier: ArticleCell.id)
         let smallArticleCellNib = UINib(nibName: SmallArticleCell.id, bundle: nil)
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
+    }
+    
+    fileprivate func addRefreshControl() {
+        //Add refresh control
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = .blue
+        refreshControl.backgroundColor = .yellow
+        refreshControl.alpha = 1.0
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching more data, hold on", attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
+    }
+    
+    @objc private func refreshData(){
+        fetchArticles(topic: selectedtopic)
+        refreshControl.endRefreshing() //end refreshing spinner
     }
     
     private func setupCollectionView() {
@@ -62,11 +85,11 @@ class MainVC: UIViewController {
         let cellSpacing: CGFloat = 5.0
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: 0.0, bottom: cellSpacing, right: 0.0)
+        layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
         let numberOfItemsPerRow: CGFloat = 4.8
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height)
+        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 2))
     }
     
     fileprivate func fetchArticles(topic: ArticleTopic) {
@@ -128,9 +151,8 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.darkGray
         cell.topicTitleLabel.textColor = UIColor.white
-
     }
 
 }
@@ -189,6 +211,31 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 3.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = articles[indexPath.row]
+        let articleVC = ArticleVC(article: article)
+        self.navigationController?.pushViewController(articleVC, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            //using scrollview for updating the refresh control
+            let offset = (scrollView.contentOffset.y * -1)
+            var message: String = "Keep Pulling."
+            switch offset {
+            case 0...25: message = "Keep Pulling."
+            case 26...40: message = "Keep Pulling..."
+            case 41...60: message = "Keep Pulling......"
+            case 61...80: message = "Keep Pulling........."
+            case 81...100: message = "Keep Pulling............"
+            case 101...120: message = "Keep Pulling..............."
+            case 121...150: message = "Keep Pulling.................."
+            case _ where offset > 150: message = "NOW LET GO"
+            default: break
+            }
+            refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
+            refreshControl.backgroundColor = .yellow
     }
     
 }

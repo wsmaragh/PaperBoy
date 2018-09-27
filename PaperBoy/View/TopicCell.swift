@@ -19,5 +19,6 @@ class TopicCell: UICollectionViewCell {
     func configureCell(topic: ArticleTopic){
         topicTitleLabel.text = topic.rawValue
         topicImageView.image = UIImage(named: topic.rawValue)
+        self.backgroundColor = UIColor.darkGray
     }
 }
