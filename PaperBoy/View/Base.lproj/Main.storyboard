@@ -51,7 +51,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="foQ-eV-iW0">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="baw-h9-n2y"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="1OM-D6-MfT"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="1OM-D6-MfT">
+                            <connections>
+                                <segue destination="TT4-ky-mz1" kind="show" id="IAY-zH-xL9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
@@ -116,6 +120,37 @@
             </objects>
             <point key="canvasLocation" x="3077.5999999999999" y="685.90704647676171"/>
         </scene>
+        <!--Fave ArticlesVC-->
+        <scene sceneID="Hk6-uP-Ff4">
+            <objects>
+                <viewController id="TT4-ky-mz1" customClass="FaveArticlesVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UqS-F1-uRB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H4H-ea-clv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fer-zz-MRB" firstAttribute="bottom" secondItem="H4H-ea-clv" secondAttribute="bottom" id="9hh-W4-FGt"/>
+                            <constraint firstItem="H4H-ea-clv" firstAttribute="top" secondItem="Fer-zz-MRB" secondAttribute="top" id="ExL-bL-Qay"/>
+                            <constraint firstItem="Fer-zz-MRB" firstAttribute="trailing" secondItem="H4H-ea-clv" secondAttribute="trailing" id="bc0-PI-3ce"/>
+                            <constraint firstItem="H4H-ea-clv" firstAttribute="leading" secondItem="Fer-zz-MRB" secondAttribute="leading" id="m2H-q4-gwN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fer-zz-MRB"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgg-TR-dL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2337" y="-26"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="INX-ld-5Hg">
             <objects>
@@ -141,4 +176,7 @@
         <image name="favorites" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1Nt-Fj-Tjc"/>
+    </inferredMetricsTieBreakers>
 </document>

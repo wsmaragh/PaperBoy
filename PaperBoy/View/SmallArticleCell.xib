@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="379" height="108"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trump" translatesAutoresizingMaskIntoConstraints="NO" id="exz-3G-htx">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="exz-3G-htx">
                     <rect key="frame" x="291" y="12" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="exz-3G-htx" secondAttribute="height" multiplier="1:1" id="8jv-CH-vt7"/>
@@ -82,6 +82,6 @@
     <resources>
         <image name="button-upload" width="25" height="25"/>
         <image name="button_star_empty" width="25" height="25"/>
-        <image name="trump" width="600" height="424"/>
+        <image name="newspaper" width="320" height="275"/>
     </resources>
 </document>

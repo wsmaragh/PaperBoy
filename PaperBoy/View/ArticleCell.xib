@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="535"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trump" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-tx-RPO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-tx-RPO">
                     <rect key="frame" x="16" y="32" width="331" height="267.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trump Accuses China of Interfering in Miodterm Elections" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqD-aU-5SF">
@@ -113,6 +113,6 @@
     <resources>
         <image name="button-upload" width="25" height="25"/>
         <image name="button_star_empty" width="25" height="25"/>
-        <image name="trump" width="600" height="424"/>
+        <image name="newspaper" width="320" height="275"/>
     </resources>
 </document>

@@ -20,6 +20,7 @@ class WebVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
+        navigationItem.title = "Browser in Paperboy"
     }
     
     func setupWebView(){
