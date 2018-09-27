@@ -20,6 +20,7 @@
 		237E0945215C30B50039FE28 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0944215C30B50039FE28 /* Date+.swift */; };
 		237E0948215C3DF80039FE28 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E0947215C3DF80039FE28 /* TopicCell.xib */; };
 		237E094A215C400E0039FE28 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0949215C400E0039FE28 /* TopicCell.swift */; };
+		237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E094B215C5E2E0039FE28 /* ImageService.swift */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* MainVC.swift */; };
 		23E06F202144236100F89F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F1E2144236100F89F9D /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		237E0946215C38020039FE28 /* News.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = News.mp4; sourceTree = "<group>"; };
 		237E0947215C3DF80039FE28 /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		237E0949215C400E0039FE28 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		237E094B215C5E2E0039FE28 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				23E06F502144240B00F89F9D /* CoreDataService.swift */,
 				23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */,
+				237E094B215C5E2E0039FE28 /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23E06F232144236100F89F9D /* PaperBoy.xcdatamodeld in Sources */,
+				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,9 +43,6 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vxo-2m-aRC">
-                    <rect key="frame" x="163" y="147.5" width="37" height="37"/>
-                </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-vl-V89">
                     <rect key="frame" x="289" y="494" width="25" height="25"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,8 +93,6 @@
                 <constraint firstItem="mhL-lE-SOw" firstAttribute="top" secondItem="Exj-lx-f3V" secondAttribute="bottom" constant="16" id="nwh-xc-F92"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XVN-Sj-R6f" secondAttribute="trailing" constant="16" id="pLO-dG-irJ"/>
                 <constraint firstItem="kqD-aU-5SF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pl5-eb-0yi"/>
-                <constraint firstItem="vxo-2m-aRC" firstAttribute="centerX" secondItem="mtm-tx-RPO" secondAttribute="centerX" id="qXn-xE-YIa"/>
-                <constraint firstItem="vxo-2m-aRC" firstAttribute="centerY" secondItem="mtm-tx-RPO" secondAttribute="centerY" id="qv9-0L-g5Q"/>
                 <constraint firstItem="mhL-lE-SOw" firstAttribute="leading" secondItem="6r2-vl-V89" secondAttribute="trailing" constant="8" id="rvq-gq-86I"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

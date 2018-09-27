@@ -33,8 +33,9 @@ class SmallArticleCell: UITableViewCell {
             timeLabel.text = "-----"
         }
         
-        //        articleImageView.image =
-    }
+        if let imageURLStr = article.urlToImage {
+            articleImageView.loadImage(imageURLString: imageURLStr)
+        }     }
 
     
     @IBAction func savePressed(_ sender: UIButton) {

@@ -28,8 +28,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="8YJ-sh-x02">
-                    <rect key="frame" x="160" y="56" width="111" height="25"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="8YJ-sh-x02">
+                    <rect key="frame" x="194" y="56" width="77" height="25"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSf-7E-fxP">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -39,7 +39,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g4-Ix-7iz">
-                            <rect key="frame" x="86" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="52" y="0.0" width="25" height="25"/>
                             <state key="normal" image="button_star_empty"/>
                             <connections>
                                 <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="yZ5-CJ-iTh"/>
