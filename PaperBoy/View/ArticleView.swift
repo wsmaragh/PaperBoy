@@ -55,7 +55,7 @@ class ArticleView: UIView {
         }
         authorLabel.text = article.author ?? "No Author"
         dateLabel.text = article.publishedAt ?? "No date"
-        fullLabel.text = article.description ?? "No Full details"
+        fullLabel.text = article.content ?? "No Full details"
     }
 
 }
