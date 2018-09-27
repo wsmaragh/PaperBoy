@@ -11,7 +11,7 @@ import Alamofire
 
 
 enum ArticleTopic: String, CaseIterable {
-    case TopHeadlines
+    case Headlines
     case Business
     case Politics
     case Sports
@@ -32,7 +32,7 @@ class ArticleAPIService {
         var url = ""
 
         switch topic {
-        case .TopHeadlines:
+        case .Headlines:
             url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)"
         case .Business, .Politics, .Sports, .World, .US :
             url = "https://newsapi.org/v2/everything?apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&language=en&q=\(q!)"

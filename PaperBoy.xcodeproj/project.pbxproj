@@ -13,12 +13,13 @@
 		237E0935215C00A40039FE28 /* UpdatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0934215C00A40039FE28 /* UpdatedCell.swift */; };
 		237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E0936215C04550039FE28 /* UpdatedCell.xib */; };
 		237E0939215C05090039FE28 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0938215C05090039FE28 /* ArticleCell.swift */; };
-		237E093B215C05390039FE28 /* TopArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E093A215C05390039FE28 /* TopArticleCell.swift */; };
 		237E093D215C17260039FE28 /* DateformatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E093C215C17260039FE28 /* DateformatterService.swift */; };
 		237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E093E215C195F0039FE28 /* ArticleCell.xib */; };
 		237E0941215C23C00039FE28 /* SmallArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0940215C23C00039FE28 /* SmallArticleCell.swift */; };
 		237E0943215C23EE0039FE28 /* SmallArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E0942215C23EE0039FE28 /* SmallArticleCell.xib */; };
 		237E0945215C30B50039FE28 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0944215C30B50039FE28 /* Date+.swift */; };
+		237E0948215C3DF80039FE28 /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E0947215C3DF80039FE28 /* TopicCell.xib */; };
+		237E094A215C400E0039FE28 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0949215C400E0039FE28 /* TopicCell.swift */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* MainVC.swift */; };
 		23E06F202144236100F89F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F1E2144236100F89F9D /* Main.storyboard */; };
@@ -59,13 +60,14 @@
 		237E0934215C00A40039FE28 /* UpdatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedCell.swift; sourceTree = "<group>"; };
 		237E0936215C04550039FE28 /* UpdatedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatedCell.xib; sourceTree = "<group>"; };
 		237E0938215C05090039FE28 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
-		237E093A215C05390039FE28 /* TopArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArticleCell.swift; sourceTree = "<group>"; };
 		237E093C215C17260039FE28 /* DateformatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateformatterService.swift; sourceTree = "<group>"; };
 		237E093E215C195F0039FE28 /* ArticleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCell.xib; sourceTree = "<group>"; };
 		237E0940215C23C00039FE28 /* SmallArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallArticleCell.swift; sourceTree = "<group>"; };
 		237E0942215C23EE0039FE28 /* SmallArticleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallArticleCell.xib; sourceTree = "<group>"; };
 		237E0944215C30B50039FE28 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		237E0946215C38020039FE28 /* News.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = News.mp4; sourceTree = "<group>"; };
+		237E0947215C3DF80039FE28 /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
+		237E0949215C400E0039FE28 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -194,9 +196,10 @@
 			children = (
 				23E06F262144236300F89F9D /* LaunchScreen.storyboard */,
 				23E06F1E2144236100F89F9D /* Main.storyboard */,
+				237E0949215C400E0039FE28 /* TopicCell.swift */,
+				237E0947215C3DF80039FE28 /* TopicCell.xib */,
 				237E0934215C00A40039FE28 /* UpdatedCell.swift */,
 				237E0936215C04550039FE28 /* UpdatedCell.xib */,
-				237E093A215C05390039FE28 /* TopArticleCell.swift */,
 				237E0938215C05090039FE28 /* ArticleCell.swift */,
 				237E093E215C195F0039FE28 /* ArticleCell.xib */,
 				237E0940215C23C00039FE28 /* SmallArticleCell.swift */,
@@ -368,6 +371,7 @@
 				23E06F282144236300F89F9D /* LaunchScreen.storyboard in Resources */,
 				23E06F252144236300F89F9D /* Assets.xcassets in Resources */,
 				237E0943215C23EE0039FE28 /* SmallArticleCell.xib in Resources */,
+				237E0948215C3DF80039FE28 /* TopicCell.xib in Resources */,
 				23E06F202144236100F89F9D /* Main.storyboard in Resources */,
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
 				237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */,
@@ -475,7 +479,7 @@
 				237E0931215BEA390039FE28 /* ArticleAPIService.swift in Sources */,
 				237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */,
 				237E0935215C00A40039FE28 /* UpdatedCell.swift in Sources */,
-				237E093B215C05390039FE28 /* TopArticleCell.swift in Sources */,
+				237E094A215C400E0039FE28 /* TopicCell.swift in Sources */,
 				23E06F1D2144236100F89F9D /* MainVC.swift in Sources */,
 				237E0941215C23C00039FE28 /* SmallArticleCell.swift in Sources */,
 				237E0939215C05090039FE28 /* ArticleCell.swift in Sources */,

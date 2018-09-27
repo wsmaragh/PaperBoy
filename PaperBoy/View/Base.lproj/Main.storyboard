@@ -19,22 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JT0-Ww-VAz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="523"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l1p-Z9-X6z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="hz5-NT-SlS"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WgO-VL-WNp">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JT0-Ww-VAz" secondAttribute="bottom" id="3hC-6m-BNc"/>
-                            <constraint firstItem="JT0-Ww-VAz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SoF-g5-7Et"/>
                             <constraint firstItem="JT0-Ww-VAz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="U0u-lK-Ted"/>
+                            <constraint firstItem="JT0-Ww-VAz" firstAttribute="top" secondItem="l1p-Z9-X6z" secondAttribute="bottom" id="dAc-Dd-3JE"/>
+                            <constraint firstItem="l1p-Z9-X6z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mLG-eL-kaw"/>
+                            <constraint firstItem="l1p-Z9-X6z" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mlV-cp-97g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JT0-Ww-VAz" secondAttribute="trailing" id="uCB-Pa-T8f"/>
+                            <constraint firstItem="l1p-Z9-X6z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vh2-aS-boq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="foQ-eV-iW0"/>
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
+                        <outlet property="topicCollectionView" destination="l1p-Z9-X6z" id="6Ri-QS-9N0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

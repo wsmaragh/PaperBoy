@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-america.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-parliament_filled-1.png",
       "scale" : "2x"
     },
     {

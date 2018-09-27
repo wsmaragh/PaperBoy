@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol ArticleCellDelegate {
-    func savePressed()
-    func sharePressed()
+@objc protocol ArticleCellDelegate {
+    @objc func savePressed()
+    @objc func sharePressed()
 }
 
 
@@ -24,6 +24,8 @@ class ArticleCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     
+    weak var delegate: ArticleCellDelegate?
+
     static let id = "ArticleCell"
     
     @IBOutlet weak var saveButton: UIButton!
@@ -54,12 +56,18 @@ class ArticleCell: UITableViewCell {
     }
     
     @IBAction func savePressed(_ sender: UIButton) {
-        print("Save Pressed")
+        if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
+            sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
+            print("Adding to saves")
+        } else {
+            sender.setImage(UIImage(named: "button_star_empty"), for: .normal)
+            print("Removing from saves")
+        }
     }
-    
+
     
     @IBAction func sharePressed(_ sender: UIButton) {
-        print("Share Pressed")
+        delegate?.sharePressed()
     }
     
 }

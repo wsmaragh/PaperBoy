@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-volleyball_2_filled.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-handball_filled.png",
       "scale" : "2x"
     },
     {

@@ -10,29 +10,37 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
-    var tableViewSections: [String] = ["Exercises By Muscle: ", "My Workouts: ", "Suggested Workouts: ", "Fitness News: "]
+    
+    var topics: [ArticleTopic] = ArticleTopic.allCases
+    var selectedtopic: ArticleTopic!
+    
     var articles: [Article] = [] {
         didSet {
-            print(self.articles)
+            tableView.reloadData()
         }
     }
     
-
-    /*
-       dateCell
-        mainStory
-     
-     
- */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         setupTableView()
-        fetchArticles(topic: .TopHeadlines)
+        setupCollectionView()
+        fetchArticles(topic: .Headlines)
+        topicCollectionView.selectItem(at: IndexPath(item: 1, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
 
+    private func setupNavBar(){
+        if let image = UIImage(named: "bg_PaperBoy") {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = image
+            self.navigationItem.titleView = imageView
+        }
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -44,23 +52,88 @@ class MainVC: UIViewController {
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
     }
     
-    private func fetchArticles(topic: ArticleTopic) {
+    private func setupCollectionView() {
+        topicCollectionView.delegate = self
+        topicCollectionView.dataSource = self
+        let topicNib = UINib(nibName: TopicCell.id, bundle: nil)
+        topicCollectionView.register(topicNib, forCellWithReuseIdentifier: TopicCell.id)
+        let layout = topicCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .horizontal
+        let cellSpacing: CGFloat = 5.0
+        layout.minimumLineSpacing = cellSpacing
+        layout.minimumInteritemSpacing = cellSpacing
+        layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: 0.0, bottom: cellSpacing, right: 0.0)
+        let numberOfItemsPerRow: CGFloat = 4.8
+        let numSpaces: CGFloat = numberOfItemsPerRow + 1
+        let screenWidth = UIScreen.main.bounds.width
+        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height)
+    }
+    
+    fileprivate func fetchArticles(topic: ArticleTopic) {
         ArticleAPIService.shared.getArticles(topic: topic) { (onlineArticles) in
             self.articles = onlineArticles
             self.tableView.reloadData()
-            print(self.articles)
+            self.animateTable()
+            self.selectedtopic = topic
         }
     }
     
+    func animateTable() {
+        self.tableView.reloadData()
+        let cells = tableView.visibleCells
+        let tableHeight: CGFloat = tableView.bounds.size.height
+        for (index, cell) in cells.enumerated() {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+            UIView.animate(withDuration: 1.0, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0);
+            }, completion: nil)
+        }
+    }
+    
+    
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) {alert in }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 
 }
 
-//extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
-//
-//
-//
-//}
 
+// MARK: CollectionView setup
+extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return topics.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCell.id, for: indexPath) as! TopicCell
+        let topic = topics[indexPath.item]
+        cell.configureCell(topic: topic)
+        if indexPath.item == 0 {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Cell tapped")
+        fetchArticles(topic: topics[indexPath.item])
+        let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
+        cell.backgroundColor = UIColor.yellow
+        cell.topicTitleLabel.textColor = UIColor.darkGray
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
+        cell.backgroundColor = UIColor.clear
+        cell.topicTitleLabel.textColor = UIColor.white
+
+    }
+
+}
 
 
 // MARK: TableView setup
@@ -76,41 +149,30 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        enum ArticleCellTypes: Int {
-            case TopStory = 0
-            case normal = 1
-            case small = 2
+        enum ArticleCellType {
+            case normal, small
         }
+    
+        let type: ArticleCellType = ((indexPath.row == 0) || (indexPath.row % 4 == 0)) ? .normal : .small
         
-        switch indexPath.row {
-        case 0, 4:
+        switch type {
+        case .normal:
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.id, for: indexPath) as! ArticleCell
             let article = articles[indexPath.row]
             cell.configureCell(article: article)
             return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
-            let article = articles[indexPath.row]
-            cell.configureCell(article: article)
-            return cell
-        default:
+        case .small:
             let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
             let article = articles[indexPath.row]
             cell.configureCell(article: article)
             return cell
         }
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.id, for: indexPath) as! ArticleCell
-        let article = articles[indexPath.row]
-        cell.configureCell(article: article)
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 { return 500 }
-        if indexPath.row == 4 { return 500 }
-        return 120
+        if (indexPath.row == 0) { return 500 }
+        if (indexPath.row % 4 == 0) {return 500}
+        return 110
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -126,5 +188,19 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 3.0
     }
+    
+}
+
+extension MainVC: ArticleCellDelegate {
+    func savePressed() {
+        print("Save Pressed in VC")
+    }
+    
+    func sharePressed() {
+        print("Share pressed in VC")
+        let activityVC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+    
     
 }
