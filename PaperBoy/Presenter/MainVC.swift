@@ -160,11 +160,13 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.id, for: indexPath) as! ArticleCell
             let article = articles[indexPath.row]
             cell.configureCell(article: article)
+            cell.delegate = self
             return cell
         case .small:
             let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
             let article = articles[indexPath.row]
             cell.configureCell(article: article)
+            cell.delegate = self
             return cell
         }
     }
@@ -197,7 +199,6 @@ extension MainVC: ArticleCellDelegate {
     }
     
     func sharePressed() {
-        print("Share pressed in VC")
         let activityVC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }

@@ -17,7 +17,8 @@ class SmallArticleCell: UITableViewCell {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
-    
+    weak var delegate: ArticleCellDelegate?
+
     static let id = "SmallArticleCell"
 
     public func configureCell(article: Article) {
@@ -37,18 +38,17 @@ class SmallArticleCell: UITableViewCell {
 
     
     @IBAction func savePressed(_ sender: UIButton) {
+        delegate?.savePressed()
         if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
             sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
-            print("Adding to saves")
         } else {
             sender.setImage(UIImage(named: "button_star_empty"), for: .normal)
-            print("Removing from saves")
         }
     }
     
     
     @IBAction func sharePressed(_ sender: UIButton) {
-        print("Share Pressed")
+        delegate?.sharePressed()
     }
     
     

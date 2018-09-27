@@ -58,10 +58,8 @@ class ArticleCell: UITableViewCell {
     @IBAction func savePressed(_ sender: UIButton) {
         if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
             sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
-            print("Adding to saves")
         } else {
             sender.setImage(UIImage(named: "button_star_empty"), for: .normal)
-            print("Removing from saves")
         }
     }
 
