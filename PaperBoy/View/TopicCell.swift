@@ -19,12 +19,15 @@ class TopicCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             backgroundColor = isSelected ? UIColor.yellow : UIColor.darkGray
+            topicTitleLabel.textColor = isSelected ? UIColor.darkGray : UIColor.white
         }
     }
     
-    func configureCell(topic: ArticleTopic){
-        topicTitleLabel.text = topic.rawValue
+    
+//    func configureCell(topic: ArticleTopic, initialCell: Bool){
+    func configureCell(topic: ArticleTopic) {
+//        if initialCell {self.isSelected = true}
+        topicTitleLabel.text = topic.rawValue.capitalized
         topicImageView.image = UIImage(named: topic.rawValue)
-        self.backgroundColor = UIColor.darkGray
     }
 }

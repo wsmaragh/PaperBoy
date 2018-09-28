@@ -39,6 +39,7 @@ class FaveArticlesVC: UIViewController {
     
     fileprivate func fetchArticlesFromCoreData() {
         self.favoriteArticles = FileManagerService.shared.getArticles()
+        self.favoriteArticles = FileStorageManager.manager.getArticles()
 //        if let articles =  CoreSataService.shared.fetchArticles(entityName: .Article) {
 //            favoriteArticles = articles
 //        }

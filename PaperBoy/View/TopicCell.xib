@@ -16,27 +16,28 @@
             <rect key="frame" x="0.0" y="0.0" width="202" height="210"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Business" translatesAutoresizingMaskIntoConstraints="NO" id="4Nq-z4-hhY">
-                    <rect key="frame" x="40.5" y="36.5" width="121" height="121"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="business" translatesAutoresizingMaskIntoConstraints="NO" id="4Nq-z4-hhY">
+                    <rect key="frame" x="60.5" y="56.5" width="81" height="81"/>
                     <color key="tintColor" red="0.85904947919999997" green="0.34816251860000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4Nq-z4-hhY" secondAttribute="height" multiplier="1:1" id="gpj-gf-0mL"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-w5-x2c">
-                    <rect key="frame" x="12" y="191.5" width="178" height="13.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                    <rect key="frame" x="5" y="193" width="192" height="12"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Th9-w5-x2c" secondAttribute="bottom" constant="5" id="1XU-Xy-kn2"/>
                 <constraint firstItem="4Nq-z4-hhY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-8" id="30l-gu-Isq"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Th9-w5-x2c" secondAttribute="trailing" constant="12" id="cP0-UM-47K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Th9-w5-x2c" secondAttribute="trailing" constant="5" id="cP0-UM-47K"/>
                 <constraint firstItem="Th9-w5-x2c" firstAttribute="centerX" secondItem="4Nq-z4-hhY" secondAttribute="centerX" id="hPo-Q7-hMP"/>
-                <constraint firstItem="4Nq-z4-hhY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="jmY-Mc-L0W"/>
-                <constraint firstItem="Th9-w5-x2c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="mPb-6E-Hdt"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="jmY-Mc-L0W"/>
+                <constraint firstItem="Th9-w5-x2c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="mPb-6E-Hdt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -48,6 +49,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Business" width="50" height="50"/>
+        <image name="business" width="50" height="50"/>
     </resources>
 </document>

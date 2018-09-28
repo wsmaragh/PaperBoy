@@ -18,6 +18,7 @@ class MainVC: UIViewController {
     
     var topics: [ArticleTopic] = ArticleTopic.allCases
     var selectedtopic: ArticleTopic!
+    var initialTopicSet: Bool = false
     
     var articles: [Article] = [] {
         didSet {
@@ -31,9 +32,9 @@ class MainVC: UIViewController {
         setupTableView()
         addRefreshControl()
         setupCollectionView()
-        fetchArticles(topic: .Headlines)
+        loadInitialArticles()
     }
-
+    
     private func setupNavBar(){
         if let image = UIImage(named: "bg_PaperBoy") {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -79,23 +80,30 @@ class MainVC: UIViewController {
         topicCollectionView.dataSource = self
         let topicNib = UINib(nibName: TopicCell.id, bundle: nil)
         topicCollectionView.register(topicNib, forCellWithReuseIdentifier: TopicCell.id)
+        topicCollectionView.allowsMultipleSelection = false
         let layout = topicCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .horizontal
         let cellSpacing: CGFloat = 5.0
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
         layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
-        let numberOfItemsPerRow: CGFloat = 4.8
+        let numberOfItemsPerRow: CGFloat = 4.2
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 2))
-//        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-//        topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
-//        self.collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
+
+    }
+    
+    private func loadInitialArticles(){
+        if topicCollectionView != nil {
+            let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+            topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
+            self.collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
+        }
     }
     
     fileprivate func fetchArticles(topic: ArticleTopic) {
-        ArticleAPIService.shared.getArticles(topic: topic) { (onlineArticles) in
+        ArticleAPIService.shared.getTopArticles(topic: topic) { (onlineArticles) in
             self.articles = onlineArticles
             self.tableView.reloadData()
             self.animateTable()
@@ -146,24 +154,20 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCell.id, for: indexPath) as! TopicCell
         let topic = topics[indexPath.item]
         cell.configureCell(topic: topic)
-        if indexPath.item == 0 {
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
-        }
+        
+        #warning ("Remove commented code")
+//        if indexPath.item == 0 {
+//            self.collectionView(topicCollectionView, didSelectItemAt: indexPath)
+//        }
+        //    let initialCell = indexPath.item == 0 ? true : false
+        //    cell.configureCell(topic: topic, initialCell: true)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         fetchArticles(topic: topics[indexPath.item])
-        let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
-        cell.backgroundColor = UIColor.yellow
-        cell.topicTitleLabel.textColor = UIColor.darkGray
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
-        cell.backgroundColor = UIColor.darkGray
-        cell.topicTitleLabel.textColor = UIColor.white
-    }
 
 }
 
@@ -204,8 +208,8 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row == 0) { return 500 }
-        if (indexPath.row % 4 == 0) {return 500}
+        if (indexPath.row == 0) { return 470 }
+        if (indexPath.row % 4 == 0) {return 470}
         return 110
     }
     
@@ -251,15 +255,27 @@ extension MainVC: ArticleCellDelegate {
     func savePressed() {
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let article = articles[indexPath.row]
+        var image: UIImage!
+        
+        if let imageStr = article.imageStr {
+            ImageService.shared.getImage(from: imageStr) { (onlineImage) in
+                image = onlineImage ?? UIImage(named: "newspaper")
+            }
+        }
         if FileManagerService.shared.saveArticle(article: article) == false {
-            print("Error saving to filemanager")
+            print("Error saving to File Manager Service")
+        }
+
+        if FileStorageManager.manager.addToFavorites(article: article, andImage: image) == false {
+            print("Error saving to File Storage Manager")
         }
     }
     
     func sharePressed() {
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let article = articles[indexPath.row]
-        let activityVC = UIActivityViewController(activityItems: [article.websiteStr], applicationActivities: nil)
+        guard let websiteStr = article.websiteStr else {return}
+        let activityVC = UIActivityViewController(activityItems: [websiteStr], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }
     

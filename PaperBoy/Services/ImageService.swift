@@ -74,7 +74,6 @@ extension UIImageView {
         
         ImageService.shared.getImage(from: imageURLString) { (image) in
             DispatchQueue.main.async {
-                self.image = nil
                 self.image = image
                 spinner.stopAnimating()
                 spinner.isHidden = true

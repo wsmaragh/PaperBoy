@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYm-CJ-agc">
-                    <rect key="frame" x="16" y="304.5" width="78" height="17"/>
+                    <rect key="frame" x="16" y="304.5" width="77.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -43,24 +43,29 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-vl-V89">
-                    <rect key="frame" x="289" y="494" width="25" height="25"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" image="button-upload"/>
-                    <connections>
-                        <action selector="sharePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ok4-Vu-E4k"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-lE-SOw">
-                    <rect key="frame" x="322" y="494" width="25" height="25"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" image="button_star_empty">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Yh5-lq-v5P"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J9q-xy-g3L">
+                    <rect key="frame" x="289" y="494" width="58" height="25"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-vl-V89">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="button-upload"/>
+                            <connections>
+                                <action selector="sharePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ok4-Vu-E4k"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-lE-SOw">
+                            <rect key="frame" x="33" y="0.0" width="25" height="25"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="button_star_empty">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Yh5-lq-v5P"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-lx-f3V">
                     <rect key="frame" x="16" y="394" width="331" height="84"/>
                     <string key="text">Unless you’ve spent the past year or so stuck under a rock with no signal, you have to be familiar with the “distracted boyfriend” meme and all its iterations. But is it hurtful or harmless? Swedish ad watchers weigh in.</string>
@@ -80,20 +85,17 @@
                 <constraint firstItem="XVN-Sj-R6f" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="89h-UU-ktA"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="AhD-Ix-lqn"/>
                 <constraint firstItem="JYm-CJ-agc" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="Bpq-Ir-ZAS"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mhL-lE-SOw" secondAttribute="trailing" constant="16" id="D4i-IL-Y3m"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="J9q-xy-g3L" secondAttribute="bottom" constant="16" id="GvN-QH-yCM"/>
                 <constraint firstItem="miO-q9-QDg" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="O0Q-zZ-TLE"/>
-                <constraint firstItem="6r2-vl-V89" firstAttribute="top" secondItem="Exj-lx-f3V" secondAttribute="bottom" constant="16" id="OJx-EN-7lV"/>
                 <constraint firstItem="XVN-Sj-R6f" firstAttribute="top" secondItem="kqD-aU-5SF" secondAttribute="bottom" constant="5" id="UbX-nw-QCZ"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="agK-O6-taw"/>
-                <constraint firstItem="6r2-vl-V89" firstAttribute="centerY" secondItem="mhL-lE-SOw" secondAttribute="centerY" id="bwn-k9-WMd"/>
                 <constraint firstAttribute="trailing" secondItem="mtm-tx-RPO" secondAttribute="trailing" constant="16" id="dEk-i9-opC"/>
                 <constraint firstItem="JYm-CJ-agc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lwt-E5-mrb"/>
                 <constraint firstItem="Exj-lx-f3V" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mBb-m0-Vdl"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="noH-GT-9gB"/>
-                <constraint firstItem="mhL-lE-SOw" firstAttribute="top" secondItem="Exj-lx-f3V" secondAttribute="bottom" constant="16" id="nwh-xc-F92"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XVN-Sj-R6f" secondAttribute="trailing" constant="16" id="pLO-dG-irJ"/>
                 <constraint firstItem="kqD-aU-5SF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pl5-eb-0yi"/>
-                <constraint firstItem="mhL-lE-SOw" firstAttribute="leading" secondItem="6r2-vl-V89" secondAttribute="trailing" constant="8" id="rvq-gq-86I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="J9q-xy-g3L" secondAttribute="trailing" constant="16" id="xyE-qz-3lS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
