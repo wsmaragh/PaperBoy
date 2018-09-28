@@ -56,15 +56,15 @@ class ArticleView: UIView {
     }
     
     public func configureView(article: Article){
-        topicLabel.text = article.source.name ?? "No Source"
+//        topicLabel.text = article.source?.name ?? "No Source"
         titleLabel.text = article.title
-        subtitleLabel.text = article.subtitle ?? "No Subtitle"
+        subtitleLabel.text = article.subtitle
         if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
         }
-        authorLabel.text = article.author ?? "No Author"
-        dateLabel.text = article.dateStr ?? "No date"
-        fullLabel.text = article.content ?? "No Full details"
+        authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
+        dateLabel.text = article.dateStr
+        fullLabel.text = article.content
     }
     
     @IBAction func broswerButtonPressed(_ sender: UIButton) {

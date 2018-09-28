@@ -14,6 +14,11 @@ class MainVC: UIViewController {
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func searchBarButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toSearchVC", sender: self)
+
+    }
+    
     private var refreshControl: UIRefreshControl = UIRefreshControl()
     
     var topics: [ArticleTopic] = ArticleTopic.allCases
@@ -138,6 +143,12 @@ class MainVC: UIViewController {
             let article = articles[indexPath.row]
             articleVC.article = article
         }
+        if segue.identifier == "toSearchVC" {
+            guard let searchVC = segue.destination as? SearchVC else {return}
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        }
+        
+        
     }
 
 }
@@ -257,18 +268,13 @@ extension MainVC: ArticleCellDelegate {
         let article = articles[indexPath.row]
         var image: UIImage!
         
-        if let imageStr = article.imageStr {
-            ImageService.shared.getImage(from: imageStr) { (onlineImage) in
-                image = onlineImage ?? UIImage(named: "newspaper")
-            }
-        }
-        if FileManagerService.shared.saveArticle(article: article) == false {
-            print("Error saving to File Manager Service")
-        }
+//        if let imageStr = article.imageStr {
+//            ImageService.shared.getImage(from: imageStr) { (onlineImage) in
+//                image = onlineImage ?? UIImage(named: "newspaper")
+//            }
+//        }
+        RealmService.shared.create(article)
 
-        if FileStorageManager.manager.addToFavorites(article: article, andImage: image) == false {
-            print("Error saving to File Storage Manager")
-        }
     }
     
     func sharePressed() {

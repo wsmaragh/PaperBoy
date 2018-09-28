@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class FaveArticlesVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var favoriteArticles: [Article] = []
-    
+    var favoriteArticles: Results<Article>!
+    var favoriteArticlesRealmNotificationToken: NotificationToken?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRealm()
         setupNavBar()
         setupTableView()
-        fetchArticlesFromCoreData()
-
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopObservingRealm()
+    }
+
+    
     
     private func setupNavBar() {
         navigationItem.title = "Favorite Articles"
-        
+
     }
     
     private func setupTableView() {
@@ -36,14 +45,42 @@ class FaveArticlesVC: UIViewController {
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
     }
     
-    
-    fileprivate func fetchArticlesFromCoreData() {
-        self.favoriteArticles = FileManagerService.shared.getArticles()
-        self.favoriteArticles = FileStorageManager.manager.getArticles()
-//        if let articles =  CoreSataService.shared.fetchArticles(entityName: .Article) {
-//            favoriteArticles = articles
-//        }
+    private func setupRealm(){
+        let realm = RealmService.shared.realm
+        favoriteArticles = RealmService.shared.read(Article.self) //Read from Realm
+        
+        // Set Realm notification block
+        self.favoriteArticlesRealmNotificationToken = favoriteArticles.observe { (changes: RealmCollectionChange) in
+            switch changes {
+                
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                self.tableView.reloadData()
+                break
+                
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the TableView
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                self.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                self.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                self.tableView.endUpdates()
+                break
+                
+            case .error(let err):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(err)")
+                break
+            }
+        }
+        
     }
+    
+    
+    private func stopObservingRealm(){
+        favoriteArticlesRealmNotificationToken?.invalidate()
+    }
+
 
     fileprivate func animateTable() {
         self.tableView.reloadData()
@@ -95,5 +132,12 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "FaveArticlesVCToArticleVC", sender: self)
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let favoriteArticle = favoriteArticles[indexPath.row]
+            RealmService.shared.delete(favoriteArticle)
+        }
+    }
     
 }

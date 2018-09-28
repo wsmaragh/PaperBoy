@@ -7,6 +7,7 @@ target 'PaperBoy' do
 
   # Pods for PaperBoy
     pod 'Alamofire'
+    pod 'RealmSwift'
 
     
   target 'PaperBoyTests' do

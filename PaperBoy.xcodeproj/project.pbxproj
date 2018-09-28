@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		23087637215E6BE200266F2A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23087636215E6BE200266F2A /* SearchVC.swift */; };
+		2308763B215E941300266F2A /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2308763A215E941300266F2A /* EmptyTableView.xib */; };
+		2308763D215EAB8800266F2A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308763C215EAB8800266F2A /* RealmService.swift */; };
 		237E092F215BEA1B0039FE28 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E092E215BEA1B0039FE28 /* Article.swift */; };
 		237E0931215BEA390039FE28 /* ArticleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0930215BEA390039FE28 /* ArticleAPIService.swift */; };
 		237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0932215BED7D0039FE28 /* APIKeys.swift */; };
@@ -26,17 +28,14 @@
 		237E0954215C7D490039FE28 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0953215C7D490039FE28 /* UIView+.swift */; };
 		23B08394215D820B001A788F /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08393215D820B001A788F /* WebVC.swift */; };
 		23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08395215D85FA001A788F /* FaveArticlesVC.swift */; };
-		23B0839A215D9DBD001A788F /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08399215D9DBD001A788F /* FileManagerService.swift */; };
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* MainVC.swift */; };
 		23E06F202144236100F89F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F1E2144236100F89F9D /* Main.storyboard */; };
-		23E06F232144236100F89F9D /* PaperBoy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */; };
 		23E06F252144236300F89F9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F242144236300F89F9D /* Assets.xcassets */; };
 		23E06F282144236300F89F9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F262144236300F89F9D /* LaunchScreen.storyboard */; };
 		23E06F332144236300F89F9D /* PaperBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F322144236300F89F9D /* PaperBoyTests.swift */; };
 		23E06F3E2144236300F89F9D /* PaperBoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */; };
-		23E06F512144240B00F89F9D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F502144240B00F89F9D /* CoreDataService.swift */; };
 		23F33B64215D734900F7853C /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F33B63215D734900F7853C /* ArticleView.swift */; };
 		23F33B66215D735400F7853C /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleView.xib */; };
 		574BB9C6701A53FC014CE92A /* Pods_PaperBoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */; };
@@ -65,6 +64,8 @@
 		0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		150E4931DB750540996E105B /* Pods-PaperBoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoyUITests/Pods-PaperBoyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		23087636215E6BE200266F2A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		2308763A215E941300266F2A /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
+		2308763C215EAB8800266F2A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		237E092E215BEA1B0039FE28 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		237E0930215BEA390039FE28 /* ArticleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIService.swift; sourceTree = "<group>"; };
 		237E0932215BED7D0039FE28 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -84,13 +85,11 @@
 		237E0953215C7D490039FE28 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		23B08393215D820B001A788F /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		23B08395215D85FA001A788F /* FaveArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveArticlesVC.swift; sourceTree = "<group>"; };
-		23B08399215D9DBD001A788F /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		23E06F1F2144236100F89F9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		23E06F222144236100F89F9D /* PaperBoy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PaperBoy.xcdatamodel; sourceTree = "<group>"; };
 		23E06F242144236300F89F9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23E06F272144236300F89F9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23E06F292144236300F89F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,7 +99,6 @@
 		23E06F392144236300F89F9D /* PaperBoyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaperBoyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperBoyUITests.swift; sourceTree = "<group>"; };
 		23E06F3F2144236300F89F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23E06F502144240B00F89F9D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		23F33B63215D734900F7853C /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		23F33B65215D735400F7853C /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
 		4CA2533F5F6123F7CCF38919 /* Pods-PaperBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +224,7 @@
 				237E0942215C23EE0039FE28 /* SmallArticleCell.xib */,
 				23F33B63215D734900F7853C /* ArticleView.swift */,
 				23F33B65215D735400F7853C /* ArticleView.xib */,
+				2308763A215E941300266F2A /* EmptyTableView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,9 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				237E094B215C5E2E0039FE28 /* ImageService.swift */,
-				23B08399215D9DBD001A788F /* FileManagerService.swift */,
-				23E06F502144240B00F89F9D /* CoreDataService.swift */,
-				23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */,
+				2308763C215EAB8800266F2A /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -405,6 +402,7 @@
 				23E06F202144236100F89F9D /* Main.storyboard in Resources */,
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
 				23F33B66215D735400F7853C /* ArticleView.xib in Resources */,
+				2308763B215E941300266F2A /* EmptyTableView.xib in Resources */,
 				237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,10 +468,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -506,10 +508,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				237E0945215C30B50039FE28 /* Date+.swift in Sources */,
-				23E06F512144240B00F89F9D /* CoreDataService.swift in Sources */,
-				23B0839A215D9DBD001A788F /* FileManagerService.swift in Sources */,
 				23F33B64215D734900F7853C /* ArticleView.swift in Sources */,
 				237E0931215BEA390039FE28 /* ArticleAPIService.swift in Sources */,
+				2308763D215EAB8800266F2A /* RealmService.swift in Sources */,
 				237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */,
 				237E094E215C60FD0039FE28 /* ArticleVC.swift in Sources */,
 				237E0935215C00A40039FE28 /* UpdatedCell.swift in Sources */,
@@ -525,7 +526,6 @@
 				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */,
-				23E06F232144236100F89F9D /* PaperBoy.xcdatamodeld in Sources */,
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -859,19 +859,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				23E06F222144236100F89F9D /* PaperBoy.xcdatamodel */,
-			);
-			currentVersion = 23E06F222144236100F89F9D /* PaperBoy.xcdatamodel */;
-			path = PaperBoy.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 23E06F0F2144236100F89F9D /* Project object */;
 }

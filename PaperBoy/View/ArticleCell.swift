@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 @objc protocol ArticleCellDelegate {
     @objc func savePressed()
@@ -33,18 +35,13 @@ class ArticleCell: UITableViewCell {
     
     
     public func configureCell(article: Article) {
-        sourceLabel.text = article.source.name ?? "Topic"
+//        sourceLabel.text = article.source._rlmInferWrappedType().name //.name ?? "Topic"
         titleLabel.text = article.title
-        descriptionLabel.text = article.subtitle ?? ""
-        
-        if let author = article.author {
-            authorLabel.text = "by \(author)"
+        descriptionLabel.text = article.subtitle
+        authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
+        if let imageURLStr = article.imageStr {
+            articleImageView.loadImage(imageURLString: imageURLStr)
         }
-        else {
-            authorLabel.text = ""
-        }
-
-        
         if let dateString = article.dateStr {
             let date = DateFormatterService.shared.getDate(from: dateString, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
             let formattedDateString = DateFormatterService.shared.timeAgoSinceDate(date)
@@ -53,9 +50,6 @@ class ArticleCell: UITableViewCell {
         else {
             timeLabel.text = "-----"
         }
-        if let imageURLStr = article.imageStr {
-            articleImageView.loadImage(imageURLString: imageURLStr)
-        } 
     }
     
     @IBAction func savePressed(_ sender: UIButton) {

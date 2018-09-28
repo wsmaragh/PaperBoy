@@ -35,7 +35,9 @@ class SmallArticleCell: UITableViewCell {
         
         if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
-        }     }
+        }
+        
+    }
 
     
     @IBAction func savePressed(_ sender: UIButton) {

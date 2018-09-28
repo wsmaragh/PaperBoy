@@ -24,10 +24,10 @@ class WebVC: UIViewController {
     }
     
     func setupWebView(){
-        guard let urlStr = article.websiteStr else {return}
-        guard let url = URL(string: urlStr) else {return}
-        let urlRequest = URLRequest(url: url)
-        webView.load(urlRequest)
+//        guard let urlStr = article.websiteStr else {return}
+//        guard let url = URL(string: urlStr) else {return}
+//        let urlRequest = URLRequest(url: url)
+//        webView.load(urlRequest)
     }
 
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="missing" translatesAutoresizingMaskIntoConstraints="NO" id="KPl-jd-6T2">
+                    <rect key="frame" x="94" y="240" width="187.5" height="187.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="KPl-jd-6T2" secondAttribute="height" multiplier="1:1" id="fCk-ta-PtO"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to Show" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvp-nE-CJr">
+                    <rect key="frame" x="112" y="182.5" width="151.5" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="use search bar to search for articles" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vak-nq-VZL">
+                    <rect key="frame" x="15" y="454" width="345" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rvp-nE-CJr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5G1-lw-5VF"/>
+                <constraint firstItem="KPl-jd-6T2" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="C9a-qS-7z4"/>
+                <constraint firstItem="KPl-jd-6T2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PX4-mL-Ew2"/>
+                <constraint firstItem="KPl-jd-6T2" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="TZE-7R-xXt"/>
+                <constraint firstItem="Vak-nq-VZL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aFO-fI-REv"/>
+                <constraint firstItem="KPl-jd-6T2" firstAttribute="top" secondItem="rvp-nE-CJr" secondAttribute="bottom" constant="32" id="dK7-Uh-q7g"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vak-nq-VZL" secondAttribute="trailing" constant="15" id="dbd-Ez-BqW"/>
+                <constraint firstItem="Vak-nq-VZL" firstAttribute="top" secondItem="KPl-jd-6T2" secondAttribute="bottom" constant="26.5" id="gdK-QD-eZN"/>
+                <constraint firstItem="Vak-nq-VZL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="iv8-pp-1az"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="105.69715142428787"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="missing" width="320" height="240"/>
+    </resources>
+</document>

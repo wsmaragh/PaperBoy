@@ -59,7 +59,8 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="search" id="YYa-pi-SB1">
                                 <connections>
-                                    <segue destination="xbR-qc-eeU" kind="show" id="lwW-bi-yJ3"/>
+                                    <action selector="searchBarButtonPressed:" destination="BYZ-38-t0r" id="f8X-Al-onP"/>
+                                    <segue destination="X9X-Dh-OZ6" kind="show" identifier="toSearchVC" id="Kfx-ES-lxF"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -220,30 +221,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2452" y="-27"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="tra-2r-lHC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xbR-qc-eeU" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="daQ-05-9QD">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="X9X-Dh-OZ6" kind="relationship" relationship="rootViewController" id="UL8-1Q-aDZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7gA-Lo-F1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1561" y="-27"/>
+            <point key="canvasLocation" x="1929" y="-19"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2SQ-ym-cBe">
@@ -270,6 +248,6 @@
         <image name="search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j7a-aQ-uYk"/>
+        <segue reference="vkQ-dw-QYf"/>
     </inferredMetricsTieBreakers>
 </document>
