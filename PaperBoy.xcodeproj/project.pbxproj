@@ -260,9 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				237E094B215C5E2E0039FE28 /* ImageService.swift */,
+				23B08399215D9DBD001A788F /* FileManagerService.swift */,
 				23E06F502144240B00F89F9D /* CoreDataService.swift */,
 				23E06F212144236100F89F9D /* PaperBoy.xcdatamodeld */,
-				23B08399215D9DBD001A788F /* FileManagerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
