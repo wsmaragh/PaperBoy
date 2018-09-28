@@ -24,7 +24,7 @@ class SmallArticleCell: UITableViewCell {
     public func configureCell(article: Article) {
         titleLabel.text = article.title
         
-        if let dateString = article.publishedAt {
+        if let dateString = article.dateStr {
             let date = DateFormatterService.shared.getDate(from: dateString, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
             let formattedDateString = DateFormatterService.shared.timeAgoSinceDate(date)
             timeLabel.text = formattedDateString
@@ -33,7 +33,7 @@ class SmallArticleCell: UITableViewCell {
             timeLabel.text = "-----"
         }
         
-        if let imageURLStr = article.urlToImage {
+        if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
         }     }
 

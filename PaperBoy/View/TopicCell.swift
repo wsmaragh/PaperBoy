@@ -16,6 +16,12 @@ class TopicCell: UICollectionViewCell {
     
     static let id = "TopicCell"
     
+    override var isSelected: Bool {
+        didSet {
+            backgroundColor = isSelected ? UIColor.yellow : UIColor.darkGray
+        }
+    }
+    
     func configureCell(topic: ArticleTopic){
         topicTitleLabel.text = topic.rawValue
         topicImageView.image = UIImage(named: topic.rawValue)

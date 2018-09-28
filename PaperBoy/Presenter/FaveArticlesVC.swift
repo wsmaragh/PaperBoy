@@ -38,7 +38,10 @@ class FaveArticlesVC: UIViewController {
     
     
     fileprivate func fetchArticlesFromCoreData() {
-        //get from
+        self.favoriteArticles = FileManagerService.shared.getArticles()
+//        if let articles =  CoreSataService.shared.fetchArticles(entityName: .Article) {
+//            favoriteArticles = articles
+//        }
     }
 
     fileprivate func animateTable() {
@@ -82,7 +85,6 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
         let article = favoriteArticles[indexPath.row]
         cell.configureCell(article: article)
         return cell
-
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

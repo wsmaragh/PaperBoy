@@ -17,12 +17,23 @@ struct ArticlesJSON: Codable {
 struct Article: Codable {
     var title: String
     var author: String?
-    var description: String?
-    var url: String?
-    var urlToImage: String?
-    var publishedAt: String?
+    var subtitle: String?
+    var websiteStr: String?
+    var imageStr: String?
+    var dateStr: String?
     var source: ArticleSource
     var content: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case author
+        case subtitle = "description"
+        case websiteStr = "url"
+        case imageStr = "urlToImage"
+        case dateStr = "publishedAt"
+        case source
+        case content
+    }
 }
 
 struct ArticleSource: Codable {

@@ -14,21 +14,13 @@ import CoreData
 let appName = "PaperBoy"
 
 
-// Custom Object
-struct MyObject {
-    var name: String
-    var address: String
-}
-
-
 class CoreSataService {
     
     private init() {}
     static let shared = CoreSataService()
 
-    // MARK: - Stack
+    // MARK: - Core Data Stack
     lazy var persistentContainer: NSPersistentContainer = {
-
         let container = NSPersistentContainer(name: appName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -38,7 +30,6 @@ class CoreSataService {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
         return container
     }()
     
@@ -64,33 +55,40 @@ class CoreSataService {
 extension CoreSataService {
     
     enum Entities: String {
-        case MyObject = "MyObject"
+        case Article = "Article"
         
         enum EntityValues: String {
-            case name = "name"
-            case address = "address"
+            case title = "title"
+            case author = "author"
+            case subtitle = "subtitle"
+            case websiteStr = "websiteStr"
+            case imageStr = "imageStr"
+            case dateStr = "dateStr"
+            case sourceName = "sourceName"
+            case content = "content"
         }
     }
     
 
-    // MARK: - Insert (Create)
+    // MARK: - Create
     
-    func insert(newObject: MyObject) {
+    func insert(newArticle: Article) {
 
         let context = persistentContainer.viewContext
 
-         // Retrieving an Entity with a given Name
-         //An NSEntityDescription - a description of an entity in Core Data
-        let entity = NSEntityDescription.entity(forEntityName: Entities.MyObject.rawValue,
-                                                in: context)!
+        let entity = NSEntityDescription.entity(forEntityName: Entities.Article.rawValue, in: context)!
         
-        // Initialize a managed object and insert it into the specified managed object context
-        let myObject = NSManagedObject(entity: entity,
-                                     insertInto: context)
-        myObject.setValue(newObject.name, forKeyPath: Entities.EntityValues.name.rawValue)
-        myObject.setValue(newObject.address, forKeyPath: Entities.EntityValues.address.rawValue)
-        
-        // commit changes to object and save to disk (managed object context). save can throw an error, which is why you call it using the try keyword within a do-catch block.
+        let saveArticle = NSManagedObject(entity: entity, insertInto: context)
+
+        saveArticle.setValue(newArticle.title, forKeyPath: Entities.EntityValues.title.rawValue)
+        saveArticle.setValue(newArticle.author, forKeyPath: Entities.EntityValues.author.rawValue)
+        saveArticle.setValue(newArticle.subtitle, forKeyPath: Entities.EntityValues.subtitle.rawValue)
+        saveArticle.setValue(newArticle.websiteStr, forKeyPath: Entities.EntityValues.websiteStr.rawValue)
+        saveArticle.setValue(newArticle.imageStr, forKeyPath: Entities.EntityValues.imageStr.rawValue)
+        saveArticle.setValue(newArticle.dateStr, forKeyPath: Entities.EntityValues.dateStr.rawValue)
+        saveArticle.setValue(newArticle.source.name, forKeyPath: Entities.EntityValues.sourceName.rawValue)
+        saveArticle.setValue(newArticle.content, forKeyPath: Entities.EntityValues.content.rawValue)
+
         do {
             try context.save()
         } catch let error as NSError {
@@ -99,31 +97,36 @@ extension CoreSataService {
     }
     
     
-    // MARK: - fetch (Read)
+    // MARK: - Read
  
-    func retrieveObject(entityName: CoreSataService.Entities, for objectName: String) -> MyObject? {
+    func fetchArticle(entityName: CoreSataService.Entities, for articleName: String) -> Article? {
         let context = persistentContainer.viewContext
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName.rawValue)
+        
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "name == %@", objectName)
+        
+        fetchRequest.predicate = NSPredicate(format: "title == %@", articleName)
 
         do {
-            let myObject = try context.fetch(fetchRequest)
-            return myObject as? MyObject
+            let article = try context.fetch(fetchRequest)
+            return article as? Article
         } catch let error as NSError {
             print("Could not fetch Object from Core Data. \(error), \(error.userInfo)")
             return nil
         }
     }
     
-    func retrieveObjects(entityName: CoreSataService.Entities) -> [MyObject]? {
+    func fetchArticles(entityName: CoreSataService.Entities) -> [Article]? {
         let context = persistentContainer.viewContext
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName.rawValue)
-        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "title", ascending: true)]
 
         do {
-            let myObjects = try context.fetch(fetchRequest)
-            return myObjects as? [MyObject]
+            let articles = try context.fetch(fetchRequest)
+            return articles as? [Article]
         } catch let error as NSError {
             print("Could not fetch Objects from Core Data. \(error), \(error.userInfo)")
             return nil
@@ -134,17 +137,26 @@ extension CoreSataService {
     
     // MARK: - Update
     
-    func update(for myObject : MyObject, withName newName: String, withAddress newAddress: String) -> Bool {
+    func update(for article : Article, withAuthor newAuthor: String, withURL newURL: String) -> Bool {
+        
         let context = persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: Entities.MyObject.rawValue)
-        fetchRequest.predicate = NSPredicate(format: "name == %@", myObject.name)
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: Entities.Article.rawValue)
+        
+        fetchRequest.predicate = NSPredicate(format: "title == %@", article.title)
         
         do {
             let objects = try context.fetch(fetchRequest)
             let object = objects[0] as! NSManagedObject
             
-            object.setValue(newName, forKey: Entities.EntityValues.name.rawValue)
-            object.setValue(newAddress, forKey: Entities.EntityValues.address.rawValue)
+            object.setValue(article.title, forKeyPath: Entities.EntityValues.title.rawValue)
+            object.setValue(article.author, forKeyPath: Entities.EntityValues.author.rawValue)
+            object.setValue(article.subtitle, forKeyPath: Entities.EntityValues.subtitle.rawValue)
+            object.setValue(article.websiteStr, forKeyPath: Entities.EntityValues.websiteStr.rawValue)
+            object.setValue(article.imageStr, forKeyPath: Entities.EntityValues.imageStr.rawValue)
+            object.setValue(article.dateStr, forKeyPath: Entities.EntityValues.dateStr.rawValue)
+            object.setValue(article.source.name, forKeyPath: Entities.EntityValues.sourceName.rawValue)
+            object.setValue(article.content, forKeyPath: Entities.EntityValues.content.rawValue)
             
             do {
                 try context.save()
@@ -164,14 +176,17 @@ extension CoreSataService {
     
     // MARK: - Delete
     
-    func delete(name: String) -> Bool {
+    func delete(title: String) -> Bool {
         let context = persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Entities.MyObject.rawValue)
-        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Entities.Article.rawValue)
+        
+        fetchRequest.predicate = NSPredicate(format: "title == %@", title)
         
         do {
+            
             let objects = try context.fetch(fetchRequest)
-            let objectToDelete = objects[0] as! NSManagedObject
+            let objectToDelete = objects[0]
             context.delete(objectToDelete)
             
             do {
@@ -181,7 +196,7 @@ extension CoreSataService {
             }
             return true
         } catch let error as NSError {
-            print("Error Could not de. \(error), \(error.userInfo)")
+            print("Error Could not decode. \(error), \(error.userInfo)")
             return false
         }
         

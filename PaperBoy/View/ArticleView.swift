@@ -58,12 +58,12 @@ class ArticleView: UIView {
     public func configureView(article: Article){
         topicLabel.text = article.source.name ?? "No Source"
         titleLabel.text = article.title
-        subtitleLabel.text = article.description ?? "No Description"
-        if let imageURLStr = article.urlToImage {
+        subtitleLabel.text = article.subtitle ?? "No Subtitle"
+        if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
         }
         authorLabel.text = article.author ?? "No Author"
-        dateLabel.text = article.publishedAt ?? "No date"
+        dateLabel.text = article.dateStr ?? "No date"
         fullLabel.text = article.content ?? "No Full details"
     }
     

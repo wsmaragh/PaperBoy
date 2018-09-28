@@ -35,7 +35,7 @@ class ArticleCell: UITableViewCell {
     public func configureCell(article: Article) {
         sourceLabel.text = article.source.name ?? "Topic"
         titleLabel.text = article.title
-        descriptionLabel.text = article.description ?? ""
+        descriptionLabel.text = article.subtitle ?? ""
         
         if let author = article.author {
             authorLabel.text = "by \(author)"
@@ -44,7 +44,7 @@ class ArticleCell: UITableViewCell {
             authorLabel.text = "by: No Author"
         }
         
-        if let dateString = article.publishedAt {
+        if let dateString = article.dateStr {
             let date = DateFormatterService.shared.getDate(from: dateString, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
             let formattedDateString = DateFormatterService.shared.timeAgoSinceDate(date)
             timeLabel.text = formattedDateString
@@ -52,7 +52,7 @@ class ArticleCell: UITableViewCell {
         else {
             timeLabel.text = "-----"
         }
-        if let imageURLStr = article.urlToImage {
+        if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
         } 
     }

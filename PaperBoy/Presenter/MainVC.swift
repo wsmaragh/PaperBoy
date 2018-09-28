@@ -32,7 +32,6 @@ class MainVC: UIViewController {
         addRefreshControl()
         setupCollectionView()
         fetchArticles(topic: .Headlines)
-        topicCollectionView.selectItem(at: IndexPath(item: 1, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
 
     private func setupNavBar(){
@@ -90,6 +89,9 @@ class MainVC: UIViewController {
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 2))
+//        let indexPathForFirstRow = IndexPath(row: 0, section: 0)
+//        topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
+//        self.collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
     }
     
     fileprivate func fetchArticles(topic: ArticleTopic) {
@@ -151,7 +153,6 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell tapped")
         fetchArticles(topic: topics[indexPath.item])
         let cell = collectionView.cellForItem(at: indexPath) as! TopicCell
         cell.backgroundColor = UIColor.yellow
@@ -248,12 +249,17 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
 
 extension MainVC: ArticleCellDelegate {
     func savePressed() {
-        print("Save Pressed in VC")
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let article = articles[indexPath.row]
+        if FileManagerService.shared.saveArticle(article: article) == false {
+            print("Error saving to filemanager")
+        }
     }
     
     func sharePressed() {
-        #warning ("get row and article to change link below")
-        let activityVC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let article = articles[indexPath.row]
+        let activityVC = UIActivityViewController(activityItems: [article.websiteStr], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }
     
