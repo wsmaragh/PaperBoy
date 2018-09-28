@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23087637215E6BE200266F2A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23087636215E6BE200266F2A /* SearchVC.swift */; };
 		237E092F215BEA1B0039FE28 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E092E215BEA1B0039FE28 /* Article.swift */; };
 		237E0931215BEA390039FE28 /* ArticleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0930215BEA390039FE28 /* ArticleAPIService.swift */; };
 		237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0932215BED7D0039FE28 /* APIKeys.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		150E4931DB750540996E105B /* Pods-PaperBoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoyUITests/Pods-PaperBoyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		23087636215E6BE200266F2A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		237E092E215BEA1B0039FE28 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		237E0930215BEA390039FE28 /* ArticleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIService.swift; sourceTree = "<group>"; };
 		237E0932215BED7D0039FE28 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */,
 				23B08393215D820B001A788F /* WebVC.swift */,
 				23B08395215D85FA001A788F /* FaveArticlesVC.swift */,
+				23087636215E6BE200266F2A /* SearchVC.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				23E06F1D2144236100F89F9D /* MainVC.swift in Sources */,
 				23B08394215D820B001A788F /* WebVC.swift in Sources */,
 				237E0941215C23C00039FE28 /* SmallArticleCell.swift in Sources */,
+				23087637215E6BE200266F2A /* SearchVC.swift in Sources */,
 				237E0954215C7D490039FE28 /* UIView+.swift in Sources */,
 				237E0939215C05090039FE28 /* ArticleCell.swift in Sources */,
 				237E092F215BEA1B0039FE28 /* Article.swift in Sources */,

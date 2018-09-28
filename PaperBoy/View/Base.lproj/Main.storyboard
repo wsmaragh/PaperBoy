@@ -51,11 +51,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="foQ-eV-iW0">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="baw-h9-n2y"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="1OM-D6-MfT">
-                            <connections>
-                                <segue destination="TT4-ky-mz1" kind="show" id="IAY-zH-xL9"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="favorites" id="1OM-D6-MfT">
+                                <connections>
+                                    <segue destination="TT4-ky-mz1" kind="show" id="IAY-zH-xL9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="search" id="YYa-pi-SB1">
+                                <connections>
+                                    <segue destination="X9X-Dh-OZ6" kind="show" id="lwW-bi-yJ3"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
@@ -171,12 +178,40 @@
             </objects>
             <point key="canvasLocation" x="669.60000000000002" y="685.90704647676171"/>
         </scene>
+        <!--SearchVC-->
+        <scene sceneID="Wpd-E3-PgM">
+            <objects>
+                <viewController id="X9X-Dh-OZ6" customClass="SearchVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="STs-nN-ai6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fo7-YZ-6FE"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="nmr-Ty-wUh" id="8o3-lD-qAZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krc-UH-4Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="nmr-Ty-wUh">
+                    <connections>
+                        <outlet property="delegate" destination="X9X-Dh-OZ6" id="KBq-Fw-lZc"/>
+                        <outlet property="searchContentsController" destination="X9X-Dh-OZ6" id="QAk-0a-jJY"/>
+                        <outlet property="searchResultsDataSource" destination="X9X-Dh-OZ6" id="6pR-jN-wRn"/>
+                        <outlet property="searchResultsDelegate" destination="X9X-Dh-OZ6" id="g4N-13-giN"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1497" y="-27"/>
+        </scene>
     </scenes>
     <resources>
         <image name="favorites" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Nt-Fj-Tjc"/>
+        <segue reference="vkQ-dw-QYf"/>
     </inferredMetricsTieBreakers>
 </document>

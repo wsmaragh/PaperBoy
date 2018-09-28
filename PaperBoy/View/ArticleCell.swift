@@ -41,8 +41,9 @@ class ArticleCell: UITableViewCell {
             authorLabel.text = "by \(author)"
         }
         else {
-            authorLabel.text = "by: No Author"
+            authorLabel.text = ""
         }
+
         
         if let dateString = article.dateStr {
             let date = DateFormatterService.shared.getDate(from: dateString, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
@@ -60,11 +61,12 @@ class ArticleCell: UITableViewCell {
     @IBAction func savePressed(_ sender: UIButton) {
         if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
             sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
+            //saving
         } else {
             sender.setImage(UIImage(named: "button_star_empty"), for: .normal)
+            //deleteing
         }
     }
-
     
     @IBAction func sharePressed(_ sender: UIButton) {
         delegate?.sharePressed()
