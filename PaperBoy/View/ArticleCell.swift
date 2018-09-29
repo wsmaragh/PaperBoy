@@ -11,8 +11,8 @@ import RealmSwift
 
 
 @objc protocol ArticleCellDelegate {
-    @objc func savePressed()
-    @objc func sharePressed()
+    @objc func savePressed(article: Article)
+    @objc func sharePressed(article: Article)
 }
 
 
@@ -30,11 +30,16 @@ class ArticleCell: UITableViewCell {
 
     static let id = "ArticleCell"
     
+    var article: Article?
+    
+    
+    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
     
     public func configureCell(article: Article) {
+        self.article = article
 //        sourceLabel.text = article.source._rlmInferWrappedType().name //.name ?? "Topic"
         titleLabel.text = article.title
         descriptionLabel.text = article.subtitle
@@ -53,6 +58,9 @@ class ArticleCell: UITableViewCell {
     }
     
     @IBAction func savePressed(_ sender: UIButton) {
+        if let article = self.article {
+            delegate?.savePressed(article: article)
+        }
         if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
             sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
             //saving
@@ -63,7 +71,9 @@ class ArticleCell: UITableViewCell {
     }
     
     @IBAction func sharePressed(_ sender: UIButton) {
-        delegate?.sharePressed()
+        if let article = self.article {
+            delegate?.sharePressed(article: article)
+        }
     }
     
 }

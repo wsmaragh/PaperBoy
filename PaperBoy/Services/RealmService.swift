@@ -21,6 +21,8 @@ class RealmService {
     func create<T: Object>(_ realmObject: T) {
         #warning("remove after testing")
         print("writing to realm")
+        print(realmObject)
+
         do {
             try realm.write {
                 realm.add(realmObject)
@@ -33,8 +35,6 @@ class RealmService {
     
     //READ
     func read<T: Object>(_ type: T.Type) -> Results<T> {
-        #warning("remove after testing")
-        print("reading from realm")
         return realm.objects(type)
     }
     

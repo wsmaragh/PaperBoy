@@ -21,9 +21,13 @@ class SmallArticleCell: UITableViewCell {
 
     static let id = "SmallArticleCell"
 
+    var article: Article?
+
+
+
     public func configureCell(article: Article) {
+        self.article = article
         titleLabel.text = article.title
-        
         if let dateString = article.dateStr {
             let date = DateFormatterService.shared.getDate(from: dateString, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
             let formattedDateString = DateFormatterService.shared.timeAgoSinceDate(date)
@@ -41,7 +45,9 @@ class SmallArticleCell: UITableViewCell {
 
     
     @IBAction func savePressed(_ sender: UIButton) {
-        delegate?.savePressed()
+        if let article = self.article {
+            delegate?.savePressed(article: article)
+        }
         if sender.image(for: .normal) == UIImage(named: "button_star_empty") {
             sender.setImage(UIImage(named: "button_star_filled"), for: .normal)
         } else {
@@ -51,7 +57,9 @@ class SmallArticleCell: UITableViewCell {
     
     
     @IBAction func sharePressed(_ sender: UIButton) {
-        delegate?.sharePressed()
+        if let article = self.article {
+            delegate?.sharePressed(article: article)
+        }
     }
     
     

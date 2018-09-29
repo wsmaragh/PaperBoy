@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 class MainVC: UIViewController {
@@ -16,7 +17,6 @@ class MainVC: UIViewController {
     
     @IBAction func searchBarButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toSearchVC", sender: self)
-
     }
     
     private var refreshControl: UIRefreshControl = UIRefreshControl()
@@ -263,27 +263,15 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MainVC: ArticleCellDelegate {
-    func savePressed() {
-        guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        let article = articles[indexPath.row]
-        var image: UIImage!
-        
-//        if let imageStr = article.imageStr {
-//            ImageService.shared.getImage(from: imageStr) { (onlineImage) in
-//                image = onlineImage ?? UIImage(named: "newspaper")
-//            }
-//        }
+    func savePressed(article: Article) {    
         RealmService.shared.create(article)
-
     }
     
-    func sharePressed() {
-        guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        let article = articles[indexPath.row]
+    func sharePressed(article: Article) {
         guard let websiteStr = article.websiteStr else {return}
         let activityVC = UIActivityViewController(activityItems: [websiteStr], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }
-    
+
     
 }
