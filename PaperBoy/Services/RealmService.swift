@@ -17,15 +17,14 @@ class RealmService {
     
     var realm = try! Realm()
     
-    //CREATE
     func create<T: Object>(_ realmObject: T) {
-        #warning("remove after testing")
-        print("writing to realm")
-        print(realmObject)
-
+//        let myPrimaryKey = (realmObject as! Article).title
+//        print("myPrimaryKey: ", myPrimaryKey)
+//        let articleExists = realm.object(ofType: Article.self, forPrimaryKey: myPrimaryKey)
+//        guard articleExists == nil else {return}
         do {
             try realm.write {
-                realm.add(realmObject)
+                realm.add(realmObject, update: true)
             }
         } catch {
             print("Realm Create Error: ", error)
@@ -33,12 +32,10 @@ class RealmService {
         }
     }
     
-    //READ
     func read<T: Object>(_ type: T.Type) -> Results<T> {
         return realm.objects(type)
     }
     
-    //UPDATE
     func update<T: Object>(_ realmObject: T, with dictionary: [String: Any?]) {
         do {
             try realm.write {
@@ -52,7 +49,6 @@ class RealmService {
         }
     }
     
-    //DELETE
     func delete<T: Object>(_ realmObject: T) {
         do {
             try realm.write {
@@ -60,9 +56,22 @@ class RealmService {
             }
         } catch {
             print("Realm Delete Error: ", error)
-            print("Realm Delete Error Description: ", error.localizedDescription)        }
+            print("Realm Delete Error Description: ", error.localizedDescription)
+            
+        }
     }
     
+    func deleteAll() {
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            print("Realm Delete Error: ", error)
+            print("Realm Delete Error Description: ", error.localizedDescription)
+            
+        }
+    }
     
 }
 

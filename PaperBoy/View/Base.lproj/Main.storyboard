@@ -151,8 +151,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fer-zz-MRB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZOa-RG-FMp"/>
+                    <navigationItem key="navigationItem" id="ZOa-RG-FMp">
+                        <barButtonItem key="rightBarButtonItem" title="Delete All" id="qJX-4b-hm3">
+                            <connections>
+                                <action selector="deleteAllPressed:" destination="TT4-ky-mz1" id="zBt-i8-NAH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteAllButton" destination="qJX-4b-hm3" id="bV7-O2-kml"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
                     </connections>
@@ -248,6 +255,6 @@
         <image name="search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vkQ-dw-QYf"/>
+        <segue reference="1Nt-Fj-Tjc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,7 +14,15 @@ class FaveArticlesVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var deleteAllButton: UIBarButtonItem!
+    
+    
+    @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
+        RealmService.shared.deleteAll()
+    }
+    
     var favoriteArticles: Results<Article>!
+    
     var favoriteArticlesRealmNotificationToken: NotificationToken?
 
     override func viewDidLoad() {
@@ -28,12 +36,9 @@ class FaveArticlesVC: UIViewController {
         super.viewWillDisappear(animated)
         stopObservingRealm()
     }
-
-    
     
     private func setupNavBar() {
         navigationItem.title = "Favorite Articles"
-
     }
     
     private func setupTableView() {
@@ -46,29 +51,22 @@ class FaveArticlesVC: UIViewController {
     }
     
     private func setupRealm(){
-        let realm = RealmService.shared.realm
-        favoriteArticles = RealmService.shared.read(Article.self) //Read from Realm
+        favoriteArticles = RealmService.shared.read(Article.self)
         
-        // Set Realm notification block
         self.favoriteArticlesRealmNotificationToken = favoriteArticles.observe { (changes: RealmCollectionChange) in
+            
             switch changes {
-                
             case .initial:
-                // Results are now populated and can be accessed without blocking the UI
                 self.tableView.reloadData()
                 break
-                
             case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the TableView
                 self.tableView.beginUpdates()
                 self.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                 self.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                 self.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                 self.tableView.endUpdates()
                 break
-                
             case .error(let err):
-                // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(err)")
                 break
             }
@@ -76,11 +74,9 @@ class FaveArticlesVC: UIViewController {
         
     }
     
-    
     private func stopObservingRealm(){
         favoriteArticlesRealmNotificationToken?.invalidate()
     }
-
 
     fileprivate func animateTable() {
         self.tableView.reloadData()
@@ -96,8 +92,14 @@ class FaveArticlesVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FaveArticlesVCToArticleVC" {
-            guard let articleVC = segue.destination as? ArticleVC else {print("Error downcasting destination to DetailExerciseVC in Segue"); return}
-            guard let indexPath = tableView.indexPathForSelectedRow else {print("Error getting indexPath in Segue"); return}
+            guard let articleVC = segue.destination as? ArticleVC else {
+                print("Error downcasting destination to ArticleVC in Segue");
+                return
+            }
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("Error getting indexPath in Segue");
+                return
+            }
             let article = favoriteArticles[indexPath.row]
             articleVC.article = article
         }
@@ -106,7 +108,7 @@ class FaveArticlesVC: UIViewController {
 }
 
 
-
+// MARK: Tableview setup
 extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,6 +116,11 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if favoriteArticles.count == 0 {
+            print("setting background view")
+            tableView.backgroundView = EmptyTableView()
+        }
         return favoriteArticles.count
     }
     

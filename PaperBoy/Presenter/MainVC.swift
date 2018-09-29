@@ -165,13 +165,6 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCell.id, for: indexPath) as! TopicCell
         let topic = topics[indexPath.item]
         cell.configureCell(topic: topic)
-        
-        #warning ("Remove commented code")
-//        if indexPath.item == 0 {
-//            self.collectionView(topicCollectionView, didSelectItemAt: indexPath)
-//        }
-        //    let initialCell = indexPath.item == 0 ? true : false
-        //    cell.configureCell(topic: topic, initialCell: true)
         return cell
     }
     
@@ -263,7 +256,8 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MainVC: ArticleCellDelegate {
-    func savePressed(article: Article) {    
+    func savePressed(article: Article) {
+        
         RealmService.shared.create(article)
     }
     

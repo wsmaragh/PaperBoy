@@ -60,10 +60,6 @@ class Article: Object, Codable {
 class ArticleSource: Object, Codable {
     @objc dynamic var name: String?
     
-    override class func primaryKey() -> String? {
-        return "name"
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case name
     }
