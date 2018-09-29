@@ -160,11 +160,49 @@
                     </navigationItem>
                     <connections>
                         <outlet property="deleteAllButton" destination="qJX-4b-hm3" id="bV7-O2-kml"/>
+                        <outlet property="noDataView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgg-TR-dL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dss-ZM-ZpT">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="315"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="pUr-9e-ZVg">
+                            <rect key="frame" x="0.0" y="93.5" width="240" height="128"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="pUr-9e-ZVg" secondAttribute="height" multiplier="15:8" id="fbt-Mb-OSF"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6o-Js-egC">
+                            <rect key="frame" x="45" y="61" width="150" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X75-NL-IsU">
+                            <rect key="frame" x="63.5" y="233.5" width="113" height="30"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="find new articles">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="X75-NL-IsU" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="1X3-gQ-acG"/>
+                        <constraint firstItem="k6o-Js-egC" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="Fb5-W0-u20"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="leading" secondItem="cuA-K9-Mc9" secondAttribute="leading" id="JH3-bc-vYx"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="QCl-TB-yyZ"/>
+                        <constraint firstItem="X75-NL-IsU" firstAttribute="top" secondItem="pUr-9e-ZVg" secondAttribute="bottom" constant="12" id="RmU-8x-6aj"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="centerY" secondItem="dss-ZM-ZpT" secondAttribute="centerY" id="dTw-pW-MLz"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="top" secondItem="k6o-Js-egC" secondAttribute="bottom" constant="12" id="mMx-Hz-jUR"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="trailing" secondItem="cuA-K9-Mc9" secondAttribute="trailing" id="pwT-6I-DOL"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="cuA-K9-Mc9"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2337" y="1578"/>
         </scene>
@@ -252,9 +290,10 @@
     <resources>
         <image name="favorites" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
+        <image name="newspaper" width="320" height="275"/>
         <image name="search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Nt-Fj-Tjc"/>
+        <segue reference="vkQ-dw-QYf"/>
     </inferredMetricsTieBreakers>
 </document>

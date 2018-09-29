@@ -12,6 +12,7 @@ import RealmSwift
 
 class FaveArticlesVC: UIViewController {
     
+    @IBOutlet var noDataView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
@@ -118,8 +119,8 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if favoriteArticles.count == 0 {
-            print("setting background view")
-            tableView.backgroundView = EmptyTableView()
+            tableView.backgroundView = noDataView
+            tableView.separatorStyle = .none
         }
         return favoriteArticles.count
     }

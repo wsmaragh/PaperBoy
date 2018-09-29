@@ -47,7 +47,11 @@ class MainVC: UIViewController {
             imageView.image = image
             self.navigationItem.titleView = imageView
         }
+
     }
+    
+  
+    
     
     private func setupTableView() {
         tableView.delegate = self
