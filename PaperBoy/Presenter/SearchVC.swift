@@ -67,7 +67,7 @@ class SearchVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 100.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         let smallArticleCellNib = UINib(nibName: SmallArticleRightCell.id, bundle: nil)
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.id)
     }

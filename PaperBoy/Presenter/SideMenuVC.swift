@@ -14,7 +14,7 @@ class SideMenuVC: UITableViewController {
     var menuItems = ["FriendRead", "Article", "ReadLater"]
     
     override func viewDidLoad() {
-        UIApplication.shared.isStatusBarHidden = true
+//        UIApplication.shared.isStatusBarHidden = true
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.separatorColor = UIColor(red:0.159, green:0.156, blue:0.181, alpha:1)
         self.view.backgroundColor = UIColor.orange

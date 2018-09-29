@@ -63,7 +63,7 @@ extension UIImageView {
 
             let spinner: UIActivityIndicatorView = {
                 let sp = UIActivityIndicatorView()
-                sp.activityIndicatorViewStyle = .white
+                sp.style = .white
                 return sp
             }()
            

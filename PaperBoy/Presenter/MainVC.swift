@@ -14,6 +14,8 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    let transition = CustomTransition()
+
     
     @IBAction func searchBarButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toSearchVC", sender: self)
@@ -28,7 +30,7 @@ class MainVC: UIViewController {
     var articles: [Article] = [] {
         didSet {
             tableView.reloadData()
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
         }
     }
     
@@ -61,7 +63,7 @@ class MainVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 120.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         let updatedCellNib = UINib(nibName: UpdatedCell.id, bundle: nil)
         tableView.register(updatedCellNib, forCellReuseIdentifier: UpdatedCell.id)
         let articleCellNib = UINib(nibName: ArticleCell.id, bundle: nil)
@@ -78,11 +80,11 @@ class MainVC: UIViewController {
         } else {
             tableView.addSubview(refreshControl)
         }
-        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.darkGray
-        refreshControl.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        refreshControl.backgroundColor = UIColor(red: 149/256, green: 210/256, blue: 107/256, alpha: 1.0)
         refreshControl.alpha = 1.0
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching more data, hold on", attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching more data, hold on", attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
     }
     
     @objc private func refreshData(){
@@ -112,7 +114,7 @@ class MainVC: UIViewController {
     private func loadInitialArticles(){
         if topicCollectionView != nil {
             let indexPathForFirstRow = IndexPath(row: 0, section: 0)
-            topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
+            topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
             self.collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
         }
     }
@@ -147,7 +149,6 @@ class MainVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "MainVCToArticleVC" {
             guard let articleVC = segue.destination as? ArticleVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
@@ -159,7 +160,10 @@ class MainVC: UIViewController {
             }
             let article = articles[indexPath.row]
             articleVC.article = article
+            articleVC.transitioningDelegate = self
+            articleVC.modalPresentationStyle = .custom
         }
+        
         
     }
 
@@ -275,8 +279,8 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
             case _ where offset > 150: message = "Getting data"
             default: break
             }
-            refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
-            refreshControl.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+            refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
+            refreshControl.backgroundColor = UIColor(red: 149/256, green: 210/256, blue: 107/256, alpha: 1.0)
     }
     
 }
@@ -293,5 +297,26 @@ extension MainVC: ArticleCellDelegate {
         present(activityVC, animated: true, completion: nil)
     }
 
+    
+}
+
+
+// MARK: Custom Transition
+extension MainVC: UIViewControllerTransitioningDelegate {
+    
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.transitionMode = .present
+//        transition.startingPoint = view.center
+//        transition.circleColor = UIColor.green
+//        return transition
+//    }
+//
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.transitionMode = .dismiss
+//        transition.startingPoint = view.center
+//        transition.circleColor = UIColor.green
+//        return transition
+//    }
+    
     
 }

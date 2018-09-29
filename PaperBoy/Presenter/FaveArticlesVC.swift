@@ -53,7 +53,7 @@ class FaveArticlesVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 120.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         let smallArticleCellNib = UINib(nibName: SmallArticleRightCell.id, bundle: nil)
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.id)
     }
@@ -151,7 +151,7 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "FaveArticlesVCToArticleVC", sender: self)
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             let favoriteArticle = favoriteArticles[indexPath.row]

@@ -24,6 +24,7 @@ class ArticleVC: UIViewController {
     
     private func setupNavBar(){
         self.view.backgroundColor = .white
+        navigationItem.title = "Article"
     }
     
     private func setupPageFromArticle(){
