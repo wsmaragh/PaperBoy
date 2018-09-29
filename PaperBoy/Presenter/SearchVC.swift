@@ -14,6 +14,8 @@ class SearchVC: UIViewController {
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet var emptyTableView: UIView!
+    
     var articles: [Article] = [] {
         didSet {
             tableView.reloadData()
@@ -33,8 +35,17 @@ class SearchVC: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.barStyle = .default
-        
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.tintColor = .white
         searchController.searchBar.placeholder = "Search for articles"
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.darkGray
+            if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.white
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
         if ((searchController.searchBar.responds(to: NSSelectorFromString("searchBarStyle")))){
             searchController.searchBar.searchBarStyle = .minimal
         }
@@ -55,10 +66,10 @@ class SearchVC: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 120.0
+        tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        let smallArticleCellNib = UINib(nibName: SmallArticleCell.id, bundle: nil)
-        tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
+        let smallArticleCellNib = UINib(nibName: SmallArticleRightCell.id, bundle: nil)
+        tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.id)
     }
     
     fileprivate func fetchArticles(searchTerm: String) {
@@ -66,11 +77,19 @@ class SearchVC: UIViewController {
             self.articles = onlineArticles
         }
     }
+        
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SearchVCToArticleVC" {
-            guard let articleVC = segue.destination as? ArticleVC else {print("Error downcasting destination to DetailExerciseVC in Segue"); return}
-            guard let indexPath = tableView.indexPathForSelectedRow else {print("Error getting indexPath in Segue"); return}
+            guard let articleVC = segue.destination as? ArticleVC else {
+                print("Error downcasting destination to ArticleVC in Segue");
+                return
+            }
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("Error getting indexPath in Segue");
+                return
+            }
             let article = articles[indexPath.row]
             articleVC.article = article
         }
@@ -78,13 +97,10 @@ class SearchVC: UIViewController {
     
 }
 
-
+// MARK: SearchController
 extension SearchVC: UISearchResultsUpdating {
-    
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        
-        #warning ("TODO")
         
     }
 }
@@ -123,24 +139,24 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if articles.count == 0 {
-            
+            tableView.backgroundView = emptyTableView
+            tableView.separatorStyle = .none
             return 0
         } else {
+            tableView.separatorStyle = .singleLine
             return articles.count
-
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleRightCell.id, for: indexPath) as! SmallArticleRightCell
         let article = articles[indexPath.row]
-        cell.configureCell(article: article)
+        cell.configureCell(article: article, hideButtons: true)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

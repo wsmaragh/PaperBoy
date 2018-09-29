@@ -56,6 +56,8 @@ class ImageService {
 extension UIImageView {
     
     func loadImage(imageURLString: String) {
+        self.image = nil
+
         let spinner: UIActivityIndicatorView = {
             let sp = UIActivityIndicatorView()
             sp.activityIndicatorViewStyle = .white
@@ -71,7 +73,7 @@ extension UIImageView {
         
         spinner.startAnimating()
         spinner.isHidden = false
-        
+
         ImageService.shared.getImage(from: imageURLString) { (image) in
             DispatchQueue.main.async {
                 self.image = image

@@ -17,7 +17,7 @@ import UIKit
 @IBDesignable
 class ArticleView: UIView {
     
-    @IBOutlet weak var topicLabel: UILabel!
+    @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var articleImageView: UIImageView!
@@ -56,19 +56,26 @@ class ArticleView: UIView {
     }
     
     public func configureView(article: Article){
-//        topicLabel.text = article.source?.name ?? "No Source"
+        sourceLabel.text = article.source._rlmInferWrappedType().name
         titleLabel.text = article.title
         subtitleLabel.text = article.subtitle
+        authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
+        
+        if let content = article.content {
+            fullLabel.text = content
+        } else {fullLabel.text = ""}
+        
         if let imageURLStr = article.imageStr {
             articleImageView.loadImage(imageURLString: imageURLStr)
         }
-        authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
-        dateLabel.text = article.dateStr
-        fullLabel.text = article.content
+        
+        if let dateString = article.dateStr {
+            dateLabel.text =        DateFormatterService.shared.getCustomDateStringForArticleView(dateStr: dateString)
+        } else {dateLabel.text = ""}
+        
     }
     
     @IBAction func broswerButtonPressed(_ sender: UIButton) {
-        print("browser button pressed")
         delegate?.browserButtonPressed()
     }
     

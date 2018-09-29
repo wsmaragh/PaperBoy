@@ -28,6 +28,7 @@ class MainVC: UIViewController {
     var articles: [Article] = [] {
         didSet {
             tableView.reloadData()
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
         }
     }
     
@@ -41,7 +42,7 @@ class MainVC: UIViewController {
     }
     
     private func setupNavBar(){
-        if let image = UIImage(named: "bg_PaperBoy") {
+        if let image = UIImage(named: "paperboyName_high") {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
             imageView.contentMode = .scaleAspectFit
             imageView.image = image
@@ -62,8 +63,10 @@ class MainVC: UIViewController {
         tableView.register(updatedCellNib, forCellReuseIdentifier: UpdatedCell.id)
         let articleCellNib = UINib(nibName: ArticleCell.id, bundle: nil)
         tableView.register(articleCellNib, forCellReuseIdentifier: ArticleCell.id)
-        let smallArticleCellNib = UINib(nibName: SmallArticleCell.id, bundle: nil)
-        tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
+        let smallArticleLeftCellNib = UINib(nibName: SmallArticleLeftCell.id, bundle: nil)
+        tableView.register(smallArticleLeftCellNib, forCellReuseIdentifier: SmallArticleLeftCell.id)
+        let smallArticleRightCellNib = UINib(nibName: SmallArticleRightCell.id, bundle: nil)
+        tableView.register(smallArticleRightCellNib, forCellReuseIdentifier: SmallArticleRightCell.id)
     }
     
     fileprivate func addRefreshControl() {
@@ -73,8 +76,8 @@ class MainVC: UIViewController {
             tableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
-        refreshControl.tintColor = .blue
-        refreshControl.backgroundColor = .yellow
+        refreshControl.tintColor = UIColor.darkGray
+        refreshControl.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         refreshControl.alpha = 1.0
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching more data, hold on", attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
     }
@@ -141,17 +144,19 @@ class MainVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "MainVCToArticleVC" {
-            guard let articleVC = segue.destination as? ArticleVC else {print("Error downcasting destination to DetailExerciseVC in Segue"); return}
-            guard let indexPath = tableView.indexPathForSelectedRow else {print("Error getting indexPath in Segue"); return}
+            guard let articleVC = segue.destination as? ArticleVC else {
+                print("Error downcasting destination to ArticleVC in Segue");
+                return
+            }
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("Error getting indexPath in Segue");
+                return
+            }
             let article = articles[indexPath.row]
             articleVC.article = article
         }
-        if segue.identifier == "toSearchVC" {
-            guard let searchVC = segue.destination as? SearchVC else {return}
-            guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        }
-        
         
     }
 
@@ -194,10 +199,18 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         enum ArticleCellType {
-            case normal, small
+            case normal, smallLeft, smallRight
         }
     
-        let type: ArticleCellType = ((indexPath.row == 0) || (indexPath.row % 4 == 0)) ? .normal : .small
+        var type: ArticleCellType
+        
+        if ((indexPath.row == 0) || (indexPath.row % 4 == 0)) {
+            type = .normal
+        } else if (indexPath.row % 2 == 0) {
+            type = .smallLeft
+        } else {
+            type = .smallRight
+        }
         
         switch type {
         case .normal:
@@ -206,19 +219,25 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
             cell.configureCell(article: article)
             cell.delegate = self
             return cell
-        case .small:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
+        case .smallLeft:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleLeftCell.id, for: indexPath) as! SmallArticleLeftCell
             let article = articles[indexPath.row]
-            cell.configureCell(article: article)
+            cell.configureCell(article: article, hideButtons: false)
+            cell.delegate = self
+            return cell
+        case .smallRight:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleRightCell.id, for: indexPath) as! SmallArticleRightCell
+            let article = articles[indexPath.row]
+            cell.configureCell(article: article, hideButtons: false)
             cell.delegate = self
             return cell
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row == 0) { return 470 }
-        if (indexPath.row % 4 == 0) {return 470}
-        return 110
+        if ((indexPath.row == 0) || (indexPath.row % 4 == 0)) { return 400 }
+        return 115
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -250,19 +269,19 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
             case 81...100: message = "Keep Pulling............"
             case 101...120: message = "Keep Pulling..............."
             case 121...150: message = "Keep Pulling.................."
-            case _ where offset > 150: message = "NOW LET GO"
+            case _ where offset > 150: message = "Getting data"
             default: break
             }
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedStringKey.foregroundColor: refreshControl.tintColor])
-            refreshControl.backgroundColor = .yellow
+            refreshControl.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
     }
     
 }
 
 extension MainVC: ArticleCellDelegate {
     func savePressed(article: Article) {
-        
         RealmService.shared.create(article)
+        showAlert(title: "Article Saved", message: "This article has been added to your Favorites")
     }
     
     func sharePressed(article: Article) {

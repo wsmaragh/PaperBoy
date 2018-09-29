@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SmallArticleLeftCell" customModule="PaperBoy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="504" height="133"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-10-aTA">
+                    <rect key="frame" x="12" y="12" width="101" height="101"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="PCc-10-aTA" secondAttribute="height" multiplier="1:1" id="Q7t-Q0-NMk"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Fed rate hikes affect your credit cards, mortgages, savings rates" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxe-HH-2VK">
+                    <rect key="frame" x="125" y="12" width="367" height="36"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-ag-pOW">
+                    <rect key="frame" x="125" y="56" width="43" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXU-Hu-yR5">
+                    <rect key="frame" x="125" y="80" width="73" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nZm-na-Vr3">
+                    <rect key="frame" x="431.5" y="63" width="60.5" height="26"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flL-OW-HQb">
+                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" image="share"/>
+                            <connections>
+                                <action selector="sharePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="3M6-bj-e0d"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-Kh-a4O">
+                            <rect key="frame" x="34.5" y="0.0" width="26" height="26"/>
+                            <state key="normal" image="button_star_filled"/>
+                            <connections>
+                                <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="v1W-Gg-Ne0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="nZm-na-Vr3" secondAttribute="height" multiplier="58:25" id="6ZZ-8L-KYZ"/>
+                        <constraint firstItem="d0r-Kh-a4O" firstAttribute="height" secondItem="flL-OW-HQb" secondAttribute="height" id="Rae-45-mx2"/>
+                        <constraint firstItem="d0r-Kh-a4O" firstAttribute="width" secondItem="flL-OW-HQb" secondAttribute="width" id="xLw-4A-p5Y"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="aXU-Hu-yR5" firstAttribute="top" secondItem="6Nf-ag-pOW" secondAttribute="bottom" constant="8" id="1g8-kq-jwo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vxe-HH-2VK" secondAttribute="trailing" constant="12" id="2zp-9t-FVc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nZm-na-Vr3" secondAttribute="trailing" constant="12" id="3Sp-Ga-uzo"/>
+                <constraint firstItem="PCc-10-aTA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="8AX-uT-bmx"/>
+                <constraint firstItem="6Nf-ag-pOW" firstAttribute="top" secondItem="Vxe-HH-2VK" secondAttribute="bottom" constant="8" id="GhF-gX-E7a"/>
+                <constraint firstItem="aXU-Hu-yR5" firstAttribute="leading" secondItem="PCc-10-aTA" secondAttribute="trailing" constant="12" id="IDv-cc-rjB"/>
+                <constraint firstItem="nZm-na-Vr3" firstAttribute="top" secondItem="Vxe-HH-2VK" secondAttribute="bottom" constant="15" id="MsP-7f-1jb"/>
+                <constraint firstItem="Vxe-HH-2VK" firstAttribute="leading" secondItem="PCc-10-aTA" secondAttribute="trailing" constant="12" id="Xme-U3-5Ks"/>
+                <constraint firstItem="PCc-10-aTA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="obo-Th-7Ii"/>
+                <constraint firstItem="Vxe-HH-2VK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="r6K-y9-bft"/>
+                <constraint firstItem="6Nf-ag-pOW" firstAttribute="leading" secondItem="PCc-10-aTA" secondAttribute="trailing" constant="12" id="t46-Ka-1Mp"/>
+                <constraint firstItem="PCc-10-aTA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.2" id="uXt-nM-GJi"/>
+                <constraint firstItem="nZm-na-Vr3" firstAttribute="width" secondItem="PCc-10-aTA" secondAttribute="width" multiplier="0.6" id="zC1-oj-Gfh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="articleImageView" destination="PCc-10-aTA" id="8TT-L6-Ore"/>
+                <outlet property="saveButton" destination="d0r-Kh-a4O" id="wOu-vf-Xit"/>
+                <outlet property="shareButton" destination="flL-OW-HQb" id="4iF-qy-uyv"/>
+                <outlet property="sourceLabel" destination="6Nf-ag-pOW" id="OLC-gN-jp7"/>
+                <outlet property="timeLabel" destination="aXU-Hu-yR5" id="nP6-Hl-F9g"/>
+                <outlet property="titleLabel" destination="Vxe-HH-2VK" id="eGa-87-QmL"/>
+            </connections>
+            <point key="canvasLocation" x="254.40000000000001" y="457.42128935532236"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button_star_filled" width="25" height="25"/>
+        <image name="share" width="25" height="25"/>
+    </resources>
+</document>

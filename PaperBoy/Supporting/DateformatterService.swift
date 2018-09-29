@@ -18,6 +18,17 @@ struct DateFormatterService {
     private let formatter = DateFormatter()
     
     
+    public func getCustomDateTimeAgoForArticleCell(dateStr: String) -> String {
+        let date = getDate(from: dateStr, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
+        return timeAgoSinceDate(date)
+    }
+    
+    public func getCustomDateStringForArticleView(dateStr: String) -> String {
+        let date = getDate(from: dateStr, inputDateStringFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
+        return getDateString(from: date, dateStyle: .medium, dateTime: .none)
+    }
+    
+    
     // String -> Date
     public func getDate(from dateString: String,
                         inputDateStringFormat inputFormat: String) -> Date {

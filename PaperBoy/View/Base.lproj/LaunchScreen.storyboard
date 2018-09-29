@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_PaperBoy" translatesAutoresizingMaskIntoConstraints="NO" id="k1S-fI-TtE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperboyName" translatesAutoresizingMaskIntoConstraints="NO" id="k1S-fI-TtE">
                                 <rect key="frame" x="103.5" y="200" width="168" height="267"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k1S-fI-TtE" secondAttribute="height" multiplier="337:534" id="7Ds-j1-KaV"/>
@@ -56,6 +56,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_PaperBoy" width="256" height="256"/>
+        <image name="paperboyName" width="555" height="256"/>
     </resources>
 </document>

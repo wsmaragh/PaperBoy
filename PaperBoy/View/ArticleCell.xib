@@ -13,43 +13,50 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ArticleCell" customModule="PaperBoy" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="363" height="535"/>
+            <rect key="frame" x="0.0" y="0.0" width="363" height="521"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-tx-RPO">
-                    <rect key="frame" x="16" y="32" width="331" height="267.5"/>
+                    <rect key="frame" x="16" y="32" width="331" height="260.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trump Accuses China of Interfering in Miodterm Elections" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqD-aU-5SF">
-                    <rect key="frame" x="16" y="325.5" width="331" height="41"/>
+                    <rect key="frame" x="16" y="339.5" width="331" height="41"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USA Today" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miO-q9-QDg">
-                    <rect key="frame" x="280.5" y="304.5" width="66.5" height="16"/>
+                    <rect key="frame" x="16" y="318.5" width="66.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYm-CJ-agc">
-                    <rect key="frame" x="16" y="304.5" width="77.5" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="16" y="297.5" width="71.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVN-Sj-R6f">
-                    <rect key="frame" x="16" y="371.5" width="331" height="14.5"/>
+                    <rect key="frame" x="16" y="385.5" width="331" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-lx-f3V">
+                    <rect key="frame" x="16" y="408" width="331" height="84"/>
+                    <string key="text">Unless you’ve spent the past year or so stuck under a rock with no signal, you have to be familiar with the “distracted boyfriend” meme and all its iterations. But is it hurtful or harmless? Swedish ad watchers weigh in.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J9q-xy-g3L">
-                    <rect key="frame" x="289" y="494" width="58" height="25"/>
+                    <rect key="frame" x="289" y="297.5" width="58" height="25"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-vl-V89">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="button-upload"/>
+                            <state key="normal" image="share"/>
                             <connections>
                                 <action selector="sharePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ok4-Vu-E4k"/>
                             </connections>
@@ -57,7 +64,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-lE-SOw">
                             <rect key="frame" x="33" y="0.0" width="25" height="25"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="button_star_empty">
+                            <state key="normal" image="button_star_filled">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -65,30 +72,28 @@
                             </connections>
                         </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="mhL-lE-SOw" firstAttribute="height" secondItem="6r2-vl-V89" secondAttribute="height" id="5v9-LG-Qwd"/>
+                        <constraint firstItem="mhL-lE-SOw" firstAttribute="width" secondItem="6r2-vl-V89" secondAttribute="height" multiplier="1:1" id="BBx-rf-Ohp"/>
+                        <constraint firstItem="mhL-lE-SOw" firstAttribute="width" secondItem="6r2-vl-V89" secondAttribute="width" id="wfU-0D-BnO"/>
+                    </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-lx-f3V">
-                    <rect key="frame" x="16" y="394" width="331" height="84"/>
-                    <string key="text">Unless you’ve spent the past year or so stuck under a rock with no signal, you have to be familiar with the “distracted boyfriend” meme and all its iterations. But is it hurtful or harmless? Swedish ad watchers weigh in.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="miO-q9-QDg" secondAttribute="trailing" constant="16" id="3fU-5G-81E"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="3iP-Ut-g55"/>
                 <constraint firstItem="kqD-aU-5SF" firstAttribute="top" secondItem="miO-q9-QDg" secondAttribute="bottom" constant="5" id="5G9-Cz-F7b"/>
                 <constraint firstItem="Exj-lx-f3V" firstAttribute="width" secondItem="kqD-aU-5SF" secondAttribute="width" id="5Yu-jv-OL3"/>
                 <constraint firstItem="Exj-lx-f3V" firstAttribute="top" secondItem="XVN-Sj-R6f" secondAttribute="bottom" constant="8" id="6TA-TZ-yfv"/>
+                <constraint firstItem="J9q-xy-g3L" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="6Vf-Y1-EFu"/>
                 <constraint firstItem="kqD-aU-5SF" firstAttribute="width" secondItem="mtm-tx-RPO" secondAttribute="width" id="7sM-Ay-jVl"/>
                 <constraint firstItem="XVN-Sj-R6f" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="89h-UU-ktA"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="AhD-Ix-lqn"/>
                 <constraint firstItem="JYm-CJ-agc" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="Bpq-Ir-ZAS"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="J9q-xy-g3L" secondAttribute="bottom" constant="16" id="GvN-QH-yCM"/>
-                <constraint firstItem="miO-q9-QDg" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="O0Q-zZ-TLE"/>
+                <constraint firstItem="miO-q9-QDg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="EqP-zr-dxo"/>
                 <constraint firstItem="XVN-Sj-R6f" firstAttribute="top" secondItem="kqD-aU-5SF" secondAttribute="bottom" constant="5" id="UbX-nw-QCZ"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="agK-O6-taw"/>
+                <constraint firstItem="miO-q9-QDg" firstAttribute="top" secondItem="JYm-CJ-agc" secondAttribute="bottom" constant="5" id="bHJ-bx-eK9"/>
                 <constraint firstAttribute="trailing" secondItem="mtm-tx-RPO" secondAttribute="trailing" constant="16" id="dEk-i9-opC"/>
                 <constraint firstItem="JYm-CJ-agc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lwt-E5-mrb"/>
                 <constraint firstItem="Exj-lx-f3V" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mBb-m0-Vdl"/>
@@ -109,12 +114,12 @@
                 <outlet property="timeLabel" destination="JYm-CJ-agc" id="bFw-KG-6U9"/>
                 <outlet property="titleLabel" destination="kqD-aU-5SF" id="4Mz-Kh-fCR"/>
             </connections>
-            <point key="canvasLocation" x="-128.80000000000001" y="10.344827586206897"/>
+            <point key="canvasLocation" x="-128.80000000000001" y="4.0479760119940034"/>
         </view>
     </objects>
     <resources>
-        <image name="button-upload" width="25" height="25"/>
-        <image name="button_star_empty" width="25" height="25"/>
+        <image name="button_star_filled" width="25" height="25"/>
         <image name="newspaper" width="320" height="275"/>
+        <image name="share" width="25" height="25"/>
     </resources>
 </document>

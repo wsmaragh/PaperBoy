@@ -19,7 +19,14 @@ class FaveArticlesVC: UIViewController {
     
     
     @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
-        RealmService.shared.deleteAll()
+        let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            RealmService.shared.deleteAll()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     var favoriteArticles: Results<Article>!
@@ -47,8 +54,8 @@ class FaveArticlesVC: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 120.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        let smallArticleCellNib = UINib(nibName: SmallArticleCell.id, bundle: nil)
-        tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleCell.id)
+        let smallArticleCellNib = UINib(nibName: SmallArticleRightCell.id, bundle: nil)
+        tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.id)
     }
     
     private func setupRealm(){
@@ -92,6 +99,7 @@ class FaveArticlesVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "FaveArticlesVCToArticleVC" {
             guard let articleVC = segue.destination as? ArticleVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
@@ -117,18 +125,21 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if favoriteArticles.count == 0 {
             tableView.backgroundView = noDataView
             tableView.separatorStyle = .none
+            return 0
+        } else {
+            tableView.separatorStyle = .singleLine
+            return favoriteArticles.count
         }
-        return favoriteArticles.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleCell.id, for: indexPath) as! SmallArticleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleRightCell.id, for: indexPath) as! SmallArticleRightCell
         let article = favoriteArticles[indexPath.row]
-        cell.configureCell(article: article)
+        cell.configureCell(article: article, hideButtons: true)
         return cell
     }
     
