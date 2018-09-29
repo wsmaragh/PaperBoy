@@ -22,24 +22,24 @@
                         <constraint firstAttribute="width" secondItem="exz-3G-htx" secondAttribute="height" multiplier="1:1" id="8jv-CH-vt7"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="How Fed rate hikes affect your credit cards, mortgages, savings rates" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-wt-645">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="How Fed rate hikes affect your credit cards, mortgages, savings rates" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-wt-645">
                     <rect key="frame" x="12" y="12" width="271" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2tB-48-1EL">
-                    <rect key="frame" x="225.5" y="53" width="45.5" height="19.5"/>
+                    <rect key="frame" x="233.5" y="53" width="37.5" height="16.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSf-7E-fxP">
-                            <rect key="frame" x="0.0" y="0.0" width="19" height="19.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="15" height="16.5"/>
                             <state key="normal" image="share"/>
                             <connections>
                                 <action selector="sharePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hep-34-B1u"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g4-Ix-7iz">
-                            <rect key="frame" x="27" y="0.0" width="18.5" height="19.5"/>
+                            <rect key="frame" x="23" y="0.0" width="14.5" height="16.5"/>
                             <state key="normal" image="button_star_filled"/>
                             <connections>
                                 <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="BiK-N7-lsG"/>
@@ -52,13 +52,13 @@
                         <constraint firstItem="7g4-Ix-7iz" firstAttribute="height" secondItem="zSf-7E-fxP" secondAttribute="height" id="weq-mo-0dM"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyG-Qu-sdv">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyG-Qu-sdv">
                     <rect key="frame" x="12" y="53" width="43" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHv-ph-JaN">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHv-ph-JaN">
                     <rect key="frame" x="12" y="74" width="73" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,7 +73,7 @@
                 <constraint firstItem="cyG-Qu-sdv" firstAttribute="top" secondItem="b7M-wt-645" secondAttribute="bottom" constant="5" id="NNt-5C-wjV"/>
                 <constraint firstItem="exz-3G-htx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Q1f-KQ-18E"/>
                 <constraint firstItem="exz-3G-htx" firstAttribute="leading" secondItem="b7M-wt-645" secondAttribute="trailing" constant="8" id="WUS-Ma-L7B"/>
-                <constraint firstItem="2tB-48-1EL" firstAttribute="width" secondItem="exz-3G-htx" secondAttribute="width" multiplier="0.6" id="bUA-NP-Jea"/>
+                <constraint firstItem="2tB-48-1EL" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.1" id="bUA-NP-Jea"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="exz-3G-htx" secondAttribute="trailing" constant="12" id="fzk-qM-aDD"/>
                 <constraint firstItem="cyG-Qu-sdv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="h4z-kf-zdZ"/>
                 <constraint firstItem="b7M-wt-645" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="kCs-nW-jSJ"/>

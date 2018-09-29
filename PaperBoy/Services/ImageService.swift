@@ -40,8 +40,8 @@ class ImageService {
             return
         }
         
+        guard let url = URL(string: urlStr) else {print("Bad URL used in ImageService"); return }
         DispatchQueue.global().async {
-            guard let url = URL(string: urlStr) else {print("Bad URL used in ImageService"); return }
             guard let data = try? Data(contentsOf: url) else {return}
             guard let image = UIImage(data: data) else {return}
             ImageCacheService.shared.saveImageToCache(with: urlStr, image: image)
@@ -56,26 +56,27 @@ class ImageService {
 extension UIImageView {
     
     func loadImage(imageURLString: String) {
-        self.image = nil
-
-        let spinner: UIActivityIndicatorView = {
-            let sp = UIActivityIndicatorView()
-            sp.activityIndicatorViewStyle = .white
-            return sp
-        }()
         
-        self.addSubview(spinner)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-            ])
-        
-        spinner.startAnimating()
-        spinner.isHidden = false
-
         ImageService.shared.getImage(from: imageURLString) { (image) in
+            
             DispatchQueue.main.async {
+
+            let spinner: UIActivityIndicatorView = {
+                let sp = UIActivityIndicatorView()
+                sp.activityIndicatorViewStyle = .white
+                return sp
+            }()
+           
+            self.addSubview(spinner)
+            spinner.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                ])
+            
+            spinner.startAnimating()
+            spinner.isHidden = false
+            
                 self.image = image
                 spinner.stopAnimating()
                 spinner.isHidden = true

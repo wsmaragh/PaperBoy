@@ -43,16 +43,19 @@ class MainVC: UIViewController {
     
     private func setupNavBar(){
         if let image = UIImage(named: "paperboyName_high") {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = image
-            self.navigationItem.titleView = imageView
-        }
+            let imageView = UIImageView(image: image)
 
+            imageView.contentMode = .scaleAspectFit
+            imageView.layer.masksToBounds = true
+            
+            let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
+            imageView.frame = titleView.bounds
+            titleView.addSubview(imageView)
+            
+            self.navigationItem.titleView = titleView
+        }
+        
     }
-    
-  
-    
     
     private func setupTableView() {
         tableView.delegate = self

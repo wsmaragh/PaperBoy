@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +17,7 @@
                 <outlet property="authorLabel" destination="hJ4-s8-Sot" id="AkR-ht-lgY"/>
                 <outlet property="browserButton" destination="qD3-TZ-Fzn" id="3vY-MK-jKl"/>
                 <outlet property="dateLabel" destination="9Xr-Wg-6Tk" id="boc-MD-j7v"/>
-                <outlet property="fullLabel" destination="eE1-Sr-ckf" id="scq-Dh-60i"/>
+                <outlet property="fullLabel" destination="JaI-IS-2Z6" id="wLt-M1-N6I"/>
                 <outlet property="sourceLabel" destination="smf-LB-zdM" id="dlG-4M-7Yy"/>
                 <outlet property="subtitleLabel" destination="Lnz-hC-ic2" id="DAI-I9-J0g"/>
                 <outlet property="titleLabel" destination="li8-i1-Icg" id="mll-tj-zvQ"/>
@@ -60,54 +65,66 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eE1-Sr-ckf">
-                    <rect key="frame" x="16" y="391.5" width="343" height="259.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD3-TZ-Fzn">
-                    <rect key="frame" x="262" y="32" width="97" height="28"/>
+                    <rect key="frame" x="252" y="32" width="107" height="24"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="View in Browser">
-                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="     View in Browser     ">
+                        <color key="titleColor" name="appBlue"/>
                     </state>
                     <connections>
                         <action selector="broswerButtonPressed:" destination="-1" eventType="touchUpInside" id="2mm-I3-hld"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kE2-pN-nDi">
+                    <rect key="frame" x="269" y="590.5" width="90" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title="Continue reading"/>
+                    <connections>
+                        <action selector="broswerButtonPressed:" destination="-1" eventType="touchUpInside" id="9xz-jB-OqW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaI-IS-2Z6">
+                    <rect key="frame" x="16" y="391.5" width="343" height="197"/>
+                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="li8-i1-Icg" secondAttribute="trailing" constant="16" id="14q-s8-yeM"/>
                 <constraint firstItem="hJ4-s8-Sot" firstAttribute="top" secondItem="Cs3-gX-fCG" secondAttribute="bottom" constant="5" id="5ri-mD-4b7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JaI-IS-2Z6" secondAttribute="trailing" constant="16" id="6ng-ik-8Nt"/>
                 <constraint firstItem="li8-i1-Icg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Dmb-Ii-Wba"/>
                 <constraint firstItem="li8-i1-Icg" firstAttribute="top" secondItem="smf-LB-zdM" secondAttribute="bottom" constant="8" id="EgX-h2-yYL"/>
                 <constraint firstItem="smf-LB-zdM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="Etu-ON-Up4"/>
                 <constraint firstItem="9Xr-Wg-6Tk" firstAttribute="top" secondItem="Cs3-gX-fCG" secondAttribute="bottom" constant="5" id="MA3-an-sgW"/>
                 <constraint firstItem="Lnz-hC-ic2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="MlW-FG-fCF"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eE1-Sr-ckf" secondAttribute="trailing" constant="16" id="TaA-VW-5yT"/>
+                <constraint firstItem="kE2-pN-nDi" firstAttribute="top" secondItem="JaI-IS-2Z6" secondAttribute="bottom" constant="2" id="NwG-PJ-Qk1"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qD3-TZ-Fzn" secondAttribute="trailing" constant="16" id="UlT-QY-RXe"/>
-                <constraint firstItem="eE1-Sr-ckf" firstAttribute="top" secondItem="hJ4-s8-Sot" secondAttribute="bottom" constant="12" id="VLv-Y1-W9m"/>
-                <constraint firstItem="eE1-Sr-ckf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="WBi-aO-yFA"/>
                 <constraint firstItem="Lnz-hC-ic2" firstAttribute="top" secondItem="li8-i1-Icg" secondAttribute="bottom" constant="8" id="bJu-5s-yDf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9Xr-Wg-6Tk" secondAttribute="trailing" constant="16" id="eeo-UP-ylh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kE2-pN-nDi" secondAttribute="trailing" constant="16" id="ekw-rO-Bvp"/>
                 <constraint firstItem="Cs3-gX-fCG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="g53-Bn-vXS"/>
                 <constraint firstItem="smf-LB-zdM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="inW-UH-YAv"/>
+                <constraint firstItem="JaI-IS-2Z6" firstAttribute="top" secondItem="hJ4-s8-Sot" secondAttribute="bottom" constant="12" id="j5X-PO-CGa"/>
                 <constraint firstItem="Cs3-gX-fCG" firstAttribute="top" secondItem="Lnz-hC-ic2" secondAttribute="bottom" constant="8" id="k91-S9-e01"/>
                 <constraint firstItem="hJ4-s8-Sot" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="kQi-AI-U4p"/>
+                <constraint firstItem="JaI-IS-2Z6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="mCE-EE-BUW"/>
                 <constraint firstAttribute="trailing" secondItem="Lnz-hC-ic2" secondAttribute="trailing" constant="16" id="uKS-o9-fUB"/>
                 <constraint firstItem="qD3-TZ-Fzn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="vXA-UP-q6x"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eE1-Sr-ckf" secondAttribute="bottom" constant="16" id="ydY-ns-utX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cs3-gX-fCG" secondAttribute="trailing" constant="16" id="zOe-eg-xrU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+            <point key="canvasLocation" x="136.80000000000001" y="172.26386806596702"/>
         </view>
     </objects>
     <resources>
         <image name="newspaper" width="320" height="275"/>
+        <namedColor name="appBlue">
+            <color red="0.25098039215686274" green="0.53725490196078429" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -23,7 +23,7 @@ class ArticleView: UIView {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var fullLabel: UITextView!
+    @IBOutlet weak var fullLabel: UILabel!
     @IBOutlet weak var browserButton: UIButton!
     
     var contentView : UIView?
@@ -39,6 +39,8 @@ class ArticleView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
+        browserButton.layer.cornerRadius = 8
+        browserButton.layer.masksToBounds = true
     }
     
     private func xibSetup() {
@@ -61,7 +63,7 @@ class ArticleView: UIView {
         subtitleLabel.text = article.subtitle
         authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
         
-        if let content = article.content {
+        if let content = article.content {  
             fullLabel.text = content
         } else {fullLabel.text = ""}
         
@@ -70,7 +72,7 @@ class ArticleView: UIView {
         }
         
         if let dateString = article.dateStr {
-            dateLabel.text =        DateFormatterService.shared.getCustomDateStringForArticleView(dateStr: dateString)
+            dateLabel.text = DateFormatterService.shared.getCustomDateStringForArticleView(dateStr: dateString)
         } else {dateLabel.text = ""}
         
     }
