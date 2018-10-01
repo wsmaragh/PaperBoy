@@ -32,7 +32,7 @@ class ArticleCell: UITableViewCell {
 
     static let id = "ArticleCell"
     
-    var article: Article?
+    weak var article: Article?
     
     public func configureCell(article: Article) {
         self.article = article

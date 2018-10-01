@@ -17,6 +17,7 @@ class FaveArticlesVC: UIViewController {
     
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
     
+    @IBOutlet weak var dismissButton: UIButton!
     
     @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
@@ -98,6 +99,13 @@ class FaveArticlesVC: UIViewController {
         }
     }
     
+    
+    @IBAction func dismiss(_ sender: UIButton) {
+
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "FaveArticlesVCToArticleVC" {
@@ -144,7 +152,7 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

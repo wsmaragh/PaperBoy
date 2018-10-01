@@ -22,7 +22,7 @@ class SmallArticleRightCell: UITableViewCell {
 
     static let id = "SmallArticleRightCell"
 
-    var article: Article?
+    weak var article: Article?
 
 
     public func configureCell(article: Article, hideButtons: Bool) {

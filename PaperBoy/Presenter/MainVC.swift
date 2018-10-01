@@ -14,12 +14,7 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    let transition = CustomTransition()
 
-    
-    @IBAction func searchBarButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toSearchVC", sender: self)
-    }
     
     private var refreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -148,6 +143,8 @@ class MainVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MainVCToArticleVC" {
             guard let articleVC = segue.destination as? ArticleVC else {
@@ -160,11 +157,18 @@ class MainVC: UIViewController {
             }
             let article = articles[indexPath.row]
             articleVC.article = article
-            articleVC.transitioningDelegate = self
-            articleVC.modalPresentationStyle = .custom
         }
         
         
+    }
+    
+    @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
+        
+    }
+    
+    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+//        let segue =
+//        segue.perform()
     }
 
 }
@@ -297,26 +301,5 @@ extension MainVC: ArticleCellDelegate {
         present(activityVC, animated: true, completion: nil)
     }
 
-    
-}
-
-
-// MARK: Custom Transition
-extension MainVC: UIViewControllerTransitioningDelegate {
-    
-//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        transition.transitionMode = .present
-//        transition.startingPoint = view.center
-//        transition.circleColor = UIColor.green
-//        return transition
-//    }
-//
-//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        transition.transitionMode = .dismiss
-//        transition.startingPoint = view.center
-//        transition.circleColor = UIColor.green
-//        return transition
-//    }
-    
     
 }

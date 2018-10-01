@@ -14,7 +14,7 @@ class ArticleVC: UIViewController {
     @IBOutlet var articleView: ArticleView!
 
     var article: Article!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoCell" customModule="PaperBoy" customModuleProvider="target">
+            <connections>
+                <outlet property="sourceLabel" destination="xRw-M7-22I" id="NH8-Z9-bnC"/>
+                <outlet property="timeLabel" destination="zQB-aH-Tra" id="Ctt-WW-DNZ"/>
+                <outlet property="titleLabel" destination="AP6-k6-LWe" id="cJt-iR-XNP"/>
+                <outlet property="videoImageView" destination="iPw-OA-Y4E" id="ppq-Ym-Zfg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="519" height="204"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="iPw-OA-Y4E">
+                    <rect key="frame" x="8" y="20.5" width="163" height="163"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="iPw-OA-Y4E" secondAttribute="height" multiplier="1:1" id="fdP-1w-U9C"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bears running loose in Central Park" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP6-k6-LWe">
+                    <rect key="frame" x="183" y="25" width="324" height="55"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York Times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRw-M7-22I">
+                    <rect key="frame" x="183" y="92" width="324" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQB-aH-Tra">
+                    <rect key="frame" x="8" y="160.5" width="163" height="23"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" name="appYellow"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zQB-aH-Tra" firstAttribute="trailing" secondItem="iPw-OA-Y4E" secondAttribute="trailing" id="179-oW-w0Z"/>
+                <constraint firstItem="xRw-M7-22I" firstAttribute="leading" secondItem="iPw-OA-Y4E" secondAttribute="trailing" constant="12" id="Auc-xb-j7B"/>
+                <constraint firstItem="iPw-OA-Y4E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="EO8-6E-Wwb"/>
+                <constraint firstItem="iPw-OA-Y4E" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="L9S-dg-ixK"/>
+                <constraint firstItem="iPw-OA-Y4E" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NaU-t5-65f"/>
+                <constraint firstItem="xRw-M7-22I" firstAttribute="top" secondItem="AP6-k6-LWe" secondAttribute="bottom" constant="12" id="TlC-mj-LFq"/>
+                <constraint firstItem="AP6-k6-LWe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="V3y-4a-KCc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xRw-M7-22I" secondAttribute="trailing" constant="12" id="W4Q-x5-53c"/>
+                <constraint firstItem="AP6-k6-LWe" firstAttribute="leading" secondItem="iPw-OA-Y4E" secondAttribute="trailing" constant="12" id="YOG-eI-mlV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AP6-k6-LWe" secondAttribute="trailing" constant="12" id="doQ-sl-a6A"/>
+                <constraint firstItem="zQB-aH-Tra" firstAttribute="bottom" secondItem="iPw-OA-Y4E" secondAttribute="bottom" id="eqt-xp-pXf"/>
+                <constraint firstItem="zQB-aH-Tra" firstAttribute="leading" secondItem="iPw-OA-Y4E" secondAttribute="leading" id="tyW-Ho-qsU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="253.59999999999999" y="334.63268365817095"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="video" width="618" height="470"/>
+        <namedColor name="appYellow">
+            <color red="0.89200001955032349" green="0.92699998617172241" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

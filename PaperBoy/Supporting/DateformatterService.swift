@@ -28,7 +28,6 @@ struct DateFormatterService {
         return getDateString(from: date, dateStyle: .medium, dateTime: .none)
     }
     
-    
     // String -> Date
     public func getDate(from dateString: String,
                         inputDateStringFormat inputFormat: String) -> Date {

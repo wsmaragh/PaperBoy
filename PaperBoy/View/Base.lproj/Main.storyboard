@@ -59,8 +59,7 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="search" id="YYa-pi-SB1">
                                 <connections>
-                                    <action selector="searchBarButtonPressed:" destination="BYZ-38-t0r" id="f8X-Al-onP"/>
-                                    <segue destination="X9X-Dh-OZ6" kind="show" identifier="toSearchVC" id="Kfx-ES-lxF"/>
+                                    <segue destination="X9X-Dh-OZ6" kind="show" identifier="MainVCToSearchVC" id="Kfx-ES-lxF"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -68,7 +67,7 @@
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
                         <outlet property="topicCollectionView" destination="l1p-Z9-X6z" id="6Ri-QS-9N0"/>
-                        <segue destination="TBN-oa-63T" kind="show" identifier="MainVCToArticleVC" id="vkQ-dw-QYf"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="MainVCToArticleVC" id="xE9-a3-Mip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -160,56 +159,62 @@
                     </navigationItem>
                     <connections>
                         <outlet property="deleteAllButton" destination="qJX-4b-hm3" id="bV7-O2-kml"/>
+                        <outlet property="dismissButton" destination="X75-NL-IsU" id="Q4l-o9-g9Z"/>
                         <outlet property="noDataView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgg-TR-dL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5bb-pc-An0" userLabel="Exit" sceneMemberID="exit"/>
                 <view contentMode="scaleToFill" id="dss-ZM-ZpT">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="398"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="pUr-9e-ZVg">
-                            <rect key="frame" x="0.0" y="135" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="120.5" width="240" height="128"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="pUr-9e-ZVg" secondAttribute="height" multiplier="15:8" id="fbt-Mb-OSF"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6o-Js-egC">
-                            <rect key="frame" x="45" y="102.5" width="150" height="20.5"/>
+                            <rect key="frame" x="45" y="50" width="150" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X75-NL-IsU">
-                            <rect key="frame" x="51.5" y="283" width="137" height="30"/>
+                            <rect key="frame" x="51.5" y="298.5" width="137" height="30"/>
                             <color key="backgroundColor" red="0.25098039215686274" green="0.53725490196078429" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="   find new articles   ">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="dismiss:" destination="TT4-ky-mz1" eventType="touchUpInside" id="sPW-Yz-iMH"/>
+                                <segue destination="5bb-pc-An0" kind="unwind" unwindAction="unwindtoOne:" id="EVI-K6-Q43"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="X75-NL-IsU" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="1X3-gQ-acG"/>
-                        <constraint firstItem="X75-NL-IsU" firstAttribute="top" secondItem="pUr-9e-ZVg" secondAttribute="bottom" constant="20" id="C2i-tO-EY8"/>
+                        <constraint firstItem="X75-NL-IsU" firstAttribute="top" secondItem="pUr-9e-ZVg" secondAttribute="bottom" constant="50" id="C2i-tO-EY8"/>
                         <constraint firstItem="k6o-Js-egC" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="Fb5-W0-u20"/>
                         <constraint firstItem="pUr-9e-ZVg" firstAttribute="leading" secondItem="cuA-K9-Mc9" secondAttribute="leading" id="JH3-bc-vYx"/>
+                        <constraint firstItem="k6o-Js-egC" firstAttribute="top" secondItem="cuA-K9-Mc9" secondAttribute="top" constant="50" id="Kj9-Rs-LdF"/>
                         <constraint firstItem="pUr-9e-ZVg" firstAttribute="centerX" secondItem="dss-ZM-ZpT" secondAttribute="centerX" id="QCl-TB-yyZ"/>
-                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="centerY" secondItem="dss-ZM-ZpT" secondAttribute="centerY" id="dTw-pW-MLz"/>
-                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="top" secondItem="k6o-Js-egC" secondAttribute="bottom" constant="12" id="mMx-Hz-jUR"/>
+                        <constraint firstItem="pUr-9e-ZVg" firstAttribute="top" secondItem="k6o-Js-egC" secondAttribute="bottom" constant="50" id="oTL-V8-hjk"/>
                         <constraint firstItem="pUr-9e-ZVg" firstAttribute="trailing" secondItem="cuA-K9-Mc9" secondAttribute="trailing" id="pwT-6I-DOL"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="cuA-K9-Mc9"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1590" y="1482"/>
+            <point key="canvasLocation" x="1590" y="1618"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="INX-ld-5Hg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJd-F4-bCN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJd-F4-bCN" customClass="CustomNavigationController" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2O-I6-8Br">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -266,13 +271,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchMan" translatesAutoresizingMaskIntoConstraints="NO" id="kmg-HN-qMO">
-                            <rect key="frame" x="0.0" y="38" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="48" width="240" height="128"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="kmg-HN-qMO" secondAttribute="height" multiplier="15:8" id="5np-VT-mrs"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter a keyword search in the search bar (eg. bitcoin)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaT-IF-rLt">
-                            <rect key="frame" x="24" y="185" width="192" height="61"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter a keyword search in the search bar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaT-IF-rLt">
+                            <rect key="frame" x="24" y="195" width="192" height="41"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -309,6 +314,6 @@
         <image name="searchMan" width="317" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vkQ-dw-QYf"/>
+        <segue reference="xHX-HW-PDs"/>
     </inferredMetricsTieBreakers>
 </document>
