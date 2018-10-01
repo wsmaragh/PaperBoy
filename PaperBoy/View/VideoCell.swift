@@ -10,8 +10,8 @@ import UIKit
 
 
 @objc protocol VideoCellDelegate {
-    @objc func savePressed(video: Video)
-    @objc func sharePressed(video: Video)
+//    @objc func savePressed(video: Video)
+//    @objc func sharePressed(video: Video)
 }
 
 
@@ -27,7 +27,7 @@ class VideoCell: UITableViewCell {
     static let id = "VideoCell"
     
     #warning("REMOVE - dont like the idea of the cell owning a video")
-    weak var video: Video?
+    var video: Video?
 
     func configureCell(video: Video){
         titleLabel.text = video.title

@@ -191,7 +191,7 @@
                             </state>
                             <connections>
                                 <action selector="dismiss:" destination="TT4-ky-mz1" eventType="touchUpInside" id="sPW-Yz-iMH"/>
-                                <segue destination="5bb-pc-An0" kind="unwind" unwindAction="unwindtoOne:" id="EVI-K6-Q43"/>
+                                <segue destination="5bb-pc-An0" kind="unwind" unwindAction="unwindToMain:" id="6Zf-2g-Fi6"/>
                             </connections>
                         </button>
                     </subviews>
@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="1590" y="1618"/>
         </scene>
-        <!--Custom Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="INX-ld-5Hg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJd-F4-bCN" customClass="CustomNavigationController" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJd-F4-bCN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2O-I6-8Br">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -314,6 +314,6 @@
         <image name="searchMan" width="317" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xHX-HW-PDs"/>
+        <segue reference="1Nt-Fj-Tjc"/>
     </inferredMetricsTieBreakers>
 </document>
