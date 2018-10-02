@@ -41,6 +41,7 @@
 		23B4F9DF21641519002D8C3D /* share.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23B4F9DE21641519002D8C3D /* share.gif */; };
 		23B4F9E121641523002D8C3D /* browse.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23B4F9E021641523002D8C3D /* browse.gif */; };
 		23B4F9E321641673002D8C3D /* favorites.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23B4F9E221641673002D8C3D /* favorites.gif */; };
+		23B4F9E5216419E9002D8C3D /* search.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23B4F9E4216419E9002D8C3D /* search.gif */; };
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* MainVC.swift */; };
@@ -111,6 +112,7 @@
 		23B4F9DE21641519002D8C3D /* share.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = share.gif; sourceTree = "<group>"; };
 		23B4F9E021641523002D8C3D /* browse.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = browse.gif; sourceTree = "<group>"; };
 		23B4F9E221641673002D8C3D /* favorites.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = favorites.gif; sourceTree = "<group>"; };
+		23B4F9E4216419E9002D8C3D /* search.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search.gif; sourceTree = "<group>"; };
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				23B4F9E021641523002D8C3D /* browse.gif */,
 				23B4F9E221641673002D8C3D /* favorites.gif */,
 				23B4F9DE21641519002D8C3D /* share.gif */,
+				23B4F9E4216419E9002D8C3D /* search.gif */,
 				23B4F9D9216414F8002D8C3D /* web.gif */,
 			);
 			path = Gifs;
@@ -449,6 +452,7 @@
 				23B4F9E321641673002D8C3D /* favorites.gif in Resources */,
 				231D70EF215FB91D00E2CCC9 /* SmallArticleLeftCell.xib in Resources */,
 				23E06F282144236300F89F9D /* LaunchScreen.storyboard in Resources */,
+				23B4F9E5216419E9002D8C3D /* search.gif in Resources */,
 				23B4F9DD216414F8002D8C3D /* web.gif in Resources */,
 				23E06F252144236300F89F9D /* Assets.xcassets in Resources */,
 				237E0943215C23EE0039FE28 /* SmallArticleRightCell.xib in Resources */,
