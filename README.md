@@ -1,5 +1,7 @@
 # PaperBoy
-<img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Assets.xcassets/paperboyName.imageset/paperboyName.png" width="300" style="max-width:100%;">
+<p align="center">
+    <img        src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Assets.xcassets/paperboyName.imageset/githubLogo.png" width="300" style="max-width:100%;">
+</p>
 
 <a>
     <p align="center">  Extra, extra, read all about it! </p> 
