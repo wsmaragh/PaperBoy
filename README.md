@@ -9,20 +9,13 @@
 
 ## App Flow:
 
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/start.gif)
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/browse.gif)
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/search.gif)
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/favorites.gif)
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/share.gif)
-![](https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/web.gif)
-
 <p align="center">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/start.gif" width="300">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/browse.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/web.gif" width="300">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/search.gif" width="300">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/favorites.gif" width="300">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/share.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/web.gif" width="300">
 </p>
 
 
