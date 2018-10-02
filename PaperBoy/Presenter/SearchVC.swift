@@ -12,9 +12,10 @@ import UIKit
 class SearchVC: UIViewController {
 
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet var emptyTableView: UIView!
+    @IBOutlet var viewForEmptyTableView: UIView!
     
     var articles: [Article] = [] {
         didSet {
@@ -27,8 +28,6 @@ class SearchVC: UIViewController {
         setupSearchController()
         setupNavBar()
         setupTableView()
-//        addRefreshControl()
-
     }
     
     private func setupSearchController(){
@@ -77,7 +76,6 @@ class SearchVC: UIViewController {
             self.articles = onlineArticles
         }
     }
-        
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -97,6 +95,8 @@ class SearchVC: UIViewController {
     
 }
 
+
+
 // MARK: SearchController
 extension SearchVC: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
@@ -104,6 +104,7 @@ extension SearchVC: UISearchResultsUpdating {
         
     }
 }
+
 
 
 // MARK: SearchBar
@@ -130,6 +131,7 @@ extension SearchVC: UISearchBarDelegate {
 }
 
 
+
 // MARK: TableView setup
 extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -139,7 +141,7 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if articles.count == 0 {
-            tableView.backgroundView = emptyTableView
+            tableView.backgroundView = viewForEmptyTableView
             tableView.separatorStyle = .none
             return 0
         } else {

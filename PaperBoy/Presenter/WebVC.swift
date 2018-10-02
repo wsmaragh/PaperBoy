@@ -15,12 +15,16 @@ class WebVC: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     var article: Article!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupWebView()
         navigationItem.title = "Browser in Paperboy"
+        setupWebView()
+        view.layoutIfNeeded()
+        webView.backgroundColor = UIColor.darkGray
     }
     
     func setupWebView(){
@@ -28,6 +32,7 @@ class WebVC: UIViewController {
         guard let url = URL(string: urlStr) else {return}
         let urlRequest = URLRequest(url: url)
         webView.load(urlRequest)
+        spinner.stopAnimating()
     }
 
 }

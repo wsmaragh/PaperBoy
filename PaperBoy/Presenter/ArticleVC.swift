@@ -20,6 +20,13 @@ class ArticleVC: UIViewController {
         setupNavBar()
         setupPageFromArticle()
         articleView.delegate = self
+//        preloadWebView()
+    }
+    
+    private func preloadWebView(){
+        let _webVC = WebVC()
+        _webVC.view.setNeedsLayout()
+        _webVC.view.layoutIfNeeded()
     }
     
     private func setupNavBar(){

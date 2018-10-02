@@ -109,10 +109,15 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4P8-Tv-K9h">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6M1-aL-cK3" firstAttribute="bottom" secondItem="klD-Pd-Q9S" secondAttribute="bottom" id="9z8-Zx-Nmt"/>
+                            <constraint firstItem="4P8-Tv-K9h" firstAttribute="centerX" secondItem="Spv-jX-8Q0" secondAttribute="centerX" id="S0x-Tv-yJ4"/>
+                            <constraint firstItem="4P8-Tv-K9h" firstAttribute="centerY" secondItem="Spv-jX-8Q0" secondAttribute="centerY" id="TPI-Jx-8eQ"/>
                             <constraint firstItem="klD-Pd-Q9S" firstAttribute="top" secondItem="6M1-aL-cK3" secondAttribute="top" id="TXH-1t-lUu"/>
                             <constraint firstItem="klD-Pd-Q9S" firstAttribute="leading" secondItem="6M1-aL-cK3" secondAttribute="leading" id="sTg-S9-eRm"/>
                             <constraint firstItem="klD-Pd-Q9S" firstAttribute="trailing" secondItem="6M1-aL-cK3" secondAttribute="trailing" id="uRk-GI-c3N"/>
@@ -120,6 +125,7 @@
                         <viewLayoutGuide key="safeArea" id="6M1-aL-cK3"/>
                     </view>
                     <connections>
+                        <outlet property="spinner" destination="4P8-Tv-K9h" id="1sJ-DC-jb5"/>
                         <outlet property="webView" destination="klD-Pd-Q9S" id="mVm-hk-5Eq"/>
                     </connections>
                 </viewController>
@@ -160,8 +166,8 @@
                     <connections>
                         <outlet property="deleteAllButton" destination="qJX-4b-hm3" id="bV7-O2-kml"/>
                         <outlet property="dismissButton" destination="X75-NL-IsU" id="Q4l-o9-g9Z"/>
-                        <outlet property="noDataView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
+                        <outlet property="viewForEmptyTableView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
                     </connections>
                 </viewController>
@@ -259,9 +265,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="L27-oI-tHN"/>
                     <connections>
-                        <outlet property="emptyTableView" destination="ZFl-Ik-d44" id="VQD-pK-Um5"/>
                         <outlet property="searchDisplayController" destination="nmr-Ty-wUh" id="8o3-lD-qAZ"/>
                         <outlet property="tableView" destination="Vuj-sJ-Ew0" id="imf-DI-nvI"/>
+                        <outlet property="viewForEmptyTableView" destination="ZFl-Ik-d44" id="VQD-pK-Um5"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="SearchVCToArticleVC" id="xHX-HW-PDs"/>
                     </connections>
                 </viewController>
