@@ -109,7 +109,7 @@ class FaveArticlesVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "FaveArticlesVCToArticleVC" {
-            guard let articleVC = segue.destination as? ArticleVC else {
+            guard let articleVC = segue.destination as? ArticleDVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
                 return
             }

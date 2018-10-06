@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ArticleVC: UIViewController {
+class ArticleDVC: UIViewController {
 
     @IBOutlet var articleView: ArticleView!
 
@@ -57,7 +57,7 @@ class ArticleVC: UIViewController {
 
 
 
-extension ArticleVC: ArticleViewDelegate {
+extension ArticleDVC: ArticleViewDelegate {
     func browserButtonPressed() {
         print("In VC, browser pressed ")
         performSegue(withIdentifier: "ArticleVCToWebVC", sender: self)

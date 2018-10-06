@@ -10,8 +10,10 @@ import UIKit
 import RealmSwift
 
 
-class MainVC: UIViewController {
+class ArticleVC: UIViewController {
 
+    @IBOutlet weak var sideMenu: UIBarButtonItem!
+    
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -37,6 +39,11 @@ class MainVC: UIViewController {
         setupCollectionView()
         loadInitialArticles()
     }
+    
+    @IBAction func sideMenuPressed() {
+        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+    }
+    
     
     private func setupNavBar(){
         if let image = UIImage(named: "paperboyName_high") {
@@ -147,7 +154,7 @@ class MainVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MainVCToArticleVC" {
-            guard let articleVC = segue.destination as? ArticleVC else {
+            guard let articleVC = segue.destination as? ArticleDVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
                 return
             }
@@ -175,7 +182,7 @@ class MainVC: UIViewController {
 
 
 // MARK: CollectionView setup
-extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return topics.count
@@ -197,7 +204,7 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
 
 // MARK: TableView setup
-extension MainVC: UITableViewDataSource, UITableViewDelegate {
+extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1 //sections.count
@@ -289,7 +296,8 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension MainVC: ArticleCellDelegate {
+
+extension ArticleVC: ArticleCellDelegate {
     func savePressed(article: Article) {
         RealmService.shared.create(article)
         showAlert(title: "Article Saved", message: "This article has been added to your Favorites")
