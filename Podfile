@@ -8,6 +8,8 @@ target 'PaperBoy' do
   # Pods for PaperBoy
     pod 'Alamofire'
     pod 'RealmSwift'
+    pod 'Spring'
+    pod 'SwiftyJSON'
 
     
   target 'PaperBoyTests' do

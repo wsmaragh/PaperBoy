@@ -17,8 +17,8 @@ class MenuCell: UITableViewCell {
     static let id = "MenuCell"
     
     func configureCell(menuItem: String){
-//        menulabel.text = "Article"
-//        menuImageV.image = UIImage(named: "Article")
+        menulabel.text = menuItem
+        menuImageV.image = UIImage(named: menuItem)
     }
 
 

@@ -9,8 +9,8 @@
 import UIKit
 
 
-protocol SideMenuVCDelegate {
-    func didSelectMenuItem(_ menuItem: Int)
+@objc protocol SideMenuDelegate {
+    @objc func selectedTabIndex(index: Int)
 }
 
 
@@ -18,20 +18,19 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
-    var menuItems = MenuItem.allCases
-    
     enum MenuItem: String {
         case Article
         case Video
         case Radio
-        case Profile
         
         static var allCases: [MenuItem] {
-            return [.Article, .Video, .Radio, .Profile]
+            return [.Article, .Video, .Radio]
         }
     }
     
-    var delegate: SideMenuVCDelegate?
+    var menuItems = MenuItem.allCases
+    
+    var selectionDelegate: SideMenuDelegate?
 
     override func viewDidLoad() {
         setupTableView()
@@ -64,10 +63,9 @@ extension SideMenuVC: UITableViewDataSource {
 }
 
 
-extension SideMenuVC: UITableViewDelegate {
+extension SideMenuVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Pressed", self.menuItems[indexPath.row])
-        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        selectionDelegate?.selectedTabIndex(index: indexPath.row)
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
 }
-

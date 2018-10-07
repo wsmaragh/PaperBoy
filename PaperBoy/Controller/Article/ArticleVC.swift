@@ -41,7 +41,7 @@ class ArticleVC: UIViewController {
     }
     
     @IBAction func sideMenuPressed() {
-        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
     

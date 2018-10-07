@@ -1,0 +1,61 @@
+{
+    "station":
+    [
+        {
+            "name": "Underground 80s",
+            "streamURL": "http://ice1.somafm.com/u80s-128-mp3",
+            "imageURL": "https://somafm.com/img3/u80s-400.png",
+            "desc": "Early 80s UK Synthpop and a bit of New Wave.",
+            "longDesc": "Centered around the UK Synthpop style of the early 80s with a bit of new wave splashed in, you'll hear music from Human League, Depeche Mode, Thompson Twins, A Flock of Seagulls, New Order and Ultravox, as well as lesser-known but critically acclaimed artists from the time such as New Musik, Comsat Angels, Lene Lovich, Fad Gadget and Robert Hazard."
+        },
+        {
+            "name": "Left Coast 70s",
+            "streamURL": "http://ice1.somafm.com/seventies-128-mp3",
+            "imageURL": "https://somafm.com/img3/seventies400.jpg",
+            "desc": "Mellow album rock from the Seventies. Yacht not required.",
+            "longDesc": "In the late 70s and very early 80s, when the mood was mellow, and the vibe was softer, many rock artists started creating slower, thoughtfully-produced tracks. Drawing lyrical influences from the folk singers before them, and bringing together some of the best session players of the day, these artists stepped outside their comfort zones to create some of the best mellow rock ever made, a sound that blossomed out of Los Angeles and spread up and down the west coast."
+        },
+        {
+            "name": "Fluid",
+            "streamURL": "http://ice1.somafm.com/fluid-128-mp3",
+            "imageURL": "https://somafm.com/img3/fluid-400.jpg",
+            "desc": "Drown in the electronic sound of instrumental hiphop, future soul and liquid trap.",
+            "longDesc": "That strange point on a musical map, where Instrumental Hip-Hop, Chilled Trap, woozy Electronica, and Future Soul meet, exchange ideas, collaborate, and spawn in the soft, bluish glow. Unwind and detangle amidst the soft harmonies, deep bass, smooth chords, ethereal vocals, and dynamic percussion. Not recommended for those operating heavy equipment."
+        },
+        {
+            "name": "Sonic Universe",
+            "streamURL": "http://ice1.somafm.com/sonicuniverse-128-mp3",
+            "imageURL": "https://somafm.com/img3/sonicuniverse-400.jpg",
+            "desc": "Transcending the world of jazz with eclectic, avant-garde takes on tradition.",
+            "longDesc": "Call it Modern Jazz, call it Fringes of Jazz, call it Nordic Jazz. None of the labels do this music the justice of what it really is: a new direction in music that takes its direction from classic innovators in the past"
+        },
+        {
+            "name": "Groove Salad",
+            "streamURL": "http://ice1.somafm.com/groovesalad-128-mp3",
+            "imageURL": "https://somafm.com/img3/groovesalad-400.jpg",
+            "desc": "A nicely chilled plate of ambient/downtempo beats and grooves.",
+            "longDesc": "Downtempo and chillout electronica featuring artists such as Kruder & Dorfmeister, Fila Brazila, Dhzian and Kamien, Afterlife, Zero Seven, Nightmares On Wax, Shantel, Groove Armada and artists on Pork Recordings, Waveform Records and Cafe del Mar recordings."
+        },
+        {
+            "name": "Covers",
+            "streamURL": "http://ice1.somafm.com/covers-128-mp3",
+            "imageURL": "https://somafm.com/img3/covers-400.jpg",
+            "desc": "Just covers. Songs you know by artists you don't. We've got you covered.",
+            "longDesc": "An eclectic mix of music with one thing in common: All these songs were written and made famous by someone else first. You will likely be surprised by what you hear."
+        },
+        {
+            "name": "DEF CON Radio",
+            "streamURL": "http://ice1.somafm.com/defcon-128-mp3",
+            "imageURL": "https://somafm.com/img3/defcon-400.jpg",
+            "desc": "Music for Hacking. The DEF CON Year-Round Channel.",
+            "longDesc": "DEF CON is one of the world's largest annual hacker conventions, held every year in Las Vegas, Nevada. Since 2013, SomaFM has provided the music for the DEF CON Chill room. That theme continues with SomaFM broadcasting this special year-round stream from San Francisco, hosted by the DJs who entertain the DEF CON 26 chill room this year in Vegas."
+        },
+        {
+            "name": "BAGeL Radio",
+            "streamURL": "http://ice1.somafm.com/bagel-128-mp3",
+            "imageURL": "https://somafm.com/img3/bagel-400.jpg",
+            "desc": "What alternative rock radio should sound like.",
+            "longDesc": "Spanning four decades of great alternative, post-punk, indie rock and noise pop, you'll hear artists like Frightened Rabbit, The White Stripes, Metric, The National, Tune-Yards, Yeah Yeah Yeahs, The Thermals, The Smiths, Blur, Radiohead, Mission of Burma, Chameleons UK, Siouxsie & The Banshees, X, and just about every Slumberland Records band ever. And every Friday is 480 Minutes: Ted plays and discusses the latest and greatest music in real time. For eight hours. Seriously. From 9am-5pm Eastern."
+        }
+    ]
+}

@@ -18,12 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Allow other apps to play sound also
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        UINavigationBar.appearance().barStyle = .black
+        
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
                                                          mode: AVAudioSession.Mode.moviePlayback,
                                                          options: [.mixWithOthers])
         
         return true
+    }
+    
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        UIApplication.shared.endReceivingRemoteControlEvents()
     }
     
     

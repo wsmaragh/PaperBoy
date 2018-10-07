@@ -8,9 +8,10 @@
 
 import UIKit
 
+
 class ContainerVC: UIViewController {
 
-    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
     
     var sideMenuOpen = false
 
@@ -26,19 +27,53 @@ class ContainerVC: UIViewController {
     private func addMyObservers(){
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(toggleSideMenu),
-                                               name: NSNotification.Name("ToggleSideMenu"),
+                                               name: NSNotification.Name("toggleSideMenu"),
                                                object: nil)
     }
     
     private func removeMyObservers(){
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
     @objc func toggleSideMenu() {
-        sideMenuConstraint.constant = sideMenuOpen ? -200 : 0
-        UIView.animate(withDuration: 0.35) {
+        sideMenuLeadingConstraint.constant = sideMenuOpen ? -200 : 0
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
         sideMenuOpen = !sideMenuOpen
     }
+    
+    private weak var mainTabBarVC: UITabBarController?{
+        didSet {
+            mainTabBarVC?.tabBar.isHidden = true
+        }
+    }
+    private weak var sideMenuVC: SideMenuVC? {
+        didSet {
+            sideMenuVC?.selectionDelegate = self
+        }
+    }
+    
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ContainerToMainTabBarVC" {
+            if let mainTab = segue.destination as? UITabBarController {
+                self.mainTabBarVC = mainTab
+            }
+        }
+        if segue.identifier == "ContainerToSideMenuVC" {
+            if let sideMenu = segue.destination as? SideMenuVC {
+                self.sideMenuVC = sideMenu
+            }
+        }
+    }
+    
+}
+
+
+extension ContainerVC: SideMenuDelegate {
+    
+    func selectedTabIndex(index: Int) {
+        mainTabBarVC?.selectedIndex = index
+    }
+    
 }
