@@ -24,11 +24,12 @@
 
 
 ## Features:
-* Browse for Articles by Category
-* Search for Articles
+* Browse & Search for Articles
 * Save Articles for reading later
 * Share articles with others
 * View full article on apps browser
+* Play Radio Stations
+* Play News Videos
 * play news videos
 * More...
 
