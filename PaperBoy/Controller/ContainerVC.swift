@@ -62,7 +62,6 @@ class ContainerVC: UIViewController {
         }
         if segue.identifier == "ContainerToSideMenuVC" {
             if let sideMenuNav = segue.destination as? UINavigationController {
-                print("2 - ContainerToSideMenuVC")
                 self.sideMenuVC = sideMenuNav.viewControllers.first as? SideMenuVC
             }
         }

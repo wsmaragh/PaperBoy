@@ -162,17 +162,14 @@
                         <viewLayoutGuide key="safeArea" id="Fer-zz-MRB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZOa-RG-FMp">
-                        <rightBarButtonItems>
-                            <barButtonItem id="qJX-4b-hm3">
-                                <connections>
-                                    <action selector="deleteAllPressed:" destination="TT4-ky-mz1" id="zBt-i8-NAH"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="trash" id="c4v-Jc-flV"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="trash" id="c4v-Jc-flV">
+                            <connections>
+                                <action selector="deleteAllPressed:" destination="TT4-ky-mz1" id="gRh-x1-QSz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="deleteAllButton" destination="qJX-4b-hm3" id="bV7-O2-kml"/>
+                        <outlet property="deleteAllButton" destination="c4v-Jc-flV" id="MJ2-8c-G6z"/>
                         <outlet property="dismissButton" destination="X75-NL-IsU" id="Q4l-o9-g9Z"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
                         <outlet property="viewForEmptyTableView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
@@ -237,7 +234,7 @@
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="appGray"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -762,7 +759,7 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="appGray"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="appYellow"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -786,7 +783,7 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="appGray"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1017,11 +1014,8 @@
         <namedColor name="appWhite">
             <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="appYellow">
-            <color red="0.89200001955032349" green="0.92699998617172241" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xE9-a3-Mip"/>
+        <segue reference="1Nt-Fj-Tjc"/>
     </inferredMetricsTieBreakers>
 </document>

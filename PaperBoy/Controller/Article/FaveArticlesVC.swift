@@ -20,8 +20,10 @@ class FaveArticlesVC: UIViewController {
     @IBOutlet weak var dismissButton: UIButton!
     
     @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
+        print("DELETE ALL PRESSED")
         let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            print("Delete pressed")
             RealmService.shared.deleteAll()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
