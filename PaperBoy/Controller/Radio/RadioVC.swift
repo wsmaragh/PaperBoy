@@ -23,7 +23,7 @@ class RadioVC: UIViewController {
         slideToMenu()
     }
     
-    var firstTime = true
+    private var firstTime = true
     
     var stations = [RadioStation]()
     var currentStation: RadioStation?
@@ -134,7 +134,7 @@ class RadioVC: UIViewController {
     
     private func createNowPlayingAnimation() {
         nowPlayingAnimationImageView.animationImages = AnimationFrames.createFrames()
-        nowPlayingAnimationImageView.animationDuration = 0.7
+        nowPlayingAnimationImageView.animationDuration = 0.8
     }
     
     private func createNowPlayingBarButton() {
@@ -230,6 +230,7 @@ class RadioVC: UIViewController {
     @objc func slideToMenu(){
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
+    
 }
 
 
@@ -330,14 +331,13 @@ extension RadioVC: UITableViewDelegate {
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 
 
-// MARK: - NowPlayingVCDelegate
+// MARK: - NowPlayingVC Delegate
 extension RadioVC: NowPlayingVCDelegate {
     
     func artworkDidUpdate(_ track: Track) {
@@ -364,16 +364,9 @@ extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         searchedStations.removeAll(keepingCapacity: false)
-        
-        // Create a Predicate
         let searchPredicate = NSPredicate(format: "SELF.stationName CONTAINS[c] %@", searchController.searchBar.text!)
-        
-        // Create an NSArray with a Predicate
         let array = (self.stations as NSArray).filtered(using: searchPredicate)
-        
-        // Set the searchedStations with search result array
         searchedStations = array as! [RadioStation]
-        
         self.tableView.reloadData()
     }
     
