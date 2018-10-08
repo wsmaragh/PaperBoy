@@ -93,6 +93,16 @@ class SearchVC: UIViewController {
         }
     }
     
+//    func setupPanGestureToDismiss() {
+//        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(didSwipeBack(_:)))
+//        swipeGesture.direction = .right
+//        view.addGestureRecognizer(swipeGesture)
+//    }
+//    
+//    @objc func didSwipeBack(_ gesture: UISwipeGestureRecognizer) {
+//        dismiss(animated: true, completion: nil)
+//    }
+    
 }
 
 
