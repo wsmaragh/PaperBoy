@@ -36,6 +36,7 @@ class SideMenuVC: UIViewController {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
+        addLeftSwipeGestureToSideMenu()
     }
     
     private func setupTableView(){
@@ -57,6 +58,16 @@ class SideMenuVC: UIViewController {
             self.navigationItem.titleView = titleView
         }
         
+    }
+    
+    private func addLeftSwipeGestureToSideMenu() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .left
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc private func slideToMenu(){
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
 }
@@ -88,6 +99,6 @@ extension SideMenuVC: UITableViewDataSource {
 extension SideMenuVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectionDelegate?.selectedTabIndex(index: indexPath.row)
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        slideToMenu()
     }
 }

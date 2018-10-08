@@ -48,6 +48,7 @@ class RadioVC: UIViewController {
         loadStationsFromJSON()
         setupAudioSession()
         createNowPlayingAnimation()
+        addRightSwipeGestureToSideMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +126,7 @@ class RadioVC: UIViewController {
     private func setupPullToRefresh() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
-        self.refreshControl.backgroundColor = UIColor.black
+        self.refreshControl.backgroundColor = UIColor.lightGray
         self.refreshControl.tintColor = UIColor.white
         self.refreshControl.addTarget(self, action: #selector(RadioVC.refresh(_:)), for: UIControl.Event.valueChanged)
         self.tableView.addSubview(refreshControl)
@@ -173,7 +174,7 @@ class RadioVC: UIViewController {
         stations.removeAll(keepingCapacity: false)
         loadStationsFromJSON()
         
-        // Wait 2 seconds then refresh screen
+        // Wait 2 seconds then refresh
         let popTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
         DispatchQueue.main.asyncAfter(deadline: popTime) { () -> Void in
             self.refreshControl.endRefreshing()
@@ -204,7 +205,6 @@ class RadioVC: UIViewController {
                     self.stations.append(station)
                 }
                 
-                // stations array populated, update table on main queue
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.view.setNeedsDisplay()
@@ -214,7 +214,6 @@ class RadioVC: UIViewController {
                 print("JSON Station Loading Error")
             }
             
-            // Turn off network indicator in status bar
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -222,7 +221,7 @@ class RadioVC: UIViewController {
         
     }
     
-    func setupPanGestureToDismiss() {
+    func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
@@ -236,7 +235,7 @@ class RadioVC: UIViewController {
 
 
 
-// MARK: - TableViewDataSource
+// MARK: - TableView DataSource
 extension RadioVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -284,7 +283,7 @@ extension RadioVC: UITableViewDataSource {
 
 
 
-// MARK: - TableViewDelegate
+// MARK: - TableView Delegate
 extension RadioVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -292,7 +291,6 @@ extension RadioVC: UITableViewDelegate {
         firstTime = false
         
         if !stations.isEmpty {
-            // Set Now Playing Buttons
             let title = stations[indexPath.row].stationName + " - Now Playing..."
             stationNowPlayingButton.setTitle(title, for: UIControl.State())
             stationNowPlayingButton.isEnabled = true

@@ -21,7 +21,7 @@ struct Settings {
     
     enum StationType: String {
         case localStations
-        case onlineStations = "http://yoururl.com/json/stations.json"
+        case onlineStations = ""
     }
     
     static let stationType = StationType.localStations

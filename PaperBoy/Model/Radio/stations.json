@@ -2,7 +2,7 @@
     "station":
     [
         {
-            "name": "Bloomberg Radio 1",
+            "name": "Bloomberg Radio",
             "streamURL": "http://17593.live.streamtheworld.com/WBBRAMAAC.aac",
             "imageURL": "http://static.radio.net/images/broadcasts/e8/aa/21853/1/c175.png",
             "desc": "Unparalleled global news and information resources",
@@ -78,13 +78,19 @@
             "desc": "Australia's first continuous news network.",
             "longDesc": "Australia's first continuous news network."
         },
-        
         {
             "name": "WCBS 880",
             "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
             "imageURL": "http://static.radio.net/images/broadcasts/b1/64/19005/1/c175.png",
             "desc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years.",
             "longDesc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years."
+        },
+        {
+            "name": "Voice of America Newscast",
+            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
+            "imageURL": "http://static.radio.net/images/broadcasts/33/1d/21479/c175.png",
+            "desc": "Your source for news and information from around the world.",
+            "longDesc": "Your source for news and information from around the world."
         }
 
     ]

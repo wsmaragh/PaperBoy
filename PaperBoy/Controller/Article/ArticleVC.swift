@@ -38,16 +38,23 @@ class ArticleVC: UIViewController {
         addRefreshControl()
         setupCollectionView()
         loadInitialArticles()
+        addRightSwipeGestureToSideMenu()
     }
     
     @IBAction func sideMenuPressed() {
         slideToMenu()
     }
     
+    
+    func addRightSwipeGestureToSideMenu() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
     @objc func slideToMenu(){
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
-    
     
     private func setupNavBar(){
         if let image = UIImage(named: "githubLogo") {

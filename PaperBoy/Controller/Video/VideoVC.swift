@@ -16,7 +16,6 @@ class VideoVC: UIViewController {
         slideToMenu()
     }
     
-    @IBOutlet weak var optionsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -29,6 +28,8 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         loadStream()
+//        addRightSwipeGesture()
+        addRightSwipeGestureToSideMenu()
     }
     
     func setupTableView(){
@@ -46,10 +47,7 @@ class VideoVC: UIViewController {
         if let url = URL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
             avPlayerViewController?.player = AVPlayer(url: url)
             avPlayerViewController?.player?.play()
-
             let playerLayerAV = AVPlayerLayer(player:  avPlayerViewController?.player)
-//            playerLayerAV.frame = self.view.bounds
-//            self.view.layer.addSublayer(playerLayerAV)
             avPlayerViewController?.player?.play()
         }
     }
@@ -62,7 +60,7 @@ class VideoVC: UIViewController {
         }
     }
     
-    func setupPanGestureToDismiss() {
+    func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)

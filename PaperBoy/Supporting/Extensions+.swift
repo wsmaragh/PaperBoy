@@ -53,7 +53,9 @@ extension UIImageView {
     }
 }
 
+
+// MARK: UIColor
 extension UIColor {
-    
     static let appYellow = UIColor(red: 255/255, green: 255/255, blue: 75/255, alpha: 0.9)
+
 }
