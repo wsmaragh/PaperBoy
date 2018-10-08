@@ -18,7 +18,6 @@ class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     let videos: [Video] = Video.allVideos
     
     var avPlayerViewController: AVPlayerViewController?
@@ -28,7 +27,6 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         loadStream()
-//        addRightSwipeGesture()
         addRightSwipeGestureToSideMenu()
     }
     
@@ -72,9 +70,11 @@ class VideoVC: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "embedAVPlayer", let avPlayerVC = segue.destination as? AVPlayerViewController {
-            avPlayerViewController = avPlayerVC
-            self.addChild(avPlayerVC)
+        if segue.identifier == "embedAVPlayer",
+            let avPlayerVC = segue.destination as? AVPlayerViewController {
+            print("Added Player in Segue")
+                avPlayerViewController = avPlayerVC
+                self.addChild(avPlayerVC)
         }
     }
     

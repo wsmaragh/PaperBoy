@@ -160,6 +160,7 @@ class RadioVC: UIViewController {
             nowPlayingAnimationImageView.stopAnimating()
             nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
         }
+        nowPlayingAnimationImageView.startAnimating()
     }
     
     @objc func nowPlayingBarButtonPressed() {

@@ -14,10 +14,11 @@ class ArticleVC: UIViewController {
 
     @IBOutlet weak var sideMenu: UIBarButtonItem!
     
+    @IBOutlet var viewForEmptyTableView: UIView!
+    
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
 
-    
     private var refreshControl: UIRefreshControl = UIRefreshControl()
     
     var topics: [ArticleTopic] = ArticleTopic.allCases
@@ -199,7 +200,13 @@ class ArticleVC: UIViewController {
 extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topics.count
+        
+        if topics.count == 0 {
+            collectionView.backgroundView = viewForEmptyTableView
+            return 0
+        } else {
+            return topics.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -72,10 +72,47 @@
                     <connections>
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
                         <outlet property="topicCollectionView" destination="l1p-Z9-X6z" id="6Ri-QS-9N0"/>
+                        <outlet property="viewForEmptyTableView" destination="2zq-Ow-dZh" id="oRH-v6-7mi"/>
                         <segue destination="TBN-oa-63T" kind="show" identifier="MainVCToArticleVC" id="xE9-a3-Mip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="2zq-Ow-dZh">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="367"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homer" translatesAutoresizingMaskIntoConstraints="NO" id="sjK-p2-lej">
+                            <rect key="frame" x="60" y="133.5" width="120" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="sjK-p2-lej" secondAttribute="height" multiplier="1.2:1" id="glC-UR-hCU"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ooops, something went wrong!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-GF-rrb">
+                            <rect key="frame" x="12" y="245.5" width="216" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdo-5t-gGo">
+                            <rect key="frame" x="99" y="281" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="AX6-F2-tdM" firstAttribute="trailing" secondItem="cPx-GF-rrb" secondAttribute="trailing" constant="12" id="4Fy-2r-RoE"/>
+                        <constraint firstItem="sjK-p2-lej" firstAttribute="centerY" secondItem="2zq-Ow-dZh" secondAttribute="centerY" id="8z6-FY-Bqk"/>
+                        <constraint firstItem="sjK-p2-lej" firstAttribute="centerX" secondItem="2zq-Ow-dZh" secondAttribute="centerX" id="AFA-vY-yYU"/>
+                        <constraint firstItem="sjK-p2-lej" firstAttribute="width" secondItem="2zq-Ow-dZh" secondAttribute="width" multiplier="0.5" id="Lzp-IX-joD"/>
+                        <constraint firstItem="cPx-GF-rrb" firstAttribute="centerX" secondItem="2zq-Ow-dZh" secondAttribute="centerX" id="TBb-G6-sVP"/>
+                        <constraint firstItem="cPx-GF-rrb" firstAttribute="top" secondItem="sjK-p2-lej" secondAttribute="bottom" constant="12" id="WkD-Sa-d98"/>
+                        <constraint firstItem="cPx-GF-rrb" firstAttribute="leading" secondItem="AX6-F2-tdM" secondAttribute="leading" constant="12" id="n1S-vN-2LY"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="AX6-F2-tdM"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="3588" y="748"/>
         </scene>
@@ -390,7 +427,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNp-Eg-Zpx">
-                                <rect key="frame" x="19" y="76" width="337.5" height="190"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vNp-Eg-Zpx" secondAttribute="height" multiplier="16:9" id="ohm-AD-4DO"/>
                                 </constraints>
@@ -399,18 +436,18 @@
                                 </connections>
                             </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bs3-uA-ta0">
-                                <rect key="frame" x="0.0" y="271" width="375" height="347"/>
+                                <rect key="frame" x="0.0" y="280" width="375" height="338"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vNp-Eg-Zpx" firstAttribute="width" secondItem="pSE-mq-cO2" secondAttribute="width" multiplier="0.9" id="50h-JE-I0t"/>
+                            <constraint firstItem="vNp-Eg-Zpx" firstAttribute="width" secondItem="pSE-mq-cO2" secondAttribute="width" id="50h-JE-I0t"/>
                             <constraint firstItem="18h-ex-FnE" firstAttribute="bottom" secondItem="bs3-uA-ta0" secondAttribute="bottom" id="9gi-0H-zfc"/>
                             <constraint firstItem="vNp-Eg-Zpx" firstAttribute="centerX" secondItem="pSE-mq-cO2" secondAttribute="centerX" id="NWg-7b-aNY"/>
                             <constraint firstItem="bs3-uA-ta0" firstAttribute="leading" secondItem="18h-ex-FnE" secondAttribute="leading" id="aRM-dZ-ktd"/>
                             <constraint firstItem="18h-ex-FnE" firstAttribute="trailing" secondItem="bs3-uA-ta0" secondAttribute="trailing" id="bP7-PH-VBc"/>
-                            <constraint firstItem="vNp-Eg-Zpx" firstAttribute="top" secondItem="18h-ex-FnE" secondAttribute="top" constant="12" id="fPH-Lo-9tN"/>
+                            <constraint firstItem="vNp-Eg-Zpx" firstAttribute="top" secondItem="18h-ex-FnE" secondAttribute="top" id="fPH-Lo-9tN"/>
                             <constraint firstItem="bs3-uA-ta0" firstAttribute="top" secondItem="vNp-Eg-Zpx" secondAttribute="bottom" constant="5" id="gxZ-TA-Jkg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="18h-ex-FnE"/>
@@ -1000,6 +1037,7 @@
         <image name="cancel" width="50" height="50"/>
         <image name="favorites" width="25" height="25"/>
         <image name="gear" width="25" height="25"/>
+        <image name="homer" width="531" height="323"/>
         <image name="menu" width="25" height="25"/>
         <image name="newProfile" width="552" height="552"/>
         <image name="search" width="25" height="25"/>
@@ -1019,6 +1057,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xE9-a3-Mip"/>
+        <segue reference="xHX-HW-PDs"/>
     </inferredMetricsTieBreakers>
 </document>

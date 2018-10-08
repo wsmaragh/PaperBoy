@@ -23,7 +23,9 @@ class ArticleAPIService {
 
     func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
         
-        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&category=\(topic.rawValue)"
+//        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&category=\(topic.rawValue)"
+        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&category=\(topic.rawValue)"
+
         
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {
@@ -46,7 +48,8 @@ class ArticleAPIService {
 
         let q = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        let url = "https://newsapi.org/v2/everything?apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&language=en&q=\(q!)"
+//        let url = "https://newsapi.org/v2/everything?apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&language=en&q=\(q!)"
+        let url = "https://newsapi.org/v2/everything?apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&language=en&q=\(q!)"
 
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {

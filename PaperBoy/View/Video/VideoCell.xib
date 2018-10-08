@@ -18,30 +18,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_PaperBoy" translatesAutoresizingMaskIntoConstraints="NO" id="kqq-fL-I4i">
-                    <rect key="frame" x="5" y="21" width="70" height="70"/>
+                    <rect key="frame" x="5" y="6" width="100.5" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="B6o-Ab-7Mu"/>
                         <constraint firstAttribute="width" secondItem="kqq-fL-I4i" secondAttribute="height" multiplier="1:1" id="Umg-vW-m9l"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n27-IT-jBO">
-                    <rect key="frame" x="5" y="70.5" width="70" height="20.5"/>
+                    <rect key="frame" x="5" y="85.5" width="100.5" height="20.5"/>
                     <color key="backgroundColor" name="appYellow"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="57W-bA-DTO">
-                    <rect key="frame" x="83" y="33" width="310" height="46.5"/>
+                    <rect key="frame" x="113.5" y="33" width="279.5" height="46.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0p-Qw-Ofu">
-                            <rect key="frame" x="0.0" y="0.0" width="310" height="20.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="279.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="appBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ag-1Q-pq5">
-                            <rect key="frame" x="0.0" y="28.5" width="310" height="18"/>
+                            <rect key="frame" x="0.0" y="28.5" width="279.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -53,6 +52,7 @@
             <constraints>
                 <constraint firstItem="57W-bA-DTO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="trailing" constant="8" id="141-hr-qOu"/>
                 <constraint firstItem="kqq-fL-I4i" firstAttribute="trailing" secondItem="n27-IT-jBO" secondAttribute="trailing" id="BrO-ko-87p"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.25" id="RQr-ui-FLP"/>
                 <constraint firstItem="kqq-fL-I4i" firstAttribute="bottom" secondItem="n27-IT-jBO" secondAttribute="bottom" id="Up7-jG-84y"/>
                 <constraint firstItem="n27-IT-jBO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="leading" id="ZKB-2r-80a"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="57W-bA-DTO" secondAttribute="trailing" constant="8" id="ens-17-iZr"/>
@@ -74,10 +74,10 @@
     <resources>
         <image name="bg_PaperBoy" width="256" height="256"/>
         <namedColor name="appBlue">
-            <color red="0.25098039215686274" green="0.53725490196078429" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.22745098039215686" green="0.66274509803921566" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appYellow">
-            <color red="0.89200001955032349" green="0.92699998617172241" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="1" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

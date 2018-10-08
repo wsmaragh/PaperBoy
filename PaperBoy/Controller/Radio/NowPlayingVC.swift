@@ -340,7 +340,10 @@ class NowPlayingVC: UIViewController {
         
         switch Settings.coverApi {
         case .lastFm:
-            queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", APIKeys.lastFmApiKey, track.artist, track.title)
+            // queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", APIKeys.lastFmApiKey, track.artist, track.title)
+            queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", "9a267c245324cfa4f887366d497d3dd3", track.artist, track.title)
+            
+            
             break
         case .iTunes:
             queryURL = String(format: "https://itunes.apple.com/search?term=%@+%@&entity=song", track.artist, track.title)
