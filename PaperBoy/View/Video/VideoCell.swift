@@ -22,12 +22,6 @@ class VideoCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
-    lazy var progressView = {
-        let pv = UIProgressView()
-        pv.frame = self.frame
-        return pv
-    }()
     
     private func timeConverter(seconds: Int) -> String {
         let x = seconds / 60
