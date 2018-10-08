@@ -262,7 +262,7 @@ extension RadioVC: UITableViewDataSource {
                 let station = stations[indexPath.row]
                 cell.configureStationCell(station)
             }
-            cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor.lightGray
+            cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
             return cell
         }
     }

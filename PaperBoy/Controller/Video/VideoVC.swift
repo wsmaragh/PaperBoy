@@ -20,7 +20,7 @@ class VideoVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    let videos: [Video] = Video.sampleVideos
+    let videos: [Video] = Video.allVideos
     
     var avPlayerViewController: AVPlayerViewController?
 
@@ -35,11 +35,11 @@ class VideoVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 85
         tableView.backgroundColor = .white
         tableView.bounces = false
-        self.tableView.register(VideoCell.self, forCellReuseIdentifier: "VideoCell")
-        tableView.reloadData()
+        let nib = UINib(nibName: "VideoCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "VideoCell")
     }
     
     private func loadStream(){
@@ -71,6 +71,9 @@ class VideoVC: UIViewController {
 extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if videos.count == 0 {
+            return 0
+        }
         return videos.count
     }
     
@@ -89,7 +92,7 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 85
     }
 }
 

@@ -18,7 +18,7 @@ class TopicCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? UIColor.yellow : UIColor(red: 199/255, green: 199/255, blue: 199/255, alpha: 1.0)
+            backgroundColor = isSelected ? UIColor.appYellow : UIColor(red: 199/255, green: 199/255, blue: 199/255, alpha: 1.0)
             topicTitleLabel.textColor = isSelected ? UIColor.darkGray : UIColor.lightGray
         }
     }

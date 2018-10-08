@@ -109,7 +109,7 @@ class ArticleVC: UIViewController {
         let numberOfItemsPerRow: CGFloat = 4.4
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 4))
+        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 3))
 
     }
     
@@ -192,6 +192,7 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCell.id, for: indexPath) as! TopicCell
         let topic = topics[indexPath.item]
         cell.configureCell(topic: topic)
+        cell.layer.cornerRadius = 8
         return cell
     }
     

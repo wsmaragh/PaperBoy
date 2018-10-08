@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoCell" customModule="PaperBoy" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VideoCell" customModule="PaperBoy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="401" height="112"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_PaperBoy" translatesAutoresizingMaskIntoConstraints="NO" id="kqq-fL-I4i">
+                    <rect key="frame" x="5" y="21" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="B6o-Ab-7Mu"/>
+                        <constraint firstAttribute="width" secondItem="kqq-fL-I4i" secondAttribute="height" multiplier="1:1" id="Umg-vW-m9l"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n27-IT-jBO">
+                    <rect key="frame" x="5" y="70.5" width="70" height="20.5"/>
+                    <color key="backgroundColor" name="appYellow"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="57W-bA-DTO">
+                    <rect key="frame" x="83" y="33" width="310" height="46.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0p-Qw-Ofu">
+                            <rect key="frame" x="0.0" y="0.0" width="310" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="appBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ag-1Q-pq5">
+                            <rect key="frame" x="0.0" y="28.5" width="310" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="57W-bA-DTO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="trailing" constant="8" id="141-hr-qOu"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="trailing" secondItem="n27-IT-jBO" secondAttribute="trailing" id="BrO-ko-87p"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="bottom" secondItem="n27-IT-jBO" secondAttribute="bottom" id="Up7-jG-84y"/>
+                <constraint firstItem="n27-IT-jBO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="leading" id="ZKB-2r-80a"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="57W-bA-DTO" secondAttribute="trailing" constant="8" id="ens-17-iZr"/>
+                <constraint firstItem="57W-bA-DTO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gOS-6v-c7U"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="qXn-Ht-BYK"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sAK-vY-rbd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="sourceLabel" destination="2Ag-1Q-pq5" id="plz-81-w5M"/>
+                <outlet property="timeLabel" destination="n27-IT-jBO" id="lbk-jY-Xsa"/>
+                <outlet property="titleLabel" destination="j0p-Qw-Ofu" id="nRt-p2-ooo"/>
+                <outlet property="videoImageView" destination="kqq-fL-I4i" id="qmA-ed-9vM"/>
+            </connections>
+            <point key="canvasLocation" x="157.59999999999999" y="402.99850074962524"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_PaperBoy" width="256" height="256"/>
+        <namedColor name="appBlue">
+            <color red="0.25098039215686274" green="0.53725490196078429" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appYellow">
+            <color red="0.89200001955032349" green="0.92699998617172241" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
