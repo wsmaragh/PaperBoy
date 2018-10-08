@@ -2,60 +2,91 @@
     "station":
     [
         {
-            "name": "Underground 80s",
-            "streamURL": "http://ice1.somafm.com/u80s-128-mp3",
-            "imageURL": "https://somafm.com/img3/u80s-400.png",
-            "desc": "Early 80s UK Synthpop and a bit of New Wave.",
-            "longDesc": "Centered around the UK Synthpop style of the early 80s with a bit of new wave splashed in, you'll hear music from Human League, Depeche Mode, Thompson Twins, A Flock of Seagulls, New Order and Ultravox, as well as lesser-known but critically acclaimed artists from the time such as New Musik, Comsat Angels, Lene Lovich, Fad Gadget and Robert Hazard."
+            "name": "Bloomberg Radio 1",
+            "streamURL": "http://17593.live.streamtheworld.com/WBBRAMAAC.aac",
+            "imageURL": "http://static.radio.net/images/broadcasts/e8/aa/21853/1/c175.png",
+            "desc": "Unparalleled global news and information resources",
+            "longDesc": "Bloomberg Radio is the world's only global 24-hour business radio station. Powered by more than 2700 journalists and analysts in more than 120 countries, Bloomberg Radio's resources are unparalleled. Because the financial markets never sleep, Bloomberg follows them around the globe. "
         },
         {
-            "name": "Left Coast 70s",
-            "streamURL": "http://ice1.somafm.com/seventies-128-mp3",
-            "imageURL": "https://somafm.com/img3/seventies400.jpg",
-            "desc": "Mellow album rock from the Seventies. Yacht not required.",
-            "longDesc": "In the late 70s and very early 80s, when the mood was mellow, and the vibe was softer, many rock artists started creating slower, thoughtfully-produced tracks. Drawing lyrical influences from the folk singers before them, and bringing together some of the best session players of the day, these artists stepped outside their comfort zones to create some of the best mellow rock ever made, a sound that blossomed out of Los Angeles and spread up and down the west coast."
+            "name": "CBS Radio News",
+            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/CBSNEWS.mp3",
+            "imageURL": "http://static.radio.net/images/broadcasts/4c/b4/21362/c175.png",
+            "desc": "Unparalleled global news and information resources",
+            "longDesc": "CBS Radio News is a dynamic and compelling radio news network featuring CBS News-on-the-Hour, the CBS World News Roundup, The Osgood File, The Dave Ross Show, Reporters Notebook, and much more."
         },
         {
-            "name": "Fluid",
-            "streamURL": "http://ice1.somafm.com/fluid-128-mp3",
-            "imageURL": "https://somafm.com/img3/fluid-400.jpg",
-            "desc": "Drown in the electronic sound of instrumental hiphop, future soul and liquid trap.",
-            "longDesc": "That strange point on a musical map, where Instrumental Hip-Hop, Chilled Trap, woozy Electronica, and Future Soul meet, exchange ideas, collaborate, and spawn in the soft, bluish glow. Unwind and detangle amidst the soft harmonies, deep bass, smooth chords, ethereal vocals, and dynamic percussion. Not recommended for those operating heavy equipment."
+            "name": "NPR News",
+            "streamURL": "http://nprdmp-live01-mp3.akacast.akamaistream.net/7/998/364916/v1/npr.akacast.akamaistream.net/nprdmp_live01_mp3.mp3",
+            "imageURL": "http://static.radio.net/images/broadcasts/3f/64/3576/c175.png",
+            "desc": "This radio station offers programs of US national public radio network, including 'Morning Edition' and 'All Things Considered'.",
+            "longDesc": "This radio station offers programs of US national public radio network, including 'Morning Edition' and 'All Things Considered'."
         },
         {
-            "name": "Sonic Universe",
-            "streamURL": "http://ice1.somafm.com/sonicuniverse-128-mp3",
-            "imageURL": "https://somafm.com/img3/sonicuniverse-400.jpg",
-            "desc": "Transcending the world of jazz with eclectic, avant-garde takes on tradition.",
-            "longDesc": "Call it Modern Jazz, call it Fringes of Jazz, call it Nordic Jazz. None of the labels do this music the justice of what it really is: a new direction in music that takes its direction from classic innovators in the past"
+            "name": "FOX News Talk",
+            "streamURL": "http://fnradio-shoutcast-32.ng.akacast.akamaistream.net/7/115/13873/v1/auth.akacast.akamaistream.net/fnradio-shoutcast-32",
+            "imageURL": "http://static.radio.net/images/broadcasts/97/2e/6423/1/c175.png",
+            "desc": "The online radio for the successful US American news station FOX News. Talk shows, news and interviews in audio format.",
+            "longDesc": "The online radio for the successful US American news station FOX News. Talk shows, news and interviews in audio format."
         },
         {
-            "name": "Groove Salad",
-            "streamURL": "http://ice1.somafm.com/groovesalad-128-mp3",
-            "imageURL": "https://somafm.com/img3/groovesalad-400.jpg",
-            "desc": "A nicely chilled plate of ambient/downtempo beats and grooves.",
-            "longDesc": "Downtempo and chillout electronica featuring artists such as Kruder & Dorfmeister, Fila Brazila, Dhzian and Kamien, Afterlife, Zero Seven, Nightmares On Wax, Shantel, Groove Armada and artists on Pork Recordings, Waveform Records and Cafe del Mar recordings."
+            "name": "WINS - 1010 WINS CBS New York",
+            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WINSAMAAC.aac",
+            "imageURL": "http://static.radio.net/images/broadcasts/f1/78/19002/2/c175.png",
+            "desc": "All News. All the Time. You give us 22 minutes, we'll give you the world.",
+            "longDesc": "All News. All the Time. You give us 22 minutes, we'll give you the world."
         },
         {
-            "name": "Covers",
-            "streamURL": "http://ice1.somafm.com/covers-128-mp3",
-            "imageURL": "https://somafm.com/img3/covers-400.jpg",
-            "desc": "Just covers. Songs you know by artists you don't. We've got you covered.",
-            "longDesc": "An eclectic mix of music with one thing in common: All these songs were written and made famous by someone else first. You will likely be surprised by what you hear."
+            "name": "Times Insider Live",
+            "streamURL": "http://podcasts.nytimes.com/podcasts/2016/03/24/insider/events/24-Insider-Well-Audio/NYT-Insider-Live-Well.mp3",
+            "imageURL": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
+            "desc": "An insider look at The Times’s coverage of health and well-being.",
+            "longDesc": ""
         },
         {
-            "name": "DEF CON Radio",
-            "streamURL": "http://ice1.somafm.com/defcon-128-mp3",
-            "imageURL": "https://somafm.com/img3/defcon-400.jpg",
-            "desc": "Music for Hacking. The DEF CON Year-Round Channel.",
-            "longDesc": "DEF CON is one of the world's largest annual hacker conventions, held every year in Las Vegas, Nevada. Since 2013, SomaFM has provided the music for the DEF CON Chill room. That theme continues with SomaFM broadcasting this special year-round stream from San Francisco, hosted by the DJs who entertain the DEF CON 26 chill room this year in Vegas."
+            "name": "New York Times - Talk",
+            "streamURL": "http://www.nytimes.com/services/xml/rss/nyt/podcasts/timestalks.xml",
+            "imageURL": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
+            "desc": "times talk",
+            "longDesc": ""
         },
         {
-            "name": "BAGeL Radio",
-            "streamURL": "http://ice1.somafm.com/bagel-128-mp3",
-            "imageURL": "https://somafm.com/img3/bagel-400.jpg",
-            "desc": "What alternative rock radio should sound like.",
-            "longDesc": "Spanning four decades of great alternative, post-punk, indie rock and noise pop, you'll hear artists like Frightened Rabbit, The White Stripes, Metric, The National, Tune-Yards, Yeah Yeah Yeahs, The Thermals, The Smiths, Blur, Radiohead, Mission of Burma, Chameleons UK, Siouxsie & The Banshees, X, and just about every Slumberland Records band ever. And every Friday is 480 Minutes: Ted plays and discusses the latest and greatest music in real time. For eight hours. Seriously. From 9am-5pm Eastern."
+            "name": "WNYC 93.9 FM",
+            "streamURL": "http://fm939.wnyc.org/wnycfm",
+            "imageURL": "http://static.radio.net/images/broadcasts/d8/33/2044/c175.png",
+            "desc": "WNYC is one of New York's flagship public radio stations, broadcasting the finest programs from the region.",
+            "longDesc": "WNYC is one of New York's flagship public radio stations, broadcasting the finest programs from the region."
+        },
+        {
+            "name": "WFAN 66 AM - 101.9 FM",
+            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WFANAM.mp3",
+            "imageURL": "http://static.radio.net/images/broadcasts/0e/36/19004/1/c175.png",
+            "desc": "WFAN Radio: As the world’s first 24-hour all-sports radio station, WFAN remains the premier sports talk radio station in the business.",
+            "longDesc": "WFAN Radio: As the world’s first 24-hour all-sports radio station, WFAN remains the premier sports talk radio station in the business."
+        },
+        {
+            "name": "ESPN Radio",
+            "streamURL": "http://edge.espn.cdn.abacast.net/espn-networkmp3-48",
+            "imageURL": "http://static.radio.net/images/broadcasts/ca/de/27361/c175.png",
+            "desc": "ESPN Radio: All the sport in one place.",
+            "longDesc": "ESPN Radio: All the sport in one place."
+        },
+        {
+            "name": "ABC News Radio (Australia)",
+            "streamURL": "http://live-radio01.mediahubaustralia.com/PBW/mp3/",
+            "imageURL": "http://static.radio.net/images/broadcasts/ad/c9/15745/c175.png",
+            "desc": "Australia's first continuous news network.",
+            "longDesc": "Australia's first continuous news network."
+        },
+        
+        {
+            "name": "WCBS 880",
+            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
+            "imageURL": "http://static.radio.net/images/broadcasts/b1/64/19005/1/c175.png",
+            "desc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years.",
+            "longDesc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years."
         }
+
     ]
 }
+

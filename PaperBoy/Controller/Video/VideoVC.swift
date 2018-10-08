@@ -13,7 +13,7 @@ import AVKit
 class VideoVC: UIViewController {
     
     @IBAction func sideMenuPressed() {
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        slideToMenu()
     }
     
     @IBOutlet weak var optionsView: UIView!
@@ -45,6 +45,12 @@ class VideoVC: UIViewController {
     private func loadStream(){
         if let url = URL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
             avPlayerViewController?.player = AVPlayer(url: url)
+            avPlayerViewController?.player?.play()
+
+            let playerLayerAV = AVPlayerLayer(player:  avPlayerViewController?.player)
+//            playerLayerAV.frame = self.view.bounds
+//            self.view.layer.addSublayer(playerLayerAV)
+            avPlayerViewController?.player?.play()
         }
     }
     
@@ -52,7 +58,18 @@ class VideoVC: UIViewController {
         if let player = avPlayerViewController?.player {
             let videoItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: videoItem)
+            player.play()
         }
+    }
+    
+    func setupPanGestureToDismiss() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func slideToMenu(){
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
     

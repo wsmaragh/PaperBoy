@@ -41,6 +41,10 @@ class ArticleVC: UIViewController {
     }
     
     @IBAction func sideMenuPressed() {
+        slideToMenu()
+    }
+    
+    @objc func slideToMenu(){
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
@@ -173,10 +177,13 @@ class ArticleVC: UIViewController {
         
     }
     
-    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-//        let segue =
-//        segue.perform()
+    
+    func setupPanGestureToDismiss() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
     }
+    
 
 }
 

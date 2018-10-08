@@ -20,7 +20,7 @@ class RadioVC: UIViewController {
     
 
     @IBAction func sideMenuPressed() {
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        slideToMenu()
     }
     
     var firstTime = true
@@ -220,6 +220,16 @@ class RadioVC: UIViewController {
             }
         })
         
+    }
+    
+    func setupPanGestureToDismiss() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func slideToMenu(){
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
 }
 

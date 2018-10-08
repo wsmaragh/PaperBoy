@@ -20,7 +20,6 @@ class ArticleDVC: UIViewController {
         setupNavBar()
         setupPageFromArticle()
         articleView.delegate = self
-//        preloadWebView()
     }
     
     private func preloadWebView(){
