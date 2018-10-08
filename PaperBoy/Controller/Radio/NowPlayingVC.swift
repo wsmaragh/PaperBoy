@@ -22,7 +22,6 @@ class NowPlayingVC: UIViewController {
     
     @IBOutlet weak var songImageView: UIImageView!
     @IBOutlet weak var songImageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var pauseBtn: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
@@ -58,7 +57,7 @@ class NowPlayingVC: UIViewController {
     
     
     @IBAction func infoBtnPressed(_ sender: UIButton) {
-//        performSegue(withIdentifier: "InfoDetail", sender: self)
+
     }
     
     
@@ -226,14 +225,6 @@ class NowPlayingVC: UIViewController {
                 artistLbl.text = track.artist
             }
         }
-        
-        #warning("REMOVE")
-        if track.artworkLoaded || iPhone4 {
-//            stationLabel.isHidden = true
-        } else {
-//            stationLabel.isHidden = false
-//            stationLabel.text = currentStation.stationDesc
-        }
     }
     
     @objc func playButtonEnable(_ enabled: Bool = true) {
@@ -278,17 +269,12 @@ class NowPlayingVC: UIViewController {
         track.artworkURL = currentStation.stationImageURL
         DispatchQueue.main.async { [unowned self] in
             self.updateAlbumArtwork()
-//            self.stationLabel.isHidden = false
         }
     }
     
     @objc func updateAlbumArtwork() {
         track.artworkLoaded = false
         if track.artworkURL.range(of: "http") != nil {
-            DispatchQueue.main.async {
-//                self.stationLabel.isHidden = false
-            }
-            
             if let url = URL(string: track.artworkURL) {
                 self.downloadTask = self.songImageView.loadImageWithURL(url) { (image) in
                     
@@ -297,7 +283,6 @@ class NowPlayingVC: UIViewController {
                     
                     DispatchQueue.main.async {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//                        self.stationLabel.isHidden = true
                         self.updateLockScreen()
                         self.delegate?.artworkDidUpdate(self.track)
                     }
@@ -306,7 +291,6 @@ class NowPlayingVC: UIViewController {
             }
             
             if track.artworkLoaded && !self.justBecameActive {
-//                self.stationLabel.isHidden = true
                 self.justBecameActive = false
             }
             
@@ -317,14 +301,12 @@ class NowPlayingVC: UIViewController {
             self.delegate?.artworkDidUpdate(self.track)
             
         } else {
-            // No Station or API art found, use default art
             DispatchQueue.main.async {
                 self.songImageView.image = UIImage(named: "albumArt")
                 self.track.artworkImage = self.songImageView.image
             }
         }
         
-        // Force app to update display
         DispatchQueue.main.async {
             self.view.setNeedsDisplay()
         }
@@ -340,15 +322,13 @@ class NowPlayingVC: UIViewController {
         
         switch Settings.coverApi {
         case .lastFm:
+            #warning("Remove - temporary allowing sharing app with others")
             // queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", APIKeys.lastFmApiKey, track.artist, track.title)
             queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", "9a267c245324cfa4f887366d497d3dd3", track.artist, track.title)
-            
-            
             break
         case .iTunes:
             queryURL = String(format: "https://itunes.apple.com/search?term=%@+%@&entity=song", track.artist, track.title)
             break
-            
         }
         
         let escapedURL = queryURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -363,7 +343,6 @@ class NowPlayingVC: UIViewController {
                 print("Error converting data to JSON")
             }
            
-            
             switch Settings.coverApi {
             case .lastFm:
                 if let imageArray = json["track"]["album"]["image"].array {
@@ -388,7 +367,6 @@ class NowPlayingVC: UIViewController {
                 break
                 
             case .iTunes:
-                // Use iTunes API. Images are 100px by 100px
                 if let artURL = json["results"][0]["artworkUrl100"].string {
                     print("iTunes artURL: \(artURL)")
                     self.track.artworkURL = artURL
@@ -482,7 +460,6 @@ class NowPlayingVC: UIViewController {
         super.updateUserActivityState(activity)
     }
     
-    
     // MARK: - Detect end of mp3 if using a file instead of a stream
     @objc func playerItemDidReachEnd(){
         print("playerItemDidReachEnd")
@@ -507,7 +484,6 @@ extension NowPlayingVC: CustomAVPlayerItemDelegate {
                 stringParts = metaData.components(separatedBy: "-")
             }
             
-            // Set artist & songvariables
             let currentSongName = track.title
             track.artist = stringParts[0].decodeToUTF8()
             track.title = stringParts[0].decodeToUTF8()
@@ -527,20 +503,9 @@ extension NowPlayingVC: CustomAVPlayerItemDelegate {
                     self.artistLbl.text = self.track.artist
                     self.songLbl.text = self.track.title
                     self.updateUserActivityState(self.userActivity!)
-                    
-                    // songLabel animation
-//                    self.songLbl.animation = "zoomIn"
-//                    self.songLbl.duration = 1.5
-//                    self.songLbl.damping = 1
-//                    self.songLbl.animate()
-                    
-                    // Update Stations Screen
                     self.delegate?.songMetaDataDidUpdate(self.track)
-                    
-                    // Query API for album art
                     self.resetAlbumArtwork()
                     self.queryAlbumArt()
-                    
                 }
                 self.artistLbl.text = self.track.artist
                 self.songLbl.text = self.track.title

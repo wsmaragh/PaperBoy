@@ -22,11 +22,26 @@ class VideoCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+
+    lazy var progressView = {
+        let pv = UIProgressView()
+        pv.frame = self.frame
+        return pv
+    }()
+    
+    private func timeConverter(seconds: Int) -> String {
+        let x = seconds / 60
+        let y = seconds % (60 * x)
+        if y < 10 {
+            return "\(x):0\(y)"
+        }
+        return "\(x):\(y)"
+    }
     
     func configureCell(video: Video){
         titleLabel.text = video.title
         sourceLabel.text = video.source
-        timeLabel.text = "\(video.time)"
+        timeLabel.text = timeConverter(seconds: video.time)
         videoImageView.loadImage(imageURLString: video.videoStr)
     }
 }

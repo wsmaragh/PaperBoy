@@ -17,31 +17,31 @@
             <rect key="frame" x="0.0" y="0.0" width="401" height="112"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_PaperBoy" translatesAutoresizingMaskIntoConstraints="NO" id="kqq-fL-I4i">
-                    <rect key="frame" x="5" y="6" width="100.5" height="100"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_PaperBoy" translatesAutoresizingMaskIntoConstraints="NO" id="kqq-fL-I4i">
+                    <rect key="frame" x="16" y="5.5" width="101" height="101"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="kqq-fL-I4i" secondAttribute="height" multiplier="1:1" id="Umg-vW-m9l"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n27-IT-jBO">
-                    <rect key="frame" x="5" y="85.5" width="100.5" height="20.5"/>
+                    <rect key="frame" x="16" y="86" width="101" height="20.5"/>
                     <color key="backgroundColor" name="appYellow"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="57W-bA-DTO">
-                    <rect key="frame" x="113.5" y="33" width="279.5" height="46.5"/>
+                    <rect key="frame" x="133" y="33.5" width="252" height="45.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0p-Qw-Ofu">
-                            <rect key="frame" x="0.0" y="0.0" width="279.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="252" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="appBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ag-1Q-pq5">
-                            <rect key="frame" x="0.0" y="28.5" width="279.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="28.5" width="252" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -50,14 +50,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="57W-bA-DTO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="trailing" constant="8" id="141-hr-qOu"/>
+                <constraint firstItem="57W-bA-DTO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="trailing" constant="16" id="141-hr-qOu"/>
                 <constraint firstItem="kqq-fL-I4i" firstAttribute="trailing" secondItem="n27-IT-jBO" secondAttribute="trailing" id="BrO-ko-87p"/>
-                <constraint firstItem="kqq-fL-I4i" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.25" id="RQr-ui-FLP"/>
                 <constraint firstItem="kqq-fL-I4i" firstAttribute="bottom" secondItem="n27-IT-jBO" secondAttribute="bottom" id="Up7-jG-84y"/>
                 <constraint firstItem="n27-IT-jBO" firstAttribute="leading" secondItem="kqq-fL-I4i" secondAttribute="leading" id="ZKB-2r-80a"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="57W-bA-DTO" secondAttribute="trailing" constant="8" id="ens-17-iZr"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.9" id="ZnP-qs-8V5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="57W-bA-DTO" secondAttribute="trailing" constant="16" id="ens-17-iZr"/>
                 <constraint firstItem="57W-bA-DTO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gOS-6v-c7U"/>
-                <constraint firstItem="kqq-fL-I4i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="qXn-Ht-BYK"/>
+                <constraint firstItem="kqq-fL-I4i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qXn-Ht-BYK"/>
                 <constraint firstItem="kqq-fL-I4i" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sAK-vY-rbd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -57,28 +57,18 @@ class RadioVC: UIViewController {
     }
     
     private func setupAudioSession(){
-        var error: NSError?
-        var success: Bool
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            success = true
-        } catch let error1 as NSError {
-            error = error1
-            success = false
+        } catch let error {
+            print("Failed to set audio session category.  Error: \(error)")
         }
-        
-        if !success {
-            if let e = error {
-                print("Failed to set audio session category.  Error: \(e)")
-            }
-        }
+
         
         do {
             try AVAudioSession.sharedInstance().setActive(true)
-        } catch let error2 as NSError {
-            print("audioSession setActive error \(error2)")
+        } catch let error {
+            print("audioSession setActive error \(error)")
         }
     }
     
@@ -108,7 +98,6 @@ class RadioVC: UIViewController {
         if ((searchController.searchBar.responds(to: NSSelectorFromString("searchBarStyle")))){
             searchController.searchBar.searchBarStyle = .minimal
         }
-//        searchController.searchBar.delegate = self
         searchController.definesPresentationContext = true
     }
     
@@ -174,10 +163,8 @@ class RadioVC: UIViewController {
     @objc func refresh(_ sender: AnyObject) {
         stations.removeAll(keepingCapacity: false)
         loadStationsFromJSON()
-        
-        // Wait 2 seconds then refresh
-        let popTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
-        DispatchQueue.main.asyncAfter(deadline: popTime) { () -> Void in
+        let wait2Seconds = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
+        DispatchQueue.main.asyncAfter(deadline: wait2Seconds) { () -> Void in
             self.refreshControl.endRefreshing()
             self.view.setNeedsDisplay()
         }
@@ -185,8 +172,8 @@ class RadioVC: UIViewController {
     
     
     func loadStationsFromJSON() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         DispatchQueue.main.async {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
 
         RadioDataService.getStationData({ (data) in

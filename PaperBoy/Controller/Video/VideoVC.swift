@@ -68,6 +68,13 @@ class VideoVC: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
     
+//    func reloadProgress(at index: Int) {
+//        let indexPath = IndexPath(row: index, section: 0)
+//
+//        if let cell = tableView.cellForRow(at: indexPath) as? VideoCell {
+//            cell.progress.progress = Float( videos[index - 1].getCurrentProgress() )
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedAVPlayer",

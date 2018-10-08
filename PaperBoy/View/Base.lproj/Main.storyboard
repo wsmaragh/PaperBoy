@@ -607,7 +607,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bloomberg" translatesAutoresizingMaskIntoConstraints="NO" id="yPR-aQ-exC" userLabel="AlbumArt">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bloomberg" translatesAutoresizingMaskIntoConstraints="NO" id="yPR-aQ-exC" userLabel="AlbumArt">
                                 <rect key="frame" x="65.5" y="45" width="244" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yPR-aQ-exC" secondAttribute="height" multiplier="55:45" id="X3R-hO-Xnd"/>
