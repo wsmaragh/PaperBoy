@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import MediaPlayer
 import AVFoundation
+import MediaPlayer
 import SwiftyJSON
 
 
@@ -22,15 +22,18 @@ class RadioVC: UIViewController {
     @IBAction func sideMenuPressed() {
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
-
+    
+    var firstTime = true
+    
     var stations = [RadioStation]()
     var currentStation: RadioStation?
     var currentTrack: Track?
-    var refreshControl: UIRefreshControl!
-    var firstTime = true
     
+    var searchController: UISearchController = UISearchController(searchResultsController: nil)
+
     var searchedStations = [RadioStation]()
-    var searchController : UISearchController!
+    
+    var refreshControl: UIRefreshControl!
     
     @objc var controllersDict = [String:Any]()
     
@@ -38,64 +41,86 @@ class RadioVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStationsFromJSON()
+        setupSearchController()
+        setupNavBar()
         setupTableView()
         setupPullToRefresh()
+        loadStationsFromJSON()
+        setupAudioSession()
         createNowPlayingAnimation()
-        setupSearchController()
-        
-        // Set AVFoundation category, required for background audio
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkIfFirstTime()
+        checkIfTrackIsPlaying()
+    }
+    
+    private func setupAudioSession(){
         var error: NSError?
         var success: Bool
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             success = true
-        }
-        catch let error1 as NSError {
+        } catch let error1 as NSError {
             error = error1
             success = false
         }
+        
         if !success {
             if let e = error {
                 print("Failed to set audio session category.  Error: \(e)")
             }
         }
         
-        // Set audioSession as active
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error2 as NSError {
             print("audioSession setActive error \(error2)")
         }
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {        
-        // If a station has been selected, create "Now Playing" button to get back to current station
-        if !firstTime {
-            createNowPlayingBarButton()
-        }
-        
-        // If a track is playing, display title & artist information and animation
-        if currentTrack != nil && currentTrack!.isPlaying {
-            let title = currentStation!.stationName + ": " + currentTrack!.title + " - " + currentTrack!.artist + "..."
-            stationNowPlayingButton.setTitle(title, for: UIControl.State())
-            nowPlayingAnimationImageView.startAnimating()
-        } else {
-            nowPlayingAnimationImageView.stopAnimating()
-            nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
-        }
-        
     }
     
     private func setupTableView(){
-        tableView.backgroundColor = UIColor.clear
-        tableView.backgroundView = nil
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        let cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "NothingFound")
+        let cellNib = UINib(nibName: "LoadingStationCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "LoadingStationCell")
     }
+    
+    private func setupSearchController(){
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.barStyle = .default
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.placeholder = "Search for radio stations"
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.darkGray
+            if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.white
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
+        if ((searchController.searchBar.responds(to: NSSelectorFromString("searchBarStyle")))){
+            searchController.searchBar.searchBarStyle = .minimal
+        }
+//        searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
+    }
+    
+    private func setupNavBar(){
+        if #available(iOS 11.0, *) {
+            navigationItem.title = "Radio Stations"
+            navigationItem.searchController = searchController
+        } else {
+            navigationItem.titleView = searchController.searchBar
+        }
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     
     private func setupPullToRefresh() {
         self.refreshControl = UIRefreshControl()
@@ -119,34 +144,22 @@ class RadioVC: UIViewController {
         }
     }
     
-    func setupSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-        
-        if searchable {
-            searchController.searchResultsUpdater = self
-            searchController.dimsBackgroundDuringPresentation = false
-            searchController.searchBar.sizeToFit()
-            
-            // Add UISearchController to the tableView
-            tableView.tableHeaderView = searchController?.searchBar
-            tableView.tableHeaderView?.backgroundColor = UIColor.clear
-            definesPresentationContext = true
-            searchController.hidesNavigationBarDuringPresentation = false
-            
-            // Style the UISearchController
-            searchController.searchBar.barTintColor = UIColor.clear
-            searchController.searchBar.tintColor = UIColor.white
-            
-            // Hide the UISearchController
-            tableView.setContentOffset(CGPoint(x: 0.0, y: searchController.searchBar.frame.size.height), animated: false)
-            
-            // Set a black keyborad for UISearchController's TextField
-            let searchTextField = searchController.searchBar.value(forKey: "_searchField") as! UITextField
-            searchTextField.keyboardAppearance = UIKeyboardAppearance.dark
+    private func checkIfFirstTime(){
+        if !firstTime {
+            createNowPlayingBarButton()
         }
-        
     }
     
+    private func checkIfTrackIsPlaying(){
+        if currentTrack != nil && currentTrack!.isPlaying {
+            let title = currentStation!.stationName + ": " + currentTrack!.title + " - " + currentTrack!.artist + "..."
+            stationNowPlayingButton.setTitle(title, for: UIControl.State())
+            nowPlayingAnimationImageView.startAnimating()
+        } else {
+            nowPlayingAnimationImageView.stopAnimating()
+            nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
+        }
+    }
     
     @objc func nowPlayingBarButtonPressed() {
         tableView(self.tableView, didSelectRowAt: lastIndexPath)
@@ -170,44 +183,43 @@ class RadioVC: UIViewController {
     
     
     func loadStationsFromJSON() {
-        // Turn on network indicator in status bar
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
-        // Get the Radio Stations
-        DataManager.getStationDataWithSuccess() { (data) in
+
+        RadioDataService.getStationData({ (data) in
+            
+            var json: JSON!
             
             do {
-                let json = try JSON(data: data!)
-                
-                if let stationArray = json["station"].array {
-                    
-                    for stationJSON in stationArray {
-                        let station = RadioStation.parseStation(stationJSON)
-                        self.stations.append(station)
-                    }
-                    
-                    // stations array populated, update table on main queue
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.view.setNeedsDisplay()
-                    }
-                    
-                } else {
-                    print("JSON Station Loading Error")
-                }
-                
-                
+                json = try JSON(data: data!)
             } catch {
-                
+                print("Error converting data to JSON")
             }
             
+            if let stationArray = json["station"].array {
+                
+                for stationJSON in stationArray {
+                    let station = RadioStation.parseStation(stationJSON)
+                    self.stations.append(station)
+                }
+                
+                // stations array populated, update table on main queue
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.view.setNeedsDisplay()
+                }
+                
+            } else {
+                print("JSON Station Loading Error")
+            }
             
             // Turn off network indicator in status bar
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
-        }
+        })
+        
     }
 }
 
@@ -236,26 +248,13 @@ extension RadioVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if stations.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NothingFound", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingStationCell", for: indexPath)
             cell.backgroundColor = UIColor.clear
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as! StationCell
-            
-            // alternate background color
-            if indexPath.row % 2 == 0 {
-                cell.backgroundColor = UIColor.clear
-            } else {
-                cell.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-            }
-            
-            // Configure the cell...
-            let station = stations[indexPath.row]
-            cell.configureStationCell(station)
-            
-            // The UISeachController is active
+            let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.id, for: indexPath) as! StationCell
             if searchController.isActive {
                 let station = searchedStations[indexPath.row]
                 cell.configureStationCell(station)
@@ -263,13 +262,13 @@ extension RadioVC: UITableViewDataSource {
                 let station = stations[indexPath.row]
                 cell.configureStationCell(station)
             }
-            
+            cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor.lightGray
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88
+        return 100
     }
 }
 
@@ -289,7 +288,7 @@ extension RadioVC: UITableViewDelegate {
             stationNowPlayingButton.isEnabled = true
         }
         
-        var nowPlayingVC = self.storyboard!.instantiateViewController(withIdentifier: "NowPlayingVC") as! NowPlayingVC
+        var nowPlayingVC = self.storyboard!.instantiateViewController(withIdentifier: NowPlayingVC.id) as! NowPlayingVC
         nowPlayingVC.delegate = self
         
         if indexPath != lastIndexPath {
@@ -304,13 +303,13 @@ extension RadioVC: UITableViewDelegate {
                 
                 lastIndexPath = indexPath
                 
-                controllersDict["NowPlayingVC"] = nowPlayingVC
+                controllersDict[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         } else {
             // User clicked on a now playing button
             if currentTrack != nil {
-                nowPlayingVC = controllersDict["NowPlayingVC"] as! NowPlayingVC!
+                nowPlayingVC = controllersDict[NowPlayingVC.id] as! NowPlayingVC!
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             } else {
                 // Issue with track, reload station
@@ -319,7 +318,7 @@ extension RadioVC: UITableViewDelegate {
                 
                 lastIndexPath = indexPath
                 
-                controllersDict["NowPlayingVC"] = nowPlayingVC
+                controllersDict[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         }
@@ -330,7 +329,7 @@ extension RadioVC: UITableViewDelegate {
 
 
 
-// MARK: - NowPlayingViewControllerDelegate
+// MARK: - NowPlayingVCDelegate
 extension RadioVC: NowPlayingVCDelegate {
     
     func artworkDidUpdate(_ track: Track) {

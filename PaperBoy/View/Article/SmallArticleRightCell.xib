@@ -40,7 +40,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g4-Ix-7iz">
                             <rect key="frame" x="23" y="0.0" width="14.5" height="16.5"/>
-                            <state key="normal" image="button_star_filled"/>
+                            <state key="normal" image="button_star_empty"/>
                             <connections>
                                 <action selector="savePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="BiK-N7-lsG"/>
                             </connections>
@@ -95,7 +95,7 @@
         </view>
     </objects>
     <resources>
-        <image name="button_star_filled" width="25" height="25"/>
+        <image name="button_star_empty" width="25" height="25"/>
         <image name="newspaper" width="320" height="275"/>
         <image name="share" width="25" height="25"/>
     </resources>

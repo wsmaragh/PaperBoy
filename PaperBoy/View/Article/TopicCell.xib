@@ -13,31 +13,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TopicCell" customModule="PaperBoy" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="202" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="153" height="79"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="business" translatesAutoresizingMaskIntoConstraints="NO" id="4Nq-z4-hhY">
-                    <rect key="frame" x="60.5" y="56.5" width="81" height="81"/>
+                    <rect key="frame" x="58.5" y="15" width="36" height="39.5"/>
                     <color key="tintColor" red="0.85904947919999997" green="0.34816251860000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="4Nq-z4-hhY" secondAttribute="height" multiplier="1:1" id="gpj-gf-0mL"/>
+                        <constraint firstAttribute="width" secondItem="4Nq-z4-hhY" secondAttribute="height" multiplier="1:1.1" id="zeM-BH-N2C"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-w5-x2c">
-                    <rect key="frame" x="5" y="193" width="192" height="12"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Entertainment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-w5-x2c">
+                    <rect key="frame" x="40.5" y="54.5" width="72" height="14.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="0.89999997615814209" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Th9-w5-x2c" secondAttribute="bottom" constant="5" id="1XU-Xy-kn2"/>
-                <constraint firstItem="4Nq-z4-hhY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-8" id="30l-gu-Isq"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Th9-w5-x2c" secondAttribute="trailing" constant="5" id="cP0-UM-47K"/>
-                <constraint firstItem="Th9-w5-x2c" firstAttribute="centerX" secondItem="4Nq-z4-hhY" secondAttribute="centerX" id="hPo-Q7-hMP"/>
-                <constraint firstItem="4Nq-z4-hhY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="jmY-Mc-L0W"/>
-                <constraint firstItem="Th9-w5-x2c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="mPb-6E-Hdt"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="Ugm-LO-00W"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-5" id="XvL-Sh-QVB"/>
+                <constraint firstItem="Th9-w5-x2c" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jGK-pM-yZ2"/>
+                <constraint firstItem="4Nq-z4-hhY" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="oKW-dx-Tdy"/>
+                <constraint firstItem="Th9-w5-x2c" firstAttribute="top" secondItem="4Nq-z4-hhY" secondAttribute="bottom" id="sBh-TF-qRx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -45,7 +44,7 @@
                 <outlet property="topicImageView" destination="4Nq-z4-hhY" id="1Hn-aB-9XT"/>
                 <outlet property="topicTitleLabel" destination="Th9-w5-x2c" id="mkF-gp-8zw"/>
             </connections>
-            <point key="canvasLocation" x="-249.59999999999999" y="367.91604197901052"/>
+            <point key="canvasLocation" x="-288.80000000000001" y="425.93703148425789"/>
         </view>
     </objects>
     <resources>

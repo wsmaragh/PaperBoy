@@ -15,24 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        UINavigationBar.appearance().barStyle = .black
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
                                                          mode: AVAudioSession.Mode.moviePlayback,
                                                          options: [.mixWithOthers])
-        
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         return true
     }
-    
     
     func applicationWillTerminate(_ application: UIApplication) {
         UIApplication.shared.endReceivingRemoteControlEvents()
     }
-    
     
 }
 

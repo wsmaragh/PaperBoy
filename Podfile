@@ -6,9 +6,8 @@ target 'PaperBoy' do
   use_frameworks!
 
   # Pods for PaperBoy
-    pod 'Alamofire'
     pod 'RealmSwift'
-    pod 'Spring'
+    pod 'Alamofire'
     pod 'SwiftyJSON'
 
     

@@ -46,7 +46,7 @@ class ArticleVC: UIViewController {
     
     
     private func setupNavBar(){
-        if let image = UIImage(named: "paperboyName_high") {
+        if let image = UIImage(named: "githubLogo") {
             let imageView = UIImageView(image: image)
 
             imageView.contentMode = .scaleAspectFit
@@ -84,7 +84,7 @@ class ArticleVC: UIViewController {
         }
         refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.darkGray
-        refreshControl.backgroundColor = UIColor(red: 149/256, green: 210/256, blue: 107/256, alpha: 1.0)
+        refreshControl.backgroundColor = UIColor.yellow
         refreshControl.alpha = 1.0
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching more data, hold on", attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
     }
@@ -105,11 +105,11 @@ class ArticleVC: UIViewController {
         let cellSpacing: CGFloat = 5.0
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
-        let numberOfItemsPerRow: CGFloat = 4.2
+        layout.sectionInset = UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
+        let numberOfItemsPerRow: CGFloat = 4.4
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 2))
+        layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 4))
 
     }
     
@@ -291,7 +291,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
             default: break
             }
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
-            refreshControl.backgroundColor = UIColor(red: 149/256, green: 210/256, blue: 107/256, alpha: 1.0)
+            refreshControl.backgroundColor = UIColor.yellow
     }
     
 }

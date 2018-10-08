@@ -36,7 +36,7 @@ class ContainerVC: UIViewController {
     }
     
     @objc func toggleSideMenu() {
-        sideMenuLeadingConstraint.constant = sideMenuOpen ? -200 : 0
+        sideMenuLeadingConstraint.constant = sideMenuOpen ? -350 : 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
@@ -61,8 +61,9 @@ class ContainerVC: UIViewController {
             }
         }
         if segue.identifier == "ContainerToSideMenuVC" {
-            if let sideMenu = segue.destination as? SideMenuVC {
-                self.sideMenuVC = sideMenu
+            if let sideMenuNav = segue.destination as? UINavigationController {
+                print("2 - ContainerToSideMenuVC")
+                self.sideMenuVC = sideMenuNav.viewControllers.first as? SideMenuVC
             }
         }
     }

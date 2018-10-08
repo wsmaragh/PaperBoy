@@ -33,12 +33,30 @@ class SideMenuVC: UIViewController {
     var selectionDelegate: SideMenuDelegate?
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavBar()
         setupTableView()
     }
     
-    func setupTableView(){
+    private func setupTableView(){
         menuTableView.delegate = self
         menuTableView.dataSource = self
+    }
+    
+    private func setupNavBar(){
+        if let image = UIImage(named: "githubLogo") {
+            let imageView = UIImageView(image: image)
+            
+            imageView.contentMode = .scaleAspectFit
+            imageView.layer.masksToBounds = true
+            
+            let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
+            imageView.frame = titleView.bounds
+            titleView.addSubview(imageView)
+            
+            self.navigationItem.titleView = titleView
+        }
+        
     }
     
 }
@@ -58,7 +76,11 @@ extension SideMenuVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Sections"
     }
 }
 

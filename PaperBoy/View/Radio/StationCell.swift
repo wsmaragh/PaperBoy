@@ -14,21 +14,20 @@ class StationCell: UITableViewCell {
     @IBOutlet weak var stationDescLabel: UILabel!
     @IBOutlet weak var stationImageView: UIImageView!
     
-
+    static let id = "StationCell"
+    
     @objc var downloadTask: URLSessionDownloadTask?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // set table selection color
-        let selectedView = UIView(frame: CGRect.zero)
-        selectedView.backgroundColor = UIColor(red: 78/255, green: 82/255, blue: 93/255, alpha: 0.6)
-        selectedBackgroundView  = selectedView
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
+        stationNameLabel.text  = nil
+        stationDescLabel.text  = nil
+        stationImageView.image = nil
     }
     
     @objc func configureStationCell(_ station: RadioStation) {
-        
-        // Configure the cell...
         stationNameLabel.text = station.stationName
         stationDescLabel.text = station.stationDesc
         
@@ -48,18 +47,7 @@ class StationCell: UITableViewCell {
         } else {
             stationImageView.image = UIImage(named: "stationImage")
         }
-        
-        stationImageView.applyShadow()
     }
     
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        downloadTask?.cancel()
-        downloadTask = nil
-        stationNameLabel.text  = nil
-        stationDescLabel.text  = nil
-        stationImageView.image = nil
-    }
 }
 

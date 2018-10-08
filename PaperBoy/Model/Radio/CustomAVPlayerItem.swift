@@ -1,6 +1,6 @@
 
-import MediaPlayer
 import Foundation
+import MediaPlayer
 
 
 protocol CustomAVPlayerItemDelegate {
@@ -17,13 +17,13 @@ class CustomAVPlayerItem: AVPlayerItem {
         addObserver(self, forKeyPath: "timedMetadata", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
-    deinit{        
+    deinit{
         removeObserver(self, forKeyPath: "timedMetadata")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let avpItem: AVPlayerItem = object as? AVPlayerItem {
-            if keyPath == "timedMetadata" {                
+            if keyPath == "timedMetadata" {
                 delegate?.onMetaData(avpItem.timedMetadata)
             }
         }

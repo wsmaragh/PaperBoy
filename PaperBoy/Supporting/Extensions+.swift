@@ -16,8 +16,7 @@ extension UIView {
     }
 }
 
-
-// STRING
+// MARK: STRING
 extension String {
     func decodeToUTF8() -> String{
         let dataStr = self.data(using: String.Encoding.isoLatin1)
@@ -26,23 +25,14 @@ extension String {
 }
 
 
-// ImageView
+// MARK: UIIMAGEVIEW
 extension UIImageView {
     
-    @objc func applyShadow() {
-        let layer           = self.layer
-        layer.shadowColor   = UIColor.black.cgColor
-        layer.shadowOffset  = CGSize(width: 0, height: 1)
-        layer.shadowOpacity = 0.4
-        layer.shadowRadius  = 2
-    }
-    
-    @objc func loadImageWithURL(_ url: URL, callback:@escaping (UIImage) -> ()) -> URLSessionDownloadTask {
+    @objc func loadImageWithURL(_ url: URL, callback: @escaping (UIImage) -> ()) -> URLSessionDownloadTask {
         let session = URLSession.shared
         
         let downloadTask = session.downloadTask(with: url, completionHandler: {
             [weak self] url, response, error in
-            
             if error == nil && url != nil {
                 if let data = try? Data(contentsOf: url!) {
                     if let image = UIImage(data: data) {
@@ -58,12 +48,7 @@ extension UIImageView {
                 }
             }
         })
-        
         downloadTask.resume()
         return downloadTask
     }
-    
 }
-
-
-

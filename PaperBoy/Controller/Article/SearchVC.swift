@@ -102,6 +102,7 @@ extension SearchVC: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         
+        
     }
 }
 

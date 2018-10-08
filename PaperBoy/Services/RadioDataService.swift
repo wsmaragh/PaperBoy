@@ -1,24 +1,18 @@
-//
-//  DataManager.swift
-//  PaperBoy
-//
-//  Created by Winston Maragh on 10/6/18.
-//  Copyright © 2018 Winston Maragh. All rights reserved.
-//
 
 import UIKit
 
 
-class DataManager {
+class RadioDataService {
     
-    class func getStationDataWithSuccess(_ completion: @escaping ((_ metaData: Data?) -> Void)) {
+    class func getStationData(_ completion: @escaping ((_ metaData: Data?) -> Void)) {
         DispatchQueue.global(qos: .background).async {
-            if useLocalStations {
-                getDataFromFile() { data in
+            switch Settings.stationType {
+            case .localStations:
+                loadDataFromFile() { data in
                     completion(data)
                 }
-            } else {
-                loadDataFromURL(URL(string: stationDataURL)!) { data, error in
+            case .onlineStations:
+                loadDataFromURL(URL(string: Settings.StationType.onlineStations.rawValue)!) { data, error in
                     if let urlData = data {
                         completion(urlData)
                     }
@@ -28,7 +22,7 @@ class DataManager {
     }
     
     
-    class func getDataFromFile(_ completion: (_ data: Data) -> Void) {
+    class private func loadDataFromFile(_ completion: (_ data: Data) -> Void) {
         if let filePath = Bundle.main.path(forResource: "stations", ofType:"json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: filePath),
@@ -42,19 +36,20 @@ class DataManager {
         }
     }
     
-    // Get LastFM/iTunes Data
+    
     class func getTrackData(_ queryURL: String, completion: @escaping ((_ metaData: Data?) -> Void)) {
         loadDataFromURL(URL(string: queryURL)!) { data, _ in
             if let urlData = data {
                 completion(urlData)
             } else {
-                print("API TIMEOUT OR ERROR")
+                print("API Timeput or Error")
             }
         }
     }
     
     
     class func loadDataFromURL(_ url: URL, completion:@escaping (_ data: Data?, _ error: NSError?) -> Void) {
+        
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.allowsCellularAccess          = true
         sessionConfig.timeoutIntervalForRequest     = 15
@@ -64,15 +59,15 @@ class DataManager {
         let session = URLSession(configuration: sessionConfig)
         
         let loadDataTask = session.dataTask(with: url, completionHandler: { data, response, error in
+            
             if let responseError = error {
                 completion(nil, responseError as NSError?)
-                #warning("REMOVE - only for testing")
                 print("API ERROR: \(error)")
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false // Stop activity Indicator
-            } else if let httpResponse = response as? HTTPURLResponse {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     let statusError = NSError(domain:"com.winstonmaragh", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    #warning("REMOVE - only for testing")
                     print("API: HTTP status code has unexpected value")
                     completion(nil, statusError)
                 } else {

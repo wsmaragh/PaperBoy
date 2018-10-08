@@ -8,7 +8,6 @@
 
 import UIKit
 import MediaPlayer
-import Spring
 import SwiftyJSON
 
 
@@ -19,17 +18,54 @@ protocol NowPlayingVCDelegate: class {
 }
 
 
+
 class NowPlayingVC: UIViewController {
     
-    @IBOutlet weak var albumHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var albumImageView: SpringImageView!
-    @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var songLabel: SpringLabel!
-    @IBOutlet weak var stationDescLabel: UILabel!
-    @IBOutlet weak var volumeParentView: UIView!
-    @IBOutlet weak var slider = UISlider()
+    @IBOutlet weak var songImageView: UIImageView!
+    @IBOutlet weak var songImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stationLabel: UILabel!
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var pauseBtn: UIButton!
+    @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var songLbl: UILabel!
+    @IBOutlet weak var volumeView: UIView!
+    @IBOutlet weak var artistLbl: UILabel!
+    
+    @IBAction func playBtnPressed() {
+        track.isPlaying = true
+        playButtonEnable(false)
+        radioPlayer.play()
+        updateLabels()
+        nowPlayingImageView.startAnimating()
+        self.delegate?.trackPlayingToggled(self.track) // Update StationsVC
+    }
+    
+    @IBAction func pauseBtnPressed() {
+        track.isPlaying = false
+        playButtonEnable()
+        radioPlayer.pause()
+        updateLabels("Station Paused...")
+        nowPlayingImageView.stopAnimating()
+        self.delegate?.trackPlayingToggled(self.track) // Update StationsVC
+    }
+    
+    @IBAction func volumeSliderChanged(_ sender: UISlider) {
+        mpVolumeSlider.value = sender.value
+    }
+    
+    @IBAction func shareBtnPressed(_ sender: UIButton) {
+        let songToShare = "I'm listening to \(track.title) on \(currentStation.stationName) via PaperBoy"
+        let activityViewController = UIActivityViewController(activityItems: [songToShare, track.artworkImage!], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func infoBtnPressed(_ sender: UIButton) {
+//        performSegue(withIdentifier: "InfoDetail", sender: self)
+    }
+    
+    
+    static let id = "NowPlayingVC"
     
     @objc var currentStation: RadioStation!
     @objc var downloadTask: URLSessionDownloadTask?
@@ -38,61 +74,55 @@ class NowPlayingVC: UIViewController {
     @objc var newStation = true
     @objc var nowPlayingImageView: UIImageView!
     @objc var radioPlayer: AVPlayer!
+    
     var track: Track!
     @objc var mpVolumeSlider = UISlider()
     
     weak var delegate: NowPlayingVCDelegate?
     
-    //*****************************************************************
-    // MARK: - ViewDidLoad
-    //*****************************************************************
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setup handoff functionality - GH
         setupUserActivity()
-        
-        // Set AlbumArtwork Constraints
         optimizeForDeviceSize()
-        
-        // Set View Title
-        self.title = currentStation.stationName
-        
-        // Create Now Playing BarItem
-        createNowPlayingAnimation()
-        
+        createNowPlayingAnimationBarItem()
         setUpPlayer()
-        
-        // Notification for when app becomes active
+        self.title = currentStation.stationName
+        addMyObservers()
+        checkForStationChange()
+        setupVolumeSlider()
+    }
+    
+    private func addMyObservers(){
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(NowPlayingVC.didBecomeActiveNotificationReceived),
                                                name: NSNotification.Name(rawValue: "UIApplicationDidBecomeActiveNotification"),
                                                object: nil)
-        
-        // Notification for AVAudioSession Interruption (e.g. Phone call)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(NowPlayingVC.sessionInterrupted(_:)),
-//                                               name: NSNotification.Name.AVAudioSessionInterruption,
-//                                               object: AVAudioSession.sharedInstance())
-        
-        // Check for station change
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(NowPlayingVC.sessionInterrupted(_:)),
+                                               name: AVAudioSession.interruptionNotification,
+                                               object: AVAudioSession.sharedInstance())
+    }
+    
+    private func removeMyObservers(){
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "UIApplicationDidBecomeActiveNotification"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+    }
+    
+    private func checkForStationChange(){
         if newStation {
             track = Track()
             stationDidChange()
         } else {
             updateLabels()
-            albumImageView.image = track.artworkImage
+            songImageView.image = track.artworkImage
             
             if !track.isPlaying {
-                pausePressed()
+                pauseBtnPressed()
             } else {
                 nowPlayingImageView.startAnimating()
             }
         }
-        
-        // Setup slider
-        setupVolumeSlider()
     }
     
     @objc func didBecomeActiveNotificationReceived() {
@@ -103,12 +133,9 @@ class NowPlayingVC: UIViewController {
     }
     
     deinit {
-        // Be a good citizen
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "UIApplicationDidBecomeActiveNotification"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+        removeMyObservers()
         resetPlayer()
     }
-    
     
     @objc func setUpPlayer(){
         radioPlayer = MediaPlayer.radio
@@ -119,21 +146,23 @@ class NowPlayingVC: UIViewController {
             name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
             object: self.radioPlayer.currentItem
         )
-        
     }
     
     @objc func resetPlayer(){
         if radioPlayer != nil {
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.radioPlayer.currentItem)
+            NotificationCenter.default.removeObserver(
+                self,
+                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                object: self.radioPlayer.currentItem)
         }
     }
     
     @objc func setupVolumeSlider() {
         // Note: This slider implementation uses a MPVolumeView
         // The volume slider only works in devices, not the simulator.
-        volumeParentView.backgroundColor = UIColor.clear
-        let volumeView = MPVolumeView(frame: volumeParentView.bounds)
-        for view in volumeView.subviews {
+        volumeView.backgroundColor = UIColor.clear
+        let mpLocalVolumeView = MPVolumeView(frame: volumeView.bounds)
+        for view in mpLocalVolumeView.subviews {
             let uiview: UIView = view as UIView
             if (uiview.description as NSString).range(of: "MPVolumeSlider").location != NSNotFound {
                 mpVolumeSlider = (uiview as! UISlider)
@@ -141,7 +170,7 @@ class NowPlayingVC: UIViewController {
         }
         
         let thumbImageNormal = UIImage(named: "slider-ball")
-        slider?.setThumbImage(thumbImageNormal, for: UIControl.State())
+        volumeSlider?.setThumbImage(thumbImageNormal, for: UIControl.State())
     }
     
     @objc func stationDidChange() {
@@ -162,79 +191,32 @@ class NowPlayingVC: UIViewController {
         }
         
         updateLabels("Loading Station...")
-        
-        print("stationDidChange \(currentStation.stationStreamURL)")
-        
-        // songLabel animate
-        songLabel.animation = "flash"
-        songLabel.repeatCount = 3
-        songLabel.animate()
-        
         resetAlbumArtwork()
         track.isPlaying = true
     }
     
-    //*****************************************************************
-    // MARK: - Player Controls (Play/Pause/Volume)
-    //*****************************************************************
     
-    @IBAction func playPressed() {
-        track.isPlaying = true
-        playButtonEnable(false)
-        radioPlayer.play()
-        updateLabels()
-        
-        // songLabel Animation
-        songLabel.animation = "flash"
-        songLabel.animate()
-        
-        // Start NowPlaying Animation
-        nowPlayingImageView.startAnimating()
-        
-        // Update StationsVC
-        self.delegate?.trackPlayingToggled(self.track)
-    }
-    
-    @IBAction func pausePressed() {
-        track.isPlaying = false
-        playButtonEnable()
-        radioPlayer.pause()
-        updateLabels("Station Paused...")
-        nowPlayingImageView.stopAnimating()
-        
-        // Update StationsVC
-        self.delegate?.trackPlayingToggled(self.track)
-    }
-    
-    @IBAction func volumeChanged(_ sender:UISlider) {
-        mpVolumeSlider.value = sender.value
-    }
     
     @objc func togglePlayPause() {
         if track.isPlaying {
-            pausePressed()
+            pauseBtnPressed()
         } else {
-            playPressed()
+            playBtnPressed()
         }
     }
     
-    //*****************************************************************
-    // MARK: - UI Helper Methods
-    //*****************************************************************
     
     @objc func optimizeForDeviceSize() {
-        // Adjust album size to fit iPhone 4s, 6s & 6s+
         let deviceHeight = self.view.bounds.height
-        
         if deviceHeight == 480 {
             iPhone4 = true
-            albumHeightConstraint.constant = 106
+            songImageHeightConstraint.constant = 106
             view.updateConstraints()
         } else if deviceHeight == 667 {
-            albumHeightConstraint.constant = 230
+            songImageHeightConstraint.constant = 230
             view.updateConstraints()
         } else if deviceHeight > 667 {
-            albumHeightConstraint.constant = 260
+            songImageHeightConstraint.constant = 260
             view.updateConstraints()
         }
     }
@@ -242,39 +224,38 @@ class NowPlayingVC: UIViewController {
     @objc func updateLabels(_ statusMessage: String = "") {
         if statusMessage != "" {
             // There's a an interruption or pause in the audio queue
-            songLabel.text = statusMessage
-            artistLabel.text = currentStation.stationName
-            
+            songLbl.text = statusMessage
+            artistLbl.text = currentStation.stationName
         } else {
-            // Radio is (hopefully) streaming properly
+            // Radio is streaming properly
             if track != nil {
-                songLabel.text = track.title
-                artistLabel.text = track.artist
+                songLbl.text = track.title
+                artistLbl.text = track.artist
             }
         }
         
         // Hide station description when album art is displayed or on iPhone 4
         if track.artworkLoaded || iPhone4 {
-            stationDescLabel.isHidden = true
+            stationLabel.isHidden = true
         } else {
-            stationDescLabel.isHidden = false
-            stationDescLabel.text = currentStation.stationDesc
+            stationLabel.isHidden = false
+            stationLabel.text = currentStation.stationDesc
         }
     }
     
     @objc func playButtonEnable(_ enabled: Bool = true) {
         if enabled {
-            playButton.isEnabled = true
-            pauseButton.isEnabled = false
+            playBtn.isEnabled = true
+            pauseBtn.isEnabled = false
             track.isPlaying = false
         } else {
-            playButton.isEnabled = false
-            pauseButton.isEnabled = true
+            playBtn.isEnabled = false
+            pauseBtn.isEnabled = true
             track.isPlaying = true
         }
     }
     
-    @objc func createNowPlayingAnimation() {
+    @objc func createNowPlayingAnimationBarItem() {
         
         // Setup ImageView
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
@@ -302,78 +283,56 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-    //*****************************************************************
-    // MARK: - Album Art
-    //*****************************************************************
-    
     @objc func resetAlbumArtwork() {
         track.artworkLoaded = false
         track.artworkURL = currentStation.stationImageURL
         DispatchQueue.main.async { [unowned self] in
             self.updateAlbumArtwork()
-            self.stationDescLabel.isHidden = false
+            self.stationLabel.isHidden = false
         }
     }
     
     @objc func updateAlbumArtwork() {
         track.artworkLoaded = false
         if track.artworkURL.range(of: "http") != nil {
-            
             // Hide station description
             DispatchQueue.main.async {
-                //self.albumImageView.image = nil
-                self.stationDescLabel.isHidden = false
+                //self.songImageView.image = nil
+                self.stationLabel.isHidden = false
             }
             
             // Attempt to download album art from an API
             if let url = URL(string: track.artworkURL) {
-                
-                self.downloadTask = self.albumImageView.loadImageWithURL(url) { (image) in
+                self.downloadTask = self.songImageView.loadImageWithURL(url) { (image) in
                     
-                    // Update track struct
                     self.track.artworkImage = image
                     self.track.artworkLoaded = true
                     
-                    // Turn off network activity indicator
                     DispatchQueue.main.async {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    }
-                    
-                    // Animate artwork
-                    self.albumImageView.animation = "wobble"
-                    self.albumImageView.duration = 2
-                    DispatchQueue.main.async {
-                        self.albumImageView.animate()
-                        self.stationDescLabel.isHidden = true
-                        
-                        // Update lockscreen
+                        self.stationLabel.isHidden = true
                         self.updateLockScreen()
-                        
-                        // Call delegate function that artwork updated
                         self.delegate?.artworkDidUpdate(self.track)
                     }
+                    
                 }
             }
             
-            // Hide the station description to make room for album art
             if track.artworkLoaded && !self.justBecameActive {
-                self.stationDescLabel.isHidden = true
+                self.stationLabel.isHidden = true
                 self.justBecameActive = false
             }
             
         } else if track.artworkURL != "" {
-            // Local artwork
-            self.albumImageView.image = UIImage(named: track.artworkURL)
-            track.artworkImage = albumImageView.image
+            self.songImageView.image = UIImage(named: track.artworkURL)
+            track.artworkImage = songImageView.image
             track.artworkLoaded = true
-            
-            // Call delegate function that artwork updated
             self.delegate?.artworkDidUpdate(self.track)
             
         } else {
             // No Station or API art found, use default art
-            self.albumImageView.image = UIImage(named: "albumArt")
-            track.artworkImage = albumImageView.image
+            self.songImageView.image = UIImage(named: "albumArt")
+            track.artworkImage = songImageView.image
         }
         
         // Force app to update display
@@ -382,7 +341,6 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-    // Call LastFM or iTunes API to get album art url
     
     @objc func queryAlbumArt() {
         DispatchQueue.main.async {
@@ -391,119 +349,86 @@ class NowPlayingVC: UIViewController {
         // Construct either LastFM or iTunes API call URL
         let queryURL: String
         
-        switch coverApi {
+        switch Settings.coverApi {
         case .lastFm:
-            queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", lastFmApiKey, track.artist, track.title)
+            queryURL = String(format: "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%@&artist=%@&track=%@&format=json", APIKeys.lastFmApiKey, track.artist, track.title)
             break
         case .iTunes:
             queryURL = String(format: "https://itunes.apple.com/search?term=%@+%@&entity=song", track.artist, track.title)
             break
-        case .spotify:
-            queryURL = String(format: "https://api.spotify.com/v1/search?query=%@+%@&offset=0&limit=20&type=track", track.artist, track.title)
-            break
+            
         }
         
         let escapedURL = queryURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
-        // Query API
-        DataManager.getStationDataWithSuccess { (data) in
-            print("API SUCCESSFUL RETURN")
-            print("url: \(escapedURL!)")
+        RadioDataService.getTrackData(escapedURL!) { (data) in
+            
+            var json: JSON!
             
             do {
-                let json = try JSON(data: data!)
-                
-                switch coverApi {
-                case .lastFm:
-                    // Get Largest Sized LastFM Image
-                    if let imageArray = json["track"]["album"]["image"].array {
+                json = try JSON(data: data!)
+            } catch {
+                print("Error converting data to JSON")
+            }
+           
+            
+            switch Settings.coverApi {
+            case .lastFm:
+                // Get Largest Sized LastFM Image
+                if let imageArray = json["track"]["album"]["image"].array {
+                    
+                    let arrayCount = imageArray.count
+                    let lastImage = imageArray[arrayCount - 1]
+                    
+                    if let artURL = lastImage["#text"].string {
                         
-                        let arrayCount = imageArray.count
-                        let lastImage = imageArray[arrayCount - 1]
-                        
-                        if let artURL = lastImage["#text"].string {
-                            
-                            // Check for Default Last FM Image
-                            if artURL.range(of: "/noimage/") != nil {
-                                self.resetAlbumArtwork()
-                                
-                            } else {
-                                // LastFM image found!
-                                self.track.artworkURL = artURL
-                                self.track.artworkLoaded = true
-                                self.updateAlbumArtwork()
-                            }
+                        // Check for Default Last FM Image
+                        if artURL.range(of: "/noimage/") != nil {
+                            self.resetAlbumArtwork()
                             
                         } else {
-                            self.resetAlbumArtwork()
+                            // LastFM image found!
+                            self.track.artworkURL = artURL
+                            self.track.artworkLoaded = true
+                            self.updateAlbumArtwork()
                         }
+                        
                     } else {
                         self.resetAlbumArtwork()
                     }
-                    
-                    break
-                case .iTunes:
-                    // Use iTunes API. Images are 100px by 100px
-                    if let artURL = json["results"][0]["artworkUrl100"].string {
-                        
-                        print("iTunes artURL: \(artURL)")
-                        
-                        self.track.artworkURL = artURL
-                        self.track.artworkLoaded = true
-                        self.updateAlbumArtwork()
-                    } else {
-                        self.resetAlbumArtwork()
-                    }
-                    break
-                case .spotify:
-                    // Use Spotify API. Please read terms of use here https://developer.spotify.com/developer-terms-of-use/
-                    if let artURL = json["tracks"]["items"][0]["album"]["images"][0]["url"].string {
-                        
-                        print("spotify artURL: \(artURL)")
-                        
-                        self.track.artworkURL = artURL
-                        self.track.artworkLoaded = true
-                        self.updateAlbumArtwork()
-                    } else {
-                        //print("failure")
-                        self.resetAlbumArtwork()
-                    }
-                    break
+                } else {
+                    self.resetAlbumArtwork()
                 }
+                break
                 
-                
-            } catch {
-                
+            case .iTunes:
+                // Use iTunes API. Images are 100px by 100px
+                if let artURL = json["results"][0]["artworkUrl100"].string {
+                    print("iTunes artURL: \(artURL)")
+                    self.track.artworkURL = artURL
+                    self.track.artworkLoaded = true
+                    self.updateAlbumArtwork()
+                } else {
+                    self.resetAlbumArtwork()
+                }
+                break
             }
             
         }
     }
     
-    //*****************************************************************
-    // MARK: - Segue
-    //*****************************************************************
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "InfoDetail" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "InfoDetail" {
 //            let infoController = segue.destination as! InfoDetailViewController
 //            infoController.currentStation = currentStation
-//        }
-//    }
+        }
+    }
     
-//    @IBAction func infoButtonPressed(_ sender: UIButton) {
-//        performSegue(withIdentifier: "InfoDetail", sender: self)
-//    }
     
-//    @IBAction func shareButtonPressed(_ sender: UIButton) {
-//        let songToShare = "I'm listening to \(track.title) on \(currentStation.stationName) via Swift Radio Pro"
-//        let activityViewController = UIActivityViewController(activityItems: [songToShare, track.artworkImage!], applicationActivities: nil)
-//        present(activityViewController, animated: true, completion: nil)
-//    }
     
-    //*****************************************************************
+    
     // MARK: - MPNowPlayingInfoCenter (Lock screen)
-    //*****************************************************************
-    
     @objc func updateLockScreen() {
         let albumArtwork = MPMediaItemArtwork(image: track.artworkImage!)
         
@@ -513,14 +438,10 @@ class NowPlayingVC: UIViewController {
             MPMediaItemPropertyArtwork: albumArtwork
         ]
         
-        // Configure playing control :
-        
-        //MPRemoteCommandCenter.sharedCommandCenter().previousTrackCommand.enabled = false
-        //MPRemoteCommandCenter.sharedCommandCenter().nextTrackCommand.enabled = false
         MPRemoteCommandCenter.shared().playCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playPressed))
+        MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playBtnPressed))
         MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pausePressed))
+        MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pauseBtnPressed))
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(togglePlayPause))
     }
@@ -532,19 +453,17 @@ class NowPlayingVC: UIViewController {
             
             switch receivedEvent!.subtype {
             case .remoteControlPlay:
-                playPressed()
+                playBtnPressed()
             case .remoteControlPause:
-                pausePressed()
+                pauseBtnPressed()
             default:
                 break
             }
         }
     }
     
-    //*****************************************************************
-    // MARK: - AVAudio Sesssion Interrupted
-    //*****************************************************************
     
+    // MARK: - AVAudio Sesssion Interrupted
     // Example code on handling AVAudio interruptions (e.g. Phone calls)
     @objc func sessionInterrupted(_ notification: Notification) {
         if let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber{
@@ -558,14 +477,12 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-    //*****************************************************************
-    // MARK: - Handoff Functionality - GH
-    //*****************************************************************
     
+    // MARK: - Handoff Functionality - GH
     @objc func setupUserActivity() {
         let activity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb ) //"com.graemeharrison.handoff.googlesearch" //NSUserActivityTypeBrowsingWeb
         userActivity = activity
-        let url = "https://www.google.com/search?q=\(self.artistLabel.text!)+\(self.songLabel.text!)"
+        let url = "https://www.google.com/search?q=\(self.artistLbl.text!)+\(self.songLbl.text!)"
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let searchURL : URL = URL(string: urlStr!)!
         activity.webpageURL = searchURL
@@ -573,7 +490,7 @@ class NowPlayingVC: UIViewController {
     }
     
     override func updateUserActivityState(_ activity: NSUserActivity) {
-        let url = "https://www.google.com/search?q=\(self.artistLabel.text!)+\(self.songLabel.text!)"
+        let url = "https://www.google.com/search?q=\(self.artistLbl.text!)+\(self.songLbl.text!)"
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let searchURL : URL = URL(string: urlStr!)!
         activity.webpageURL = searchURL
@@ -581,20 +498,18 @@ class NowPlayingVC: UIViewController {
     }
     
     
-    //*****************************************************************
     // MARK: - Detect end of mp3 in case you're using a file instead of a stream
-    //*****************************************************************
-    
     @objc func playerItemDidReachEnd(){
         print("playerItemDidReachEnd")
     }
 }
 
-//*****************************************************************
-// MARK: - AVPlayerItem Delegate (for metadata)
-//*****************************************************************
 
+
+
+// MARK: - AVPlayerItem Delegate (for metadata)
 extension NowPlayingVC: CustomAVPlayerItemDelegate {
+    
     @objc func onMetaData(_ metaData: [AVMetadataItem]?) {
         if let metaDatas = metaData{
             startNowPlayingAnimation()
@@ -623,18 +538,16 @@ extension NowPlayingVC: CustomAVPlayerItemDelegate {
             
             DispatchQueue.main.async {
                 if currentSongName != self.track.title {
-                    print("METADATA artist: \(self.track.artist) | title: \(self.track.title)")
-            
                     // Update Labels
-                    self.artistLabel.text = self.track.artist
-                    self.songLabel.text = self.track.title
+                    self.artistLbl.text = self.track.artist
+                    self.songLbl.text = self.track.title
                     self.updateUserActivityState(self.userActivity!)
                     
                     // songLabel animation
-                    self.songLabel.animation = "zoomIn"
-                    self.songLabel.duration = 1.5
-                    self.songLabel.damping = 1
-                    self.songLabel.animate()
+//                    self.songLbl.animation = "zoomIn"
+//                    self.songLbl.duration = 1.5
+//                    self.songLbl.damping = 1
+//                    self.songLbl.animate()
                     
                     // Update Stations Screen
                     self.delegate?.songMetaDataDidUpdate(self.track)
@@ -644,8 +557,8 @@ extension NowPlayingVC: CustomAVPlayerItemDelegate {
                     self.queryAlbumArt()
                     
                 }
-                self.artistLabel.text = self.track.artist
-                self.songLabel.text = self.track.title
+                self.artistLbl.text = self.track.artist
+                self.songLbl.text = self.track.title
                 
             }
         }

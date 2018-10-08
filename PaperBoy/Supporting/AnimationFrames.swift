@@ -11,7 +11,7 @@ import UIKit
 
 class AnimationFrames {
     
-    class func createFrames() -> [UIImage] {
+    final class func createFrames() -> [UIImage] {
         
         var animationFrames = [UIImage]()
         
