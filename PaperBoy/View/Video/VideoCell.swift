@@ -36,6 +36,7 @@ class VideoCell: UITableViewCell {
     private var progressBarTime: Double = 0
     private var audioPlayer: AVAudioPlayer?
     private var alreadyWatchedVideo: Bool = false
+    var isCurrentlyPlayingVideo: Bool = false
     
     override func awakeFromNib(){
         super.awakeFromNib()
@@ -45,7 +46,9 @@ class VideoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         if selected {
             startCountdown()
-        } 
+        } else {
+            isCurrentlyPlayingVideo = false
+        }
     }
     
     override func prepareForReuse() {
@@ -80,20 +83,23 @@ class VideoCell: UITableViewCell {
     func startCountdown(){
         progressBar.progress = 0.00
         countdownTimer = Timer.scheduledTimer(timeInterval: timeUpdateInterval, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        isCurrentlyPlayingVideo = true
     }
     
     @objc private func updateTime() {
-        // display
-        timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
-        progressBar.progress = Float(progressBarTime)/Float(workoutTime)
-        
-        //update
-        if progressBarTime < workoutTime {
-            labelCountDownTime -= timeUpdateInterval
-            progressBarTime += timeUpdateInterval
-        } else if progressBarTime >= workoutTime {
-            completeCountdown()
-        } 
+        if isCurrentlyPlayingVideo {
+            timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
+            progressBar.progress = Float(progressBarTime)/Float(workoutTime)
+            
+            if progressBarTime < workoutTime {
+                labelCountDownTime -= timeUpdateInterval
+                progressBarTime += timeUpdateInterval
+            } else if progressBarTime >= workoutTime {
+                completeCountdown()
+            }
+        } else {
+            stopCountdown()
+        }
     }
     
     private func stopCountdown() {
@@ -103,22 +109,26 @@ class VideoCell: UITableViewCell {
         timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
         delegate?.cancelPlayingVideoInCell()
         alreadyWatchedVideo = false
+        isCurrentlyPlayingVideo = false
     }
+    
     
     private func completeCountdown(){
         countdownTimer.invalidate()
         doneButton.isHidden = false
         alreadyWatchedVideo = true
+        isCurrentlyPlayingVideo = false
         playBeepSound()
         delegate?.didFinishPlayingVideoInCell()
     }
     
     private func playBeepSound(){
-        let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "mp3")!)
+        guard let soundPath = Bundle.main.path(forResource: "beep", ofType: "mp3") else {return}
+        let soundURL = URL(fileURLWithPath: soundPath)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
+            try! audioPlayer = AVAudioPlayer(contentsOf: soundURL)
         } catch {
             print(error)
         }

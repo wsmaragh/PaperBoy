@@ -13,7 +13,6 @@ import AVFoundation
 
 
 
-
 class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,14 +21,17 @@ class VideoVC: UIViewController {
     let videos: [Video] = Video.allVideos
     var currentVideoPlayingIndex: Int = 0
     var videoPlaying: Bool = false
+    var videoTimer = Timer()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addRightSwipeGestureToSideMenu()
         setupTableView()
+        addRightSwipeGestureToSideMenu()
+        loadLocalVideo()
     }
     
-    func setupTableView(){
+    private func setupTableView(){
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -41,10 +43,26 @@ class VideoVC: UIViewController {
     }
     
     
-    func addRightSwipeGestureToSideMenu() {
+    private func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
+    }
+    
+    private func loadLocalVideo() {
+        guard let localVideoPath = Bundle.main.path(forResource: "newsLoading", ofType: "mp4") else {return}
+        guard let urlPath = URL(string: localVideoPath) else {return}
+        let videoItem = AVPlayerItem(url: urlPath)
+        avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
+        avPlayerViewController?.player?.play()
+        self.videoPlaying = true
+        let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
+        videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+            self.avPlayerViewController!.player!.pause()
+            self.videoPlaying = false
+            self.videoTimer.invalidate()
+        })
+        
     }
     
     @IBAction func sideMenuPressed() {
@@ -55,16 +73,29 @@ class VideoVC: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
 
-    private func playVideo(videoString: String){
-        if let url = URL(string: videoString) {
+    private func playVideo(video: Video){
+        if let url = URL(string: video.videoStr) {
             if videoPlaying {
+                self.avPlayerViewController!.player!.pause()
                 let videoItem = AVPlayerItem(url: url)
                 avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
                 avPlayerViewController?.player?.play()
+                let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
+                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+                    self.avPlayerViewController!.player!.pause()
+                    self.videoPlaying = false
+                    self.videoTimer.invalidate()
+                })
             } else {
                 avPlayerViewController?.player = AVPlayer(url: url)
                 avPlayerViewController?.player?.play()
                 videoPlaying = true
+                let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
+                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+                    self.avPlayerViewController!.player!.pause()
+                    self.videoPlaying = false
+                    self.videoTimer.invalidate()
+                })
             }
         }
     }
@@ -102,8 +133,8 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         #warning("change implementation to toggle play and pause when did select press")
         self.currentVideoPlayingIndex = indexPath.row
         guard videos.count != 0 else {return}
-        let video = videos[indexPath.row]
-        self.playVideo(videoString: video.videoStr)
+        let video = videos[currentVideoPlayingIndex]
+        self.playVideo(video: video)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,17 +149,19 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
 
 extension VideoVC: VideoCellDelegate {
     
+    func cancelPlayingVideoInCell() {
+        //
+    }
+    
+    
     func didFinishPlayingVideoInCell() {
-        //stop current video
         self.avPlayerViewController?.player?.pause()
         guard currentVideoPlayingIndex < videos.count else {return}
         self.currentVideoPlayingIndex += 1
+        guard currentVideoPlayingIndex < videos.count else {return}
+        let video = videos[currentVideoPlayingIndex]
+        self.playVideo(video: video)
         self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
-    }
-    
-    func cancelPlayingVideoInCell() {
-//        self.tableView.deselectRow(at: IndexPath(row: <#T##Int#>, section: <#T##Int#>), animated: <#T##Bool#>)
-        //stop video
     }
     
 }

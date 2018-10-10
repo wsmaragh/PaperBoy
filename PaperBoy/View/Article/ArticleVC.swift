@@ -172,14 +172,13 @@ class ArticleVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == StoryboardIDs.MainVCToArticleVC.rawValue {
-            guard let articleVC = segue.destination as? ArticleDVC else {
-                print("Error downcasting destination to ArticleVC in Segue");
+            guard let articleVC = segue.destination as? ArticleDVC,
+                let indexPath = tableView.indexPathForSelectedRow else {
                 return
             }
-            guard let indexPath = tableView.indexPathForSelectedRow else {
-                print("Error getting indexPath in Segue");
-                return
-            }
+//            guard let indexPath = tableView.indexPathForSelectedRow else {
+//                return
+//            }
             let article = articles[indexPath.row]
             articleVC.article = article
         }
@@ -225,7 +224,6 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         fetchArticles(topic: topics[indexPath.item])
-        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 
@@ -302,7 +300,8 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "MainVCToArticleVC", sender: self)
+        performSegue(withIdentifier: StoryboardIDs.MainVCToArticleVC.rawValue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -326,7 +325,12 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+
+
+// MARK: Delegate
+
 extension ArticleVC: ArticleCellDelegate {
+    
     func savePressed(article: Article) {
         RealmService.shared.create(article)
         showAlert(title: "Article Saved", message: "This article has been added to your Favorites")
@@ -338,5 +342,4 @@ extension ArticleVC: ArticleCellDelegate {
         present(activityVC, animated: true, completion: nil)
     }
 
-    
 }
