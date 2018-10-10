@@ -23,7 +23,7 @@ class RadioDataService {
     
     
     class private func loadDataFromFile(_ completion: (_ data: Data) -> Void) {
-        if let filePath = Bundle.main.path(forResource: "stations", ofType:"json") {
+        if let filePath = Bundle.main.path(forResource: "RadioStations", ofType:"json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: filePath),
                                     options: NSData.ReadingOptions.uncached)
@@ -62,13 +62,11 @@ class RadioDataService {
             
             if let responseError = error {
                 completion(nil, responseError as NSError?)
-                print("API ERROR: \(error)")
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
             else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     let statusError = NSError(domain:"com.winstonmaragh", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    print("API: HTTP status code has unexpected value")
                     completion(nil, statusError)
                 } else {
                     completion(data, nil)

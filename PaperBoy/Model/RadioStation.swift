@@ -3,6 +3,7 @@ import UIKit
 import SwiftyJSON
 
 
+
 class RadioStation: NSObject {
     
     @objc var stationName: String

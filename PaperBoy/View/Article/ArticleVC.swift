@@ -134,12 +134,18 @@ class ArticleVC: UIViewController {
     }
     
     fileprivate func fetchArticles(topic: ArticleTopic) {
-        ArticleAPIService.shared.getTopArticles(topic: topic) { (onlineArticles) in
+        ArticleDataService.getTopArticles(topic: topic) { (onlineArticles) in
             self.articles = onlineArticles
             self.tableView.reloadData()
             self.animateTable()
             self.selectedtopic = topic
         }
+//        ArticleAPIService.shared.getTopArticles(topic: topic) { (onlineArticles) in
+//            self.articles = onlineArticles
+//            self.tableView.reloadData()
+//            self.animateTable()
+//            self.selectedtopic = topic
+//        }
     }
     
     fileprivate func animateTable() {

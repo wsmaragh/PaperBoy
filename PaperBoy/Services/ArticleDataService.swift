@@ -15,13 +15,12 @@ enum ArticleTopic: String, CaseIterable {
 }
 
 
-class ArticleAPIService {
-    
-    private init(){}
-    static let shared = ArticleAPIService()
-    
+class ArticleDataService {
+//
+//    private init(){}
+//    static let shared = ArticleDataService()
 
-    func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
+    final class func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
         
 //        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&category=\(topic.rawValue)"
         let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&category=\(topic.rawValue)"
@@ -44,7 +43,7 @@ class ArticleAPIService {
     }
     
     
-    func getArticles(searchTerm: String, completion: @escaping ([Article]) -> Void) {
+    final class func getArticles(searchTerm: String, completion: @escaping ([Article]) -> Void) {
 
         let q = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         

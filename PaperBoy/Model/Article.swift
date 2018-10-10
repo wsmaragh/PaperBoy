@@ -55,8 +55,6 @@ class Article: Object, Codable {
     }
 }
 
-
-
 class ArticleSource: Object, Codable {
     @objc dynamic var name: String?
     

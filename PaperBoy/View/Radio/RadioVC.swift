@@ -182,7 +182,7 @@ class RadioVC: UIViewController {
                 print("Error converting data to JSON")
             }
             
-            if let stationJSONArray = json["station"].array {
+            if let stationJSONArray = json["RadioStations"].array {
                 
                 for stationJSON in stationJSONArray {
                     let station = RadioStation.parseStation(stationJSON)

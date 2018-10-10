@@ -72,7 +72,7 @@ class SearchVC: UIViewController {
     }
     
     fileprivate func fetchArticles(searchTerm: String) {
-        ArticleAPIService.shared.getArticles(searchTerm: searchTerm) { (onlineArticles) in
+        ArticleDataService.getArticles(searchTerm: searchTerm) { (onlineArticles) in
             self.articles = onlineArticles
         }
     }
@@ -92,13 +92,13 @@ class SearchVC: UIViewController {
             articleVC.article = article
         }
     }
-
     
 }
 
 
 
 // MARK: SearchController
+
 extension SearchVC: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
@@ -110,6 +110,7 @@ extension SearchVC: UISearchResultsUpdating {
 
 
 // MARK: SearchBar
+
 extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -134,7 +135,8 @@ extension SearchVC: UISearchBarDelegate {
 
 
 
-// MARK: TableView setup
+// MARK: TableView
+
 extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

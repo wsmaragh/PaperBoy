@@ -82,7 +82,7 @@ class NowPlayingVC: UIViewController {
     
     @objc private func changeStationAndPlay() {
         guard let streamURL = URL(string: currentStation.stationStreamURL) else {return}
-        let station = CustomAVPlayerItem(url: streamURL)
+        let station = StationAVPlayerItem(url: streamURL)
         DispatchQueue.main.async {
             self.radioPlayer.replaceCurrentItem(with: station)
             self.radioPlayer.play()
