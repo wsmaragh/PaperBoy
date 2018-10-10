@@ -24,13 +24,11 @@
 
 ## Features:
 * Browse & Search for Articles
-* Save Articles for reading later
-* Share articles with others
+* Save and Share favorite Articles
+* Play Streaming Radio Stations
+* Play Streaming Videos
 * View full article on apps browser
-* Play Radio Stations
-* Play News Videos
-* play news videos
-* More...
+* Play Games (coming soon...)
 
 ## Built using:
 * Swift, Realm, Alamofire
