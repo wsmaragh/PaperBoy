@@ -418,7 +418,7 @@
             </objects>
             <point key="canvasLocation" x="1737" y="1764"/>
         </scene>
-        <!--Videos-->
+        <!--Streaming Videos-->
         <scene sceneID="N6F-RT-wU2">
             <objects>
                 <viewController storyboardIdentifier="VideoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mWI-UN-nkr" customClass="VideoVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
@@ -452,7 +452,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="18h-ex-FnE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Videos" id="uT1-8j-AUu">
+                    <navigationItem key="navigationItem" title="Streaming Videos" id="uT1-8j-AUu">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="37t-W6-LIx">
                             <connections>
                                 <action selector="sideMenuPressed" destination="mWI-UN-nkr" id="0Kg-et-OeY"/>
