@@ -8,6 +8,8 @@
 
 [![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 
+****Note: Work in Progress - adding MVVM architecture and Unit/UI Testing - hopefully when I get some time over the next few days
+
 ## App Flow:
 
 
