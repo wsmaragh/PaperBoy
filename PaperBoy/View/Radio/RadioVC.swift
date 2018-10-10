@@ -108,7 +108,6 @@ class RadioVC: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    
     private func setupPullToRefresh() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
@@ -182,7 +181,7 @@ class RadioVC: UIViewController {
                 print("Error converting data to JSON")
             }
             
-            if let stationJSONArray = json["RadioStations"].array {
+            if let stationJSONArray = json["station"].array {
                 
                 for stationJSON in stationJSONArray {
                     let station = RadioStation.parseStation(stationJSON)
@@ -208,14 +207,16 @@ class RadioVC: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
-    @objc func slideToMenu(){
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+    @objc func slideToMenu(){        
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
     
 }
 
 
+
 // MARK: - TableView
+
 extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -283,7 +284,9 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+
 // MARK: - UISearchControllerDelegate
+
 extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

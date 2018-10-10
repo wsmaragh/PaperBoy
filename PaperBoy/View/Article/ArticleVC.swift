@@ -54,7 +54,7 @@ class ArticleVC: UIViewController {
     }
     
     @objc func slideToMenu(){
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
     
     private func setupNavBar(){
@@ -171,7 +171,7 @@ class ArticleVC: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MainVCToArticleVC" {
+        if segue.identifier == StoryboardIDs.MainVCToArticleVC.rawValue {
             guard let articleVC = segue.destination as? ArticleDVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
                 return

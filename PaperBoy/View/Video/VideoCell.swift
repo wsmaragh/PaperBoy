@@ -48,6 +48,13 @@ class VideoCell: UITableViewCell {
         } 
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        sourceLabel.text  = nil
+        titleLabel.text  = nil
+        videoImageView.image = nil
+        timeLabel.text = nil
+    }
 
     func configureCell(video: Video){
         titleLabel.text = video.title

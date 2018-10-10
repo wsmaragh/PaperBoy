@@ -22,9 +22,10 @@ class SideMenuVC: UIViewController {
         case Article
         case Video
         case Radio
+        case Games
         
         static var allCases: [MenuItem] {
-            return [.Article, .Video, .Radio]
+            return [.Article, .Video, .Radio, .Games]
         }
     }
     
@@ -67,7 +68,7 @@ class SideMenuVC: UIViewController {
     }
     
     @objc private func slideToMenu(){
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
     
 }

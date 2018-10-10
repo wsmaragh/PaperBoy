@@ -20,7 +20,6 @@ class FaveArticlesVC: UIViewController {
     @IBOutlet weak var dismissButton: UIButton!
     
     @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
-        print("DELETE ALL PRESSED")
         let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             print("Delete pressed")
@@ -110,7 +109,7 @@ class FaveArticlesVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "FaveArticlesVCToArticleVC" {
+        if segue.identifier == StoryboardIDs.FaveArticlesVCToArticleVC.rawValue {
             guard let articleVC = segue.destination as? ArticleDVC else {
                 print("Error downcasting destination to ArticleVC in Segue");
                 return
@@ -158,7 +157,8 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "FaveArticlesVCToArticleVC", sender: self)
+        performSegue(withIdentifier: StoryboardIDs.FaveArticlesVCToArticleVC.rawValue
+            , sender: self)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

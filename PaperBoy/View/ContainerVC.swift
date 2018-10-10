@@ -27,12 +27,12 @@ class ContainerVC: UIViewController {
     private func addMyObservers(){
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(toggleSideMenu),
-                                               name: NSNotification.Name("toggleSideMenu"),
+                                               name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue),
                                                object: nil)
     }
     
     private func removeMyObservers(){
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("toggleSideMenu"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
     
     @objc func toggleSideMenu() {
@@ -48,6 +48,7 @@ class ContainerVC: UIViewController {
             mainTabBarVC?.tabBar.isHidden = true
         }
     }
+    
     private weak var sideMenuVC: SideMenuVC? {
         didSet {
             sideMenuVC?.selectionDelegate = self
@@ -55,12 +56,12 @@ class ContainerVC: UIViewController {
     }
     
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ContainerToMainTabBarVC" {
+        if segue.identifier == StoryboardIDs.ContainerToMainTabBarVC.rawValue {
             if let mainTab = segue.destination as? UITabBarController {
                 self.mainTabBarVC = mainTab
             }
         }
-        if segue.identifier == "ContainerToSideMenuVC" {
+        if segue.identifier == StoryboardIDs.ContainerToSideMenuVC.rawValue {
             if let sideMenuNav = segue.destination as? UINavigationController {
                 self.sideMenuVC = sideMenuNav.viewControllers.first as? SideMenuVC
             }
@@ -69,6 +70,8 @@ class ContainerVC: UIViewController {
     
 }
 
+
+// MARK:- Delegate
 
 extension ContainerVC: SideMenuDelegate {
     

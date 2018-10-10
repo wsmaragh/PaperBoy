@@ -114,7 +114,7 @@ class NowPlayingVC: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(NowPlayingVC.didBecomeActiveNotificationReceived),
-            name: NSNotification.Name(rawValue: "UIApplicationDidBecomeActiveNotification"),
+            name: NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue),
             object: nil)
         NotificationCenter.default.addObserver(
             self,
@@ -124,7 +124,7 @@ class NowPlayingVC: UIViewController {
     }
     
     private func removeMyObservers(){
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "UIApplicationDidBecomeActiveNotification"), object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue), object: nil)
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
     }
     

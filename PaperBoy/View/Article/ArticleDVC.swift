@@ -45,21 +45,22 @@ class ArticleDVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ArticleVCToWebVC" {
+        if segue.identifier == StoryboardIDs.ArticleVCToWebVC.rawValue {
             guard let webVC = segue.destination as? WebVC else {return}
             webVC.article = article
         }
     }
 
-
 }
 
 
 
+// MARK: - Delegate
+
 extension ArticleDVC: ArticleViewDelegate {
+    
     func browserButtonPressed() {
-        print("In VC, browser pressed ")
-        performSegue(withIdentifier: "ArticleVCToWebVC", sender: self)
+        performSegue(withIdentifier: StoryboardIDs.ArticleVCToWebVC.rawValue, sender: self)
     }
 
 }

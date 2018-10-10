@@ -11,6 +11,9 @@ import AVKit
 import AVFoundation
 
 
+
+
+
 class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,8 +36,8 @@ class VideoVC: UIViewController {
         tableView.estimatedRowHeight = 75
         tableView.backgroundColor = .white
         tableView.bounces = true
-        let nib = UINib(nibName: "VideoCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "VideoCell")
+        let nib = UINib(nibName: VideoCell.id, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: VideoCell.id)
     }
     
     
@@ -49,7 +52,7 @@ class VideoVC: UIViewController {
     }
     
     @objc func slideToMenu(){
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
 
     private func playVideo(videoString: String){
