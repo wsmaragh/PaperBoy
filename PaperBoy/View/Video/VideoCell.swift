@@ -11,7 +11,7 @@ import AVFoundation
 
 
 protocol VideoCellDelegate {
-    func didSelectCell()
+    func didFinishPlayingVideoInCell()
 }
 
 
@@ -56,9 +56,9 @@ class VideoCell: UITableViewCell {
         }
         titleLabel.text = video.title
         sourceLabel.text = video.source
-        workoutTime = Double(video.time)
-        labelCountDownTime = Double(video.time)
-        timeLabel.text = timeFormatted(video.time)
+        workoutTime = 10 // Double(video.time)
+        labelCountDownTime = 10 //Double(video.time)
+        timeLabel.text = timeFormatted(10) //timeFormatted(video.time)
 
     }
     
@@ -76,10 +76,10 @@ class VideoCell: UITableViewCell {
         if progressBarTime < workoutTime {
             labelCountDownTime -= timeUpdateInterval
             progressBarTime += timeUpdateInterval
-        } else if progressBarTime == workoutTime {
+        } else if progressBarTime >= workoutTime {
             doneButton.isHidden = false
             completeCountdown()
-        }
+        } 
     }
     
     private func stopCountdown() {
@@ -92,6 +92,7 @@ class VideoCell: UITableViewCell {
     private func completeCountdown(){
         countdownTimer.invalidate()
         playBeepSound()
+        delegate?.didFinishPlayingVideoInCell()
     }
     
     private func playBeepSound(){
@@ -105,8 +106,6 @@ class VideoCell: UITableViewCell {
         }
         audioPlayer!.prepareToPlay()
         audioPlayer!.play()
-        sleep(2)
-        audioPlayer?.stop()
     }
     
     private func timeFormatted(_ totalSeconds: Int) -> String {
@@ -114,8 +113,6 @@ class VideoCell: UITableViewCell {
         let minutes: Int = (totalSeconds / 60) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
-    
     
 }
 

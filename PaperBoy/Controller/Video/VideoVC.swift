@@ -16,7 +16,7 @@ class VideoVC: UIViewController {
     
     var avPlayerViewController: AVPlayerViewController?
     let videos: [Video] = Video.allVideos
-    
+    var currentVideoPlayingIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,10 +113,10 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
 // MARK: VideoCellDelegate
 extension VideoVC: VideoCellDelegate {
     
-    func didSelectCell() {
-        print("cell clicked")
+    func didFinishPlayingVideoInCell() {
+        self.currentVideoPlayingIndex += 1
+        self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
     }
-    
     
 }
 
