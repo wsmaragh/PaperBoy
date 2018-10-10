@@ -18,7 +18,7 @@
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/radio.gif" width="300">
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/favorites.gif" width="300"> 
     <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/search.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/web.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/read.gif" width="300">
 </p>
 
 
