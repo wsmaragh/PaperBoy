@@ -42,6 +42,11 @@ class VideoCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if selected {
+            startCountdown()
+        } else {
+            stopCountdown()
+        }
     }
     
 
@@ -54,7 +59,7 @@ class VideoCell: UITableViewCell {
         workoutTime = Double(video.time)
         labelCountDownTime = Double(video.time)
         timeLabel.text = timeFormatted(video.time)
-        startCountdown()
+
     }
     
     func startCountdown(){
@@ -71,12 +76,20 @@ class VideoCell: UITableViewCell {
         if progressBarTime < workoutTime {
             labelCountDownTime -= timeUpdateInterval
             progressBarTime += timeUpdateInterval
-        } else {
-            endTimer()
+        } else if progressBarTime == workoutTime {
+            doneButton.isHidden = false
+            completeCountdown()
         }
     }
     
-    private func endTimer() {
+    private func stopCountdown() {
+        countdownTimer.invalidate()
+        progressBar.progress = 0.0
+        labelCountDownTime = workoutTime
+        timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
+    }
+    
+    private func completeCountdown(){
         countdownTimer.invalidate()
         playBeepSound()
     }
@@ -101,6 +114,8 @@ class VideoCell: UITableViewCell {
         let minutes: Int = (totalSeconds / 60) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    
     
 }
 

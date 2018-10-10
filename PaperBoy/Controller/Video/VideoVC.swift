@@ -12,22 +12,17 @@ import AVKit
 
 class VideoVC: UIViewController {
     
-    @IBAction func sideMenuPressed() {
-        slideToMenu()
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     
+    var avPlayerViewController: AVPlayerViewController?
     let videos: [Video] = Video.allVideos
     
-    var avPlayerViewController: AVPlayerViewController?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addRightSwipeGestureToSideMenu()
         setupTableView()
         loadStream()
-        addRightSwipeGestureToSideMenu()
     }
     
     func setupTableView(){
@@ -41,11 +36,26 @@ class VideoVC: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "VideoCell")
     }
     
+    
+    func addRightSwipeGestureToSideMenu() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @IBAction func sideMenuPressed() {
+        slideToMenu()
+    }
+    
+    @objc func slideToMenu(){
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+    }
+    
     private func loadStream(){
         if let url = URL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
             avPlayerViewController?.player = AVPlayer(url: url)
             avPlayerViewController?.player?.play()
-            let playerLayerAV = AVPlayerLayer(player:  avPlayerViewController?.player)
+            let playerLayerAV = AVPlayerLayer(player: avPlayerViewController?.player)
             avPlayerViewController?.player?.play()
         }
     }
@@ -58,28 +68,9 @@ class VideoVC: UIViewController {
         }
     }
     
-    func addRightSwipeGestureToSideMenu() {
-        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
-        swipeGesture.direction = .right
-        view.addGestureRecognizer(swipeGesture)
-    }
-    
-    @objc func slideToMenu(){
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
-    }
-    
-//    func reloadProgress(at index: Int) {
-//        let indexPath = IndexPath(row: index, section: 0)
-//
-//        if let cell = tableView.cellForRow(at: indexPath) as? VideoCell {
-//            cell.progress.progress = Float( videos[index - 1].getCurrentProgress() )
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedAVPlayer",
             let avPlayerVC = segue.destination as? AVPlayerViewController {
-            print("Added Player in Segue")
                 avPlayerViewController = avPlayerVC
                 self.addChild(avPlayerVC)
         }
@@ -93,16 +84,14 @@ class VideoVC: UIViewController {
 extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if videos.count == 0 {
-            return 0
-        }
         return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.id, for: indexPath) as! VideoCell
         let video = videos[indexPath.row]
         cell.configureCell(video: video)
+        cell.delegate = self
         return cell
     }
     
@@ -111,10 +100,23 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         if let videoURL = URL(string: video.videoStr) {
             self.playMedia(url: videoURL)
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
+    
+}
+
+
+// MARK: VideoCellDelegate
+extension VideoVC: VideoCellDelegate {
+    
+    func didSelectCell() {
+        print("cell clicked")
+    }
+    
+    
 }
 
