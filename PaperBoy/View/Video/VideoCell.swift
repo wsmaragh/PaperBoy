@@ -12,6 +12,7 @@ import AVFoundation
 
 protocol VideoCellDelegate {
     func didFinishPlayingVideoInCell()
+    func cancelPlayingVideoInCell()
 }
 
 
@@ -34,7 +35,7 @@ class VideoCell: UITableViewCell {
     private var labelCountDownTime: Double = 0
     private var progressBarTime: Double = 0
     private var audioPlayer: AVAudioPlayer?
-    
+    private var alreadyWatchedVideo: Bool = false
     
     override func awakeFromNib(){
         super.awakeFromNib()
@@ -45,6 +46,7 @@ class VideoCell: UITableViewCell {
         if selected {
             startCountdown()
         } else {
+            #warning("Change implementation for deselected row")
             stopCountdown()
         }
     }
@@ -53,12 +55,14 @@ class VideoCell: UITableViewCell {
     func configureCell(video: Video){
         if let imageStr = video.imageStr {
             videoImageView.image = UIImage(named: imageStr)
+        } else {
+            videoImageView.image = UIImage(named: "Video")
         }
         titleLabel.text = video.title
         sourceLabel.text = video.source
-        workoutTime = 10 // Double(video.time)
-        labelCountDownTime = 10 //Double(video.time)
-        timeLabel.text = timeFormatted(10) //timeFormatted(video.time)
+        workoutTime = Double(video.time)
+        labelCountDownTime = Double(video.time)
+        timeLabel.text = timeFormatted(video.time)
 
     }
     
@@ -77,7 +81,6 @@ class VideoCell: UITableViewCell {
             labelCountDownTime -= timeUpdateInterval
             progressBarTime += timeUpdateInterval
         } else if progressBarTime >= workoutTime {
-            doneButton.isHidden = false
             completeCountdown()
         } 
     }
@@ -87,10 +90,14 @@ class VideoCell: UITableViewCell {
         progressBar.progress = 0.0
         labelCountDownTime = workoutTime
         timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
+        delegate?.cancelPlayingVideoInCell()
+        alreadyWatchedVideo = false
     }
     
     private func completeCountdown(){
         countdownTimer.invalidate()
+        doneButton.isHidden = false
+        alreadyWatchedVideo = true
         playBeepSound()
         delegate?.didFinishPlayingVideoInCell()
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import AVFoundation
 
 
 class VideoVC: UIViewController {
@@ -22,16 +23,15 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         addRightSwipeGestureToSideMenu()
         setupTableView()
-        loadStream()
     }
     
     func setupTableView(){
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 85
+        tableView.estimatedRowHeight = 75
         tableView.backgroundColor = .white
-        tableView.bounces = false
+        tableView.bounces = true
         let nib = UINib(nibName: "VideoCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "VideoCell")
     }
@@ -50,26 +50,17 @@ class VideoVC: UIViewController {
     @objc func slideToMenu(){
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
-    
-    private func loadStream(){
-        if let url = URL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
+
+    private func playVideo(videoString: String){
+        if let url = URL(string: videoString) {
+            print("playVideo")
             avPlayerViewController?.player = AVPlayer(url: url)
             avPlayerViewController?.player?.play()
-            let playerLayerAV = AVPlayerLayer(player: avPlayerViewController?.player)
-            avPlayerViewController?.player?.play()
-        }
-    }
-    
-    func playMedia(url: URL) {
-        if let player = avPlayerViewController?.player {
-            let videoItem = AVPlayerItem(url: url)
-            player.replaceCurrentItem(with: videoItem)
-            player.play()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "embedAVPlayer",
+        if segue.identifier == "embeddedAVPlayer",
             let avPlayerVC = segue.destination as? AVPlayerViewController {
                 avPlayerViewController = avPlayerVC
                 self.addChild(avPlayerVC)
@@ -81,6 +72,7 @@ class VideoVC: UIViewController {
 
 
 // MARK: Tableview
+
 extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,26 +88,38 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.currentVideoPlayingIndex = indexPath.row
+        guard videos.count != 0 else {return}
         let video = videos[indexPath.row]
-        if let videoURL = URL(string: video.videoStr) {
-            self.playMedia(url: videoURL)
-        }
+        self.playVideo(videoString: video.videoStr)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 75
     }
     
 }
 
 
+
 // MARK: VideoCellDelegate
+
 extension VideoVC: VideoCellDelegate {
     
     func didFinishPlayingVideoInCell() {
+        guard currentVideoPlayingIndex < videos.count else {return}
+
         self.currentVideoPlayingIndex += 1
         self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
+    }
+    
+    func cancelPlayingVideoInCell() {
+//        self.tableView.deselectRow(at: IndexPath(row: <#T##Int#>, section: <#T##Int#>), animated: <#T##Bool#>)
+        //stop video
     }
     
 }
