@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import AVFoundation
+
+
+protocol VideoCellDelegate {
+    func didSelectCell()
+}
+
 
 class VideoCell: UITableViewCell {
 
@@ -14,6 +21,20 @@ class VideoCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var doneButton: UIButton!
+    
+    static let id = "VideoCell"
+    
+    var delegate: VideoCellDelegate?
+    
+    private var countdownTimer = Timer()
+    private var timeUpdateInterval: Double = 0.01
+    private var workoutTime: Double = 0
+    private var labelCountDownTime: Double = 0
+    private var progressBarTime: Double = 0
+    private var audioPlayer: AVAudioPlayer?
+    
     
     override func awakeFromNib(){
         super.awakeFromNib()
@@ -23,20 +44,63 @@ class VideoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    private func timeConverter(seconds: Int) -> String {
-        let x = seconds / 60
-        let y = seconds % (60 * x)
-        if y < 10 {
-            return "\(x):0\(y)"
-        }
-        return "\(x):\(y)"
-    }
-    
+
     func configureCell(video: Video){
+        if let imageStr = video.imageStr {
+            videoImageView.image = UIImage(named: imageStr)
+        }
         titleLabel.text = video.title
         sourceLabel.text = video.source
-        timeLabel.text = timeConverter(seconds: video.time)
-        videoImageView.loadImage(imageURLString: video.videoStr)
+        workoutTime = Double(video.time)
+        labelCountDownTime = Double(video.time)
+        timeLabel.text = timeFormatted(video.time)
+        startCountdown()
     }
+    
+    func startCountdown(){
+        progressBar.progress = 0.00
+        countdownTimer = Timer.scheduledTimer(timeInterval: timeUpdateInterval, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func updateTime() {
+        // display
+        timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
+        progressBar.progress = Float(progressBarTime)/Float(workoutTime)
+        
+        //update
+        if progressBarTime < workoutTime {
+            labelCountDownTime -= timeUpdateInterval
+            progressBarTime += timeUpdateInterval
+        } else {
+            endTimer()
+        }
+    }
+    
+    private func endTimer() {
+        countdownTimer.invalidate()
+        playBeepSound()
+    }
+    
+    private func playBeepSound(){
+        let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "mp3")!)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
+        } catch {
+            print(error)
+        }
+        audioPlayer!.prepareToPlay()
+        audioPlayer!.play()
+        sleep(2)
+        audioPlayer?.stop()
+    }
+    
+    private func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
 }
 
