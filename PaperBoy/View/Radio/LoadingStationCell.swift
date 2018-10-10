@@ -12,4 +12,6 @@ class LoadingStationCell: UITableViewCell {
 
     @IBOutlet weak var loadingLabel: UILabel!
     
+    static let id = "LoadingStationCell"
+    
 }

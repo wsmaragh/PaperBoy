@@ -91,22 +91,7 @@
             "imageURL": "http://static.radio.net/images/broadcasts/33/1d/21479/c175.png",
             "desc": "Your source for news and information from around the world.",
             "longDesc": "Your source for news and information from around the world."
-        },
-        {
-            "name": "Underground 80s",
-            "streamURL": "http://ice1.somafm.com/u80s-128-mp3",
-            "imageURL": "https://somafm.com/img3/u80s-400.png",
-            "desc": "Early 80s UK Synthpop and a bit of New Wave.",
-            "longDesc": "Centered around the UK Synthpop style of the early 80s with a bit of new wave splashed in, you'll hear music from Human League, Depeche Mode, Thompson Twins, A Flock of Seagulls, New Order and Ultravox, as well as lesser-known but critically acclaimed artists from the time such as New Musik, Comsat Angels, Lene Lovich, Fad Gadget and Robert Hazard."
-        },
-        {
-            "name": "Left Coast 70s",
-            "streamURL": "http://ice1.somafm.com/seventies-128-mp3",
-            "imageURL": "https://somafm.com/img3/seventies400.jpg",
-            "desc": "Mellow album rock from the Seventies. Yacht not required.",
-            "longDesc": "In the late 70s and very early 80s, when the mood was mellow, and the vibe was softer, many rock artists started creating slower, thoughtfully-produced tracks. Drawing lyrical influences from the folk singers before them, and bringing together some of the best session players of the day, these artists stepped outside their comfort zones to create some of the best mellow rock ever made, a sound that blossomed out of Los Angeles and spread up and down the west coast."
         }
-
     ]
 }
 

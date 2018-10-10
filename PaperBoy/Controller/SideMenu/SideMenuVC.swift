@@ -100,5 +100,6 @@ extension SideMenuVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectionDelegate?.selectedTabIndex(index: indexPath.row)
         slideToMenu()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

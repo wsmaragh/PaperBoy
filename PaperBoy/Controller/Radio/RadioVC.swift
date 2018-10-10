@@ -23,22 +23,23 @@ class RadioVC: UIViewController {
         slideToMenu()
     }
     
-    private var firstTime = true
+    var searchController: UISearchController = UISearchController(searchResultsController: nil)
     
     var stations = [RadioStation]()
+    var searchedStations = [RadioStation]()
+    
     var currentStation: RadioStation?
     var currentTrack: Track?
     
-    var searchController: UISearchController = UISearchController(searchResultsController: nil)
-
-    var searchedStations = [RadioStation]()
+    @objc var lastIndexPath: IndexPath!
     
+    private var firstTime: Bool = true
+
     var refreshControl: UIRefreshControl!
     
-    @objc var controllersDict = [String:Any]()
+    @objc var controllersDict = [String: Any]()
     
-    @objc var lastIndexPath : IndexPath!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
@@ -64,7 +65,6 @@ class RadioVC: UIViewController {
             print("Failed to set audio session category.  Error: \(error)")
         }
 
-        
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error {
@@ -76,8 +76,6 @@ class RadioVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        let cellNib = UINib(nibName: "LoadingStationCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "LoadingStationCell")
     }
     
     private func setupSearchController(){
@@ -126,17 +124,18 @@ class RadioVC: UIViewController {
         nowPlayingAnimationImageView.animationDuration = 0.8
     }
     
+    private func checkIfFirstTime(){
+        if !firstTime {
+            createNowPlayingBarButton()
+        }
+    }
+    
     private func createNowPlayingBarButton() {
         if self.navigationItem.rightBarButtonItem == nil {
             let btn = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: self, action:#selector(RadioVC.nowPlayingBarButtonPressed))
             btn.image = UIImage(named: "btn-nowPlaying")
             self.navigationItem.rightBarButtonItem = btn
-        }
-    }
-    
-    private func checkIfFirstTime(){
-        if !firstTime {
-            createNowPlayingBarButton()
+            stationNowPlayingButton.isEnabled = true
         }
     }
     
@@ -146,49 +145,45 @@ class RadioVC: UIViewController {
             stationNowPlayingButton.setTitle(title, for: UIControl.State())
             nowPlayingAnimationImageView.startAnimating()
         } else {
-            nowPlayingAnimationImageView.stopAnimating()
             nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
+            nowPlayingAnimationImageView.stopAnimating()
         }
-        nowPlayingAnimationImageView.startAnimating()
     }
     
     @objc func nowPlayingBarButtonPressed() {
+        #warning("guard for when the page first load and there was no previous playing item")
         tableView(self.tableView, didSelectRowAt: lastIndexPath)
     }
     
     @IBAction func nowPlayingPressed(_ sender: UIButton) {
-        tableView(self.tableView, didSelectRowAt: lastIndexPath)
+        nowPlayingBarButtonPressed()
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        stations.removeAll(keepingCapacity: false)
+        stations.removeAll()
         loadStationsFromJSON()
-        let wait2Seconds = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
-        DispatchQueue.main.asyncAfter(deadline: wait2Seconds) { () -> Void in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
             self.refreshControl.endRefreshing()
             self.view.setNeedsDisplay()
-        }
+        })
     }
     
     
     func loadStationsFromJSON() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        DispatchQueue.main.async {
-        }
 
         RadioDataService.getStationData({ (data) in
-            
             var json: JSON!
-            
+        
             do {
                 json = try JSON(data: data!)
             } catch {
                 print("Error converting data to JSON")
             }
             
-            if let stationArray = json["station"].array {
+            if let stationJSONArray = json["station"].array {
                 
-                for stationJSON in stationArray {
+                for stationJSON in stationJSONArray {
                     let station = RadioStation.parseStation(stationJSON)
                     self.stations.append(station)
                 }
@@ -196,14 +191,11 @@ class RadioVC: UIViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.view.setNeedsDisplay()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
                 
             } else {
                 print("JSON Station Loading Error")
-            }
-            
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         })
         
@@ -222,110 +214,74 @@ class RadioVC: UIViewController {
 }
 
 
-
-
-// MARK: - TableView DataSource
-extension RadioVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+// MARK: - TableView
+extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive {
-            return searchedStations.count
-        } else {
-            if stations.count == 0 {
-                return 1
-            } else {
-                return stations.count
-            }
-        }
+        let count = searchController.isActive ? searchedStations.count : stations.count
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if stations.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingStationCell", for: indexPath)
-            cell.backgroundColor = UIColor.clear
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            return cell
-            
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.id, for: indexPath) as! StationCell
-            if searchController.isActive {
-                let station = searchedStations[indexPath.row]
-                cell.configureStationCell(station)
-            } else {
-                let station = stations[indexPath.row]
-                cell.configureStationCell(station)
-            }
-            cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
-            return cell
-        }
+        guard !stations.isEmpty else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.id, for: indexPath) as! StationCell
+        var station: RadioStation!
+        station = searchController.isActive ? searchedStations[indexPath.row] : stations[indexPath.row]
+        cell.configureStationCell(station)
+        cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 105
     }
-}
-
-
-
-// MARK: - TableView Delegate
-extension RadioVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard !stations.isEmpty else {return}
         firstTime = false
-        
-        if !stations.isEmpty {
-            let title = stations[indexPath.row].stationName + " - Now Playing..."
-            stationNowPlayingButton.setTitle(title, for: UIControl.State())
-            stationNowPlayingButton.isEnabled = true
-        }
+        let title = stations[indexPath.row].stationName + "..."
+        stationNowPlayingButton.setTitle(title, for: UIControl.State())
+        stationNowPlayingButton.isEnabled = true
         
         var nowPlayingVC = self.storyboard!.instantiateViewController(withIdentifier: NowPlayingVC.id) as! NowPlayingVC
         nowPlayingVC.delegate = self
         
-        if indexPath != lastIndexPath {
-            // User clicked on row, load/reset station
-            if searchController.isActive {
-                currentStation = searchedStations[indexPath.row]
-            } else if stations.count > 0 {
-                currentStation = stations[indexPath.row]
-                
+        if indexPath == lastIndexPath {
+            if currentTrack == nil {
                 nowPlayingVC.currentStation = currentStation
                 nowPlayingVC.newStation = true
-                
                 lastIndexPath = indexPath
-                
                 controllersDict[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
-        } else {
-            // User clicked on a now playing button
-            if currentTrack != nil {
+            else {
                 nowPlayingVC = controllersDict[NowPlayingVC.id] as! NowPlayingVC!
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
-            } else {
-                // Issue with track, reload station
+            }
+        }
+            
+        else {
+            if searchController.isActive {
+                currentStation = searchedStations[indexPath.row]
+            }
+            else if stations.count > 0 {
+                currentStation = stations[indexPath.row]
                 nowPlayingVC.currentStation = currentStation
                 nowPlayingVC.newStation = true
-                
                 lastIndexPath = indexPath
-                
                 controllersDict[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
 
-
 // MARK: - NowPlayingVC Delegate
+
 extension RadioVC: NowPlayingVCDelegate {
     
     func artworkDidUpdate(_ track: Track) {
@@ -333,7 +289,7 @@ extension RadioVC: NowPlayingVCDelegate {
         currentTrack?.artworkImage = track.artworkImage
     }
     
-    func songMetaDataDidUpdate(_ track: Track) {
+    func stationMetaDataDidUpdate(_ track: Track) {
         currentTrack = track
         let title = currentStation!.stationName + ": " + currentTrack!.title + " - " + currentTrack!.artist + "..."
         stationNowPlayingButton.setTitle(title, for: UIControl.State())
@@ -346,8 +302,8 @@ extension RadioVC: NowPlayingVCDelegate {
 }
 
 
-
 // MARK: - UISearchControllerDelegate
+
 extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

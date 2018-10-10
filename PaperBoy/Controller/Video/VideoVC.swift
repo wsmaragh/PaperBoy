@@ -95,7 +95,7 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select pressed")
+        #warning("change implementation to toggle play and pause when did select press")
         self.currentVideoPlayingIndex = indexPath.row
         guard videos.count != 0 else {return}
         let video = videos[indexPath.row]
@@ -106,10 +106,8 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 100
     }
     
 }

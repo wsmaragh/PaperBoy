@@ -2,13 +2,15 @@
 import UIKit
 import SwiftyJSON
 
+
 class RadioStation: NSObject {
     
-    @objc var stationName     : String
+    @objc var stationName: String
     @objc var stationStreamURL: String
-    @objc var stationImageURL : String
-    @objc var stationDesc     : String
-    @objc var stationLongDesc : String
+    @objc var stationImageURL: String
+    @objc var stationDesc: String
+    @objc var stationLongDesc: String
+    
     
     @objc init(name: String, streamURL: String, imageURL: String, desc: String, longDesc: String) {
         self.stationName      = name
