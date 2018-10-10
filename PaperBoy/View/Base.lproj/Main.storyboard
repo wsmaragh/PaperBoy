@@ -797,7 +797,7 @@
                                 <rect key="frame" x="0.0" y="64" width="350" height="403"/>
                                 <color key="backgroundColor" name="appWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="350" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NlD-FL-lqf" id="Gs1-Th-WT9">
@@ -805,7 +805,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcH-Pw-Plu">
-                                                    <rect key="frame" x="82" y="45.5" width="241" height="20"/>
+                                                    <rect key="frame" x="82" y="45.5" width="216" height="20"/>
                                                     <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1003,6 +1003,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xHX-HW-PDs"/>
+        <segue reference="1Nt-Fj-Tjc"/>
     </inferredMetricsTieBreakers>
 </document>

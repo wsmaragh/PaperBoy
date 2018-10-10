@@ -166,7 +166,8 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SearchVCToArticleVC", sender: self)
+        performSegue(withIdentifier: StoryboardIDs.SearchVCToArticleVC.rawValue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

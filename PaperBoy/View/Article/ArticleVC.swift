@@ -225,6 +225,7 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         fetchArticles(topic: topics[indexPath.item])
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 
