@@ -45,25 +45,29 @@ class VideoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         if selected {
             startCountdown()
-        } else {
-            #warning("Change implementation for deselected row")
-            stopCountdown()
-        }
+        } 
     }
     
 
     func configureCell(video: Video){
-        if let imageStr = video.imageStr {
-            videoImageView.image = UIImage(named: imageStr)
-        } else {
-            videoImageView.image = UIImage(named: "Video")
-        }
         titleLabel.text = video.title
         sourceLabel.text = video.source
         workoutTime = Double(video.time)
         labelCountDownTime = Double(video.time)
         timeLabel.text = timeFormatted(video.time)
-
+        if let imageStr = video.imageStr {
+            loadImage(imageView: videoImageView, imageString: imageStr)
+        }
+    }
+    
+    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "Video"){
+        if imageString.contains("http") {
+            imageView.loadImage(imageURLString: imageString)
+        } else if imageString != "" {
+            imageView.image = UIImage(named: imageString)
+        } else {
+            imageView.image = UIImage(named: defaultImageStr)
+        }
     }
     
     func startCountdown(){

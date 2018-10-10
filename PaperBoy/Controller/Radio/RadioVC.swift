@@ -23,13 +23,12 @@ class RadioVC: UIViewController {
         slideToMenu()
     }
     
-    var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
     
     var stations = [RadioStation]()
     var searchedStations = [RadioStation]()
     
     var currentStation: RadioStation?
-    var currentTrack: Track?
     
     @objc var lastIndexPath: IndexPath!
     
@@ -37,7 +36,7 @@ class RadioVC: UIViewController {
 
     var refreshControl: UIRefreshControl!
     
-    @objc var controllersDict = [String: Any]()
+    var savedVC = [String: Any]()
     
 
     override func viewDidLoad() {
@@ -140,18 +139,20 @@ class RadioVC: UIViewController {
     }
     
     private func checkIfTrackIsPlaying(){
-        if currentTrack != nil && currentTrack!.isPlaying {
-            let title = currentStation!.stationName + ": " + currentTrack!.title + " - " + currentTrack!.artist + "..."
+        if currentStation != nil && currentStation!.isPlaying {
+            let title = currentStation!.stationName
             stationNowPlayingButton.setTitle(title, for: UIControl.State())
+            stationNowPlayingButton.isEnabled = true
             nowPlayingAnimationImageView.startAnimating()
         } else {
             nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
+            stationNowPlayingButton.isEnabled = false
             nowPlayingAnimationImageView.stopAnimating()
         }
     }
     
+
     @objc func nowPlayingBarButtonPressed() {
-        #warning("guard for when the page first load and there was no previous playing item")
         tableView(self.tableView, didSelectRowAt: lastIndexPath)
     }
     
@@ -239,23 +240,25 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !stations.isEmpty else {return}
         firstTime = false
+        
         let title = stations[indexPath.row].stationName + "..."
         stationNowPlayingButton.setTitle(title, for: UIControl.State())
         stationNowPlayingButton.isEnabled = true
+        nowPlayingAnimationImageView.startAnimating()
+        
         
         var nowPlayingVC = self.storyboard!.instantiateViewController(withIdentifier: NowPlayingVC.id) as! NowPlayingVC
-        nowPlayingVC.delegate = self
         
         if indexPath == lastIndexPath {
-            if currentTrack == nil {
+            if currentStation == nil {
                 nowPlayingVC.currentStation = currentStation
                 nowPlayingVC.newStation = true
                 lastIndexPath = indexPath
-                controllersDict[NowPlayingVC.id] = nowPlayingVC
+                savedVC[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
             else {
-                nowPlayingVC = controllersDict[NowPlayingVC.id] as! NowPlayingVC!
+                nowPlayingVC = savedVC[NowPlayingVC.id] as! NowPlayingVC!
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         }
@@ -269,7 +272,7 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
                 nowPlayingVC.currentStation = currentStation
                 nowPlayingVC.newStation = true
                 lastIndexPath = indexPath
-                controllersDict[NowPlayingVC.id] = nowPlayingVC
+                savedVC[NowPlayingVC.id] = nowPlayingVC
                 self.navigationController!.pushViewController(nowPlayingVC, animated: true)
             }
         }
@@ -280,30 +283,7 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-// MARK: - NowPlayingVC Delegate
-
-extension RadioVC: NowPlayingVCDelegate {
-    
-    func artworkDidUpdate(_ track: Track) {
-        currentTrack?.artworkURL = track.artworkURL
-        currentTrack?.artworkImage = track.artworkImage
-    }
-    
-    func stationMetaDataDidUpdate(_ track: Track) {
-        currentTrack = track
-        let title = currentStation!.stationName + ": " + currentTrack!.title + " - " + currentTrack!.artist + "..."
-        stationNowPlayingButton.setTitle(title, for: UIControl.State())
-    }
-    
-    func trackPlayingToggled(_ track: Track) {
-        currentTrack?.isPlaying = track.isPlaying
-    }
-    
-}
-
-
 // MARK: - UISearchControllerDelegate
-
 extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

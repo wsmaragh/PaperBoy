@@ -25,35 +25,6 @@ extension String {
 }
 
 
-// MARK: UIIMAGEVIEW
-extension UIImageView {
-    
-    @objc func loadImageWithURL(_ url: URL, callback: @escaping (UIImage) -> ()) -> URLSessionDownloadTask {
-        let session = URLSession.shared
-        
-        let downloadTask = session.downloadTask(with: url, completionHandler: {
-            [weak self] url, response, error in
-            if error == nil && url != nil {
-                if let data = try? Data(contentsOf: url!) {
-                    if let image = UIImage(data: data) {
-                        
-                        DispatchQueue.main.async {
-                            
-                            if let strongSelf = self {
-                                strongSelf.image = image
-                                callback(image)
-                            }
-                        }
-                    }
-                }
-            }
-        })
-        downloadTask.resume()
-        return downloadTask
-    }
-}
-
-
 // MARK: UIColor
 extension UIColor {
     static let appYellow = UIColor(red: 255/255, green: 255/255, blue: 75/255, alpha: 0.9)

@@ -37,7 +37,9 @@ class SmallArticleRightCell: UITableViewCell {
         if let dateString = article.dateStr {
             timeLabel.text = DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: dateString)
         }
-        else {timeLabel.text = ""}
+        else {
+            timeLabel.text = ""
+        }
         
         articleImageView.image = UIImage(named: "newspaper")
         if let imageURLStr = article.imageStr {
@@ -45,8 +47,8 @@ class SmallArticleRightCell: UITableViewCell {
         }
         articleImageView.layer.cornerRadius = 10
         articleImageView.layer.masksToBounds = true
-//        articleImageView.layer.maskedCorners = true
     }
+    
 
 
     @IBAction func savePressed(_ sender: UIButton) {

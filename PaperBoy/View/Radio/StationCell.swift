@@ -16,12 +16,8 @@ class StationCell: UITableViewCell {
     
     static let id = "StationCell"
     
-    @objc var downloadTask: URLSessionDownloadTask?
-    
     override func prepareForReuse() {
         super.prepareForReuse()
-        downloadTask?.cancel()
-        downloadTask = nil
         stationNameLabel.text  = nil
         stationDescLabel.text  = nil
         stationImageView.image = nil
@@ -30,24 +26,17 @@ class StationCell: UITableViewCell {
     @objc func configureStationCell(_ station: RadioStation) {
         stationNameLabel.text = station.stationName
         stationDescLabel.text = station.stationDesc
-        
-        let imageURL = station.stationImageURL as NSString
-        
-        if imageURL.contains("http") {
-            
-            if let url = URL(string: station.stationImageURL) {
-                downloadTask = stationImageView.loadImageWithURL(url) { (image) in
-                    // station image loaded
-                }
-            }
-            
-        } else if imageURL != "" {
-            stationImageView.image = UIImage(named: imageURL as String)
-            
-        } else {
-            stationImageView.image = UIImage(named: "stationImage")
-        }
+        loadImage(imageView: stationImageView, imageString: station.stationImageString)
     }
     
+    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "station"){
+        if imageString.contains("http") {
+            imageView.loadImage(imageURLString: imageString)
+        } else if imageString != "" {
+            imageView.image = UIImage(named: imageString)
+        } else {
+            imageView.image = UIImage(named: defaultImageStr)
+        }
+    }
 }
 

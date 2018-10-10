@@ -91,6 +91,7 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         let video = videos[indexPath.row]
         cell.configureCell(video: video)
         cell.delegate = self
+        cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
         return cell
     }
     
@@ -102,12 +103,8 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         self.playVideo(videoString: video.videoStr)
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 90
     }
     
 }

@@ -18,8 +18,17 @@ class MenuCell: UITableViewCell {
     
     func configureCell(menuItem: String){
         menulabel.text = menuItem
-        menuImageV.image = UIImage(named: menuItem)
+        loadImage(imageView: menuImageV, imageString: menuItem)
     }
-
+    
+    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "station"){
+        if imageString.contains("http") {
+            imageView.loadImage(imageURLString: imageString)
+        } else if imageString != "" {
+            imageView.image = UIImage(named: imageString)
+        } else {
+            imageView.image = UIImage(named: defaultImageStr)
+        }
+    }
 
 }

@@ -20,34 +20,32 @@
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UJB-6J-0Zr">
                     <rect key="frame" x="0.0" y="0.0" width="568" height="102"/>
                     <color key="progressTintColor" name="appYellow"/>
-                    <color key="trackTintColor" name="appWhite"/>
+                    <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </progressView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JYF-7m-hzd">
-                    <rect key="frame" x="12" y="11" width="80" height="80"/>
+                    <rect key="frame" x="12" y="10" width="81.5" height="82"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="82b-9c-NAN"/>
                         <constraint firstAttribute="width" secondItem="JYF-7m-hzd" secondAttribute="height" multiplier="1:1" id="T4u-Ow-jZa"/>
-                        <constraint firstAttribute="width" constant="80" id="dUN-kg-Aeo"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNs-Ab-Y0I">
-                    <rect key="frame" x="12" y="75" width="80" height="16"/>
+                    <rect key="frame" x="12" y="74" width="81.5" height="18"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="0.2932128906" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f72-jT-uP6">
-                    <rect key="frame" x="100" y="29.5" width="415" height="43.5"/>
+                    <rect key="frame" x="101.5" y="26.5" width="413.5" height="49"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbP-cH-fve">
-                            <rect key="frame" x="0.0" y="0.0" width="31" height="19.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                            <rect key="frame" x="0.0" y="0.0" width="36" height="23"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATw-lf-rzc">
-                            <rect key="frame" x="0.0" y="27.5" width="42.5" height="16"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                            <rect key="frame" x="0.0" y="31" width="48" height="18"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -73,6 +71,7 @@
                 <constraint firstItem="JYF-7m-hzd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="ZtE-7S-r8G"/>
                 <constraint firstAttribute="trailing" secondItem="UJB-6J-0Zr" secondAttribute="trailing" id="lXH-qb-dtO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yey-X4-Sa3" secondAttribute="trailing" constant="12" id="uzK-01-x4E"/>
+                <constraint firstItem="JYF-7m-hzd" firstAttribute="height" secondItem="vUN-kp-3ea" secondAttribute="height" multiplier="0.8" id="vHH-Nz-O76"/>
                 <constraint firstItem="UJB-6J-0Zr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zsb-hz-Hzl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -90,9 +89,6 @@
     </objects>
     <resources>
         <image name="checkmark" width="33" height="33"/>
-        <namedColor name="appWhite">
-            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="appYellow">
             <color red="0.89803921568627454" green="1" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
