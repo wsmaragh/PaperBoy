@@ -12,10 +12,10 @@
 		2308763D215EAB8800266F2A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2308763C215EAB8800266F2A /* RealmService.swift */; };
 		231139F0216E6F00004BF758 /* start.gif in Resources */ = {isa = PBXBuildFile; fileRef = 231139EF216E6F00004BF758 /* start.gif */; };
 		231139F2216E6F53004BF758 /* video.gif in Resources */ = {isa = PBXBuildFile; fileRef = 231139F1216E6F53004BF758 /* video.gif */; };
+		231139F4216E70A7004BF758 /* favorites.gif in Resources */ = {isa = PBXBuildFile; fileRef = 231139F3216E70A7004BF758 /* favorites.gif */; };
 		231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D70EC215FB71900E2CCC9 /* SmallArticleLeftCell.swift */; };
 		231D70EF215FB91D00E2CCC9 /* SmallArticleLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231D70EE215FB91D00E2CCC9 /* SmallArticleLeftCell.xib */; };
 		23674422216B37840072BE80 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23674421216B37840072BE80 /* VideoCell.xib */; };
-		2367442A216B4C3B0072BE80 /* favorites.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23674429216B4C3B0072BE80 /* favorites.gif */; };
 		2367442C216B4C8D0072BE80 /* search.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2367442B216B4C8D0072BE80 /* search.gif */; };
 		2367442E216B4CE10072BE80 /* shareSave.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2367442D216B4CE10072BE80 /* shareSave.gif */; };
 		23674430216B4DC50072BE80 /* sideMenu.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2367442F216B4DC50072BE80 /* sideMenu.gif */; };
@@ -97,10 +97,10 @@
 		2308763C215EAB8800266F2A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		231139EF216E6F00004BF758 /* start.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = start.gif; sourceTree = "<group>"; };
 		231139F1216E6F53004BF758 /* video.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = video.gif; sourceTree = "<group>"; };
+		231139F3216E70A7004BF758 /* favorites.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = favorites.gif; sourceTree = "<group>"; };
 		231D70EC215FB71900E2CCC9 /* SmallArticleLeftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallArticleLeftCell.swift; sourceTree = "<group>"; };
 		231D70EE215FB91D00E2CCC9 /* SmallArticleLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallArticleLeftCell.xib; sourceTree = "<group>"; };
 		23674421216B37840072BE80 /* VideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
-		23674429216B4C3B0072BE80 /* favorites.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = favorites.gif; sourceTree = "<group>"; };
 		2367442B216B4C8D0072BE80 /* search.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search.gif; sourceTree = "<group>"; };
 		2367442D216B4CE10072BE80 /* shareSave.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = shareSave.gif; sourceTree = "<group>"; };
 		2367442F216B4DC50072BE80 /* sideMenu.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sideMenu.gif; sourceTree = "<group>"; };
@@ -274,12 +274,12 @@
 				231139EF216E6F00004BF758 /* start.gif */,
 				231139F1216E6F53004BF758 /* video.gif */,
 				23A5EB84216E4D6B004CDF6F /* radio.gif */,
+				231139F3216E70A7004BF758 /* favorites.gif */,
 				23DF2ED2216BD0130073F790 /* browse.gif */,
 				23674437216B53C50072BE80 /* web.gif */,
 				2367442F216B4DC50072BE80 /* sideMenu.gif */,
 				2367442D216B4CE10072BE80 /* shareSave.gif */,
 				2367442B216B4C8D0072BE80 /* search.gif */,
-				23674429216B4C3B0072BE80 /* favorites.gif */,
 			);
 			path = Gifs;
 			sourceTree = "<group>";
@@ -539,9 +539,9 @@
 				237E0948215C3DF80039FE28 /* TopicCell.xib in Resources */,
 				23E06F202144236100F89F9D /* Main.storyboard in Resources */,
 				23674422216B37840072BE80 /* VideoCell.xib in Resources */,
-				2367442A216B4C3B0072BE80 /* favorites.gif in Resources */,
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
 				23F33B66215D735400F7853C /* ArticleView.xib in Resources */,
+				231139F4216E70A7004BF758 /* favorites.gif in Resources */,
 				23DF2ED3216BD0130073F790 /* browse.gif in Resources */,
 				237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */,
 				2367442E216B4CE10072BE80 /* shareSave.gif in Resources */,
