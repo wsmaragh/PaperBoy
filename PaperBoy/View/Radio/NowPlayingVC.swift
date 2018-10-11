@@ -25,7 +25,11 @@ class NowPlayingVC: UIViewController {
     
     @objc var radioPlayer: AVPlayer!
     
-    @objc var currentStation: RadioStation!
+    @objc var currentStation: RadioStation! {
+        didSet {
+            playRadioStation()
+        }
+    }
     @objc var newStation: Bool = true
     @objc var justBecameActive: Bool = false
     
@@ -33,22 +37,19 @@ class NowPlayingVC: UIViewController {
 
     @objc var nowPlayingImageView: UIImageView!
     
-    
     deinit {
         removeMyObservers()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupNavBar()
         setupRadioPlayer()
+        updateUI()
         addMyObservers()
-        checkForStationChange()
-        createNowPlayingAnimationBarItem()
-        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
-    private func setupUI(){
+    private func updateUI(){
         self.title = currentStation.stationName
         self.stationLabel.text = currentStation.stationName
         self.stationImageView.loadImage(imageURLString: currentStation.stationImageString)
@@ -75,13 +76,8 @@ class NowPlayingVC: UIViewController {
         radioPlayer.rate = 1
     }
     
-    private func checkForStationChange(){
-        if newStation {
-            changeStationAndPlay()
-        }
-    }
     
-    @objc private func changeStationAndPlay() {
+    @objc private func playRadioStation() {
         guard let streamURL = URL(string: currentStation.stationStreamURL) else {return}
         let station = StationAVPlayerItem(url: streamURL)
         DispatchQueue.main.async {
@@ -92,7 +88,9 @@ class NowPlayingVC: UIViewController {
         currentStation.isPlaying = true
     }
     
-    @objc private func createNowPlayingAnimationBarItem() {
+    @objc private func setupNavBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
         nowPlayingImageView.autoresizingMask = UIView.AutoresizingMask()
         nowPlayingImageView.contentMode = UIView.ContentMode.center
@@ -106,9 +104,6 @@ class NowPlayingVC: UIViewController {
         
         let barItem = UIBarButtonItem(customView: barButton)
         self.navigationItem.rightBarButtonItem = barItem
-        DispatchQueue.main.async { [unowned self] in
-            self.nowPlayingImageView.startAnimating()
-        }
     }
 
     private func addMyObservers(){

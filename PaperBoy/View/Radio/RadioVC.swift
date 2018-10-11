@@ -31,15 +31,9 @@ class RadioVC: UIViewController {
     
     var currentStation: RadioStation?
     
-    @objc var lastIndexPath: IndexPath!
-    
-    
-    
     private var firstTime: Bool = true
 
     var refreshControl: UIRefreshControl!
-    
-    var savedVC = [String: Any]()
     
 
     override func viewDidLoad() {
@@ -155,13 +149,12 @@ class RadioVC: UIViewController {
         }
     }
     
-
-    @objc func nowPlayingBarButtonPressed() {
-        tableView(self.tableView, didSelectRowAt: lastIndexPath)
-    }
-    
     @IBAction func nowPlayingPressed(_ sender: UIButton) {
         nowPlayingBarButtonPressed()
+    }
+    
+    @objc func nowPlayingBarButtonPressed() {
+//        performSegue(withIdentifier: StoryboardIDs.RadioVCToNowPlayingVC.rawValue, sender: self)
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -218,10 +211,16 @@ class RadioVC: UIViewController {
                 let indexPath = tableView.indexPathForSelectedRow else {
                     return
             }
-
+            
             let selectedStation = searchController.isActive ? searchedStations[indexPath.row]: stations[indexPath.row]
             nowPlayingVC.currentStation = selectedStation
-            nowPlayingVC.newStation = (selectedStation == currentStation) ? false : true
+            if selectedStation == currentStation {
+                print("Same Station", self.currentStation, selectedStation)
+                nowPlayingVC.newStation = false
+            } else {
+                print("Different Station", self.currentStation, selectedStation)
+                nowPlayingVC.newStation = true
+            }
         }
     }
     
@@ -241,10 +240,9 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard !stations.isEmpty else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.id, for: indexPath) as! StationCell
-        var station: RadioStation!
-        station = searchController.isActive ? searchedStations[indexPath.row] : stations[indexPath.row]
+        let station = searchController.isActive ? searchedStations[indexPath.row] : stations[indexPath.row]
         cell.configureStationCell(station)
-        cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor.appTableGray
+        cell.backgroundColor = (indexPath.row % 2 == 0) ? UIColor.lightText : UIColor.appTableGray
         return cell
     }
     
@@ -253,20 +251,26 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive {
+            
+        } else {
+            
+            
+        }
         
-        guard !stations.isEmpty else {return}
         firstTime = false
-        
-        let title = stations[indexPath.row].stationName
-        stationNowPlayingButton.setTitle(title, for: UIControl.State())
-        stationNowPlayingButton.isEnabled = true
-        nowPlayingAnimationImageView.startAnimating()
         let selectedStation = searchController.isActive ? searchedStations[indexPath.row]: stations[indexPath.row]
         currentStation = selectedStation
+        self.setupNowPlayingView(stationName: selectedStation.stationName)
         performSegue(withIdentifier: StoryboardIDs.RadioVCToNowPlayingVC.rawValue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func setupNowPlayingView(stationName: String){
+        stationNowPlayingButton.setTitle(stationName, for: UIControl.State())
+        stationNowPlayingButton.isEnabled = true
+        nowPlayingAnimationImageView.startAnimating()
+    }
 }
 
 
@@ -276,11 +280,13 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
 extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        searchedStations.removeAll(keepingCapacity: false)
+        searchedStations.removeAll()
         let searchPredicate = NSPredicate(format: "SELF.stationName CONTAINS[c] %@", searchController.searchBar.text!)
         let array = (self.stations as NSArray).filtered(using: searchPredicate)
         searchedStations = array as! [RadioStation]
         self.tableView.reloadData()
     }
+    
+    
     
 }
