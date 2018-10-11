@@ -20,7 +20,8 @@ enum StoryboardIDs: String {
     case MainVCToArticleVC
     case SearchVCToArticleVC
     case FaveArticlesVCToArticleVC
-    case ArticleVCToWebVC    
+    case ArticleVCToWebVC
+    case RadioVCToNowPlayingVC
 }
 
 

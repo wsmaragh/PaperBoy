@@ -35,24 +35,24 @@
                     <color key="textColor" red="1" green="1" blue="0.2932128906" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f72-jT-uP6">
-                    <rect key="frame" x="101.5" y="26.5" width="413.5" height="49"/>
+                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f72-jT-uP6">
+                    <rect key="frame" x="101.5" y="28" width="409.5" height="46.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbP-cH-fve">
-                            <rect key="frame" x="0.0" y="0.0" width="36" height="23"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATw-lf-rzc">
-                            <rect key="frame" x="0.0" y="31" width="48" height="18"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="29.5" width="45.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yey-X4-Sa3">
-                    <rect key="frame" x="523" y="34.5" width="33" height="33"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yey-X4-Sa3">
+                    <rect key="frame" x="519" y="32.5" width="37" height="37"/>
                     <state key="normal" image="checkmark"/>
                 </button>
             </subviews>
@@ -88,7 +88,7 @@
         </view>
     </objects>
     <resources>
-        <image name="checkmark" width="33" height="33"/>
+        <image name="checkmark" width="37" height="37"/>
         <namedColor name="appYellow">
             <color red="0.89803921568627454" green="1" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

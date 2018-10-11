@@ -23,48 +23,48 @@ class SmallArticleRightCell: UITableViewCell {
     static let id = "SmallArticleRightCell"
 
     weak var article: Article?
-
+    
+    override func awakeFromNib(){
+        super.awakeFromNib()
+        articleImageView.layer.cornerRadius = 10
+        articleImageView.layer.masksToBounds = true
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text  = nil
+        articleImageView.image = nil
+        sourceLabel.text  = nil
+        timeLabel.text  = nil
+    }
 
     public func configureCell(article: Article, hideButtons: Bool) {
         if hideButtons {
             saveButton.isHidden = true
             shareButton.isHidden = true
         }
+        
         self.article = article
-        
         titleLabel.text = article.title
+        articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
         sourceLabel.text = article.source._rlmInferWrappedType().name
-        if let dateString = article.dateStr {
-            timeLabel.text = DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: dateString)
-        }
-        else {
-            timeLabel.text = ""
-        }
-        
-        articleImageView.image = UIImage(named: "newspaper")
-        if let imageURLStr = article.imageStr {
-            articleImageView.loadImage(imageURLString: imageURLStr)
-        }
-        articleImageView.layer.cornerRadius = 10
-        articleImageView.layer.masksToBounds = true
+        timeLabel.text = (article.dateStr != nil) ? DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: article.dateStr!) : ""
     }
     
-
-
-    @IBAction func savePressed(_ sender: UIButton) {
+    @IBAction private func savePressed(_ sender: UIButton) {
         if let article = self.article {
             delegate?.savePressed(article: article)
         }
     }
     
-    
-    @IBAction func sharePressed(_ sender: UIButton) {
+    @IBAction private func sharePressed(_ sender: UIButton) {
         if let article = self.article {
             delegate?.sharePressed(article: article)
         }
     }
-    
-    
-    
     
 }

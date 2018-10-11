@@ -30,6 +30,7 @@ class ArticleView: UIView {
     
     weak var delegate: ArticleViewDelegate?
 
+    static let nibName = "ArticleView"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +53,7 @@ class ArticleView: UIView {
     
     private func loadViewFromNib() -> UIView! {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "ArticleView", bundle: bundle)
+        let nib = UINib(nibName: ArticleView.nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
@@ -62,19 +63,9 @@ class ArticleView: UIView {
         titleLabel.text = article.title
         subtitleLabel.text = article.subtitle
         authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
-        
-        if let content = article.content {  
-            fullLabel.text = content
-        } else {fullLabel.text = ""}
-        
-        if let imageURLStr = article.imageStr {
-            articleImageView.loadImage(imageURLString: imageURLStr)
-        }
-        
-        if let dateString = article.dateStr {
-            dateLabel.text = DateFormatterService.shared.getCustomDateStringForArticleView(dateStr: dateString)
-        } else {dateLabel.text = ""}
-        
+        articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
+        fullLabel.text = (article.content != nil) ? article.content! : ""
+        dateLabel.text = (article.dateStr != nil) ? DateFormatterService.shared.getCustomDateStringForArticleView(dateStr: article.dateStr!) : ""
     }
     
     @IBAction func broswerButtonPressed(_ sender: UIButton) {

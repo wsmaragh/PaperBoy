@@ -16,6 +16,14 @@ class StationCell: UITableViewCell {
     
     static let id = "StationCell"
     
+    override func awakeFromNib(){
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         stationNameLabel.text  = nil
@@ -26,17 +34,8 @@ class StationCell: UITableViewCell {
     @objc func configureStationCell(_ station: RadioStation) {
         stationNameLabel.text = station.stationName
         stationDescLabel.text = station.stationDesc
-        loadImage(imageView: stationImageView, imageString: station.stationImageString)
+        stationImageView.loadImage(imageURLString: station.stationImageString)
     }
-    
-    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "station"){
-        if imageString.contains("http") {
-            imageView.loadImage(imageURLString: imageString)
-        } else if imageString != "" {
-            imageView.image = UIImage(named: imageString)
-        } else {
-            imageView.image = UIImage(named: defaultImageStr)
-        }
-    }
+
 }
 

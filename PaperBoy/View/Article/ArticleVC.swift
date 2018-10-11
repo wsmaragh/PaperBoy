@@ -176,20 +176,14 @@ class ArticleVC: UIViewController {
                 let indexPath = tableView.indexPathForSelectedRow else {
                 return
             }
-//            guard let indexPath = tableView.indexPathForSelectedRow else {
-//                return
-//            }
             let article = articles[indexPath.row]
             articleVC.article = article
         }
-        
-        
     }
     
     @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
         
     }
-    
     
     func setupPanGestureToDismiss() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
@@ -197,8 +191,8 @@ class ArticleVC: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
-
 }
+
 
 
 // MARK: CollectionView setup
@@ -319,7 +313,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
             default: break
             }
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
-            refreshControl.backgroundColor = UIColor.yellow
+            refreshControl.backgroundColor = UIColor.appYellow
     }
     
 }

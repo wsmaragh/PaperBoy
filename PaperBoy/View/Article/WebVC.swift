@@ -22,6 +22,7 @@ class WebVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Browser in Paperboy"
+        self.navigationController?.navigationBar.topItem?.title = ""
         setupWebView()
         view.layoutIfNeeded()
         webView.backgroundColor = UIColor.darkGray

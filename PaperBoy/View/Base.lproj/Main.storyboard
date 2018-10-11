@@ -497,7 +497,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="World" translatesAutoresizingMaskIntoConstraints="NO" id="Vt4-Fg-bu1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bloomberg" translatesAutoresizingMaskIntoConstraints="NO" id="Vt4-Fg-bu1">
                                                     <rect key="frame" x="17" y="9" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="8ZX-1E-9j2"/>
@@ -597,6 +597,7 @@
                         <outlet property="nowPlayingAnimationImageView" destination="HAn-yE-lcJ" id="Cqe-m0-ahJ"/>
                         <outlet property="stationNowPlayingButton" destination="gH3-eh-a4b" id="x7Y-oG-tZO"/>
                         <outlet property="tableView" destination="myS-OS-TuQ" id="pqn-Nc-Wul"/>
+                        <segue destination="lq6-KD-dr6" kind="show" identifier="RadioVCToNowPlayingVC" id="BTg-cq-fK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOK-C0-S1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -612,16 +613,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yPR-aQ-exC" userLabel="AlbumArt">
-                                <rect key="frame" x="0.0" y="20" width="375" height="333.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="333.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="psj-nu-jmg" userLabel="Song Label">
-                                <rect key="frame" x="37.5" y="373.5" width="300" height="29"/>
+                                <rect key="frame" x="37.5" y="417.5" width="300" height="29"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="23"/>
                                 <color key="textColor" name="appBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuX-jM-f21" userLabel="VolumeView">
-                                <rect key="frame" x="0.0" y="520.5" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="564.5" width="375" height="60"/>
                                 <subviews>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ije-qi-8cI" userLabel="volumeSlider">
                                         <rect key="frame" x="35" y="10" width="305" height="36"/>
@@ -677,7 +678,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="219-vA-8RP" userLabel="PlayButton">
-                                <rect key="frame" x="142.5" y="422.5" width="90" height="90"/>
+                                <rect key="frame" x="142.5" y="466.5" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="219-vA-8RP" secondAttribute="height" multiplier="1:1" id="JiE-dQ-1Bw"/>
                                     <constraint firstAttribute="width" constant="90" id="bar-Xx-Rjg"/>
@@ -690,7 +691,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twa-xa-WJS" userLabel="Share Button">
-                                <rect key="frame" x="174.5" y="633" width="26" height="26"/>
+                                <rect key="frame" x="174.5" y="584" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="02I-4k-6W0"/>
                                     <constraint firstAttribute="width" constant="26" id="qgc-cz-eei"/>
@@ -914,9 +915,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="350" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57V-Cc-37T">
-                                <rect key="frame" x="122" y="323" width="106" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57V-Cc-37T">
+                                <rect key="frame" x="137.5" y="45" width="75.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -932,11 +933,19 @@
                                     <action selector="dismiss:" destination="lSj-oa-vXL" eventType="touchUpInside" id="VF5-En-MML"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-VZ-1mk">
+                                <rect key="frame" x="0.0" y="90.5" width="350" height="576.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" name="appWhite"/>
                         <constraints>
-                            <constraint firstItem="57V-Cc-37T" firstAttribute="centerY" secondItem="zKJ-W3-tOb" secondAttribute="centerY" id="ISg-We-GgU"/>
+                            <constraint firstItem="nlb-VZ-1mk" firstAttribute="leading" secondItem="hwd-Lk-KEa" secondAttribute="leading" id="QlN-Uj-Xkq"/>
+                            <constraint firstItem="hwd-Lk-KEa" firstAttribute="bottom" secondItem="nlb-VZ-1mk" secondAttribute="bottom" id="TfI-dy-6zN"/>
+                            <constraint firstItem="hwd-Lk-KEa" firstAttribute="trailing" secondItem="nlb-VZ-1mk" secondAttribute="trailing" id="V7b-Ne-R3E"/>
                             <constraint firstItem="hwd-Lk-KEa" firstAttribute="trailing" secondItem="7f7-IS-ZfU" secondAttribute="trailing" constant="15" id="bUj-4f-Hjp"/>
+                            <constraint firstItem="nlb-VZ-1mk" firstAttribute="top" secondItem="57V-Cc-37T" secondAttribute="bottom" constant="20" id="dup-BI-YEU"/>
+                            <constraint firstItem="57V-Cc-37T" firstAttribute="top" secondItem="hwd-Lk-KEa" secondAttribute="top" constant="25" id="foj-uG-apF"/>
                             <constraint firstItem="57V-Cc-37T" firstAttribute="centerX" secondItem="zKJ-W3-tOb" secondAttribute="centerX" id="gEH-8c-g3m"/>
                             <constraint firstItem="7f7-IS-ZfU" firstAttribute="top" secondItem="hwd-Lk-KEa" secondAttribute="top" constant="15" id="wQj-pM-4Th"/>
                         </constraints>
@@ -974,10 +983,10 @@
     </scenes>
     <resources>
         <image name="Article" width="25" height="25"/>
+        <image name="Bloomberg" width="390" height="388"/>
         <image name="NowPlayingBars" width="19" height="19"/>
         <image name="Radio" width="25" height="25"/>
         <image name="Video" width="348" height="260"/>
-        <image name="World" width="50" height="50"/>
         <image name="book" width="640" height="640"/>
         <image name="cancel" width="50" height="50"/>
         <image name="favorites" width="25" height="25"/>

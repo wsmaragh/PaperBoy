@@ -9,7 +9,7 @@
 import UIKit
 
 
-class AnimationFrames {
+class NowPlayingAnimation {
     
     final class func createFrames() -> [UIImage] {
         

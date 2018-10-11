@@ -31,6 +31,8 @@ class ArticleDVC: UIViewController {
     private func setupNavBar(){
         self.view.backgroundColor = .white
         navigationItem.title = "Article"
+        self.navigationController?.navigationBar.topItem?.title = ""
+
     }
     
     private func setupPageFromArticle(){

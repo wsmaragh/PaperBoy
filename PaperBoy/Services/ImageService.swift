@@ -54,34 +54,45 @@ class ImageService {
 
 extension UIImageView {
     
-    func loadImage(imageURLString: String) {
+    func loadImage(imageURLString: String?, defaultImageStr: String = "noImage") {
         
-        ImageService.shared.getImage(from: imageURLString) { (image) in
+        guard let imageStr = imageURLString else {
+            self.image = UIImage(named: defaultImageStr)
+            return
+        }
+        
+        
+        if imageStr.contains("http") {
             
-            DispatchQueue.main.async {
-
-            let spinner: UIActivityIndicatorView = {
-                let sp = UIActivityIndicatorView()
-                sp.style = .white
-                return sp
-            }()
-           
-            self.addSubview(spinner)
-            spinner.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-                ])
-            
-            spinner.startAnimating()
-            spinner.isHidden = false
-            
-                self.image = image
-                spinner.stopAnimating()
-                spinner.isHidden = true
+            ImageService.shared.getImage(from: imageStr) { (image) in
+                DispatchQueue.main.async {
+                    let spinner: UIActivityIndicatorView = {
+                        let sp = UIActivityIndicatorView()
+                        sp.style = .white
+                        return sp
+                    }()
+                    
+                    self.addSubview(spinner)
+                    spinner.translatesAutoresizingMaskIntoConstraints = false
+                    NSLayoutConstraint.activate([
+                        spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                        spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                        ])
+                    
+                    spinner.startAnimating()
+                    spinner.isHidden = false
+                    
+                    self.image = image
+                    spinner.stopAnimating()
+                    spinner.isHidden = true
+                }
             }
         }
-    }
+        
+        else if imageURLString != "" {
+            self.image =  UIImage(named: imageStr)
+        }
     
+    }
 }
 

@@ -34,20 +34,34 @@ class ArticleCell: UITableViewCell {
     
     weak var article: Article?
     
+    
+    override func awakeFromNib(){
+        super.awakeFromNib()
+        articleImageView.layer.cornerRadius = 10
+        articleImageView.layer.masksToBounds = true
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        articleImageView.image = nil
+        sourceLabel.text  = nil
+        titleLabel.text  = nil
+        authorLabel.text = nil
+        timeLabel.text  = nil
+    }
+    
     public func configureCell(article: Article) {
         self.article = article
         sourceLabel.text = article.source._rlmInferWrappedType().name
         titleLabel.text = article.title
         descriptionLabel.text = article.subtitle
         authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
-        articleImageView.image = UIImage(named: "newspaper")
-        if let imageURLStr = article.imageStr {
-            articleImageView.loadImage(imageURLString: imageURLStr)
-        }        
-        if let dateString = article.dateStr {
-            timeLabel.text = DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: dateString)
-        }
-        else { timeLabel.text = ""}
+        articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
+        timeLabel.text = (article.dateStr != nil) ? DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: article.dateStr!) : ""
     }
     
     @IBAction func savePressed(_ sender: UIButton) {

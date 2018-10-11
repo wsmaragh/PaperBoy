@@ -37,7 +37,6 @@ class VideoVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75
         tableView.backgroundColor = .white
-        tableView.bounces = true
         let nib = UINib(nibName: VideoCell.id, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: VideoCell.id)
     }
@@ -50,18 +49,24 @@ class VideoVC: UIViewController {
     }
     
     private func loadLocalVideo() {
-        guard let localVideoPath = Bundle.main.path(forResource: "newsLoading", ofType: "mp4") else {return}
+        guard let localVideoPath = Bundle.main.path(forResource: "newsLoading", ofType: "mp4") else {
+            print("Error loading local video")
+            return
+        }
         guard let urlPath = URL(string: localVideoPath) else {return}
         let videoItem = AVPlayerItem(url: urlPath)
-        avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
+        let player = AVPlayer(playerItem: videoItem)
+        avPlayerViewController?.player = player
+//        avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
         avPlayerViewController?.player?.play()
         self.videoPlaying = true
-        let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
-        videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-            self.avPlayerViewController!.player!.pause()
-            self.videoPlaying = false
-            self.videoTimer.invalidate()
-        })
+        let duration = avPlayerViewController?.player?.currentItem!.duration.seconds
+        avPlayerViewController?.player?.actionAtItemEnd
+//        videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+//            self.avPlayerViewController!.player!.pause()
+//            self.videoPlaying = false
+//            self.videoTimer.invalidate()
+//        })
         
     }
     
@@ -100,6 +105,14 @@ class VideoVC: UIViewController {
         }
     }
     
+    private func pauseVideo(){
+        self.avPlayerViewController?.player?.pause()
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let cell = tableView.cellForRow(at: indexPath) as! VideoCell
+        cell.delegate = self
+        cell.isCurrentlyPlayingVideo = false
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embeddedAVPlayer",
             let avPlayerVC = segue.destination as? AVPlayerViewController {
@@ -125,12 +138,11 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
         let video = videos[indexPath.row]
         cell.configureCell(video: video)
         cell.delegate = self
-        cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
+        cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor.appTableGray            
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        #warning("change implementation to toggle play and pause when did select press")
         self.currentVideoPlayingIndex = indexPath.row
         guard videos.count != 0 else {return}
         let video = videos[currentVideoPlayingIndex]
@@ -138,9 +150,8 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 80
     }
-    
 }
 
 

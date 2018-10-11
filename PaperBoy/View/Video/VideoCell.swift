@@ -36,6 +36,7 @@ class VideoCell: UITableViewCell {
     private var progressBarTime: Double = 0
     private var audioPlayer: AVAudioPlayer?
     private var alreadyWatchedVideo: Bool = false
+    
     var isCurrentlyPlayingVideo: Bool = false
     
     override func awakeFromNib(){
@@ -56,7 +57,7 @@ class VideoCell: UITableViewCell {
         sourceLabel.text  = nil
         titleLabel.text  = nil
         videoImageView.image = nil
-        timeLabel.text = nil
+//        timeLabel.text = nil
     }
 
     func configureCell(video: Video){
@@ -65,19 +66,7 @@ class VideoCell: UITableViewCell {
         workoutTime = Double(video.time)
         labelCountDownTime = Double(video.time)
         timeLabel.text = timeFormatted(video.time)
-        if let imageStr = video.imageStr {
-            loadImage(imageView: videoImageView, imageString: imageStr)
-        }
-    }
-    
-    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "Video"){
-        if imageString.contains("http") {
-            imageView.loadImage(imageURLString: imageString)
-        } else if imageString != "" {
-            imageView.image = UIImage(named: imageString)
-        } else {
-            imageView.image = UIImage(named: defaultImageStr)
-        }
+        videoImageView.loadImage(imageURLString: video.imageStr)
     }
     
     func startCountdown(){
@@ -135,10 +124,10 @@ class VideoCell: UITableViewCell {
         audioPlayer!.prepareToPlay()
         audioPlayer!.play()
     }
-    
+
     private func timeFormatted(_ totalSeconds: Int) -> String {
-        let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
+        let seconds: Int = totalSeconds % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
     

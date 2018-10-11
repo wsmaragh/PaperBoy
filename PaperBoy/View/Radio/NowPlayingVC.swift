@@ -45,6 +45,7 @@ class NowPlayingVC: UIViewController {
         addMyObservers()
         checkForStationChange()
         createNowPlayingAnimationBarItem()
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
     private func setupUI(){
@@ -95,7 +96,7 @@ class NowPlayingVC: UIViewController {
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
         nowPlayingImageView.autoresizingMask = UIView.AutoresizingMask()
         nowPlayingImageView.contentMode = UIView.ContentMode.center
-        nowPlayingImageView.animationImages = AnimationFrames.createFrames()
+        nowPlayingImageView.animationImages = NowPlayingAnimation.createFrames()
         nowPlayingImageView.animationDuration = 0.8
         
         let barButton = UIButton(type: UIButton.ButtonType.custom)
