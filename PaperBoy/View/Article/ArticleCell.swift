@@ -34,7 +34,6 @@ class ArticleCell: UITableViewCell {
     
     weak var article: Article?
     
-    
     override func awakeFromNib(){
         super.awakeFromNib()
         articleImageView.layer.cornerRadius = 10
@@ -67,6 +66,7 @@ class ArticleCell: UITableViewCell {
     @IBAction func savePressed(_ sender: UIButton) {
         if let article = self.article {
             delegate?.savePressed(article: article)
+            
         }
     }
     

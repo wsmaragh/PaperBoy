@@ -19,6 +19,8 @@ class NowPlayingVC: UIViewController {
     @IBOutlet weak var volumeView: UIView!
     @IBOutlet weak var volumeSlider: UISlider!
     
+    @IBOutlet weak var radioPlayingButton: UIBarButtonItem!
+    
     @objc var mpVolumeSlider = UISlider()
     
     static let id: String = "NowPlayingVC"
@@ -27,15 +29,15 @@ class NowPlayingVC: UIViewController {
     
     @objc var currentStation: RadioStation! {
         didSet {
+            print();print();print("current station set in NowPlayingVC"); print();print()
             playRadioStation()
         }
     }
     @objc var newStation: Bool = true
     @objc var justBecameActive: Bool = false
     
-    var isPlaying: Bool = false
-
-    @objc var nowPlayingImageView: UIImageView!
+    fileprivate var isPlaying: Bool = false
+    fileprivate var nowPlayingBars: UIImageView!
     
     deinit {
         removeMyObservers()
@@ -45,15 +47,32 @@ class NowPlayingVC: UIViewController {
         super.viewDidLoad()
         setupNavBar()
         setupRadioPlayer()
-        updateUI()
+        setupVolumeSlider()
         addMyObservers()
+        updateUI()
     }
     
-    private func updateUI(){
-        self.title = currentStation.stationName
-        self.stationLabel.text = currentStation.stationName
-        self.stationImageView.loadImage(imageURLString: currentStation.stationImageString)
-        setupVolumeSlider()
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    private func setupNavBar() {
+        setupNowPlayingBarButtonAnimation()
+    }
+    
+    private func setupNowPlayingBarButtonAnimation(){
+        nowPlayingBars = UIImageView(image: UIImage(named: "NowPlayingBars"))
+        nowPlayingBars.autoresizingMask = UIView.AutoresizingMask()
+        nowPlayingBars.contentMode = UIView.ContentMode.center
+        nowPlayingBars.animationImages = Animations.addNowPlayingBarAnimationFrames()
+        nowPlayingBars.animationDuration = 1.0
+        let nowPlayBarButtonItem = UIBarButtonItem(customView: nowPlayingBars)
+        self.navigationItem.rightBarButtonItem = nowPlayBarButtonItem
+    }
+    
+    private func setupRadioPlayer(){
+        radioPlayer = MediaPlayer.radio
+        radioPlayer.rate = 1
     }
     
     @objc private func setupVolumeSlider() {
@@ -71,11 +90,14 @@ class NowPlayingVC: UIViewController {
         volumeSlider?.setThumbImage(sliderThumbImage, for: UIControl.State())
     }
     
-    @objc private func setupRadioPlayer(){
-        radioPlayer = MediaPlayer.radio
-        radioPlayer.rate = 1
+    private func updateUI(){
+        if newStation {
+            self.title = currentStation.stationName
+            self.stationLabel.text = currentStation.stationName
+            self.stationImageView.loadImage(imageURLString: currentStation.stationImageString)
+        }
     }
-    
+
     
     @objc private func playRadioStation() {
         guard let streamURL = URL(string: currentStation.stationStreamURL) else {return}
@@ -83,28 +105,12 @@ class NowPlayingVC: UIViewController {
         DispatchQueue.main.async {
             self.radioPlayer.replaceCurrentItem(with: station)
             self.radioPlayer.play()
-            self.nowPlayingImageView.startAnimating()
+            self.nowPlayingBars.startAnimating()
         }
         currentStation.isPlaying = true
     }
     
-    @objc private func setupNavBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
 
-        nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
-        nowPlayingImageView.autoresizingMask = UIView.AutoresizingMask()
-        nowPlayingImageView.contentMode = UIView.ContentMode.center
-        nowPlayingImageView.animationImages = NowPlayingAnimation.createFrames()
-        nowPlayingImageView.animationDuration = 0.8
-        
-        let barButton = UIButton(type: UIButton.ButtonType.custom)
-        barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40);
-        barButton.addSubview(nowPlayingImageView)
-        nowPlayingImageView.center = barButton.center
-        
-        let barItem = UIBarButtonItem(customView: barButton)
-        self.navigationItem.rightBarButtonItem = barItem
-    }
 
     private func addMyObservers(){
         NotificationCenter.default.addObserver(
@@ -133,12 +139,13 @@ class NowPlayingVC: UIViewController {
         if currentStation.isPlaying {
             playPauseButton.setImage(UIImage(named: "playButton"), for: .normal)
             radioPlayer.pause()
-            nowPlayingImageView.stopAnimating()
+            
+            nowPlayingBars.stopAnimating()
             currentStation.isPlaying = false
         } else {
             radioPlayer.play()
             playPauseButton.setImage(UIImage(named: "pauseButton"), for: .normal)
-            nowPlayingImageView.startAnimating()
+            nowPlayingBars.startAnimating()
             currentStation.isPlaying = true
         }
     }
@@ -156,15 +163,14 @@ class NowPlayingVC: UIViewController {
     }
 
 
-    
     // MARK: - AVAudio Sesssion Interrupted (eg. Phone Call)
     @objc func sessionInterrupted(_ notification: Notification) {
         if let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber{
             if let type = AVAudioSession.InterruptionType(rawValue: typeValue.uintValue){
                 if type == .began {
-                    print("interruption: began")
+
                 } else{
-                    print("interruption: ended")
+
                 }
             }
         }
@@ -188,12 +194,10 @@ class NowPlayingVC: UIViewController {
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playBtnPressed))
     }
     
-    
     override func remoteControlReceived(with receivedEvent: UIEvent?) {
         super.remoteControlReceived(with: receivedEvent)
         if receivedEvent!.type == UIEvent.EventType.remoteControl {
             playBtnPressed()
         }
     }
-
 }

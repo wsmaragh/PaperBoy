@@ -478,7 +478,7 @@
             </objects>
             <point key="canvasLocation" x="4358" y="1633"/>
         </scene>
-        <!--Radio Stations-->
+        <!--Streaming Radio Stations-->
         <scene sceneID="fBM-Bi-GTJ">
             <objects>
                 <viewController storyboardIdentifier="RadioVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8CY-u0-yhA" customClass="RadioVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
@@ -541,6 +541,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArR-3d-3ul">
                                 <rect key="frame" x="0.0" y="573" width="375" height="45"/>
                                 <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydP-sA-hJq">
+                                        <rect key="frame" x="350" y="10" width="25" height="25"/>
+                                        <state key="normal" image="right"/>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NowPlayingBars" translatesAutoresizingMaskIntoConstraints="NO" id="HAn-yE-lcJ">
                                         <rect key="frame" x="12" y="9" width="27" height="27"/>
                                         <constraints>
@@ -558,7 +562,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="nowPlayingPressed:" destination="8CY-u0-yhA" eventType="touchUpInside" id="vDu-jL-2Hb"/>
+                                            <action selector="nowPlayingViewPressed:" destination="8CY-u0-yhA" eventType="touchUpInside" id="vDu-jL-2Hb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -567,10 +571,12 @@
                                     <constraint firstItem="HAn-yE-lcJ" firstAttribute="centerY" secondItem="ArR-3d-3ul" secondAttribute="centerY" id="0Ex-G7-Aqn"/>
                                     <constraint firstItem="gH3-eh-a4b" firstAttribute="leading" secondItem="ArR-3d-3ul" secondAttribute="leading" id="5v9-bS-WN9"/>
                                     <constraint firstItem="HAn-yE-lcJ" firstAttribute="height" secondItem="ArR-3d-3ul" secondAttribute="height" multiplier="0.6" id="8TV-EY-nDp"/>
+                                    <constraint firstItem="ydP-sA-hJq" firstAttribute="centerY" secondItem="ArR-3d-3ul" secondAttribute="centerY" id="K0f-ZA-HuS"/>
                                     <constraint firstItem="HAn-yE-lcJ" firstAttribute="leading" secondItem="ArR-3d-3ul" secondAttribute="leading" constant="12" id="aAz-tJ-ytb"/>
                                     <constraint firstAttribute="trailing" secondItem="gH3-eh-a4b" secondAttribute="trailing" id="gLm-It-oHh"/>
                                     <constraint firstAttribute="bottom" secondItem="gH3-eh-a4b" secondAttribute="bottom" id="jZC-GL-POb"/>
                                     <constraint firstAttribute="height" constant="45" id="kFb-Y1-z0W"/>
+                                    <constraint firstAttribute="trailing" secondItem="ydP-sA-hJq" secondAttribute="trailing" id="uH1-gw-DNW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -586,7 +592,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KkL-h4-qV6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Radio Stations" id="vq9-P8-bzl">
+                    <navigationItem key="navigationItem" title="Streaming Radio Stations" id="vq9-P8-bzl">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="x4Q-h8-1fP">
                             <connections>
                                 <action selector="sideMenuPressed" destination="8CY-u0-yhA" id="32Z-qO-UC7"/>
@@ -595,6 +601,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nowPlayingAnimationImageView" destination="HAn-yE-lcJ" id="Cqe-m0-ahJ"/>
+                        <outlet property="rightButton" destination="ydP-sA-hJq" id="hx6-QB-pb0"/>
                         <outlet property="stationNowPlayingButton" destination="gH3-eh-a4b" id="x7Y-oG-tZO"/>
                         <outlet property="tableView" destination="myS-OS-TuQ" id="pqn-Nc-Wul"/>
                         <segue destination="lq6-KD-dr6" kind="show" identifier="RadioVCToNowPlayingVC" id="BTg-cq-fK8"/>
@@ -604,7 +611,7 @@
             </objects>
             <point key="canvasLocation" x="3588" y="2526"/>
         </scene>
-        <!--Now PlayingVC-->
+        <!--Station-->
         <scene sceneID="oIT-z0-NJq">
             <objects>
                 <viewController storyboardIdentifier="NowPlayingVC" id="lq6-KD-dr6" customClass="NowPlayingVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
@@ -616,13 +623,13 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="333.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="psj-nu-jmg" userLabel="Song Label">
-                                <rect key="frame" x="37.5" y="417.5" width="300" height="29"/>
+                                <rect key="frame" x="37.5" y="405.5" width="300" height="29"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="23"/>
                                 <color key="textColor" name="appBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuX-jM-f21" userLabel="VolumeView">
-                                <rect key="frame" x="0.0" y="564.5" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="541.5" width="375" height="60"/>
                                 <subviews>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ije-qi-8cI" userLabel="volumeSlider">
                                         <rect key="frame" x="35" y="10" width="305" height="36"/>
@@ -678,7 +685,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="219-vA-8RP" userLabel="PlayButton">
-                                <rect key="frame" x="142.5" y="466.5" width="90" height="90"/>
+                                <rect key="frame" x="142.5" y="446.5" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="219-vA-8RP" secondAttribute="height" multiplier="1:1" id="JiE-dQ-1Bw"/>
                                     <constraint firstAttribute="width" constant="90" id="bar-Xx-Rjg"/>
@@ -709,9 +716,9 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="C5S-Nr-t5k" firstAttribute="bottom" secondItem="twa-xa-WJS" secondAttribute="bottom" constant="8" id="1y9-Kv-WLP"/>
-                            <constraint firstItem="219-vA-8RP" firstAttribute="top" secondItem="psj-nu-jmg" secondAttribute="bottom" constant="20" id="7BS-Sd-O2v"/>
+                            <constraint firstItem="219-vA-8RP" firstAttribute="top" secondItem="psj-nu-jmg" secondAttribute="bottom" constant="12" id="7BS-Sd-O2v"/>
                             <constraint firstItem="psj-nu-jmg" firstAttribute="centerX" secondItem="ao0-KK-4YP" secondAttribute="centerX" id="EJf-89-oLI"/>
-                            <constraint firstItem="psj-nu-jmg" firstAttribute="top" secondItem="yPR-aQ-exC" secondAttribute="bottom" constant="20" id="GQ9-Vv-TAw"/>
+                            <constraint firstItem="psj-nu-jmg" firstAttribute="top" secondItem="yPR-aQ-exC" secondAttribute="bottom" constant="8" id="GQ9-Vv-TAw"/>
                             <constraint firstItem="yPR-aQ-exC" firstAttribute="height" secondItem="ao0-KK-4YP" secondAttribute="height" multiplier="0.5" id="HoN-xE-kro"/>
                             <constraint firstItem="cuX-jM-f21" firstAttribute="leading" secondItem="C5S-Nr-t5k" secondAttribute="leading" id="Nff-wR-9PC"/>
                             <constraint firstItem="yPR-aQ-exC" firstAttribute="top" secondItem="C5S-Nr-t5k" secondAttribute="top" id="RJV-ON-IvE"/>
@@ -719,15 +726,19 @@
                             <constraint firstItem="cuX-jM-f21" firstAttribute="centerX" secondItem="ao0-KK-4YP" secondAttribute="centerX" id="apu-v7-Afx"/>
                             <constraint firstItem="cuX-jM-f21" firstAttribute="trailing" secondItem="C5S-Nr-t5k" secondAttribute="trailing" id="boa-UN-X3t"/>
                             <constraint firstItem="psj-nu-jmg" firstAttribute="width" secondItem="ao0-KK-4YP" secondAttribute="width" multiplier="0.8" id="g0t-eM-NB7"/>
-                            <constraint firstItem="cuX-jM-f21" firstAttribute="top" secondItem="219-vA-8RP" secondAttribute="bottom" constant="8" id="mU2-mX-BB0"/>
+                            <constraint firstItem="cuX-jM-f21" firstAttribute="top" secondItem="219-vA-8RP" secondAttribute="bottom" constant="5" id="mU2-mX-BB0"/>
                             <constraint firstAttribute="trailing" secondItem="yPR-aQ-exC" secondAttribute="trailing" id="pFo-Ay-JY7"/>
                             <constraint firstItem="twa-xa-WJS" firstAttribute="centerX" secondItem="ao0-KK-4YP" secondAttribute="centerX" id="qkm-45-aCQ"/>
                             <constraint firstItem="219-vA-8RP" firstAttribute="centerX" secondItem="ao0-KK-4YP" secondAttribute="centerX" id="sYb-4A-H3w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C5S-Nr-t5k"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Station" id="SEq-pC-aX1">
+                        <barButtonItem key="rightBarButtonItem" image="NowPlayingBars" id="RPn-VA-ada"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="playPauseButton" destination="219-vA-8RP" id="Dss-J2-FvW"/>
+                        <outlet property="radioPlayingButton" destination="RPn-VA-ada" id="EVb-wZ-ihD"/>
                         <outlet property="stationImageView" destination="yPR-aQ-exC" id="oBk-KF-o0i"/>
                         <outlet property="stationLabel" destination="psj-nu-jmg" id="sbp-Ul-kar"/>
                         <outlet property="volumeSlider" destination="gcj-fo-fIa" id="C6O-KT-5YV"/>
@@ -995,6 +1006,7 @@
         <image name="menu" width="25" height="25"/>
         <image name="newProfile" width="552" height="552"/>
         <image name="pauseButton" width="100" height="100"/>
+        <image name="right" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
         <image name="searchMan" width="317" height="320"/>
         <image name="shareWhite" width="25" height="25"/>

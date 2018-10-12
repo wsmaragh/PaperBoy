@@ -39,7 +39,6 @@
 		237E52F52168F0C5004DB8B1 /* RadioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52F42168F0C5004DB8B1 /* RadioVC.swift */; };
 		237E52F72168F0DC004DB8B1 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52F62168F0DC004DB8B1 /* VideoVC.swift */; };
 		237E52FB2168F54B004DB8B1 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52FA2168F54B004DB8B1 /* MenuCell.swift */; };
-		237E530621690402004DB8B1 /* NowPlayingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530521690402004DB8B1 /* NowPlayingAnimation.swift */; };
 		237E530821690435004DB8B1 /* RadioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530721690435004DB8B1 /* RadioDataService.swift */; };
 		237E530E21690501004DB8B1 /* RadioStations.json in Resources */ = {isa = PBXBuildFile; fileRef = 237E530921690501004DB8B1 /* RadioStations.json */; };
 		237E530F21690501004DB8B1 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530A21690501004DB8B1 /* MediaPlayer.swift */; };
@@ -54,6 +53,7 @@
 		23B08394215D820B001A788F /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08393215D820B001A788F /* WebVC.swift */; };
 		23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08395215D85FA001A788F /* FaveArticlesVC.swift */; };
 		23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C1BDB9216AF73C009B194C /* SettingsVC.swift */; };
+		23D3D3052170DF2C005D155F /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D3D3042170DF2C005D155F /* Animations.swift */; };
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23DF437C216FBE8C00135ED5 /* newsLoading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 23A5EB86216E557D004CDF6F /* newsLoading.mp4 */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
@@ -122,7 +122,6 @@
 		237E52F42168F0C5004DB8B1 /* RadioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioVC.swift; sourceTree = "<group>"; };
 		237E52F62168F0DC004DB8B1 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		237E52FA2168F54B004DB8B1 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
-		237E530521690402004DB8B1 /* NowPlayingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingAnimation.swift; sourceTree = "<group>"; };
 		237E530721690435004DB8B1 /* RadioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioDataService.swift; sourceTree = "<group>"; };
 		237E530921690501004DB8B1 /* RadioStations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RadioStations.json; sourceTree = "<group>"; };
 		237E530A21690501004DB8B1 /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		23B08393215D820B001A788F /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		23B08395215D85FA001A788F /* FaveArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveArticlesVC.swift; sourceTree = "<group>"; };
 		23C1BDB9216AF73C009B194C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		23D3D3042170DF2C005D155F /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -364,9 +364,9 @@
 				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
 				237E0932215BED7D0039FE28 /* APIKeys.swift */,
 				237E53182169079A004DB8B1 /* Settings.swift */,
-				237E530521690402004DB8B1 /* NowPlayingAnimation.swift */,
 				23802F0E216DF484005F36E5 /* Enums.swift */,
 				237E530921690501004DB8B1 /* RadioStations.json */,
+				23D3D3042170DF2C005D155F /* Animations.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -657,7 +657,6 @@
 				237E52F32168EEA4004DB8B1 /* ContainerVC.swift in Sources */,
 				2398D3F621627A380098F96F /* VideoCell.swift in Sources */,
 				237E0935215C00A40039FE28 /* UpdatedCell.swift in Sources */,
-				237E530621690402004DB8B1 /* NowPlayingAnimation.swift in Sources */,
 				237E094A215C400E0039FE28 /* TopicCell.swift in Sources */,
 				23E06F1D2144236100F89F9D /* ArticleVC.swift in Sources */,
 				23B08394215D820B001A788F /* WebVC.swift in Sources */,
@@ -675,6 +674,7 @@
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 				231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */,
 				23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */,
+				23D3D3052170DF2C005D155F /* Animations.swift in Sources */,
 				2398D3F421626EC20098F96F /* Video.swift in Sources */,
 				23802F0F216DF484005F36E5 /* Enums.swift in Sources */,
 				23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */,
