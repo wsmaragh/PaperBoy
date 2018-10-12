@@ -30,12 +30,19 @@ class RadioVC: UIViewController {
     var searchedStations = [RadioStation]()
     
     var currentStation: RadioStation?
-    var newStation: Bool = false
-    var savedVC: NowPlayingVC?
+    
+    #warning("consider new implementation. weak deallocates")
+    var currentStationVC: NowPlayingVC?
     
     private var refreshControl: UIRefreshControl!
     
-    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var stationViewNextButton: UIButton!
+    @IBOutlet weak var stationViewPlayButton: UIButton!
+    
+    @IBAction func playPauseButtonPressed(_ sender: UIButton) {
+        currentStationVC?.playPause()
+        configurePlayPause()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,17 +130,31 @@ class RadioVC: UIViewController {
     }
     
     private func configureNowPlayingView(){
-        if currentStation != nil && currentStation!.isPlaying {
+        if currentStation != nil {
+            configurePlayPause()
+            stationViewPlayButton.isHidden = false
             let title = currentStation!.stationName
             stationNowPlayingButton.setTitle(title, for: UIControl.State())
             stationNowPlayingButton.isEnabled = true
-            nowPlayingAnimationImageView.startAnimating()
-            rightButton.isHidden = false
+            stationViewPlayButton.isHidden = false
+            stationViewNextButton.isHidden = false
+
         } else {
             nowPlayingAnimationImageView.image = UIImage(named: "NowPlayingBars")
-            stationNowPlayingButton.isEnabled = false
-            rightButton.isHidden = true
             nowPlayingAnimationImageView.stopAnimating()
+            stationNowPlayingButton.isEnabled = false
+            stationViewPlayButton.isHidden = true
+            stationViewNextButton.isHidden = true
+        }
+    }
+    
+    private func configurePlayPause(){
+        if currentStation!.isPlaying {
+            nowPlayingAnimationImageView.startAnimating()
+            stationViewPlayButton.setImage(UIImage(named: "circlePauseButton"), for: .normal)
+        } else {
+            nowPlayingAnimationImageView.stopAnimating()
+            stationViewPlayButton.setImage(UIImage(named: "circlePlayButton"), for: .normal)
         }
     }
     
@@ -142,8 +163,7 @@ class RadioVC: UIViewController {
     }
     
     @objc func showNowPlayingStationVC() {
-        newStation = false
-        if let nowPlayingVC = savedVC {
+        if let nowPlayingVC = currentStationVC {
             navigationController?.pushViewController(nowPlayingVC, animated: true)
         }
     }
@@ -190,7 +210,7 @@ class RadioVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == StoryboardIDs.RadioVCToNowPlayingVC.rawValue {
             guard let nowPlayingVC = segue.destination as? NowPlayingVC else {return}
-            savedVC = nowPlayingVC
+            currentStationVC = nowPlayingVC
             nowPlayingVC.currentStation = self.currentStation
             nowPlayingVC.newStation = true
         }
@@ -225,11 +245,9 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStation = searchController.isActive ? searchedStations[indexPath.row]: stations[indexPath.row]
         if currentStation == selectedStation {
-            newStation = false
-            navigationController?.pushViewController(savedVC!, animated: true)
+            showNowPlayingStationVC()
         } else {
             currentStation = selectedStation
-            newStation = true
             performSegue(withIdentifier: StoryboardIDs.RadioVCToNowPlayingVC.rawValue, sender: self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -250,7 +268,5 @@ extension RadioVC: UISearchResultsUpdating {
         searchedStations = array as! [RadioStation]
         self.tableView.reloadData()
     }
-    
-    
     
 }

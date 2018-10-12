@@ -136,6 +136,10 @@ class NowPlayingVC: UIViewController {
     
     
     @IBAction func playBtnPressed() {
+        playPause()
+    }
+    
+    func playPause(){
         if currentStation.isPlaying {
             playPauseButton.setImage(UIImage(named: "playButton"), for: .normal)
             radioPlayer.pause()
@@ -150,7 +154,6 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-
     @IBAction func volumeSliderChanged(_ sender: UISlider) {
         mpVolumeSlider.value = sender.value
     }

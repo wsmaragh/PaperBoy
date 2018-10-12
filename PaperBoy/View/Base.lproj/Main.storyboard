@@ -565,6 +565,18 @@
                                             <action selector="nowPlayingViewPressed:" destination="8CY-u0-yhA" eventType="touchUpInside" id="vDu-jL-2Hb"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppp-gp-L4N">
+                                        <rect key="frame" x="51" y="7.5" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="GHc-bd-54p"/>
+                                            <constraint firstAttribute="width" secondItem="ppp-gp-L4N" secondAttribute="height" multiplier="1:1" id="hqJ-Ie-9bi"/>
+                                            <constraint firstAttribute="height" constant="30" id="ib8-ql-Nxv"/>
+                                        </constraints>
+                                        <state key="normal" image="circlePlayButton"/>
+                                        <connections>
+                                            <action selector="playPauseButtonPressed:" destination="8CY-u0-yhA" eventType="touchUpInside" id="lyl-zz-92s"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -572,11 +584,13 @@
                                     <constraint firstItem="gH3-eh-a4b" firstAttribute="leading" secondItem="ArR-3d-3ul" secondAttribute="leading" id="5v9-bS-WN9"/>
                                     <constraint firstItem="HAn-yE-lcJ" firstAttribute="height" secondItem="ArR-3d-3ul" secondAttribute="height" multiplier="0.6" id="8TV-EY-nDp"/>
                                     <constraint firstItem="ydP-sA-hJq" firstAttribute="centerY" secondItem="ArR-3d-3ul" secondAttribute="centerY" id="K0f-ZA-HuS"/>
+                                    <constraint firstItem="ppp-gp-L4N" firstAttribute="leading" secondItem="HAn-yE-lcJ" secondAttribute="trailing" constant="12" id="Nku-6r-A6a"/>
                                     <constraint firstItem="HAn-yE-lcJ" firstAttribute="leading" secondItem="ArR-3d-3ul" secondAttribute="leading" constant="12" id="aAz-tJ-ytb"/>
                                     <constraint firstAttribute="trailing" secondItem="gH3-eh-a4b" secondAttribute="trailing" id="gLm-It-oHh"/>
                                     <constraint firstAttribute="bottom" secondItem="gH3-eh-a4b" secondAttribute="bottom" id="jZC-GL-POb"/>
                                     <constraint firstAttribute="height" constant="45" id="kFb-Y1-z0W"/>
                                     <constraint firstAttribute="trailing" secondItem="ydP-sA-hJq" secondAttribute="trailing" id="uH1-gw-DNW"/>
+                                    <constraint firstItem="ppp-gp-L4N" firstAttribute="centerY" secondItem="ArR-3d-3ul" secondAttribute="centerY" id="wFh-p5-uf6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -601,15 +615,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nowPlayingAnimationImageView" destination="HAn-yE-lcJ" id="Cqe-m0-ahJ"/>
-                        <outlet property="rightButton" destination="ydP-sA-hJq" id="hx6-QB-pb0"/>
                         <outlet property="stationNowPlayingButton" destination="gH3-eh-a4b" id="x7Y-oG-tZO"/>
+                        <outlet property="stationViewNextButton" destination="ydP-sA-hJq" id="hx6-QB-pb0"/>
+                        <outlet property="stationViewPlayButton" destination="ppp-gp-L4N" id="62e-AO-AlX"/>
                         <outlet property="tableView" destination="myS-OS-TuQ" id="pqn-Nc-Wul"/>
                         <segue destination="lq6-KD-dr6" kind="show" identifier="RadioVCToNowPlayingVC" id="BTg-cq-fK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOK-C0-S1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3588" y="2526"/>
+            <point key="canvasLocation" x="3588" y="2525.4872563718145"/>
         </scene>
         <!--Station-->
         <scene sceneID="oIT-z0-NJq">
@@ -1000,6 +1015,7 @@
         <image name="Video" width="348" height="260"/>
         <image name="book" width="640" height="640"/>
         <image name="cancel" width="50" height="50"/>
+        <image name="circlePlayButton" width="75" height="75"/>
         <image name="favorites" width="25" height="25"/>
         <image name="gear" width="25" height="25"/>
         <image name="homer" width="531" height="323"/>

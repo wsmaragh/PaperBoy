@@ -11,8 +11,6 @@ import AVKit
 import AVFoundation
 
 
-
-
 class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +26,6 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         addRightSwipeGestureToSideMenu()
-        loadLocalVideo()
     }
     
     private func setupTableView(){
@@ -41,33 +38,10 @@ class VideoVC: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: VideoCell.id)
     }
     
-    
     private func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
-    }
-    
-    private func loadLocalVideo() {
-        guard let localVideoPath = Bundle.main.path(forResource: "newsLoading", ofType: "mp4") else {
-            print("Error loading local video")
-            return
-        }
-        guard let urlPath = URL(string: localVideoPath) else {return}
-        let videoItem = AVPlayerItem(url: urlPath)
-        let player = AVPlayer(playerItem: videoItem)
-        avPlayerViewController?.player = player
-//        avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
-        avPlayerViewController?.player?.play()
-        self.videoPlaying = true
-        let duration = avPlayerViewController?.player?.currentItem!.duration.seconds
-        avPlayerViewController?.player?.actionAtItemEnd
-//        videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-//            self.avPlayerViewController!.player!.pause()
-//            self.videoPlaying = false
-//            self.videoTimer.invalidate()
-//        })
-        
     }
     
     @IBAction func sideMenuPressed() {
@@ -163,7 +137,6 @@ extension VideoVC: VideoCellDelegate {
     func cancelPlayingVideoInCell() {
         //
     }
-    
     
     func didFinishPlayingVideoInCell() {
         self.avPlayerViewController?.player?.pause()
