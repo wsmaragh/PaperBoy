@@ -32,9 +32,9 @@ class StationCell: UITableViewCell {
     }
     
     @objc func configureStationCell(_ station: RadioStation) {
-        stationNameLabel.text = station.stationName
-        stationDescLabel.text = station.stationDesc
-        stationImageView.loadImage(imageURLString: station.stationImageString)
+        stationNameLabel.text = station.name
+        stationDescLabel.text = station.desc
+        stationImageView.loadImage(imageURLString: station.imageStr)
     }
 
 }

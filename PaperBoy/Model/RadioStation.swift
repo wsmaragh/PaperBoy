@@ -3,44 +3,42 @@ import UIKit
 import SwiftyJSON
 
 
-class RadioStation: NSObject {
-    
-    @objc var stationName: String
-    @objc var stationStreamURL: String
-    @objc var stationImageString: String
-    @objc var stationDesc: String
-    @objc var stationLongDesc: String
-    var isPlaying: Bool = false
+class RadioStationJSON: Codable {
+    var stations: [RadioStation]
+}
 
+class RadioStation: NSObject, Codable {
     
-    @objc init(name: String, streamURL: String, imageURL: String, desc: String, longDesc: String) {
-        self.stationName      = name
-        self.stationStreamURL = streamURL
-        self.stationImageString  = imageURL
-        self.stationDesc      = desc
-        self.stationLongDesc  = longDesc
+    @objc var name: String
+    @objc var streamStr: String
+    @objc var imageStr: String
+    @objc var desc: String
+    @objc var longDesc: String
+    var isPlaying: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case name, streamStr, imageStr, desc, longDesc
+    }
+    
+    @objc init(name: String, streamStr: String, imageStr: String, desc: String, longDesc: String) {
+        self.name      = name
+        self.streamStr = streamStr
+        self.imageStr  = imageStr
+        self.desc      = desc
+        self.longDesc  = longDesc
     }
     
     @objc init(dict: [String : Any]) {
-        self.stationName = dict["name"] as? String ?? ""
-        self.stationStreamURL = dict["streamURL"] as? String ?? ""
-        self.stationImageString = dict["imageURL"] as? String ?? ""
-        self.stationDesc = dict["desc"] as? String ?? ""
-        self.stationLongDesc = dict["longDesc"] as? String ?? ""
+        self.name = dict["name"] as? String ?? ""
+        self.streamStr = dict["streamStr"] as? String ?? ""
+        self.imageStr = dict["imageStr"] as? String ?? ""
+        self.desc = dict["desc"] as? String ?? ""
+        self.longDesc = dict["longDesc"] as? String ?? ""
     }
     
-    @objc convenience init(name: String, streamURL: String, imageURL: String, desc: String) {
-        self.init(name: name, streamURL: streamURL, imageURL: imageURL, desc: desc, longDesc: "")
+    @objc convenience init(name: String, streamStr: String, imageStr: String, desc: String) {
+        self.init(name: name, streamStr: streamStr, imageStr: imageStr, desc: desc, longDesc: "")
     }
     
-    final class func parseStation(_ stationJSON: JSON) -> RadioStation {
-        let name      = stationJSON["name"].string ?? ""
-        let streamURL = stationJSON["streamURL"].string ?? ""
-        let imageURL  = stationJSON["imageURL"].string ?? ""
-        let desc      = stationJSON["desc"].string ?? ""
-        let longDesc  = stationJSON["longDesc"].string ?? ""
-        let station = RadioStation(name: name, streamURL: streamURL, imageURL: imageURL, desc: desc, longDesc: longDesc)
-        return station
-    }
     
 }

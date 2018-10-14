@@ -92,15 +92,15 @@ class NowPlayingVC: UIViewController {
     
     private func updateUI(){
         if newStation {
-            self.title = currentStation.stationName
-            self.stationLabel.text = currentStation.stationName
-            self.stationImageView.loadImage(imageURLString: currentStation.stationImageString)
+            self.title = currentStation.name
+            self.stationLabel.text = currentStation.name
+            self.stationImageView.loadImage(imageURLString: currentStation.imageStr)
         }
     }
 
     
     @objc private func playRadioStation() {
-        guard let streamURL = URL(string: currentStation.stationStreamURL) else {return}
+        guard let streamURL = URL(string: currentStation.streamStr) else {return}
         let station = StationAVPlayerItem(url: streamURL)
         DispatchQueue.main.async {
             self.radioPlayer.replaceCurrentItem(with: station)
@@ -160,8 +160,8 @@ class NowPlayingVC: UIViewController {
     
     
     @IBAction func shareBtnPressed(_ sender: UIButton) {
-        let radioStationToShare = "I'm listening to \(currentStation.stationName) via PaperBoy"
-        let activityViewController = UIActivityViewController(activityItems: [radioStationToShare, currentStation.stationImageString], applicationActivities: nil)
+        let radioStationToShare = "I'm listening to \(currentStation.name) via PaperBoy"
+        let activityViewController = UIActivityViewController(activityItems: [radioStationToShare, currentStation.imageStr], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
 
@@ -179,13 +179,12 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-
     // MARK: - MPNowPlayingInfoCenter (Lock screen)
     @objc func updateLockScreen() {
-        let albumArtwork = MPMediaItemArtwork(image: UIImage(named: currentStation.stationImageString)!)
-        
+        let albumArtwork = MPMediaItemArtwork(image: UIImage(named: currentStation.imageStr)!)
+
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyArtist: currentStation.stationName,
+            MPMediaItemPropertyArtist: currentStation.name,
             MPMediaItemPropertyArtwork: albumArtwork
         ]
 //        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
@@ -196,7 +195,7 @@ class NowPlayingVC: UIViewController {
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playBtnPressed))
     }
-    
+
     override func remoteControlReceived(with receivedEvent: UIEvent?) {
         super.remoteControlReceived(with: receivedEvent)
         if receivedEvent!.type == UIEvent.EventType.remoteControl {

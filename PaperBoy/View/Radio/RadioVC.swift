@@ -25,10 +25,13 @@ class RadioVC: UIViewController {
     
     fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
     
+    
+//    private var viewModel: RadioViewModel()
+    
     var stations = [RadioStation]()
-    
+
     var searchedStations = [RadioStation]()
-    
+
     var currentStation: RadioStation?
     
     #warning("consider new implementation. weak deallocates")
@@ -43,6 +46,12 @@ class RadioVC: UIViewController {
         currentStationVC?.playPause()
         configurePlayPause()
     }
+    
+    
+    deinit {
+        //
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,7 +142,7 @@ class RadioVC: UIViewController {
         if currentStation != nil {
             configurePlayPause()
             stationViewPlayButton.isHidden = false
-            let title = currentStation!.stationName
+            let title = currentStation!.name
             stationNowPlayingButton.setTitle(title, for: UIControl.State())
             stationNowPlayingButton.isEnabled = true
             stationViewPlayButton.isHidden = false
@@ -171,30 +180,12 @@ class RadioVC: UIViewController {
 
     func loadStationsFromJSON() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
-        RadioDataService.getStationData({ (data) in
-            var json: JSON!
-        
-            do {
-                json = try JSON(data: data!)
-            } catch {
-                print("Error converting data to JSON")
-            }
-            
-            if let stationJSONArray = json["stations"].array {
-                for stationJSON in stationJSONArray {
-                    let station = RadioStation.parseStation(stationJSON)
-                    self.stations.append(station)
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.view.setNeedsDisplay()
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            }
+        RadioDataService.getRadioStationsFromFile(completion: { (onlineStations) in
+            self.stations = onlineStations
+            self.tableView.reloadData()
+            self.view.setNeedsLayout()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         })
-        
     }
     
     func addRightSwipeGestureToSideMenu() {

@@ -3,95 +3,94 @@
     [
         {
             "name": "Bloomberg Radio",
-            "streamURL": "http://17593.live.streamtheworld.com/WBBRAMAAC.aac",
-            "imageURL": "http://static.radio.net/images/broadcasts/e8/aa/21853/1/c175.png",
+            "streamStr": "http://17593.live.streamtheworld.com/WBBRAMAAC.aac",
+            "imageStr": "http://static.radio.net/images/broadcasts/e8/aa/21853/1/c175.png",
             "desc": "Unparalleled global news and information resources",
             "longDesc": "Bloomberg Radio is the world's only global 24-hour business radio station. Powered by more than 2700 journalists and analysts in more than 120 countries, Bloomberg Radio's resources are unparalleled. Because the financial markets never sleep, Bloomberg follows them around the globe. "
         },
         {
             "name": "CBS Radio News",
-            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/CBSNEWS.mp3",
-            "imageURL": "http://static.radio.net/images/broadcasts/4c/b4/21362/c175.png",
+            "streamStr": "http://playerservices.streamtheworld.com/api/livestream-redirect/CBSNEWS.mp3",
+            "imageStr": "http://static.radio.net/images/broadcasts/4c/b4/21362/c175.png",
             "desc": "Unparalleled global news and information resources",
             "longDesc": "CBS Radio News is a dynamic and compelling radio news network featuring CBS News-on-the-Hour, the CBS World News Roundup, The Osgood File, The Dave Ross Show, Reporters Notebook, and much more."
         },
         {
             "name": "NPR News",
-            "streamURL": "http://nprdmp-live01-mp3.akacast.akamaistream.net/7/998/364916/v1/npr.akacast.akamaistream.net/nprdmp_live01_mp3.mp3",
-            "imageURL": "http://static.radio.net/images/broadcasts/3f/64/3576/c175.png",
+            "streamStr": "http://nprdmp-live01-mp3.akacast.akamaistream.net/7/998/364916/v1/npr.akacast.akamaistream.net/nprdmp_live01_mp3.mp3",
+            "imageStr": "http://static.radio.net/images/broadcasts/3f/64/3576/c175.png",
             "desc": "This radio station offers programs of US national public radio network, including 'Morning Edition' and 'All Things Considered'.",
             "longDesc": "This radio station offers programs of US national public radio network, including 'Morning Edition' and 'All Things Considered'."
         },
         {
             "name": "FOX News Talk",
-            "streamURL": "http://fnradio-shoutcast-32.ng.akacast.akamaistream.net/7/115/13873/v1/auth.akacast.akamaistream.net/fnradio-shoutcast-32",
-            "imageURL": "http://static.radio.net/images/broadcasts/97/2e/6423/1/c175.png",
+            "streamStr": "http://fnradio-shoutcast-32.ng.akacast.akamaistream.net/7/115/13873/v1/auth.akacast.akamaistream.net/fnradio-shoutcast-32",
+            "imageStr": "http://static.radio.net/images/broadcasts/97/2e/6423/1/c175.png",
             "desc": "The online radio for the successful US American news station FOX News. Talk shows, news and interviews in audio format.",
             "longDesc": "The online radio for the successful US American news station FOX News. Talk shows, news and interviews in audio format."
         },
         {
             "name": "WINS - 1010 WINS CBS New York",
-            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WINSAMAAC.aac",
-            "imageURL": "http://static.radio.net/images/broadcasts/f1/78/19002/2/c175.png",
+            "streamStr": "http://playerservices.streamtheworld.com/api/livestream-redirect/WINSAMAAC.aac",
+            "imageStr": "http://static.radio.net/images/broadcasts/f1/78/19002/2/c175.png",
             "desc": "All News. All the Time. You give us 22 minutes, we'll give you the world.",
             "longDesc": "All News. All the Time. You give us 22 minutes, we'll give you the world."
         },
         {
             "name": "Times Insider Live",
-            "streamURL": "http://podcasts.nytimes.com/podcasts/2016/03/24/insider/events/24-Insider-Well-Audio/NYT-Insider-Live-Well.mp3",
-            "imageURL": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
+            "streamStr": "http://podcasts.nytimes.com/podcasts/2016/03/24/insider/events/24-Insider-Well-Audio/NYT-Insider-Live-Well.mp3",
+            "imageStr": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
             "desc": "An insider look at The Times’s coverage of health and well-being.",
             "longDesc": ""
         },
         {
             "name": "New York Times - Talk",
-            "streamURL": "http://www.nytimes.com/services/xml/rss/nyt/podcasts/timestalks.xml",
-            "imageURL": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
+            "streamStr": "http://www.nytimes.com/services/xml/rss/nyt/podcasts/timestalks.xml",
+            "imageStr": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
             "desc": "times talk",
             "longDesc": ""
         },
         {
             "name": "WNYC 93.9 FM",
-            "streamURL": "http://fm939.wnyc.org/wnycfm",
-            "imageURL": "http://static.radio.net/images/broadcasts/d8/33/2044/c175.png",
+            "streamStr": "http://fm939.wnyc.org/wnycfm",
+            "imageStr": "http://static.radio.net/images/broadcasts/d8/33/2044/c175.png",
             "desc": "WNYC is one of New York's flagship public radio stations, broadcasting the finest programs from the region.",
             "longDesc": "WNYC is one of New York's flagship public radio stations, broadcasting the finest programs from the region."
         },
         {
             "name": "WFAN 66 AM - 101.9 FM",
-            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WFANAM.mp3",
-            "imageURL": "http://static.radio.net/images/broadcasts/0e/36/19004/1/c175.png",
+            "streamStr": "http://playerservices.streamtheworld.com/api/livestream-redirect/WFANAM.mp3",
+            "imageStr": "http://static.radio.net/images/broadcasts/0e/36/19004/1/c175.png",
             "desc": "WFAN Radio: As the world’s first 24-hour all-sports radio station, WFAN remains the premier sports talk radio station in the business.",
             "longDesc": "WFAN Radio: As the world’s first 24-hour all-sports radio station, WFAN remains the premier sports talk radio station in the business."
         },
         {
             "name": "ESPN Radio",
-            "streamURL": "http://edge.espn.cdn.abacast.net/espn-networkmp3-48",
-            "imageURL": "http://static.radio.net/images/broadcasts/ca/de/27361/c175.png",
+            "streamStr": "http://edge.espn.cdn.abacast.net/espn-networkmp3-48",
+            "imageStr": "http://static.radio.net/images/broadcasts/ca/de/27361/c175.png",
             "desc": "ESPN Radio: All the sport in one place.",
             "longDesc": "ESPN Radio: All the sport in one place."
         },
         {
             "name": "ABC News Radio (Australia)",
-            "streamURL": "http://live-radio01.mediahubaustralia.com/PBW/mp3/",
-            "imageURL": "http://static.radio.net/images/broadcasts/ad/c9/15745/c175.png",
+            "streamStr": "http://live-radio01.mediahubaustralia.com/PBW/mp3/",
+            "imageStr": "http://static.radio.net/images/broadcasts/ad/c9/15745/c175.png",
             "desc": "Australia's first continuous news network.",
             "longDesc": "Australia's first continuous news network."
         },
         {
             "name": "WCBS 880",
-            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
-            "imageURL": "http://static.radio.net/images/broadcasts/b1/64/19005/1/c175.png",
+            "streamStr": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
+            "imageStr": "http://static.radio.net/images/broadcasts/b1/64/19005/1/c175.png",
             "desc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years.",
             "longDesc": "WCBS Newsradio 880 is one of America’s most listened to radio stations providing news and information on the AM dial in New York for 45 years."
         },
         {
             "name": "Voice of America Newscast",
-            "streamURL": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
-            "imageURL": "http://static.radio.net/images/broadcasts/33/1d/21479/c175.png",
+            "streamStr": "http://playerservices.streamtheworld.com/api/livestream-redirect/WCBSAMAAC.aac",
+            "imageStr": "http://static.radio.net/images/broadcasts/33/1d/21479/c175.png",
             "desc": "Your source for news and information from around the world.",
             "longDesc": "Your source for news and information from around the world."
         }
     ]
 }
-
