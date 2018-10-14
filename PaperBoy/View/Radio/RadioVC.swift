@@ -17,29 +17,16 @@ class RadioVC: UIViewController {
     @IBOutlet weak var stationNowPlayingButton: UIButton!
     @IBOutlet weak var nowPlayingAnimationImageView: UIImageView!
     
+    @IBOutlet weak var stationViewNextButton: UIButton!
+    @IBOutlet weak var stationViewPlayButton: UIButton!
+    
+    
+    fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
 
+    
     @IBAction func sideMenuPressed() {
         slideToMenu()
     }
-    
-    fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
-    
-    
-//    private var viewModel: RadioViewModel()
-    
-    var stations = [RadioStation]()
-
-    var searchedStations = [RadioStation]()
-
-    var currentStation: RadioStation?
-    
-    #warning("consider new implementation. weak deallocates too early")
-    var currentStationVC: NowPlayingVC?
-    
-    private var refreshControl: UIRefreshControl!
-    
-    @IBOutlet weak var stationViewNextButton: UIButton!
-    @IBOutlet weak var stationViewPlayButton: UIButton!
     
     @IBAction func playPauseButtonPressed(_ sender: UIButton) {
         currentStationVC?.playPause()
@@ -47,18 +34,25 @@ class RadioVC: UIViewController {
     }
     
     
+    private let viewModel = RadioViewModel()
+    var stations = [RadioStation]()
+    var searchedStations = [RadioStation]()
+    var currentStation: RadioStation?
+    #warning("consider new implementation. weak deallocates too early")
+    var currentStationVC: NowPlayingVC?
+    private var refreshControl: UIRefreshControl!
+    
+    
     deinit {
         //
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadStationsFromJSON()
         setupNavBar()
         setupTableView()
-        addPullToRefresh()
         setupSearchController()
-        loadStationsFromJSON()
         setupAudioSession()
         addAnimations()
         addRightSwipeGestureToSideMenu()
@@ -69,14 +63,21 @@ class RadioVC: UIViewController {
         configureNowPlayingView()
     }
     
-    private func setupAudioSession(){
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+    private func loadStationsFromJSON() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        self.stations = viewModel.stations
+        self.tableView.reloadData()
+        self.view.setNeedsLayout()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    private func setupNavBar(){
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            navigationItem.titleView = searchController.searchBar
         }
-        catch let error {
-            print("Failed to setup audio session.  Error: \(error)")
-        }
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setupTableView(){
@@ -106,30 +107,14 @@ class RadioVC: UIViewController {
         searchController.definesPresentationContext = true
     }
     
-    private func setupNavBar(){
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-        } else {
-            navigationItem.titleView = searchController.searchBar
+    private func setupAudioSession(){
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
         }
-        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    private func addPullToRefresh() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.backgroundColor = UIColor.lightGray
-        self.refreshControl.tintColor = UIColor.white
-        self.refreshControl.addTarget(self, action: #selector(RadioVC.refreshTableView(_:)), for: UIControl.Event.valueChanged)
-        self.tableView.addSubview(refreshControl)
-    }
-    
-    @objc private func refreshTableView(_ sender: AnyObject) {
-        stations.removeAll()
-        loadStationsFromJSON()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-            self.refreshControl.endRefreshing()
-            self.view.setNeedsDisplay()
-        })
+        catch let error {
+            print("Failed to setup audio session.  Error: \(error)")
+        }
     }
     
     private func addAnimations(){
@@ -174,17 +159,6 @@ class RadioVC: UIViewController {
         if let nowPlayingVC = currentStationVC {
             navigationController?.pushViewController(nowPlayingVC, animated: true)
         }
-    }
-    
-
-    func loadStationsFromJSON() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        RadioDataService.getRadioStationsFromFile(completion: { (onlineStations) in
-            self.stations = onlineStations
-            self.tableView.reloadData()
-            self.view.setNeedsLayout()
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        })
     }
     
     func addRightSwipeGestureToSideMenu() {
@@ -246,14 +220,13 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-
 // MARK: - UISearchControllerDelegate
 
 extension RadioVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        searchedStations.removeAll()
-        let searchPredicate = NSPredicate(format: "SELF.stationName CONTAINS[c] %@", searchController.searchBar.text!)
+        searchedStations.removeAll(keepingCapacity: false)
+        let searchPredicate = NSPredicate(format: "SELF.name CONTAINS[c] %@", searchController.searchBar.text!)
         let array = (self.stations as NSArray).filtered(using: searchPredicate)
         searchedStations = array as! [RadioStation]
         self.tableView.reloadData()

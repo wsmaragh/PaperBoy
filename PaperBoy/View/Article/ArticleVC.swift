@@ -46,7 +46,6 @@ class ArticleVC: UIViewController {
         slideToMenu()
     }
     
-    
     func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
@@ -60,14 +59,11 @@ class ArticleVC: UIViewController {
     private func setupNavBar(){
         if let image = UIImage(named: "githubLogo") {
             let imageView = UIImageView(image: image)
-
             imageView.contentMode = .scaleAspectFit
             imageView.layer.masksToBounds = true
-            
             let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
             imageView.frame = titleView.bounds
             titleView.addSubview(imageView)
-            
             self.navigationItem.titleView = titleView
         }
         
@@ -140,12 +136,6 @@ class ArticleVC: UIViewController {
             self.animateTable()
             self.selectedtopic = topic
         }
-//        ArticleAPIService.shared.getTopArticles(topic: topic) { (onlineArticles) in
-//            self.articles = onlineArticles
-//            self.tableView.reloadData()
-//            self.animateTable()
-//            self.selectedtopic = topic
-//        }
     }
     
     fileprivate func animateTable() {
@@ -160,25 +150,11 @@ class ArticleVC: UIViewController {
         }
     }
     
-    
     fileprivate func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) {alert in }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == StoryboardIDs.MainVCToArticleVC.rawValue {
-            guard let articleVC = segue.destination as? ArticleDVC,
-                let indexPath = tableView.indexPathForSelectedRow else {
-                return
-            }
-            let article = articles[indexPath.row]
-            articleVC.article = article
-        }
     }
     
     @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
@@ -191,6 +167,17 @@ class ArticleVC: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == StoryboardIDs.MainVCToArticleVC.rawValue {
+            guard let articleVC = segue.destination as? ArticleDVC,
+                let indexPath = tableView.indexPathForSelectedRow else {
+                    return
+            }
+            let article = articles[indexPath.row]
+            articleVC.article = article
+        }
+    }
+    
 }
 
 
@@ -199,7 +186,6 @@ class ArticleVC: UIViewController {
 extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         if topics.count == 0 {
             collectionView.backgroundView = viewForEmptyTableView
             return 0
@@ -219,7 +205,6 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         fetchArticles(topic: topics[indexPath.item])
     }
-    
 
 }
 
@@ -228,7 +213,7 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
 extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 //sections.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -299,6 +284,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //custom pull-to-refresh
             let offset = (scrollView.contentOffset.y * -1)
             var message: String = "Keep Pulling."
             switch offset {
@@ -315,9 +301,9 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
             refreshControl.backgroundColor = UIColor.appYellow
     }
+
     
 }
-
 
 
 

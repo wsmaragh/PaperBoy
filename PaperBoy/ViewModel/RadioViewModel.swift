@@ -11,11 +11,21 @@ import UIKit
 
 
 
-struct RadioViewModel {
+class RadioViewModel {
     
     var stations = [RadioStation]()
     var searchedStations = [RadioStation]()
     var currentStation: RadioStation?
     
+    init(){
+        RadioDataService.getRadioStationsFromFile(completion: { (onlineStations) in
+            self.stations = onlineStations
+        })
+    }
     
+    deinit {
+        
+    }
+
+        
 }

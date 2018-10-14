@@ -21,7 +21,6 @@ class VideoVC: UIViewController {
     var videoPlaying: Bool = false
     var videoTimer = Timer()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -65,7 +64,9 @@ class VideoVC: UIViewController {
                     self.videoPlaying = false
                     self.videoTimer.invalidate()
                 })
-            } else {
+            }
+            //Video not playing
+            else {
                 avPlayerViewController?.player = AVPlayer(url: url)
                 avPlayerViewController?.player?.play()
                 videoPlaying = true
@@ -96,7 +97,6 @@ class VideoVC: UIViewController {
     }
     
 }
-
 
 
 // MARK: Tableview

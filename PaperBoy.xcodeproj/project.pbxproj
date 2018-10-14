@@ -44,7 +44,6 @@
 		237E530E21690501004DB8B1 /* RadioStations.json in Resources */ = {isa = PBXBuildFile; fileRef = 237E530921690501004DB8B1 /* RadioStations.json */; };
 		237E530F21690501004DB8B1 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530A21690501004DB8B1 /* MediaPlayer.swift */; };
 		237E531221690501004DB8B1 /* RadioStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530D21690501004DB8B1 /* RadioStation.swift */; };
-		237E53192169079A004DB8B1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E53182169079A004DB8B1 /* Settings.swift */; };
 		237E531B21690845004DB8B1 /* StationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E531A21690845004DB8B1 /* StationCell.swift */; };
 		23802F04216D69B7005F36E5 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 23802F03216D69B7005F36E5 /* beep.mp3 */; };
 		23802F08216D9F19005F36E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23802F07216D9F19005F36E5 /* Assets.xcassets */; };
@@ -128,7 +127,6 @@
 		237E530921690501004DB8B1 /* RadioStations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RadioStations.json; sourceTree = "<group>"; };
 		237E530A21690501004DB8B1 /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		237E530D21690501004DB8B1 /* RadioStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioStation.swift; sourceTree = "<group>"; };
-		237E53182169079A004DB8B1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		237E531A21690845004DB8B1 /* StationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCell.swift; sourceTree = "<group>"; };
 		23802F03216D69B7005F36E5 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		23802F07216D9F19005F36E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -360,13 +358,10 @@
 		23E06F4E2144239000F89F9D /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				23E079D02173C42800C39FBE /* Extensions */,
 				23E06F292144236300F89F9D /* Info.plist */,
 				23E06F1A2144236100F89F9D /* AppDelegate.swift */,
-				237E0953215C7D490039FE28 /* Extensions+.swift */,
-				237E0944215C30B50039FE28 /* Date+.swift */,
-				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
 				237E0932215BED7D0039FE28 /* APIKeys.swift */,
-				237E53182169079A004DB8B1 /* Settings.swift */,
 				23802F0E216DF484005F36E5 /* Enums.swift */,
 				237E530921690501004DB8B1 /* RadioStations.json */,
 				23D3D3042170DF2C005D155F /* Animations.swift */,
@@ -384,6 +379,16 @@
 				237E530721690435004DB8B1 /* RadioDataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		23E079D02173C42800C39FBE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				237E0944215C30B50039FE28 /* Date+.swift */,
+				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
+				237E0953215C7D490039FE28 /* Extensions+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2B104E4DDAA380D480A3A1A5 /* Frameworks */ = {
@@ -651,7 +656,6 @@
 				237E0931215BEA390039FE28 /* ArticleDataService.swift in Sources */,
 				2308763D215EAB8800266F2A /* RealmService.swift in Sources */,
 				237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */,
-				237E53192169079A004DB8B1 /* Settings.swift in Sources */,
 				237E094E215C60FD0039FE28 /* ArticleDVC.swift in Sources */,
 				237E52F52168F0C5004DB8B1 /* RadioVC.swift in Sources */,
 				237E530821690435004DB8B1 /* RadioDataService.swift in Sources */,
