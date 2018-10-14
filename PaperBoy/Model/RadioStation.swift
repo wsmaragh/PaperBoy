@@ -1,7 +1,5 @@
 
 import UIKit
-import SwiftyJSON
-
 
 class RadioStationJSON: Codable {
     var stations: [RadioStation]

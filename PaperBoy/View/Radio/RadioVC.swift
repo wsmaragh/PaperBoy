@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
-import SwiftyJSON
 
 
 class RadioVC: UIViewController {
@@ -34,7 +33,7 @@ class RadioVC: UIViewController {
 
     var currentStation: RadioStation?
     
-    #warning("consider new implementation. weak deallocates")
+    #warning("consider new implementation. weak deallocates too early")
     var currentStationVC: NowPlayingVC?
     
     private var refreshControl: UIRefreshControl!

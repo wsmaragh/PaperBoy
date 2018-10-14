@@ -8,7 +8,6 @@
 
 import UIKit
 import MediaPlayer
-import SwiftyJSON
 
 
 class NowPlayingVC: UIViewController {
@@ -181,16 +180,17 @@ class NowPlayingVC: UIViewController {
     
     // MARK: - MPNowPlayingInfoCenter (Lock screen)
     @objc func updateLockScreen() {
-        let albumArtwork = MPMediaItemArtwork(image: UIImage(named: currentStation.imageStr)!)
+        let albumImage = UIImage(named: currentStation.imageStr)!
+        let albumArtwork = MPMediaItemArtwork(image: albumImage)
 
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyArtist: currentStation.name,
             MPMediaItemPropertyArtwork: albumArtwork
         ]
-//        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
-//        MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
-//        MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playBtnPressed))
-//        MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(playBtnPressed))
+        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playBtnPressed))
+        MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(playBtnPressed))
         #warning("Change implementation")
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playBtnPressed))
