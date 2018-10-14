@@ -28,7 +28,6 @@ class NowPlayingVC: UIViewController {
     
     @objc var currentStation: RadioStation! {
         didSet {
-            print();print();print("current station set in NowPlayingVC"); print();print()
             playRadioStation()
         }
     }
@@ -49,6 +48,7 @@ class NowPlayingVC: UIViewController {
         setupVolumeSlider()
         addMyObservers()
         updateUI()
+        setupLockScreenRemoteControls()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +97,6 @@ class NowPlayingVC: UIViewController {
         }
     }
 
-    
     @objc private func playRadioStation() {
         guard let streamURL = URL(string: currentStation.streamStr) else {return}
         let station = StationAVPlayerItem(url: streamURL)
@@ -109,8 +108,6 @@ class NowPlayingVC: UIViewController {
         currentStation.isPlaying = true
     }
     
-
-
     private func addMyObservers(){
         NotificationCenter.default.addObserver(
             self,
@@ -119,7 +116,7 @@ class NowPlayingVC: UIViewController {
             object: nil)
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(NowPlayingVC.sessionInterrupted(_:)),
+            selector: #selector(NowPlayingVC.radioAVSessionInterrupted(_:)),
             name: AVAudioSession.interruptionNotification,
             object: AVAudioSession.sharedInstance())
     }
@@ -157,16 +154,13 @@ class NowPlayingVC: UIViewController {
         mpVolumeSlider.value = sender.value
     }
     
-    
     @IBAction func shareBtnPressed(_ sender: UIButton) {
         let radioStationToShare = "I'm listening to \(currentStation.name) via PaperBoy"
         let activityViewController = UIActivityViewController(activityItems: [radioStationToShare, currentStation.imageStr], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
 
-
-    // MARK: - AVAudio Sesssion Interrupted (eg. Phone Call)
-    @objc func sessionInterrupted(_ notification: Notification) {
+    @objc func radioAVSessionInterrupted(_ notification: Notification) {
         if let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber{
             if let type = AVAudioSession.InterruptionType(rawValue: typeValue.uintValue){
                 if type == .began {
@@ -178,28 +172,23 @@ class NowPlayingVC: UIViewController {
         }
     }
     
-    // MARK: - MPNowPlayingInfoCenter (Lock screen)
-    @objc func updateLockScreen() {
-        let albumImage = UIImage(named: currentStation.imageStr)!
-        let albumArtwork = MPMediaItemArtwork(image: albumImage)
+    func setupLockScreenRemoteControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
 
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyArtist: currentStation.name,
-            MPMediaItemPropertyArtwork: albumArtwork
-        ]
-        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(playBtnPressed))
-        MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(playBtnPressed))
-        #warning("Change implementation")
-        MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playBtnPressed))
-    }
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            if self.radioPlayer.rate == 0.0 {
+                self.radioPlayer.play()
+                return .success
+            }
+            return .commandFailed
+        }
 
-    override func remoteControlReceived(with receivedEvent: UIEvent?) {
-        super.remoteControlReceived(with: receivedEvent)
-        if receivedEvent!.type == UIEvent.EventType.remoteControl {
-            playBtnPressed()
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            if self.radioPlayer.rate == 1.0 {
+                self.radioPlayer.pause()
+                return .success
+            }
+            return .commandFailed
         }
     }
 }

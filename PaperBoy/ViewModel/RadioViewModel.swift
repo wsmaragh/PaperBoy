@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 
-
 class RadioViewModel {
     
     var stations = [RadioStation]()
