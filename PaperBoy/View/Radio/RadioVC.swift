@@ -118,7 +118,7 @@ class RadioVC: UIViewController {
     }
     
     private func addAnimations(){
-        nowPlayingAnimationImageView.animationImages = Animations.addNowPlayingBarAnimationFrames()
+        nowPlayingAnimationImageView.animationImages = Animations.nowPlayingAnimationImages()
         nowPlayingAnimationImageView.animationDuration = 0.8
     }
     

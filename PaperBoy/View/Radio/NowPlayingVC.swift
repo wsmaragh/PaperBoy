@@ -63,8 +63,8 @@ class NowPlayingVC: UIViewController {
         nowPlayingBars = UIImageView(image: UIImage(named: "NowPlayingBars"))
         nowPlayingBars.autoresizingMask = UIView.AutoresizingMask()
         nowPlayingBars.contentMode = UIView.ContentMode.center
-        nowPlayingBars.animationImages = Animations.addNowPlayingBarAnimationFrames()
-        nowPlayingBars.animationDuration = 1.0
+        nowPlayingBars.animationImages = Animations.nowPlayingAnimationImages()
+        nowPlayingBars.animationDuration = 0.7
         let nowPlayBarButtonItem = UIBarButtonItem(customView: nowPlayingBars)
         self.navigationItem.rightBarButtonItem = nowPlayBarButtonItem
     }

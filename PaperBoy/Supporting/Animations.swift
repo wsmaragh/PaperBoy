@@ -11,18 +11,36 @@ import UIKit
 
 struct Animations {
     
-    static func addNowPlayingBarAnimationFrames() -> [UIImage] {
+    static func nowPlayingAnimationImages() -> [UIImage] {
+        let imageNames: [String] = ["movingBars1", "movingBars2", "movingBars3", "movingBars4"]
+        
         var animationFrames = [UIImage]()
-        for i in 1...4 {
-            if let image = UIImage(named: "NowPlayingBars\(i)") {
+        
+        for imageName in imageNames {
+            if let image = UIImage(named: imageName){
                 animationFrames.append(image)
             }
         }
-        for i in stride(from: 3, to: 1, by: -1) {
-            if let image = UIImage(named: "NowPlayingBars\(i)") {
+        let reverseFrames = animationFrames.reversed().dropFirst()
+       
+        animationFrames.append(contentsOf: reverseFrames)
+        return animationFrames
+    }
+    
+    
+    static func createAnimationImages(imageNames: [String]) -> [UIImage] {
+    
+        var animationFrames = [UIImage]()
+    
+        for imageName in imageNames {
+            if let image = UIImage(named: imageName){
                 animationFrames.append(image)
             }
         }
+        
+        let reverseFrames = animationFrames.reversed().dropFirst()
+        animationFrames.append(contentsOf: reverseFrames)
+        
         return animationFrames
     }
     
