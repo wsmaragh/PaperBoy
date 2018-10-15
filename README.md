@@ -6,7 +6,7 @@
     <p align="center">  Extra, extra, read all about it! </p> 
 </a>
 
-*Note: Work in Progress - adding MVVM architecture and Unit/UI Testing - hopefully I can find some time over the next few days
+*Note: Work in Progress - adding MVVM architecture and Unit/UI Testing
 
 ## App Flow:
 
