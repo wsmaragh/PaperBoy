@@ -824,7 +824,7 @@
                                 <rect key="frame" x="0.0" y="64" width="350" height="403"/>
                                 <color key="backgroundColor" name="appWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="350" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NlD-FL-lqf" id="Gs1-Th-WT9">
@@ -832,7 +832,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcH-Pw-Plu">
-                                                    <rect key="frame" x="82" y="45.5" width="241" height="20"/>
+                                                    <rect key="frame" x="82" y="45.5" width="216" height="20"/>
                                                     <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -876,30 +876,38 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="linkedin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EJ-Rc-39C">
-                                        <rect key="frame" x="147" y="125" width="56" height="19"/>
-                                        <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGd-W2-mhG">
-                                        <rect key="frame" x="137" y="149" width="76.5" height="19"/>
-                                        <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMp-a5-fp6">
+                                        <rect key="frame" x="151" y="122" width="48" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Igi-I6-l8D"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="LinkedIn"/>
+                                        <connections>
+                                            <action selector="linkedInButtonPressed:" destination="OQ1-8p-KRb" eventType="touchUpInside" id="jIL-21-IyN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pO-pR-TfA">
+                                        <rect key="frame" x="156.5" y="144" width="37" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="github"/>
+                                        <connections>
+                                            <action selector="githubButtonPressed:" destination="OQ1-8p-KRb" eventType="touchUpInside" id="7eS-rK-8A3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="C5w-vv-Sz7" firstAttribute="top" secondItem="Tyj-bF-Vrt" secondAttribute="top" constant="15" id="0gv-Qt-ZOE"/>
-                                    <constraint firstItem="3EJ-Rc-39C" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="0xH-34-hhJ"/>
-                                    <constraint firstItem="HGd-W2-mhG" firstAttribute="top" secondItem="3EJ-Rc-39C" secondAttribute="bottom" constant="5" id="AlD-v7-BHS"/>
+                                    <constraint firstItem="8pO-pR-TfA" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="5Bt-ob-YOb"/>
                                     <constraint firstAttribute="height" constant="200" id="AsN-O6-O3u"/>
                                     <constraint firstItem="C5w-vv-Sz7" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="JHf-fO-Alx"/>
                                     <constraint firstItem="Av8-5X-zXc" firstAttribute="top" secondItem="C5w-vv-Sz7" secondAttribute="bottom" constant="10" id="XYb-9o-B30"/>
+                                    <constraint firstItem="8pO-pR-TfA" firstAttribute="height" secondItem="QMp-a5-fp6" secondAttribute="height" id="bQl-0s-5SP"/>
                                     <constraint firstItem="Av8-5X-zXc" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="iJn-3C-NRX"/>
-                                    <constraint firstItem="3EJ-Rc-39C" firstAttribute="top" secondItem="Av8-5X-zXc" secondAttribute="bottom" constant="5" id="jgo-Dz-eTO"/>
-                                    <constraint firstItem="HGd-W2-mhG" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="ptc-wf-2D5"/>
+                                    <constraint firstItem="QMp-a5-fp6" firstAttribute="top" secondItem="Av8-5X-zXc" secondAttribute="bottom" constant="2" id="jdr-D4-L5B"/>
+                                    <constraint firstItem="QMp-a5-fp6" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="mNP-Ml-NrB"/>
+                                    <constraint firstItem="8pO-pR-TfA" firstAttribute="top" secondItem="QMp-a5-fp6" secondAttribute="bottom" constant="2" id="qnh-jI-ETe"/>
                                     <constraint firstItem="C5w-vv-Sz7" firstAttribute="centerX" secondItem="Tyj-bF-Vrt" secondAttribute="centerX" id="zfH-Zk-8bv"/>
                                 </constraints>
                             </view>

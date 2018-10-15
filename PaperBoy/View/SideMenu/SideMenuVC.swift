@@ -18,6 +18,21 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
+    @IBOutlet weak var linkedInButton: UIButton!
+    
+    
+    @IBAction func linkedInButtonPressed(_ sender: UIButton) {
+        if let url = URL(string: "https://www.linkedin.com/in/wsmaragh/"){
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @IBAction func githubButtonPressed(_ sender: UIButton) {
+        if let url = URL(string: "https://github.com/wsmaragh"){
+            UIApplication.shared.open(url)
+        }
+    }
+    
     enum MenuItem: String {
         case Article
         case Video
