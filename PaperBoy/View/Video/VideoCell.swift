@@ -58,7 +58,7 @@ class VideoCell: UITableViewCell {
         videoImageView.image = nil
     }
 
-    func configureCell(video: Video){
+    func configureCell(video: StreamingVideo){
         titleLabel.text = video.title
         sourceLabel.text = video.source
         workoutTime = Double(video.time)

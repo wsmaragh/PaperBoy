@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Photos
 
 
 struct DownloadableVideo {
@@ -28,27 +29,37 @@ struct DownloadableVideo {
         DownloadableVideo(name: "Video 7", urlLink: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4", length: 281, size: 50),
     ]
     
-    // save videos
+    
+    // save video file to Camera Roll
     static func saveVideo(videoUrlStr: String){
         
         DispatchQueue.global(qos: .background).async {
             
             guard let videoUrl = URL(string: videoUrlStr) else {return}
-            guard let videoData = NSData(contentsOf: videoUrl) else {return}
+            var videoData: Data!
             
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
+            do {
+                videoData = try Data(contentsOf: videoUrl)
+            } catch {
+                print("error converting to video Data")
+            }
             
-            let filePath="\(documentsPath)/tempVideoFile.mp4"
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            guard let filePath = URL(string: "\(documentPath)/tempVideoFile.mp4") else {return}
             
             DispatchQueue.main.async {
                 
-                videoData.write(toFile: filePath, atomically: true)
+                do {
+                    try videoData.write(to: filePath, options: Data.WritingOptions.atomic)
+                } catch {
+                    print("Error writing data to filepath")
+                }
                 
                 PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(fileURLWithPath: filePath))
-                }) { completed, error in
-                    if completed {
-                        print("Video is saved!")
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: filePath)
+                }) { saved, error in
+                    if saved {
+                        print("Video saved successfully")
                     }
                 }
                 

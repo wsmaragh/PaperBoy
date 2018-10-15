@@ -16,7 +16,7 @@ class VideoVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var videoPlayerController: AVPlayerViewController?
-    let videos: [Video] = Video.allVideos
+    let videos: [StreamingVideo] = StreamingVideo.allVideos
     var currentVideoPlayingIndex: Int = 0
     var videoPlaying: Bool = false
     var videoTimer = Timer()
@@ -51,7 +51,7 @@ class VideoVC: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
 
-    private func playVideo(video: Video){
+    private func playVideo(video: StreamingVideo){
         if let url = URL(string: video.videoStr) {
 //            if videoPlaying {
 //                self.videoPlayerController!.player!.pause()
