@@ -19,6 +19,7 @@
 		231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D70EC215FB71900E2CCC9 /* SmallArticleLeftCell.swift */; };
 		231D70EF215FB91D00E2CCC9 /* SmallArticleLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231D70EE215FB91D00E2CCC9 /* SmallArticleLeftCell.xib */; };
 		232617EC2171225600865D98 /* RadioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232617EB2171225600865D98 /* RadioViewModel.swift */; };
+		2361ABBF2174FF7E00C8F556 /* DownloadableVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2361ABBE2174FF7E00C8F556 /* DownloadableVideo.swift */; };
 		23674422216B37840072BE80 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23674421216B37840072BE80 /* VideoCell.xib */; };
 		237E092F215BEA1B0039FE28 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E092E215BEA1B0039FE28 /* Article.swift */; };
 		237E0931215BEA390039FE28 /* ArticleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0930215BEA390039FE28 /* ArticleDataService.swift */; };
@@ -106,6 +107,7 @@
 		231D70EC215FB71900E2CCC9 /* SmallArticleLeftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallArticleLeftCell.swift; sourceTree = "<group>"; };
 		231D70EE215FB91D00E2CCC9 /* SmallArticleLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallArticleLeftCell.xib; sourceTree = "<group>"; };
 		232617EB2171225600865D98 /* RadioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewModel.swift; sourceTree = "<group>"; };
+		2361ABBE2174FF7E00C8F556 /* DownloadableVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadableVideo.swift; sourceTree = "<group>"; };
 		23674421216B37840072BE80 /* VideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		237E092E215BEA1B0039FE28 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		237E0930215BEA390039FE28 /* ArticleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataService.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				237E092E215BEA1B0039FE28 /* Article.swift */,
 				2398D3F321626EC20098F96F /* Video.swift */,
+				2361ABBE2174FF7E00C8F556 /* DownloadableVideo.swift */,
 				237E530D21690501004DB8B1 /* RadioStation.swift */,
 				237E530A21690501004DB8B1 /* MediaPlayer.swift */,
 			);
@@ -694,6 +697,7 @@
 				23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */,
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 				23BA032E2173F66700FFB0B0 /* ArticleViewModel.swift in Sources */,
+				2361ABBF2174FF7E00C8F556 /* DownloadableVideo.swift in Sources */,
 				231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */,
 				23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */,
 				23D3D3052170DF2C005D155F /* Animations.swift in Sources */,
