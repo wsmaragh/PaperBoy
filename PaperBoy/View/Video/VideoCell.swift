@@ -11,8 +11,9 @@ import AVFoundation
 
 
 protocol VideoCellDelegate {
+    func playVideoInCell()
+    func pauseVideoInCell()
     func didFinishPlayingVideoInCell()
-    func cancelPlayingVideoInCell()
 }
 
 
@@ -46,9 +47,7 @@ class VideoCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
-            startCountdown()
-        } else {
-            isCurrentlyPlayingVideo = false
+            togglePlayPause()
         }
     }
     
@@ -57,7 +56,6 @@ class VideoCell: UITableViewCell {
         sourceLabel.text  = nil
         titleLabel.text  = nil
         videoImageView.image = nil
-//        timeLabel.text = nil
     }
 
     func configureCell(video: Video){
@@ -69,40 +67,32 @@ class VideoCell: UITableViewCell {
         videoImageView.loadImage(imageURLString: video.imageStr)
     }
     
+    private func togglePlayPause(){
+        if isCurrentlyPlayingVideo {
+            pauseCountdown()
+        } else {
+            startCountdown()
+        }
+    }
+    
     func startCountdown(){
         progressBar.progress = 0.00
         countdownTimer = Timer.scheduledTimer(timeInterval: timeUpdateInterval, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         isCurrentlyPlayingVideo = true
+        delegate?.playVideoInCell()
     }
     
-    @objc private func updateTime() {
-        if isCurrentlyPlayingVideo {
-            timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
-            progressBar.progress = Float(progressBarTime)/Float(workoutTime)
-            
-            if progressBarTime < workoutTime {
-                labelCountDownTime -= timeUpdateInterval
-                progressBarTime += timeUpdateInterval
-            } else if progressBarTime >= workoutTime {
-                completeCountdown()
-            }
-        } else {
-            stopCountdown()
-        }
-    }
-    
-    private func stopCountdown() {
+    func pauseCountdown() {
         countdownTimer.invalidate()
         progressBar.progress = 0.0
         labelCountDownTime = workoutTime
         timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
-        delegate?.cancelPlayingVideoInCell()
         alreadyWatchedVideo = false
         isCurrentlyPlayingVideo = false
+        delegate?.pauseVideoInCell()
     }
     
-    
-    private func completeCountdown(){
+    func completeCountdown(){
         countdownTimer.invalidate()
         doneButton.isHidden = false
         alreadyWatchedVideo = true
@@ -124,11 +114,27 @@ class VideoCell: UITableViewCell {
         audioPlayer!.prepareToPlay()
         audioPlayer!.play()
     }
-
+    
     private func timeFormatted(_ totalSeconds: Int) -> String {
         let minutes: Int = (totalSeconds / 60) % 60
         let seconds: Int = totalSeconds % 60
         return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    @objc private func updateTime() {
+        if isCurrentlyPlayingVideo {
+            timeLabel.text = "\(timeFormatted(Int(labelCountDownTime)))"
+            progressBar.progress = Float(progressBarTime)/Float(workoutTime)
+            
+            if progressBarTime < workoutTime {
+                labelCountDownTime -= timeUpdateInterval
+                progressBarTime += timeUpdateInterval
+            } else if progressBarTime >= workoutTime {
+                completeCountdown()
+            }
+        } else {
+            pauseCountdown()
+        }
     }
     
 }

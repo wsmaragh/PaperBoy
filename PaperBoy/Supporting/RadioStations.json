@@ -37,20 +37,6 @@
             "longDesc": "All News. All the Time. You give us 22 minutes, we'll give you the world."
         },
         {
-            "name": "Times Insider Live",
-            "streamStr": "http://podcasts.nytimes.com/podcasts/2016/03/24/insider/events/24-Insider-Well-Audio/NYT-Insider-Live-Well.mp3",
-            "imageStr": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
-            "desc": "An insider look at The Times’s coverage of health and well-being.",
-            "longDesc": ""
-        },
-        {
-            "name": "New York Times - Talk",
-            "streamStr": "http://www.nytimes.com/services/xml/rss/nyt/podcasts/timestalks.xml",
-            "imageStr": "http://static.radio.net/images/broadcasts/77/0c/4128/c175.png",
-            "desc": "times talk",
-            "longDesc": ""
-        },
-        {
             "name": "WNYC 93.9 FM",
             "streamStr": "http://fm939.wnyc.org/wnycfm",
             "imageStr": "http://static.radio.net/images/broadcasts/d8/33/2044/c175.png",

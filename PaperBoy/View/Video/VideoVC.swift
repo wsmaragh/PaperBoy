@@ -15,7 +15,7 @@ class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var avPlayerViewController: AVPlayerViewController?
+    var videoPlayerController: AVPlayerViewController?
     let videos: [Video] = Video.allVideos
     var currentVideoPlayingIndex: Int = 0
     var videoPlaying: Bool = false
@@ -53,37 +53,38 @@ class VideoVC: UIViewController {
 
     private func playVideo(video: Video){
         if let url = URL(string: video.videoStr) {
-            if videoPlaying {
-                self.avPlayerViewController!.player!.pause()
-                let videoItem = AVPlayerItem(url: url)
-                avPlayerViewController?.player?.replaceCurrentItem(with: videoItem)
-                avPlayerViewController?.player?.play()
-                let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
-                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-                    self.avPlayerViewController!.player!.pause()
-                    self.videoPlaying = false
-                    self.videoTimer.invalidate()
-                })
-            }
+//            if videoPlaying {
+//                self.videoPlayerController!.player!.pause()
+//                let videoItem = AVPlayerItem(url: url)
+//                videoPlayerController?.player?.replaceCurrentItem(with: videoItem)
+//                videoPlayerController?.player?.play()
+//                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
+//                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+//                    self.videoPlayerController!.player!.pause()
+//                    self.videoPlaying = false
+//                    self.videoTimer.invalidate()
+//                })
+//            }
             //Video not playing
-            else {
-                avPlayerViewController?.player = AVPlayer(url: url)
-                avPlayerViewController?.player?.play()
+//            else {
+                videoPlayerController?.player = AVPlayer(url: url)
+                videoPlayerController?.player?.play()
                 videoPlaying = true
-                let duration = avPlayerViewController!.player!.currentItem!.duration.seconds
+                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
                 videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-                    self.avPlayerViewController!.player!.pause()
+                    self.videoPlayerController!.player!.pause()
                     self.videoPlaying = false
                     self.videoTimer.invalidate()
                 })
-            }
+//            }
         }
     }
     
     private func pauseVideo(){
-        self.avPlayerViewController?.player?.pause()
+        self.videoPlayerController?.player?.pause()
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let cell = tableView.cellForRow(at: indexPath) as! VideoCell
+        cell.pauseCountdown()
         cell.delegate = self
         cell.isCurrentlyPlayingVideo = false
     }
@@ -91,7 +92,7 @@ class VideoVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embeddedAVPlayer",
             let avPlayerVC = segue.destination as? AVPlayerViewController {
-                avPlayerViewController = avPlayerVC
+                videoPlayerController = avPlayerVC
                 self.addChild(avPlayerVC)
         }
     }
@@ -134,12 +135,16 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
 
 extension VideoVC: VideoCellDelegate {
     
-    func cancelPlayingVideoInCell() {
-        //
+    func playVideoInCell() {
+        self.videoPlayerController?.player?.play()
+    }
+    
+    func pauseVideoInCell(){
+        self.videoPlayerController?.player?.pause()
     }
     
     func didFinishPlayingVideoInCell() {
-        self.avPlayerViewController?.player?.pause()
+        self.videoPlayerController?.player?.pause()
         guard currentVideoPlayingIndex < videos.count else {return}
         self.currentVideoPlayingIndex += 1
         guard currentVideoPlayingIndex < videos.count else {return}
@@ -147,6 +152,8 @@ extension VideoVC: VideoCellDelegate {
         self.playVideo(video: video)
         self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
     }
+    
+    
     
 }
 
