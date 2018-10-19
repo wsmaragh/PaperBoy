@@ -62,6 +62,7 @@
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DB217A069700854AC5 /* DownloadableVideos.json */; };
 		23DE35DE217A069700854AC5 /* StreamingVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DC217A069700854AC5 /* StreamingVideos.json */; };
+		23DE35E0217A139300854AC5 /* VideoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE35DF217A139300854AC5 /* VideoDataService.swift */; };
 		23DF437C216FBE8C00135ED5 /* newsLoading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 23A5EB86216E557D004CDF6F /* newsLoading.mp4 */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* ArticleVC.swift */; };
@@ -165,6 +166,7 @@
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23DE35DB217A069700854AC5 /* DownloadableVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DownloadableVideos.json; sourceTree = "<group>"; };
 		23DE35DC217A069700854AC5 /* StreamingVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StreamingVideos.json; sourceTree = "<group>"; };
+		23DE35DF217A139300854AC5 /* VideoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDataService.swift; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				237E093C215C17260039FE28 /* DateformatterService.swift */,
 				237E0930215BEA390039FE28 /* ArticleDataService.swift */,
 				237E530721690435004DB8B1 /* RadioDataService.swift */,
+				23DE35DF217A139300854AC5 /* VideoDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */,
 				23D3D3052170DF2C005D155F /* Animations.swift in Sources */,
 				2398D3F421626EC20098F96F /* StreamingVideo.swift in Sources */,
+				23DE35E0217A139300854AC5 /* VideoDataService.swift in Sources */,
 				23802F0F216DF484005F36E5 /* Enums.swift in Sources */,
 				23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */,
 			);

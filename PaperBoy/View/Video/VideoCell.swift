@@ -25,8 +25,14 @@ class VideoCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var doneButton: UIButton!
+        
+    static var cellID: String {
+        return String(describing: self)
+    }
     
-    static let id = "VideoCell"
+    static var nibName: String {
+        return String(describing: self)
+    }
     
     var delegate: VideoCellDelegate?
     

@@ -15,8 +15,13 @@ class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let videoDataService = VideoDataService()
+    
     var videoPlayerController: AVPlayerViewController?
-    let videos: [StreamingVideo] = StreamingVideo.allVideos
+    
+    var streamingVideos: [StreamingVideo] = []
+    var downloadableVideos: [DownloadableVideo] = []
+
     var currentVideoPlayingIndex: Int = 0
     var videoPlaying: Bool = false
     var videoTimer = Timer()
@@ -25,6 +30,21 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         addRightSwipeGestureToSideMenu()
+        getStreamingVideos()
+        getDownloadableVideos()
+    }
+    
+    private func getDownloadableVideos() {
+        videoDataService.getDownloadableVideosFromFile { (parsedDownloadableVideos) in
+            self.downloadableVideos = parsedDownloadableVideos
+        }
+    }
+    
+    private func getStreamingVideos() {
+        videoDataService.getStreamingVideosFromFile { (parsedStreamingVideos) in
+            self.streamingVideos = parsedStreamingVideos
+            self.reloadTableView()
+        }
     }
     
     private func setupTableView(){
@@ -33,8 +53,14 @@ class VideoVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75
         tableView.backgroundColor = .white
-        let nib = UINib(nibName: VideoCell.id, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: VideoCell.id)
+        let nib = UINib(nibName: VideoCell.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: VideoCell.cellID)
+    }
+    
+    private func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func addRightSwipeGestureToSideMenu() {
@@ -105,12 +131,12 @@ class VideoVC: UIViewController {
 extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return videos.count
+        return streamingVideos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.id, for: indexPath) as! VideoCell
-        let video = videos[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.cellID, for: indexPath) as! VideoCell
+        let video = streamingVideos[indexPath.row]
         cell.configureCell(video: video)
         cell.delegate = self
         cell.backgroundColor = (indexPath.row % 2 == 0) ?  UIColor.lightText : UIColor.appTableGray            
@@ -119,8 +145,8 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.currentVideoPlayingIndex = indexPath.row
-        guard videos.count != 0 else {return}
-        let video = videos[currentVideoPlayingIndex]
+        guard streamingVideos.count != 0 else {return}
+        let video = streamingVideos[currentVideoPlayingIndex]
         self.playVideo(video: video)
     }
     
@@ -145,10 +171,10 @@ extension VideoVC: VideoCellDelegate {
     
     func didFinishPlayingVideoInCell() {
         self.videoPlayerController?.player?.pause()
-        guard currentVideoPlayingIndex < videos.count else {return}
+        guard currentVideoPlayingIndex < streamingVideos.count else {return}
         self.currentVideoPlayingIndex += 1
-        guard currentVideoPlayingIndex < videos.count else {return}
-        let video = videos[currentVideoPlayingIndex]
+        guard currentVideoPlayingIndex < streamingVideos.count else {return}
+        let video = streamingVideos[currentVideoPlayingIndex]
         self.playVideo(video: video)
         self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
     }
