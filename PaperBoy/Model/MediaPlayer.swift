@@ -7,7 +7,6 @@ struct MediaPlayer {
     static var radio = AVPlayer()
 }
 
-
 class StationAVPlayerItem: AVPlayerItem {
     
     init(url URL:URL) {

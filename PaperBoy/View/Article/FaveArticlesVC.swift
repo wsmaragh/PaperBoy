@@ -127,6 +127,7 @@ extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
             tableView.separatorStyle = .none
             return 0
         } else {
+            tableView.backgroundView = nil
             tableView.separatorStyle = .singleLine
             return favoriteArticles.count
         }
