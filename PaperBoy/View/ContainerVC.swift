@@ -56,12 +56,12 @@ class ContainerVC: UIViewController {
     }
     
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == StoryboardIDs.ContainerToMainTabBarVC.rawValue {
+        if segue.identifier == StoryboardIDs.containerToMainTabBarVC.rawValue {
             if let mainTab = segue.destination as? UITabBarController {
                 self.mainTabBarVC = mainTab
             }
         }
-        if segue.identifier == StoryboardIDs.ContainerToSideMenuVC.rawValue {
+        if segue.identifier == StoryboardIDs.containerToSideMenuVC.rawValue {
             if let sideMenuNav = segue.destination as? UINavigationController {
                 self.sideMenuVC = sideMenuNav.viewControllers.first as? SideMenuVC
             }

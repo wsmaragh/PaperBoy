@@ -59,12 +59,12 @@
                         <rightBarButtonItems>
                             <barButtonItem image="favorites" id="1OM-D6-MfT">
                                 <connections>
-                                    <segue destination="TT4-ky-mz1" kind="show" identifier="MainVCToFaveArticlesVC" id="vxt-hy-YWO"/>
+                                    <segue destination="TT4-ky-mz1" kind="show" identifier="mainVCToFaveArticlesVC" id="vxt-hy-YWO"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="search" id="YYa-pi-SB1">
                                 <connections>
-                                    <segue destination="X9X-Dh-OZ6" kind="show" identifier="MainVCToSearchVC" id="Kfx-ES-lxF"/>
+                                    <segue destination="X9X-Dh-OZ6" kind="show" identifier="mainVCToSearchVC" id="Kfx-ES-lxF"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -73,7 +73,7 @@
                         <outlet property="tableView" destination="JT0-Ww-VAz" id="6JF-ds-GBx"/>
                         <outlet property="topicCollectionView" destination="l1p-Z9-X6z" id="6Ri-QS-9N0"/>
                         <outlet property="viewForEmptyTableView" destination="2zq-Ow-dZh" id="oRH-v6-7mi"/>
-                        <segue destination="TBN-oa-63T" kind="show" identifier="MainVCToArticleVC" id="xE9-a3-Mip"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="mainVCToArticleVC" id="xE9-a3-Mip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -129,7 +129,7 @@
                     </view>
                     <connections>
                         <outlet property="articleView" destination="NJh-MS-asM" id="nS7-68-5DB"/>
-                        <segue destination="DPz-eI-P3g" kind="show" identifier="ArticleVCToWebVC" id="PBu-cN-bof"/>
+                        <segue destination="DPz-eI-P3g" kind="show" identifier="articleVCToWebVC" id="PBu-cN-bof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-4c-VEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,13 +369,13 @@
                                     <constraint firstAttribute="width" constant="350" id="mIk-f0-LxP"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="MbY-IH-coG" kind="embed" identifier="ContainerToSideMenuVC" id="nYj-ZJ-0Qr"/>
+                                    <segue destination="MbY-IH-coG" kind="embed" identifier="containerToSideMenuVC" id="nYj-ZJ-0Qr"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnX-6J-4Fw" userLabel="Main">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="Azi-d6-fdF" kind="embed" identifier="ContainerToMainTabBarVC" id="dDE-H5-wpD"/>
+                                    <segue destination="Azi-d6-fdF" kind="embed" identifier="containerToMainTabBarVC" id="dDE-H5-wpD"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -619,7 +619,7 @@
                         <outlet property="stationViewNextButton" destination="ydP-sA-hJq" id="hx6-QB-pb0"/>
                         <outlet property="stationViewPlayButton" destination="ppp-gp-L4N" id="62e-AO-AlX"/>
                         <outlet property="tableView" destination="myS-OS-TuQ" id="pqn-Nc-Wul"/>
-                        <segue destination="lq6-KD-dr6" kind="show" identifier="RadioVCToNowPlayingVC" id="BTg-cq-fK8"/>
+                        <segue destination="lq6-KD-dr6" kind="show" identifier="radioVCToNowPlayingVC" id="BTg-cq-fK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOK-C0-S1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1048,6 +1048,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Nt-Fj-Tjc"/>
+        <segue reference="xE9-a3-Mip"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -60,6 +60,8 @@
 		23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C1BDB9216AF73C009B194C /* SettingsVC.swift */; };
 		23D3D3052170DF2C005D155F /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D3D3042170DF2C005D155F /* Animations.swift */; };
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
+		23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DB217A069700854AC5 /* DownloadableVideos.json */; };
+		23DE35DE217A069700854AC5 /* StreamingVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DC217A069700854AC5 /* StreamingVideos.json */; };
 		23DF437C216FBE8C00135ED5 /* newsLoading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 23A5EB86216E557D004CDF6F /* newsLoading.mp4 */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* ArticleVC.swift */; };
@@ -91,6 +93,18 @@
 			remoteInfo = PaperBoy;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		23DE35D9217A006200854AC5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +163,8 @@
 		23C1BDB9216AF73C009B194C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		23D3D3042170DF2C005D155F /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		23DE35DB217A069700854AC5 /* DownloadableVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DownloadableVideos.json; sourceTree = "<group>"; };
+		23DE35DC217A069700854AC5 /* StreamingVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StreamingVideos.json; sourceTree = "<group>"; };
 		23E06F172144236100F89F9D /* PaperBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F1A2144236100F89F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E06F1C2144236100F89F9D /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
@@ -375,9 +391,11 @@
 				23E06F1A2144236100F89F9D /* AppDelegate.swift */,
 				237E0932215BED7D0039FE28 /* APIKeys.swift */,
 				23802F0E216DF484005F36E5 /* Enums.swift */,
-				23E079D02173C42800C39FBE /* Extensions */,
-				237E530921690501004DB8B1 /* RadioStations.json */,
 				23D3D3042170DF2C005D155F /* Animations.swift */,
+				237E530921690501004DB8B1 /* RadioStations.json */,
+				23DE35DC217A069700854AC5 /* StreamingVideos.json */,
+				23DE35DB217A069700854AC5 /* DownloadableVideos.json */,
+				23E079D02173C42800C39FBE /* Extensions */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -441,6 +459,7 @@
 				23E06F142144236100F89F9D /* Frameworks */,
 				23E06F152144236100F89F9D /* Resources */,
 				B6B58139E1ADE4A9E8F0839B /* [CP] Embed Pods Frameworks */,
+				23DE35D9217A006200854AC5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -557,6 +576,8 @@
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
 				23F33B66215D735400F7853C /* ArticleView.xib in Resources */,
 				231139F4216E70A7004BF758 /* favorites.gif in Resources */,
+				23DE35DE217A069700854AC5 /* StreamingVideos.json in Resources */,
+				23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */,
 				231139FA216E7808004BF758 /* read.gif in Resources */,
 				237E0937215C04550039FE28 /* UpdatedCell.xib in Resources */,
 			);
@@ -623,12 +644,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);

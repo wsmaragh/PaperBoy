@@ -9,7 +9,7 @@
 import UIKit
 
 enum FontName: String {
-    case Didot = "Didot"
+    case didot = "Didot"
 }
 
 enum FontSize: Int {

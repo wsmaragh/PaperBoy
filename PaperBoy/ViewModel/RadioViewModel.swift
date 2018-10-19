@@ -7,24 +7,20 @@
 //
 
 import Foundation
-import UIKit
-
 
 class RadioViewModel {
-    
+
     var stations = [RadioStation]()
     var searchedStations = [RadioStation]()
     var currentStation: RadioStation?
-    
-    init(){
-        RadioDataService.getRadioStationsFromFile(completion: { (onlineStations) in
+
+    init() {
+        RadioDataService.shared.getRadioStationsFromFile(completion: { (onlineStations) in
             self.stations = onlineStations
         })
     }
-    
+
     deinit {
-        
     }
 
-        
 }

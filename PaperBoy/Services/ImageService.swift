@@ -6,12 +6,10 @@
 //  Copyright © 2018 Winston Maragh. All rights reserved.
 //
 
-
 import UIKit
 
-
 class ImageCacheService {
-    private init(){}
+    private init() {}
     static let shared = ImageCacheService()
     
     private var imageCache = NSCache<NSString, UIImage>()
@@ -25,7 +23,6 @@ class ImageCacheService {
     }
     
 }
-
 
 class ImageService {
     private init() {}
@@ -49,49 +46,43 @@ class ImageService {
     }
 }
 
-
-
-
+// MARK: ImageView Extension
 extension UIImageView {
     
     func loadImage(imageURLString: String?, defaultImageStr: String = "noImage") {
-        
+            
         guard let imageStr = imageURLString else {
             self.image = UIImage(named: defaultImageStr)
             return
         }
         
-        
         if imageStr.contains("http") {
-            
             ImageService.shared.getImage(from: imageStr) { (image) in
+
                 DispatchQueue.main.async {
                     let spinner: UIActivityIndicatorView = {
-                        let sp = UIActivityIndicatorView()
-                        sp.style = .white
-                        return sp
+                        let spinner = UIActivityIndicatorView()
+                        spinner.style = .white
+                        return spinner
                     }()
-                    
-                    self.addSubview(spinner)
-                    spinner.translatesAutoresizingMaskIntoConstraints = false
-                    NSLayoutConstraint.activate([
-                        spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                        spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-                        ])
-                    
+
+                self.addSubview(spinner)
+                spinner.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                    spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                    ])
+
                     spinner.startAnimating()
                     spinner.isHidden = false
-                    
                     self.image = image
                     spinner.stopAnimating()
                     spinner.isHidden = true
                 }
             }
-        }
-        
-        else if imageURLString != "" {
+        } else if imageURLString != "" {
             self.image =  UIImage(named: imageStr)
         }
-    
+
     }
 }

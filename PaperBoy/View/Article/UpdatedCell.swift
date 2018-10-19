@@ -12,7 +12,9 @@ class UpdatedCell: UITableViewCell {
 
     @IBOutlet weak var updatedLabel: UILabel!
     
-    static let id = "UpdatedCell"
+    static var cellID: String {
+        return String(describing: self)
+    }
     
     func configureCell(date: Date){
         updatedLabel.text = DateFormatterService.shared.getUpdatedString(from: date)
@@ -21,10 +23,8 @@ class UpdatedCell: UITableViewCell {
 }
 
 
-
 class UpdatedHeaderView: UITableViewHeaderFooterView {
     
-
     var date: Date!
     
     override init(reuseIdentifier: String?) {
@@ -38,7 +38,6 @@ class UpdatedHeaderView: UITableViewHeaderFooterView {
     func configureView(date: Date) {
         self.date = date
     }
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()

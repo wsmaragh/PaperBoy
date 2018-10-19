@@ -20,7 +20,9 @@ class SmallArticleRightCell: UITableViewCell {
     
     weak var delegate: ArticleCellDelegate?
 
-    static let id = "SmallArticleRightCell"
+    static var cellID: String {
+        return String(describing: self)
+    }
 
     weak var article: Article?
     

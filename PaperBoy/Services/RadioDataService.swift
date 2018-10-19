@@ -3,9 +3,12 @@ import UIKit
 import Alamofire
 
 
-class RadioDataService {
+final class RadioDataService {
     
-    final class func getRadioStationsFromFile(completion: @escaping ([RadioStation]) -> Void) {
+    private init(){}
+    static let shared = RadioDataService()
+    
+    func getRadioStationsFromFile(completion: @escaping ([RadioStation]) -> Void) {
         guard let filePath = Bundle.main.path(forResource: "RadioStations", ofType:"json") else {
             print("Error getting filePath")
             return
@@ -22,7 +25,7 @@ class RadioDataService {
     }
 
     
-    final class func getRadioStationsFromURL(urlString: String, completion: @escaping ([RadioStation]) -> Void) {
+    func getRadioStationsFromURL(urlString: String, completion: @escaping ([RadioStation]) -> Void) {
         guard let url = URL(string: urlString) else {return}
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {

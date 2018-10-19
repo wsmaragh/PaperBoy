@@ -1,0 +1,46 @@
+{
+    "downloadableVideos": [
+        {
+            "name": "Video 1",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4",
+            "length": 5,
+            "size": 1,
+        },
+        {
+            "name": "Video 2",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4",
+            "length": 13,
+            "size": 2,
+        },
+        {
+            "name": "Video 3",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4",
+            "length": 29,
+            "size": 5,
+        },
+        {
+            "name": "Video 4",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4",
+            "length": 62,
+            "size": 10,
+        },
+        {
+            "name": "Video 5",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_20mb.mp4",
+            "length": 117,
+            "size": 20,
+        },
+        {
+            "name": "Video 6",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4",
+            "length": 170,
+            "size": 30,
+        },
+        {
+            "name": "Video 7",
+            "urlLink": "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4",
+            "length": 281,
+            "size": 50,
+        }
+    ]
+}

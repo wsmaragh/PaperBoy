@@ -22,13 +22,7 @@ class MenuCell: UITableViewCell {
     }
     
     private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "station"){
-        if imageString.contains("http") {
-            imageView.loadImage(imageURLString: imageString)
-        } else if imageString != "" {
-            imageView.image = UIImage(named: imageString)
-        } else {
-            imageView.image = UIImage(named: defaultImageStr)
-        }
+        imageView.loadImage(imageURLString: imageString, defaultImageStr: "noImage")
     }
 
 }

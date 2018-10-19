@@ -1,6 +1,5 @@
 {
-    "stations":
-    [
+    "stations": [
         {
             "name": "Bloomberg Radio",
             "streamStr": "http://17593.live.streamtheworld.com/WBBRAMAAC.aac",

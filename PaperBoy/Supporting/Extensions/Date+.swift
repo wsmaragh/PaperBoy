@@ -59,7 +59,6 @@ extension Date {
         }
     }
     
-    
     // Returns a day name string from the date.
     var dayName: String {
         let dateFormatter = DateFormatter()
@@ -82,12 +81,12 @@ extension Date {
         dateFormatter.locale = Locale.current
         return dateFormatter.string(from: self)
     }
-    
+
     // Checks if a date is within the current date day.
     func isInCurrentDayWith(_ date: Date) -> Bool {
         return Calendar.current.isDate(self, equalTo: date, toGranularity: .day)
     }
-    
+
     // Checks if a date is within the current date month.
     func isInCurrentMonthWith(_ date: Date) -> Bool {
         return Calendar.current.isDate(self, equalTo: date, toGranularity: .month)
@@ -97,8 +96,7 @@ extension Date {
     func adding(_ component: Calendar.Component, value: Int) -> Date? {
         return Calendar.current.date(byAdding: component, value: value, to: self)
     }
-    
-    
+
     func timeAgoSinceDate(numericDates: Bool = false) -> String {
         let calendar = NSCalendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]

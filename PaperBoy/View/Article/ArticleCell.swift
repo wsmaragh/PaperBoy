@@ -30,7 +30,9 @@ class ArticleCell: UITableViewCell {
     
     weak var delegate: ArticleCellDelegate?
 
-    static let id = "ArticleCell"
+    static var cellID: String {
+        return String(describing: self)
+    }
     
     weak var article: Article?
     

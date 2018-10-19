@@ -6,7 +6,6 @@
 //  Copyright © 2018 Winston Maragh. All rights reserved.
 //
 
-
 import UIKit
 
 
@@ -21,7 +20,9 @@ class SmallArticleLeftCell: UITableViewCell {
     
     weak var delegate: ArticleCellDelegate?
     
-    static let id = "SmallArticleLeftCell"
+    static var cellID: String {
+        return String(describing: self)
+    }
     
     weak var article: Article?
     

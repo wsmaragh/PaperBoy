@@ -26,11 +26,13 @@ class ArticleView: UIView {
     @IBOutlet weak var fullLabel: UILabel!
     @IBOutlet weak var browserButton: UIButton!
     
-    var contentView : UIView?
+    var contentView: UIView?
     
     weak var delegate: ArticleViewDelegate?
 
-    static let nibName = "ArticleView"
+    static var nibName: String {
+        return String(describing: self)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,5 +73,5 @@ class ArticleView: UIView {
     @IBAction func broswerButtonPressed(_ sender: UIButton) {
         delegate?.browserButtonPressed()
     }
-    
+
 }

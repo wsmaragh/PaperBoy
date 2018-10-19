@@ -40,7 +40,7 @@ class NowPlayingVC: UIViewController {
     deinit {
         removeMyObservers()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -59,17 +59,17 @@ class NowPlayingVC: UIViewController {
         setupNowPlayingBarButtonAnimation()
     }
     
-    private func setupNowPlayingBarButtonAnimation(){
+    private func setupNowPlayingBarButtonAnimation() {
         nowPlayingBars = UIImageView(image: UIImage(named: "NowPlayingBars"))
         nowPlayingBars.autoresizingMask = UIView.AutoresizingMask()
         nowPlayingBars.contentMode = UIView.ContentMode.center
-        nowPlayingBars.animationImages = Animations.nowPlayingAnimationImages()
+        nowPlayingBars.animationImages = Animations.movingBarsAnimationImages()
         nowPlayingBars.animationDuration = 0.7
         let nowPlayBarButtonItem = UIBarButtonItem(customView: nowPlayingBars)
         self.navigationItem.rightBarButtonItem = nowPlayBarButtonItem
     }
     
-    private func setupRadioPlayer(){
+    private func setupRadioPlayer() {
         radioPlayer = MediaPlayer.radio
         radioPlayer.rate = 1
     }
@@ -77,19 +77,19 @@ class NowPlayingVC: UIViewController {
     @objc private func setupVolumeSlider() {
         volumeView.backgroundColor = UIColor.clear
         let mpLocalVolumeView = MPVolumeView(frame: volumeView.bounds)
-        
+
         for view in mpLocalVolumeView.subviews {
             let uiview: UIView = view as UIView
             if (uiview.description as NSString).range(of: "MPVolumeSlider").location != NSNotFound {
                 mpVolumeSlider = (uiview as! UISlider)
             }
         }
-        
+
         let sliderThumbImage = UIImage(named: "sliderBall")
         volumeSlider?.setThumbImage(sliderThumbImage, for: UIControl.State())
     }
     
-    private func updateUI(){
+    private func updateUI() {
         if newStation {
             self.title = currentStation.name
             self.stationLabel.text = currentStation.name
@@ -107,8 +107,8 @@ class NowPlayingVC: UIViewController {
         }
         currentStation.isPlaying = true
     }
-    
-    private func addMyObservers(){
+
+    private func addMyObservers() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(NowPlayingVC.didBecomeActiveNotificationReceived),
@@ -120,26 +120,29 @@ class NowPlayingVC: UIViewController {
             name: AVAudioSession.interruptionNotification,
             object: AVAudioSession.sharedInstance())
     }
-    
-    private func removeMyObservers(){
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue), object: nil)
-        NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+
+    private func removeMyObservers() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue),
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: AVAudioSession.interruptionNotification,
+                                                  object: AVAudioSession.sharedInstance())
     }
-    
+
     @objc func didBecomeActiveNotificationReceived() {
         justBecameActive = true
     }
-    
-    
+
     @IBAction func playBtnPressed() {
         playPause()
     }
-    
-    func playPause(){
+
+    func playPause() {
         if currentStation.isPlaying {
             playPauseButton.setImage(UIImage(named: "playButton"), for: .normal)
             radioPlayer.pause()
-            
+
             nowPlayingBars.stopAnimating()
             currentStation.isPlaying = false
         } else {
@@ -149,11 +152,11 @@ class NowPlayingVC: UIViewController {
             currentStation.isPlaying = true
         }
     }
-    
+
     @IBAction func volumeSliderChanged(_ sender: UISlider) {
         mpVolumeSlider.value = sender.value
     }
-    
+
     @IBAction func shareBtnPressed(_ sender: UIButton) {
         let radioStationToShare = "I'm listening to \(currentStation.name) via PaperBoy"
         let activityViewController = UIActivityViewController(activityItems: [radioStationToShare, currentStation.imageStr], applicationActivities: nil)
@@ -161,21 +164,20 @@ class NowPlayingVC: UIViewController {
     }
 
     @objc func radioAVSessionInterrupted(_ notification: Notification) {
-        if let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber{
-            if let type = AVAudioSession.InterruptionType(rawValue: typeValue.uintValue){
+        if let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber {
+            if let type = AVAudioSession.InterruptionType(rawValue: typeValue.uintValue) {
                 if type == .began {
 
-                } else{
+                } else {
 
                 }
             }
         }
     }
-    
+
     func setupLockScreenRemoteControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
-
-        commandCenter.playCommand.addTarget { [unowned self] event in
+        commandCenter.playCommand.addTarget { [unowned self] _ in
             if self.radioPlayer.rate == 0.0 {
                 self.radioPlayer.play()
                 return .success
@@ -183,7 +185,7 @@ class NowPlayingVC: UIViewController {
             return .commandFailed
         }
 
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
+        commandCenter.pauseCommand.addTarget { [unowned self] _ in
             if self.radioPlayer.rate == 1.0 {
                 self.radioPlayer.pause()
                 return .success

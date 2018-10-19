@@ -1,0 +1,39 @@
+{
+    "streamingVideos": [
+        {
+            "title": "BipBop",
+            "imageStr": "bipbop",
+            "videoStr": "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+            "source": "Apple",
+            "time": 1800
+        },
+        {
+            "title": "Cartoon",
+            "imageStr": "cartoonWowza",
+            "videoStr": "hhttp://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8",
+            "source": "Wowza",
+            "time": 597
+        },
+        {
+            "title": "Humming Bird",
+            "imageStr": "hummingBird",
+            "videoStr": "https://devimages-cdn.apple.com/samplecode/avfoundationMedia/AVFoundationQueuePlayer_HLS2/master.m3u8",
+            "source": "Apple",
+            "time": 20
+        },
+        {
+            "title": "Parkour",
+            "imageStr": "parkour",
+            "videoStr": "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
+            "source": "Parkour",
+            "time": 209
+        },
+        {
+            "title": "Snow Mountain",
+            "imageStr": "snowMountain",
+            "videoStr": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+            "source": "Parkour",
+            "time": 888
+        }
+    ]
+}

@@ -8,20 +8,17 @@
 
 import Foundation
 
-
 enum NotificationNames: String {
     case toggleSideMenu
     case UIApplicationDidBecomeActiveNotification
 }
 
 enum StoryboardIDs: String {
-    case ContainerToSideMenuVC
-    case ContainerToMainTabBarVC
-    case MainVCToArticleVC
-    case SearchVCToArticleVC
-    case FaveArticlesVCToArticleVC
-    case ArticleVCToWebVC
-    case RadioVCToNowPlayingVC
+    case containerToSideMenuVC
+    case containerToMainTabBarVC
+    case mainVCToArticleVC
+    case searchVCToArticleVC
+    case faveArticlesVCToArticleVC
+    case articleVCToWebVC
+    case radioVCToNowPlayingVC
 }
-
-

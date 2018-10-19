@@ -10,11 +10,13 @@ import UIKit
 
 
 class TopicCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var topicImageView: UIImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!
     
-    static let id = "TopicCell"
+    static var cellID: String {
+        return String(describing: self)
+    }
     
     override var isSelected: Bool {
         didSet {

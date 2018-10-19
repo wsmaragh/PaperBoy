@@ -89,6 +89,7 @@ class RadioVC: UIViewController {
     private func setupSearchController(){
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.barStyle = .default
         searchController.searchBar.barTintColor = .white
         searchController.searchBar.tintColor = .white
@@ -118,7 +119,7 @@ class RadioVC: UIViewController {
     }
     
     private func addAnimations(){
-        nowPlayingAnimationImageView.animationImages = Animations.nowPlayingAnimationImages()
+        nowPlayingAnimationImageView.animationImages = Animations.movingBarsAnimationImages()
         nowPlayingAnimationImageView.animationDuration = 0.8
     }
     
@@ -172,7 +173,7 @@ class RadioVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == StoryboardIDs.RadioVCToNowPlayingVC.rawValue {
+        if segue.identifier == StoryboardIDs.radioVCToNowPlayingVC.rawValue {
             guard let nowPlayingVC = segue.destination as? NowPlayingVC else {return}
             currentStationVC = nowPlayingVC
             nowPlayingVC.currentStation = self.currentStation
@@ -212,7 +213,7 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
             showNowPlayingStationVC()
         } else {
             currentStation = selectedStation
-            performSegue(withIdentifier: StoryboardIDs.RadioVCToNowPlayingVC.rawValue, sender: self)
+            performSegue(withIdentifier: StoryboardIDs.radioVCToNowPlayingVC.rawValue, sender: self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -227,8 +228,7 @@ extension RadioVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         searchedStations.removeAll(keepingCapacity: false)
         let searchPredicate = NSPredicate(format: "SELF.name CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (self.stations as NSArray).filtered(using: searchPredicate)
-        searchedStations = array as! [RadioStation]
+        searchedStations = (self.stations as NSArray).filtered(using: searchPredicate) as! [RadioStation]
         self.tableView.reloadData()
     }
     

@@ -8,8 +8,8 @@ target 'PaperBoy' do
   # Pods for PaperBoy
     pod 'RealmSwift'
     pod 'Alamofire'
+    pod 'AlamofireImage'
 
-    
   target 'PaperBoyTests' do
     inherit! :search_paths
     # Pods for testing

@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 
-
 class ArticlesJSON: Codable {
     var totalResults: Int
     var articles: [Article]
@@ -25,11 +24,11 @@ class Article: Object, Codable {
     dynamic var dateStr: String? = nil
     dynamic var source: ArticleSource?
     dynamic var content: String? = nil
-    
+
     override class func primaryKey() -> String? {
         return "title"
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case title
         case author
@@ -40,7 +39,7 @@ class Article: Object, Codable {
         case source
         case content
     }
-    
+
     public required convenience init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -57,7 +56,7 @@ class Article: Object, Codable {
 
 class ArticleSource: Object, Codable {
     @objc dynamic var name: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case name
     }

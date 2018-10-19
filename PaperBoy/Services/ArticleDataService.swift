@@ -14,14 +14,9 @@ enum ArticleTopic: String, CaseIterable {
     case general, business, technology, science, health, sports, entertainment
 }
 
-
 class ArticleDataService {
-//
-//    private init(){}
-//    static let shared = ArticleDataService()
 
-    
-    final class func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
+    func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
 //        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&category=\(topic.rawValue)"
         let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&category=\(topic.rawValue)"
 
@@ -42,12 +37,11 @@ class ArticleDataService {
         }
     }
     
-    
-    final class func getArticles(searchTerm: String, completion: @escaping ([Article]) -> Void) {
+    func getArticles(searchTerm: String, completion: @escaping ([Article]) -> Void) {
 
-        let q = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-//        let url = "https://newsapi.org/v2/everything?apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&language=en&q=\(q!)"
-        let url = "https://newsapi.org/v2/everything?apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&language=en&q=\(q!)"
+        guard let q = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+//        let url = "https://newsapi.org/v2/everything?apiKey=\(APIKeys.NewsApiKey)&sortBy=publishedAt&language=en&q=\(q!)"
+        let url = "https://newsapi.org/v2/everything?apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&language=en&q=\(q)"
 
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {
@@ -64,6 +58,7 @@ class ArticleDataService {
             }
         }
     }
+
 }
 
 
