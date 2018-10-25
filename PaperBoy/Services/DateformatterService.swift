@@ -70,18 +70,22 @@ struct DateFormatterService {
         return newDateString
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     func timeAgoSinceDate(_ date: Date) -> String {
         let calendar = Calendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
-        
         let now = Date()
         let earliest = now < date ? now : date
         let latest = (earliest == now) ? date : now
-        
         let components = calendar.dateComponents(unitFlags, from: earliest,  to: latest)
-        
         let componentDict = ["year": components.year, "month": components.month, "week": components.weekOfYear, "day": components.day, "hour": components.hour, "minute": components.minute,  "second": components.second]
-        
         for (word, time) in componentDict {
             guard let time = time else { continue }
             if time >= 2 {
@@ -90,7 +94,6 @@ struct DateFormatterService {
                 return "1 \(word) ago"
             }
         }
-        
         return "Just now"
     }
  
