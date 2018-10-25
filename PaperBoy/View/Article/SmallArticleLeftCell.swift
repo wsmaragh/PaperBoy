@@ -18,15 +18,18 @@ class SmallArticleLeftCell: UITableViewCell {
     @IBOutlet weak var shareButton: UIButton!
     
     weak var delegate: ArticleCellDelegate?
+    weak var article: Article?
     
     static var cellID: String {
         return String(describing: self)
     }
     
-    weak var article: Article?
-    
     override func awakeFromNib(){
         super.awakeFromNib()
+        roundedCorners()
+    }
+    
+    private func roundedCorners() {
         articleImageView.layer.cornerRadius = 10
         articleImageView.layer.masksToBounds = true
     }

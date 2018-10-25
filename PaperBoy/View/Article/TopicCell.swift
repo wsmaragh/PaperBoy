@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class TopicCell: UICollectionViewCell {
 
     @IBOutlet weak var topicImageView: UIImageView!

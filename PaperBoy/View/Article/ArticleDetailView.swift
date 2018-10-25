@@ -15,7 +15,7 @@ import UIKit
 
 
 @IBDesignable
-class ArticleView: UIView {
+class ArticleDetailView: UIView {
     
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -36,17 +36,21 @@ class ArticleView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        xibSetup()
+        setupXib()
+        roundedCorners()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        xibSetup()
+        setupXib()
+    }
+    
+    private func roundedCorners() {
         browserButton.layer.cornerRadius = 8
         browserButton.layer.masksToBounds = true
     }
     
-    private func xibSetup() {
+    private func setupXib() {
         contentView = loadViewFromNib()
         contentView!.frame = bounds
         contentView!.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
@@ -55,7 +59,7 @@ class ArticleView: UIView {
     
     private func loadViewFromNib() -> UIView! {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: ArticleView.nibName, bundle: bundle)
+        let nib = UINib(nibName: ArticleDetailView.nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }

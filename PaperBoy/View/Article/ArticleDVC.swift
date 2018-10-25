@@ -11,7 +11,7 @@ import UIKit
 
 class ArticleDVC: UIViewController {
 
-    @IBOutlet var articleView: ArticleView!
+    @IBOutlet var articleView: ArticleDetailView!
 
     var article: Article!
     

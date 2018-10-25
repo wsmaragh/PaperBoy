@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-
 class RadioVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -25,8 +24,10 @@ class RadioVC: UIViewController {
     var stations = [RadioStation]()
     var searchedStations = [RadioStation]()
     var currentStation: RadioStation?
+    
     #warning("consider new implementation. weak deallocates too early")
     var currentStationVC: NowPlayingVC?
+    
     private var refreshControl: UIRefreshControl!
     
     deinit {
@@ -177,7 +178,6 @@ class RadioVC: UIViewController {
     }
     
 }
-
 
 
 // MARK: - TableView

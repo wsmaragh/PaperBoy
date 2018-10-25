@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ContainerVC: UIViewController {
 
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!

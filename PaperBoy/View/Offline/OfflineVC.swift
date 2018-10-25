@@ -24,7 +24,6 @@ class OfflineVC: UIViewController {
         NetworkAvailable.shared.reachability.whenReachable = { reachability in
             self.dismissView()
         }
-        
     }
     
     @objc func dismissView(){

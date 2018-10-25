@@ -10,7 +10,6 @@ import UIKit
 import AVKit
 import AVFoundation
 
-
 class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!

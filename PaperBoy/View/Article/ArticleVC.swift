@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 class ArticleVC: UIViewController {
 
     @IBOutlet weak var sideMenu: UIBarButtonItem!

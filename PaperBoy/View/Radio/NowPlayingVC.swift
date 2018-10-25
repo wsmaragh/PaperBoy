@@ -9,7 +9,6 @@
 import UIKit
 import MediaPlayer
 
-
 class NowPlayingVC: UIViewController {
     
     @IBOutlet weak var stationImageView: UIImageView!
@@ -22,7 +21,7 @@ class NowPlayingVC: UIViewController {
     
     @objc var mpVolumeSlider = UISlider()
         
-    static var id: String {
+    static var controllerID: String {
         return String(describing: self)
     }
     
@@ -124,12 +123,15 @@ class NowPlayingVC: UIViewController {
     }
 
     private func removeMyObservers() {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue),
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: AVAudioSession.interruptionNotification,
-                                                  object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.removeObserver(
+            self,
+            name: NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue),
+            object: nil)
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: AVAudioSession.interruptionNotification,
+            object: AVAudioSession.sharedInstance())
     }
 
     @objc func didBecomeActiveNotificationReceived() {

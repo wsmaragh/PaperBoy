@@ -9,15 +9,12 @@
 import UIKit
 import RealmSwift
 
-
 @objc protocol ArticleCellDelegate {
     @objc func savePressed(article: Article)
     @objc func sharePressed(article: Article)
 }
 
-
 class ArticleCell: UITableViewCell {
-
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -29,12 +26,12 @@ class ArticleCell: UITableViewCell {
     @IBOutlet weak var shareButton: UIButton!
     
     weak var delegate: ArticleCellDelegate?
+    weak var article: Article?
 
     static var cellID: String {
         return String(describing: self)
     }
     
-    weak var article: Article?
     
     override func awakeFromNib(){
         super.awakeFromNib()

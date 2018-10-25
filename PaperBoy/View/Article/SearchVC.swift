@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SearchVC: UIViewController {
 
     var searchController: UISearchController = UISearchController(searchResultsController: nil)

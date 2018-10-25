@@ -18,7 +18,6 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
-    
     enum MenuItem: String {
         case Article
         case Video
@@ -106,7 +105,6 @@ extension SideMenuVC: UITableViewDataSource {
         return "Sections"
     }
 }
-
 
 extension SideMenuVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

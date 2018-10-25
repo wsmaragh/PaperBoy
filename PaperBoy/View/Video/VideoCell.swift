@@ -9,16 +9,13 @@
 import UIKit
 import AVFoundation
 
-
 protocol VideoCellDelegate {
     func playVideoInCell()
     func pauseVideoInCell()
     func didFinishPlayingVideoInCell()
 }
 
-
 class VideoCell: UITableViewCell {
-
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!

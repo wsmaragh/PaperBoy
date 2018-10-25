@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleView" customModule="PaperBoy" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleDetailView" customModule="PaperBoy" customModuleProvider="target">
             <connections>
                 <outlet property="articleImageView" destination="Cs3-gX-fCG" id="Agh-tj-gss"/>
                 <outlet property="authorLabel" destination="hJ4-s8-Sot" id="AkR-ht-lgY"/>
@@ -122,9 +122,9 @@
         </view>
     </objects>
     <resources>
-        <image name="newspaper" width="320" height="275"/>
+        <image name="newspaper" width="640" height="551"/>
         <namedColor name="appBlue">
-            <color red="0.22745098039215686" green="0.66274509803921566" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.22699999809265137" green="0.66299998760223389" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

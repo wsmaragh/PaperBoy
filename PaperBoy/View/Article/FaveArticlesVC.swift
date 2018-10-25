@@ -16,41 +16,29 @@ class FaveArticlesVC: UIViewController {
     @IBOutlet var viewForEmptyTableView: UIView!
     
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
-    
     @IBOutlet weak var dismissButton: UIButton!
 
-    @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
-            print("Delete pressed")
-            RealmService.shared.deleteAll()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
-    }
     
     var favoriteArticles: Results<Article>!
-    
     var favoriteArticlesRealmNotificationToken: NotificationToken?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRealm()
         setupNavBar()
         setupTableView()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopObservingRealm()
     }
-
+    
     private func setupNavBar() {
         navigationItem.title = "Favorite Articles"
     }
-
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -59,12 +47,24 @@ class FaveArticlesVC: UIViewController {
         let smallArticleCellNib = UINib(nibName: SmallArticleRightCell.cellID, bundle: nil)
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.cellID)
     }
-
+    
+    private func animateTable() {
+        self.tableView.reloadData()
+        let cells = tableView.visibleCells
+        let tableHeight: CGFloat = tableView.bounds.size.height
+        for (index, cell) in cells.enumerated() {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+            UIView.animate(withDuration: 1.0, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+            }, completion: nil)
+        }
+    }
+    
     private func setupRealm(){
         favoriteArticles = RealmService.shared.read(Article.self)
-
+        
         self.favoriteArticlesRealmNotificationToken = favoriteArticles.observe { (changes: RealmCollectionChange) in
-
+            
             switch changes {
             case .initial:
                 self.tableView.reloadData()
@@ -84,26 +84,26 @@ class FaveArticlesVC: UIViewController {
     private func stopObservingRealm() {
         favoriteArticlesRealmNotificationToken?.invalidate()
     }
-
-    fileprivate func animateTable() {
-        self.tableView.reloadData()
-        let cells = tableView.visibleCells
-        let tableHeight: CGFloat = tableView.bounds.size.height
-        for (index, cell) in cells.enumerated() {
-            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
-            UIView.animate(withDuration: 1.0, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
-                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-            }, completion: nil)
+    
+    
+    @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            print("Delete pressed")
+            RealmService.shared.deleteAll()
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
+
     
     @IBAction func dismiss(_ sender: UIButton) {
-
         self.dismiss(animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == StoryboardIDs.faveArticlesVCToArticleVC.rawValue {
             guard let articleVC = segue.destination as? ArticleDVC else { return }
             guard let indexPath = tableView.indexPathForSelectedRow else { return }

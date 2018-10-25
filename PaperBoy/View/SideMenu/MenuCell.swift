@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
-
 
 class MenuCell: UITableViewCell {
 
@@ -21,11 +19,7 @@ class MenuCell: UITableViewCell {
     
     func configureCell(menuItem: String){
         menulabel.text = menuItem
-        loadImage(imageView: menuImageView, imageString: menuItem)
-    }
-    
-    private func loadImage(imageView: UIImageView, imageString: String, defaultImageStr: String = "station"){
-        imageView.loadImage(imageURLString: imageString, defaultImageStr: "noImage")
+        menuImageView.loadImage(imageURLString: menuItem, defaultImageStr: "noImage")
     }
 
 }
