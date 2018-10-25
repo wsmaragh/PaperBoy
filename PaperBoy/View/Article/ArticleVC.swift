@@ -66,7 +66,6 @@ class ArticleVC: UIViewController {
             titleView.addSubview(imageView)
             self.navigationItem.titleView = titleView
         }
-
     }
 
     private func setupTableView() {
@@ -161,12 +160,6 @@ class ArticleVC: UIViewController {
 
     }
 
-    func setupPanGestureToDismiss() {
-        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
-        swipeGesture.direction = .right
-        view.addGestureRecognizer(swipeGesture)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == StoryboardIDs.mainVCToArticleVC.rawValue {
             guard let articleVC = segue.destination as? ArticleDVC,
@@ -185,19 +178,13 @@ class ArticleVC: UIViewController {
 extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if topics.count == 0 {
-            collectionView.backgroundView = viewForEmptyTableView
-            return 0
-        } else {
-            return topics.count
-        }
+        return topics.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCell.cellID, for: indexPath) as! TopicCell
         let topic = topics[indexPath.item]
         cell.configureCell(topic: topic)
-        cell.layer.cornerRadius = 8
         return cell
     }
 

@@ -119,7 +119,6 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchController.searchBar.text = nil
         searchBar.resignFirstResponder()
-
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -139,15 +138,14 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if articles.count == 0 {
+        if articles.isEmpty {
             tableView.backgroundView = viewForEmptyTableView
             tableView.separatorStyle = .none
-            return 0
         } else {
             tableView.backgroundView = nil
             tableView.separatorStyle = .singleLine
-            return articles.count
         }
+        return articles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -25,14 +25,15 @@ class ContainerVC: UIViewController {
     }
     
     private func addMyObservers(){
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(toggleSideMenu),
-                                               name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue),
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(toggleSideMenu),
+            name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue),
+            object: nil)
     }
     
     private func removeMyObservers(){
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func toggleSideMenu() {
@@ -43,7 +44,7 @@ class ContainerVC: UIViewController {
         sideMenuOpen = !sideMenuOpen
     }
     
-    private weak var mainTabBarVC: UITabBarController?{
+    private weak var mainTabBarVC: UITabBarController? {
         didSet {
             mainTabBarVC?.tabBar.isHidden = true
         }

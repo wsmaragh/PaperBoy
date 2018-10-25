@@ -8,7 +8,6 @@
 
 import UIKit
 
-// UIVIEW
 extension UIView {
     
     func fromNib<T: UIView>() -> T {

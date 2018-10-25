@@ -6,9 +6,10 @@ target 'PaperBoy' do
   use_frameworks!
 
   # Pods for PaperBoy
-    pod 'RealmSwift'
     pod 'Alamofire'
     pod 'AlamofireImage'
+    pod 'RealmSwift'
+    pod 'ReachabilitySwift'
 
   target 'PaperBoyTests' do
     inherit! :search_paths

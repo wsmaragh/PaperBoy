@@ -8,25 +8,20 @@
 
 import Foundation
 
-
 extension Date {
     
-    // get month of current date
     var month: Int {
         return Calendar.current.component(.month, from: self)
     }
     
-    /// Returns a day int for the date.
     var day: Int {
         return Calendar.current.component(.day, from: self)
     }
     
-    // get year of current date
     var year: Int {
         return Calendar.current.component(.year, from: self)
     }
     
-    // get hour of current date
     var hour: Int {
         get {
             return Calendar.current.component(.hour, from: self)
@@ -43,8 +38,7 @@ extension Date {
         }
     }
     
-    // get minute of current date
-    public var minute: Int {
+    var minute: Int {
         get {
             return Calendar.current.component(.minute, from: self)
         }
@@ -59,19 +53,24 @@ extension Date {
         }
     }
     
-    // Returns a day name string from the date.
+    var seconds: Int {
+        return  Calendar.current.component(.second, from: self)
+    }
+    
     var dayName: String {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("EEE")
         return dateFormatter.string(from: self)
     }
     
-    // Returns a month name string from the date.
     var monthName: String {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMM")
         return dateFormatter.string(from: self)
     }
+    
+    
+    // Methods
     
     // Returns a date string from the date.
     func dateString(for style: DateFormatter.Style = .medium) -> String {
@@ -98,61 +97,39 @@ extension Date {
     }
 
     func timeAgoSinceDate(numericDates: Bool = false) -> String {
-        let calendar = NSCalendar.current
+        let calendar = Calendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
+        
         let now = Date()
         let earliest = now < self ? now : self
         let latest = (earliest == now) ? self : now
+        
         let components = calendar.dateComponents(unitFlags, from: earliest,  to: latest)
         
         if (components.year! >= 2) {
             return "\(components.year!) years ago"
         } else if (components.year! >= 1){
-            if (numericDates){
-                return "1 year ago"
-            } else {
-                return "Last year"
-            }
+            return numericDates ? "1 year ago" : "Last year"
         } else if (components.month! >= 2) {
             return "\(components.month!) months ago"
         } else if (components.month! >= 1){
-            if (numericDates){
-                return "1 month ago"
-            } else {
-                return "Last month"
-            }
+            return numericDates ? "1 month ago" : "Last month"
         } else if (components.weekOfYear! >= 2) {
             return "\(components.weekOfYear!) weeks ago"
         } else if (components.weekOfYear! >= 1){
-            if (numericDates){
-                return "1 week ago"
-            } else {
-                return "Last week"
-            }
+            return numericDates ? "1 week ago" : "Last week"
         } else if (components.day! >= 2) {
             return "\(components.day!) days ago"
         } else if (components.day! >= 1){
-            if (numericDates){
-                return "1 day ago"
-            } else {
-                return "Yesterday"
-            }
+            return numericDates ? "1 day ago" : "Yesterday"
         } else if (components.hour! >= 2) {
             return "\(components.hour!) hours ago"
         } else if (components.hour! >= 1){
-            if (numericDates){
-                return "1 hour ago"
-            } else {
-                return "An hour ago"
-            }
+            return numericDates ? "1 hour ago" : "An hour ago"
         } else if (components.minute! >= 2) {
             return "\(components.minute!) minutes ago"
         } else if (components.minute! >= 1){
-            if (numericDates){
-                return "1 minute ago"
-            } else {
-                return "A minute ago"
-            }
+            return numericDates ? "1 minute ago" : "A minute ago"
         } else if (components.second! >= 3) {
             return "\(components.second!) seconds ago"
         } else {

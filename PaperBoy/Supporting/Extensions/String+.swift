@@ -8,8 +8,6 @@
 
 import Foundation
 
-// MARK: STRING
-
 extension String {
 
     func decodeToUTF8() -> String {

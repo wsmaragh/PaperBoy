@@ -20,20 +20,7 @@ class RadioVC: UIViewController {
     @IBOutlet weak var stationViewNextButton: UIButton!
     @IBOutlet weak var stationViewPlayButton: UIButton!
     
-    
     fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
-
-    
-    @IBAction func sideMenuPressed() {
-        slideToMenu()
-    }
-    
-    @IBAction func playPauseButtonPressed(_ sender: UIButton) {
-        currentStationVC?.playPause()
-        configurePlayPause()
-    }
-    
-    
     private let viewModel = RadioViewModel()
     var stations = [RadioStation]()
     var searchedStations = [RadioStation]()
@@ -41,7 +28,6 @@ class RadioVC: UIViewController {
     #warning("consider new implementation. weak deallocates too early")
     var currentStationVC: NowPlayingVC?
     private var refreshControl: UIRefreshControl!
-    
     
     deinit {
         //
@@ -152,6 +138,25 @@ class RadioVC: UIViewController {
         }
     }
     
+    func addRightSwipeGestureToSideMenu() {
+        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func slideToMenu(){
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
+    }
+    
+    @IBAction func sideMenuPressed() {
+        slideToMenu()
+    }
+    
+    @IBAction func playPauseButtonPressed(_ sender: UIButton) {
+        currentStationVC?.playPause()
+        configurePlayPause()
+    }
+    
     @IBAction func nowPlayingViewPressed(_ sender: UIButton) {
         showNowPlayingStationVC()
     }
@@ -160,16 +165,6 @@ class RadioVC: UIViewController {
         if let nowPlayingVC = currentStationVC {
             navigationController?.pushViewController(nowPlayingVC, animated: true)
         }
-    }
-    
-    func addRightSwipeGestureToSideMenu() {
-        let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
-        swipeGesture.direction = .right
-        view.addGestureRecognizer(swipeGesture)
-    }
-    
-    @objc func slideToMenu(){        
-        NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,7 +191,7 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard !stations.isEmpty else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.id, for: indexPath) as! StationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: StationCell.cellID, for: indexPath) as! StationCell
         let station = searchController.isActive ? searchedStations[indexPath.row] : stations[indexPath.row]
         cell.configureStationCell(station)
         cell.backgroundColor = (indexPath.row % 2 == 0) ? UIColor.lightText : UIColor.appTableGray

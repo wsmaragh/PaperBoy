@@ -58,6 +58,8 @@
 		23BA032E2173F66700FFB0B0 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA032D2173F66700FFB0B0 /* ArticleViewModel.swift */; };
 		23BA03302173F6D700FFB0B0 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA032F2173F6D700FFB0B0 /* VideoViewModel.swift */; };
 		23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C1BDB9216AF73C009B194C /* SettingsVC.swift */; };
+		23C539D32180E1A700DDF9CB /* NetworkAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C539D22180E1A700DDF9CB /* NetworkAvailable.swift */; };
+		23C539D52180E24400DDF9CB /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C539D42180E24400DDF9CB /* OfflineView.swift */; };
 		23D3D3052170DF2C005D155F /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D3D3042170DF2C005D155F /* Animations.swift */; };
 		23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */; };
 		23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DB217A069700854AC5 /* DownloadableVideos.json */; };
@@ -73,6 +75,7 @@
 		23F33B64215D734900F7853C /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F33B63215D734900F7853C /* ArticleView.swift */; };
 		23F33B66215D735400F7853C /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleView.xib */; };
 		23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5DA3E216917200052E5CB /* NowPlayingVC.swift */; };
+		23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D50D217E0C710042B83D /* OfflineVC.swift */; };
 		574BB9C6701A53FC014CE92A /* Pods_PaperBoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */; };
 		9F5C8FD66E997DA6CCAFB3DD /* Pods_PaperBoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */; };
 		A1EEB92BB257CDF3A7F08B0A /* Pods_PaperBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */; };
@@ -162,6 +165,8 @@
 		23BA032D2173F66700FFB0B0 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		23BA032F2173F6D700FFB0B0 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		23C1BDB9216AF73C009B194C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		23C539D22180E1A700DDF9CB /* NetworkAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvailable.swift; sourceTree = "<group>"; };
+		23C539D42180E24400DDF9CB /* OfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineView.swift; sourceTree = "<group>"; };
 		23D3D3042170DF2C005D155F /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		23D481C2215CA01E000DAEB0 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		23DE35DB217A069700854AC5 /* DownloadableVideos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DownloadableVideos.json; sourceTree = "<group>"; };
@@ -182,6 +187,7 @@
 		23F33B63215D734900F7853C /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		23F33B65215D735400F7853C /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
 		23F5DA3E216917200052E5CB /* NowPlayingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVC.swift; sourceTree = "<group>"; };
+		23F9D50D217E0C710042B83D /* OfflineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineVC.swift; sourceTree = "<group>"; };
 		4CA2533F5F6123F7CCF38919 /* Pods-PaperBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy.release.xcconfig"; sourceTree = "<group>"; };
 		6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,6 +388,7 @@
 				237E52FC21690148004DB8B1 /* Article */,
 				237E52FD2169016E004DB8B1 /* Video */,
 				237E52FE21690191004DB8B1 /* Radio */,
+				23F9D514217E13720042B83D /* Offline */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,6 +418,7 @@
 				237E0930215BEA390039FE28 /* ArticleDataService.swift */,
 				237E530721690435004DB8B1 /* RadioDataService.swift */,
 				23DE35DF217A139300854AC5 /* VideoDataService.swift */,
+				23C539D22180E1A700DDF9CB /* NetworkAvailable.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -419,12 +427,21 @@
 			isa = PBXGroup;
 			children = (
 				237E0944215C30B50039FE28 /* Date+.swift */,
-				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
 				23BA03272173EEE300FFB0B0 /* String+.swift */,
-				23BA03292173EEF800FFB0B0 /* UIColor+.swift */,
 				23BA032B2173EF2C00FFB0B0 /* UIView+.swift */,
+				23BA03292173EEF800FFB0B0 /* UIColor+.swift */,
+				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		23F9D514217E13720042B83D /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				23C539D42180E24400DDF9CB /* OfflineView.swift */,
+				23F9D50D217E0C710042B83D /* OfflineVC.swift */,
+			);
+			path = Offline;
 			sourceTree = "<group>";
 		};
 		2B104E4DDAA380D480A3A1A5 /* Frameworks */ = {
@@ -648,6 +665,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
@@ -655,6 +673,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -688,6 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23C539D32180E1A700DDF9CB /* NetworkAvailable.swift in Sources */,
 				237E52F72168F0DC004DB8B1 /* VideoVC.swift in Sources */,
 				237E531B21690845004DB8B1 /* StationCell.swift in Sources */,
 				237E531221690501004DB8B1 /* RadioStation.swift in Sources */,
@@ -718,12 +738,14 @@
 				237E092F215BEA1B0039FE28 /* Article.swift in Sources */,
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
 				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
+				23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */,
 				23BA03302173F6D700FFB0B0 /* VideoViewModel.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */,
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 				23BA032E2173F66700FFB0B0 /* ArticleViewModel.swift in Sources */,
 				2361ABBF2174FF7E00C8F556 /* DownloadableVideo.swift in Sources */,
+				23C539D52180E24400DDF9CB /* OfflineView.swift in Sources */,
 				231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */,
 				23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */,
 				23D3D3052170DF2C005D155F /* Animations.swift in Sources */,

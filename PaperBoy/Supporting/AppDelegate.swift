@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
                                                          mode: AVAudioSession.Mode.moviePlayback,
                                                          options: [.mixWithOthers])
+        
         UIApplication.shared.beginReceivingRemoteControlEvents()
+        
         return true
     }
     

@@ -13,8 +13,10 @@ class StationCell: UITableViewCell {
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var stationDescLabel: UILabel!
     @IBOutlet weak var stationImageView: UIImageView!
-    
-    static let id = "StationCell"
+        
+    static var cellID: String {
+        return String(describing: self)
+    }
     
     override func awakeFromNib(){
         super.awakeFromNib()

@@ -38,6 +38,10 @@ class ArticleCell: UITableViewCell {
     
     override func awakeFromNib(){
         super.awakeFromNib()
+        roundedCorners()
+    }
+    
+    private func roundedCorners() {
         articleImageView.layer.cornerRadius = 10
         articleImageView.layer.masksToBounds = true
     }
@@ -68,7 +72,6 @@ class ArticleCell: UITableViewCell {
     @IBAction func savePressed(_ sender: UIButton) {
         if let article = self.article {
             delegate?.savePressed(article: article)
-            
         }
     }
     

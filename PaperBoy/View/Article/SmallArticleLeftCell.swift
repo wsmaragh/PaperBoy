@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SmallArticleLeftCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!

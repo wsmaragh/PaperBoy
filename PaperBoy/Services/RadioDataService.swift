@@ -1,7 +1,13 @@
+//
+//  RadioDataService.swift
+//  PaperBoy
+//
+//  Created by Winston Maragh on 10/01/18.
+//  Copyright © 2018 Winston Maragh. All rights reserved.
+//
 
 import UIKit
 import Alamofire
-
 
 final class RadioDataService {
     

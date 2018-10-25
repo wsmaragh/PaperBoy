@@ -78,7 +78,21 @@ class VideoVC: UIViewController {
     }
 
     private func playVideo(video: StreamingVideo){
-        if let url = URL(string: video.videoStr) {
+        
+        guard let url = URL(string: video.videoStr) else { return }
+        let asset: AVURLAsset = AVURLAsset(url: url)
+        let videoItem: AVPlayerItem = AVPlayerItem(asset: asset)
+        videoPlayerController?.player = AVPlayer(playerItem: videoItem)
+        videoPlayerController?.player?.play()
+        videoPlaying = true
+        let duration = videoPlayerController!.player!.currentItem!.duration.seconds
+        
+        videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+            self.videoPlayerController!.player!.pause()
+            self.videoPlaying = false
+            self.videoTimer.invalidate()
+        })
+    
 //            if videoPlaying {
 //                self.videoPlayerController!.player!.pause()
 //                let videoItem = AVPlayerItem(url: url)
@@ -90,20 +104,17 @@ class VideoVC: UIViewController {
 //                    self.videoPlaying = false
 //                    self.videoTimer.invalidate()
 //                })
+//            } else {
+//                videoPlayerController?.player = AVPlayer(url: url)
+//                videoPlayerController?.player?.play()
+//                videoPlaying = true
+//                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
+//                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
+//                    self.videoPlayerController!.player!.pause()
+//                    self.videoPlaying = false
+//                    self.videoTimer.invalidate()
+//                })
 //            }
-            //Video not playing
-//            else {
-                videoPlayerController?.player = AVPlayer(url: url)
-                videoPlayerController?.player?.play()
-                videoPlaying = true
-                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
-                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-                    self.videoPlayerController!.player!.pause()
-                    self.videoPlaying = false
-                    self.videoTimer.invalidate()
-                })
-//            }
-        }
     }
     
     private func pauseVideo(){
@@ -178,8 +189,5 @@ extension VideoVC: VideoCellDelegate {
         self.playVideo(video: video)
         self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
     }
-    
-    
-    
-}
 
+}

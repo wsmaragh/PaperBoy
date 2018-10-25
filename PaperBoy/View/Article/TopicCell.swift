@@ -14,6 +14,16 @@ class TopicCell: UICollectionViewCell {
     @IBOutlet weak var topicImageView: UIImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!
     
+    override func awakeFromNib(){
+        super.awakeFromNib()
+        roundedCorners()
+    }
+
+    private func roundedCorners() {
+        self.layer.cornerRadius = 8
+        self.layer.masksToBounds = true
+    }
+    
     static var cellID: String {
         return String(describing: self)
     }

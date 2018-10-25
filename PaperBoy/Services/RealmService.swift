@@ -36,6 +36,10 @@ class RealmService {
         return realm.objects(type)
     }
     
+    func read<T: Object>(_ type: T.Type, key: String) -> T? {
+        return realm.object(ofType: type, forPrimaryKey: key)
+    }
+    
     func update<T: Object>(_ realmObject: T, with dictionary: [String: Any?]) {
         do {
             try realm.write {

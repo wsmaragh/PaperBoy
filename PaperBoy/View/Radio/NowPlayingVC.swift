@@ -21,8 +21,10 @@ class NowPlayingVC: UIViewController {
     @IBOutlet weak var radioPlayingButton: UIBarButtonItem!
     
     @objc var mpVolumeSlider = UISlider()
-    
-    static let id: String = "NowPlayingVC"
+        
+    static var id: String {
+        return String(describing: self)
+    }
     
     @objc var radioPlayer: AVPlayer!
     
