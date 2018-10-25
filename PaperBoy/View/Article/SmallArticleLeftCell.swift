@@ -56,7 +56,7 @@ class SmallArticleLeftCell: UITableViewCell {
         titleLabel.text = article.title
         articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
         sourceLabel.text = article.source._rlmInferWrappedType().name
-        timeLabel.text = (article.dateStr != nil) ? DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: article.dateStr!) : ""
+        timeLabel.text = (article.dateStr != nil) ? Date.timeAgoSinceDate(dateString: article.dateStr!) : ""
     }
     
     @IBAction func savePressed(_ sender: UIButton) {

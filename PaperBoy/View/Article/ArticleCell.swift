@@ -63,7 +63,7 @@ class ArticleCell: UITableViewCell {
         descriptionLabel.text = article.subtitle
         authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
         articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
-        timeLabel.text = (article.dateStr != nil) ? DateFormatterService.shared.getCustomDateTimeAgoForArticleCell(dateStr: article.dateStr!) : ""
+        timeLabel.text = (article.dateStr != nil) ? Date.timeAgoSinceDate(dateString: article.dateStr!) : ""            
     }
     
     @IBAction func savePressed(_ sender: UIButton) {
