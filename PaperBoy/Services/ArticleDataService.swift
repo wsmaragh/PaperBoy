@@ -14,13 +14,12 @@ enum ArticleTopic: String, CaseIterable {
     case general, business, technology, science, health, sports, entertainment
 }
 
-class ArticleDataService {
+final class ArticleDataService {
 
     func getTopArticles(topic: ArticleTopic, completion: @escaping ([Article]) -> Void) {
 //        let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(APIKeys.NewsAPI_ApiKey)&sortBy=publishedAt&category=\(topic.rawValue)"
         let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=4f02ec2ed1664a5db9809b8649ea3242&sortBy=publishedAt&category=\(topic.rawValue)"
 
-        
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {
                 if let data = response.data {
@@ -60,15 +59,4 @@ class ArticleDataService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 

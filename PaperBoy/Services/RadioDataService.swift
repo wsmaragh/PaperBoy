@@ -33,6 +33,7 @@ final class RadioDataService {
     
     func getRadioStationsFromURL(urlString: String, completion: @escaping ([RadioStation]) -> Void) {
         guard let url = URL(string: urlString) else {return}
+        
         Alamofire.request(url).responseJSON { (response) in
             if response.result.isSuccess {
                 if let data = response.data {

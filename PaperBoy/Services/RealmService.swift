@@ -61,7 +61,6 @@ class RealmService {
         } catch {
             print("Realm Delete Error: ", error)
             print("Realm Delete Error Description: ", error.localizedDescription)
-            
         }
     }
     
@@ -73,7 +72,6 @@ class RealmService {
         } catch {
             print("Realm Delete Error: ", error)
             print("Realm Delete Error Description: ", error.localizedDescription)
-            
         }
     }
     

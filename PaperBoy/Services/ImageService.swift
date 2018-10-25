@@ -36,7 +36,11 @@ class ImageService {
             return
         }
         
-        guard let url = URL(string: urlStr) else {print("Bad URL used in ImageService"); return }
+        guard let url = URL(string: urlStr) else {
+            print("Bad URL used in ImageService")
+            return
+        }
+        
         DispatchQueue.global().async {
             guard let data = try? Data(contentsOf: url) else {return}
             guard let image = UIImage(data: data) else {return}
@@ -45,6 +49,7 @@ class ImageService {
         }
     }
 }
+
 
 // MARK: ImageView Extension
 extension UIImageView {
@@ -66,11 +71,12 @@ extension UIImageView {
                         return spinner
                     }()
 
-                self.addSubview(spinner)
-                spinner.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                    spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                    self.addSubview(spinner)
+                    spinner.translatesAutoresizingMaskIntoConstraints = false
+                    
+                    NSLayoutConstraint.activate([
+                        spinner.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                        spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor)
                     ])
 
                     spinner.startAnimating()
