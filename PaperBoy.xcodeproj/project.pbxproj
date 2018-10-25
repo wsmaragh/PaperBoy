@@ -228,10 +228,10 @@
 		237E092D215BE8B10039FE28 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2387BE222182122800F57509 /* Videos */,
+				2387BE212182121100F57509 /* Sounds */,
 				23B4F9CB21640869002D8C3D /* Gifs */,
 				23802F07216D9F19005F36E5 /* Assets.xcassets */,
-				23A5EB86216E557D004CDF6F /* newsLoading.mp4 */,
-				23802F03216D69B7005F36E5 /* beep.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -298,6 +298,22 @@
 				23BA032F2173F6D700FFB0B0 /* VideoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2387BE212182121100F57509 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				23802F03216D69B7005F36E5 /* beep.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		2387BE222182122800F57509 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				23A5EB86216E557D004CDF6F /* newsLoading.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 		23B4F9CB21640869002D8C3D /* Gifs */ = {
