@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class DownloadableVideoJSON: Codable {
     var downloadableVideos: [DownloadableVideo]
 }

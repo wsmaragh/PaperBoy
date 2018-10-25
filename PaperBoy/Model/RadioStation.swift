@@ -1,40 +1,44 @@
-import UIKit
+//
+//  RadioStation.swift
+//  PaperBoy
+//
+//  Created by Winston Maragh on 9/26/18.
+//  Copyright © 2018 Winston Maragh. All rights reserved.
+//
+
+import Foundation
+import RealmSwift
 
 class RadioStationJSON: Codable {
     var stations: [RadioStation]
 }
 
-class RadioStation: NSObject, Codable {
-
-    @objc var name: String
-    @objc var streamStr: String
-    @objc var imageStr: String
-    @objc var desc: String
-    @objc var longDesc: String
-    var isPlaying: Bool = false
+@objcMembers
+class RadioStation: Object, Codable {
+    dynamic var name: String = ""
+    dynamic var streamStr: String = ""
+    dynamic var imageStr: String = ""
+    dynamic var desc: String = ""
+    dynamic var longDesc: String = ""
+    
+    dynamic var isPlaying: Bool = false
+    
+    override class func primaryKey() -> String? {
+        return "name"
+    }
 
     enum CodingKeys: String, CodingKey {
         case name, streamStr, imageStr, desc, longDesc
     }
 
-    @objc init(name: String, streamStr: String, imageStr: String, desc: String, longDesc: String) {
-        self.name      = name
-        self.streamStr = streamStr
-        self.imageStr  = imageStr
-        self.desc      = desc
-        self.longDesc  = longDesc
+    public required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.streamStr = try container.decode(String.self, forKey: .streamStr)
+        self.imageStr = try container.decode(String.self, forKey: .imageStr)
+        self.desc = try container.decode(String.self, forKey: .desc)
+        self.longDesc = try container.decode(String.self, forKey: .longDesc)
     }
-
-    @objc init(dict: [String: Any]) {
-        self.name = dict["name"] as? String ?? ""
-        self.streamStr = dict["streamStr"] as? String ?? ""
-        self.imageStr = dict["imageStr"] as? String ?? ""
-        self.desc = dict["desc"] as? String ?? ""
-        self.longDesc = dict["longDesc"] as? String ?? ""
-    }
-
-    @objc convenience init(name: String, streamStr: String, imageStr: String, desc: String) {
-        self.init(name: name, streamStr: streamStr, imageStr: imageStr, desc: desc, longDesc: "")
-    }
-
+    
 }

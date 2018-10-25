@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class StreamingVideoJSON: Codable {
     var streamingVideos: [StreamingVideo]
 }
