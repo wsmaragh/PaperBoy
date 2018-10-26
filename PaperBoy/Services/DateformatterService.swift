@@ -85,8 +85,10 @@ struct DateFormatterService {
         let earliest = now < date ? now : date
         let latest = (earliest == now) ? date : now
         let components = calendar.dateComponents(unitFlags, from: earliest,  to: latest)
-        let componentDict = ["year": components.year, "month": components.month, "week": components.weekOfYear, "day": components.day, "hour": components.hour, "minute": components.minute,  "second": components.second]
-        for (word, time) in componentDict {
+        
+        let componentTuple = [("year", components.year), ("month", components.month), ("week", components.weekOfYear), ("day", components.day), ("hour", components.hour), ("minute", components.minute), ("second", components.second)]
+        
+        for (word, time) in componentTuple {
             guard let time = time else { continue }
             if time >= 2 {
                 return "\(time) \(word)s ago"
