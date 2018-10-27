@@ -73,7 +73,7 @@
 		23E06F332144236300F89F9D /* PaperBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F322144236300F89F9D /* PaperBoyTests.swift */; };
 		23E06F3E2144236300F89F9D /* PaperBoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */; };
 		23F33B64215D734900F7853C /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F33B63215D734900F7853C /* ArticleDetailView.swift */; };
-		23F33B66215D735400F7853C /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleView.xib */; };
+		23F33B66215D735400F7853C /* ArticleDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleDetailView.xib */; };
 		23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5DA3E216917200052E5CB /* NowPlayingVC.swift */; };
 		23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D50D217E0C710042B83D /* OfflineVC.swift */; };
 		574BB9C6701A53FC014CE92A /* Pods_PaperBoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */; };
@@ -185,7 +185,7 @@
 		23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperBoyUITests.swift; sourceTree = "<group>"; };
 		23E06F3F2144236300F89F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23F33B63215D734900F7853C /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
-		23F33B65215D735400F7853C /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
+		23F33B65215D735400F7853C /* ArticleDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleDetailView.xib; sourceTree = "<group>"; };
 		23F5DA3E216917200052E5CB /* NowPlayingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVC.swift; sourceTree = "<group>"; };
 		23F9D50D217E0C710042B83D /* OfflineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineVC.swift; sourceTree = "<group>"; };
 		4CA2533F5F6123F7CCF38919 /* Pods-PaperBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 				237E0938215C05090039FE28 /* ArticleCell.swift */,
 				237E093E215C195F0039FE28 /* ArticleCell.xib */,
 				23F33B63215D734900F7853C /* ArticleDetailView.swift */,
-				23F33B65215D735400F7853C /* ArticleView.xib */,
+				23F33B65215D735400F7853C /* ArticleDetailView.xib */,
 				237E0934215C00A40039FE28 /* UpdatedCell.swift */,
 				237E0936215C04550039FE28 /* UpdatedCell.xib */,
 				237E0949215C400E0039FE28 /* TopicCell.swift */,
@@ -610,7 +610,7 @@
 				23E06F202144236100F89F9D /* Main.storyboard in Resources */,
 				23674422216B37840072BE80 /* VideoCell.xib in Resources */,
 				237E093F215C195F0039FE28 /* ArticleCell.xib in Resources */,
-				23F33B66215D735400F7853C /* ArticleView.xib in Resources */,
+				23F33B66215D735400F7853C /* ArticleDetailView.xib in Resources */,
 				231139F4216E70A7004BF758 /* favorites.gif in Resources */,
 				23DE35DE217A069700854AC5 /* StreamingVideos.json in Resources */,
 				23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */,

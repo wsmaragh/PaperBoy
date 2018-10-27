@@ -128,7 +128,8 @@ class ArticleVC: UIViewController {
     }
 
     fileprivate func fetchArticles(topic: ArticleTopic) {
-        articleDataService.getTopArticles(topic: topic) { (onlineArticles) in
+        articleDataService.getTopArticles(topic: topic) { [weak self] (onlineArticles) in
+            guard let self = self else {return}
             self.articles = onlineArticles
             self.tableView.reloadData()
             self.animateTable()
