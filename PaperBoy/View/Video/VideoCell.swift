@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-protocol VideoCellDelegate {
+protocol VideoCellDelegate: class {
     func playVideoInCell()
     func pauseVideoInCell()
     func didFinishPlayingVideoInCell()
@@ -31,7 +31,7 @@ class VideoCell: UITableViewCell {
         return String(describing: self)
     }
     
-    var delegate: VideoCellDelegate?
+    weak var delegate: VideoCellDelegate?
     
     private var countdownTimer = Timer()
     private var timeUpdateInterval: Double = 0.01

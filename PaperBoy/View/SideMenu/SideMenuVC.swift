@@ -18,19 +18,15 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
-    enum MenuItem: String {
+    enum MenuItem: String, CaseIterable {
         case Article
         case Video
         case Radio
-        case Games
-        
-        static var allCases: [MenuItem] {
-            return [.Article, .Video, .Radio, .Games]
-        }
+//        case Games
     }
     
     var menuItems = MenuItem.allCases
-    var selectionDelegate: SideMenuDelegate?
+    weak var selectionDelegate: SideMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

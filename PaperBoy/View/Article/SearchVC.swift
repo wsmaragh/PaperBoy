@@ -76,8 +76,9 @@ class SearchVC: UIViewController {
     }
 
     fileprivate func fetchArticles(searchTerm: String) {
-        articleDataService.getArticles(searchTerm: searchTerm) { (onlineArticles) in
-            self.articles = onlineArticles
+        articleDataService.getArticles(searchTerm: searchTerm) { [weak self] (onlineArticles) in
+            guard let weakSelf = self else { return }
+            weakSelf.articles = onlineArticles
         }
     }
 
@@ -96,7 +97,7 @@ class SearchVC: UIViewController {
 // MARK: SearchController
 
 extension SearchVC: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
+
     func updateSearchResults(for searchController: UISearchController) {
 
     }

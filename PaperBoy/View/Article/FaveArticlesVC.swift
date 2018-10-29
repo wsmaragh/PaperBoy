@@ -63,17 +63,18 @@ class FaveArticlesVC: UIViewController {
     private func setupRealm(){
         favoriteArticles = RealmService.shared.read(Article.self)
         
-        self.favoriteArticlesRealmNotificationToken = favoriteArticles.observe { (changes: RealmCollectionChange) in
+        self.favoriteArticlesRealmNotificationToken = favoriteArticles.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let weakSelf = self else { return }
             
             switch changes {
             case .initial:
-                self.tableView.reloadData()
+                weakSelf.tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                self.tableView.beginUpdates()
-                self.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                self.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                self.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                self.tableView.endUpdates()
+                weakSelf.tableView.beginUpdates()
+                weakSelf.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                weakSelf.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                weakSelf.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                weakSelf.tableView.endUpdates()
             case .error(let err):
                 fatalError("\(err)")
             }

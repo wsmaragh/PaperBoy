@@ -35,8 +35,8 @@ class WebVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
         webView.allowsLinkPreview = true
         webView.allowsBackForwardNavigationGestures = true
 
-        guard let urlStr = article.websiteStr else {return}
-        guard let url = URL(string: urlStr) else {return}
+        guard let urlStr = article.websiteStr else { return }
+        guard let url = URL(string: urlStr) else { return }
         let urlRequest = URLRequest(url: url)
         webView.load(urlRequest)
         view.layoutIfNeeded()
