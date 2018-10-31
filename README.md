@@ -1,5 +1,5 @@
 <p align="center">
-    <img        src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Assets.xcassets/githubLogo.imageset/githubLogo.png" width="300" style="max-width:100%;">
+    <img        src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Assets.xcassets/Logo/githubLogo.imageset/githubLogo.png" width="300" style="max-width:100%;">
 </p>
 
 <a>
