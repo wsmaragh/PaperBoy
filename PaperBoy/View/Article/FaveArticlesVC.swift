@@ -18,10 +18,8 @@ class FaveArticlesVC: UIViewController {
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
     @IBOutlet weak var dismissButton: UIButton!
 
-    
     var favoriteArticles: Results<Article>!
     var favoriteArticlesRealmNotificationToken: NotificationToken?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +47,7 @@ class FaveArticlesVC: UIViewController {
     }
     
     private func animateTable() {
-        self.tableView.reloadData()
+        tableView.reloadData()
         let cells = tableView.visibleCells
         let tableHeight: CGFloat = tableView.bounds.size.height
         for (index, cell) in cells.enumerated() {
@@ -90,7 +88,6 @@ class FaveArticlesVC: UIViewController {
     @IBAction func deleteAllPressed(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Delete All?", message: "Are you sure you want to delete all saved articles?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
-            print("Delete pressed")
             RealmService.shared.deleteAll()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
@@ -101,7 +98,7 @@ class FaveArticlesVC: UIViewController {
 
     
     @IBAction func dismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

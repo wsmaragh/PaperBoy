@@ -19,21 +19,21 @@ class NowPlayingVC: UIViewController {
     
     @IBOutlet weak var radioPlayingButton: UIBarButtonItem!
     
-    @objc var mpVolumeSlider = UISlider()
-        
     static var controllerID: String {
         return String(describing: self)
     }
     
-    @objc var radioPlayer: AVPlayer!
+    var radioPlayer: AVPlayer!
+    var mpVolumeSlider = UISlider()
     
-    @objc var currentStation: RadioStation! {
+    var currentStation: RadioStation! {
         didSet {
             playRadioStation()
         }
     }
-    @objc var newStation: Bool = true
-    @objc var justBecameActive: Bool = false
+    
+    var newStation: Bool = true
+    var justBecameActive: Bool = false
     
     fileprivate var isPlaying: Bool = false
     fileprivate var nowPlayingBars: UIImageView!
@@ -92,16 +92,16 @@ class NowPlayingVC: UIViewController {
     
     private func updateUI() {
         if newStation {
-            self.title = currentStation.name
-            self.stationLabel.text = currentStation.name
-            self.stationImageView.loadImage(imageURLString: currentStation.imageStr)
+            title = currentStation.name
+            stationLabel.text = currentStation.name
+            stationImageView.loadImage(imageURLString: currentStation.imageStr)
         }
     }
 
     @objc private func playRadioStation() {
         guard let streamURL = URL(string: currentStation.streamStr) else {return}
         let station = StationAVPlayerItem(url: streamURL)
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[unowned self] in
             self.radioPlayer.replaceCurrentItem(with: station)
             self.radioPlayer.play()
             self.nowPlayingBars.startAnimating()
@@ -123,15 +123,7 @@ class NowPlayingVC: UIViewController {
     }
 
     private func removeMyObservers() {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: NSNotification.Name(rawValue: NotificationNames.UIApplicationDidBecomeActiveNotification.rawValue),
-            object: nil)
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: AVAudioSession.interruptionNotification,
-            object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.removeObserver(self)
     }
 
     @objc func didBecomeActiveNotificationReceived() {
@@ -146,7 +138,6 @@ class NowPlayingVC: UIViewController {
         if currentStation.isPlaying {
             playPauseButton.setImage(UIImage(named: "playButton"), for: .normal)
             radioPlayer.pause()
-
             nowPlayingBars.stopAnimating()
             currentStation.isPlaying = false
         } else {

@@ -40,9 +40,10 @@ class VideoVC: UIViewController {
     }
     
     private func getStreamingVideos() {
-        videoDataService.getStreamingVideosFromFile { (parsedStreamingVideos) in
-            self.streamingVideos = parsedStreamingVideos
-            self.reloadTableView()
+        videoDataService.getStreamingVideosFromFile {[weak self] (parsedStreamingVideos) in
+            guard let weakSelf = self else { return }
+            weakSelf.streamingVideos = parsedStreamingVideos
+            weakSelf.reloadTableView()
         }
     }
     
@@ -57,7 +58,7 @@ class VideoVC: UIViewController {
     }
     
     private func reloadTableView() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[unowned self] in
             self.tableView.reloadData()
         }
     }
@@ -91,29 +92,6 @@ class VideoVC: UIViewController {
             self.videoPlaying = false
             self.videoTimer.invalidate()
         })
-    
-//            if videoPlaying {
-//                self.videoPlayerController!.player!.pause()
-//                let videoItem = AVPlayerItem(url: url)
-//                videoPlayerController?.player?.replaceCurrentItem(with: videoItem)
-//                videoPlayerController?.player?.play()
-//                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
-//                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-//                    self.videoPlayerController!.player!.pause()
-//                    self.videoPlaying = false
-//                    self.videoTimer.invalidate()
-//                })
-//            } else {
-//                videoPlayerController?.player = AVPlayer(url: url)
-//                videoPlayerController?.player?.play()
-//                videoPlaying = true
-//                let duration = videoPlayerController!.player!.currentItem!.duration.seconds
-//                videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
-//                    self.videoPlayerController!.player!.pause()
-//                    self.videoPlaying = false
-//                    self.videoTimer.invalidate()
-//                })
-//            }
     }
     
     private func pauseVideo(){
@@ -129,7 +107,7 @@ class VideoVC: UIViewController {
         if segue.identifier == "embeddedAVPlayer",
             let avPlayerVC = segue.destination as? AVPlayerViewController {
                 videoPlayerController = avPlayerVC
-                self.addChild(avPlayerVC)
+                addChild(avPlayerVC)
         }
     }
     
@@ -154,10 +132,10 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.currentVideoPlayingIndex = indexPath.row
+        currentVideoPlayingIndex = indexPath.row
         guard streamingVideos.count != 0 else {return}
         let video = streamingVideos[currentVideoPlayingIndex]
-        self.playVideo(video: video)
+        playVideo(video: video)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -172,21 +150,21 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
 extension VideoVC: VideoCellDelegate {
     
     func playVideoInCell() {
-        self.videoPlayerController?.player?.play()
+        videoPlayerController?.player?.play()
     }
     
     func pauseVideoInCell(){
-        self.videoPlayerController?.player?.pause()
+        videoPlayerController?.player?.pause()
     }
     
     func didFinishPlayingVideoInCell() {
-        self.videoPlayerController?.player?.pause()
+        videoPlayerController?.player?.pause()
         guard currentVideoPlayingIndex < streamingVideos.count else {return}
-        self.currentVideoPlayingIndex += 1
+        currentVideoPlayingIndex += 1
         guard currentVideoPlayingIndex < streamingVideos.count else {return}
         let video = streamingVideos[currentVideoPlayingIndex]
-        self.playVideo(video: video)
-        self.tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
+        playVideo(video: video)
+        tableView.selectRow(at: IndexPath(row: currentVideoPlayingIndex, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top)
     }
 
 }

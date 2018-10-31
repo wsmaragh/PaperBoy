@@ -27,6 +27,7 @@ class SmallArticleLeftCell: UITableViewCell {
     override func awakeFromNib(){
         super.awakeFromNib()
         roundedCorners()
+        addCustomSkeleton()
     }
     
     private func roundedCorners() {
@@ -34,16 +35,24 @@ class SmallArticleLeftCell: UITableViewCell {
         articleImageView.layer.masksToBounds = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func addCustomSkeleton() {
+        isUserInteractionEnabled = false
+        articleImageView.backgroundColor = UIColor.skeletonColor
+        sourceLabel.backgroundColor = UIColor.skeletonColor
+        timeLabel.backgroundColor = UIColor.skeletonColor
+        titleLabel.backgroundColor = UIColor.skeletonColor
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text  = nil
-        articleImageView.image = nil
-        sourceLabel.text  = nil
-        timeLabel.text  = nil
+    func removeCustomSkeleton() {
+        isUserInteractionEnabled = true
+        articleImageView.backgroundColor = backgroundColor
+        sourceLabel.backgroundColor = backgroundColor
+        timeLabel.backgroundColor = backgroundColor
+        titleLabel.backgroundColor = backgroundColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     public func configureCell(article: Article, hideButtons: Bool) {
@@ -57,6 +66,7 @@ class SmallArticleLeftCell: UITableViewCell {
         articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
         sourceLabel.text = article.source._rlmInferWrappedType().name
         timeLabel.text = (article.dateStr != nil) ? Date.timeAgoSinceDate(dateString: article.dateStr!) : ""
+        removeCustomSkeleton()
     }
     
     @IBAction func savePressed(_ sender: UIButton) {

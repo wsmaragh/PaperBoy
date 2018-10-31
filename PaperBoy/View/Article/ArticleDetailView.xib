@@ -67,10 +67,10 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD3-TZ-Fzn">
                     <rect key="frame" x="252" y="45" width="107" height="24"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" name="appBlue"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <state key="normal" title="     View in Browser     ">
-                        <color key="titleColor" name="appBlue"/>
+                        <color key="titleColor" name="appWhite"/>
                     </state>
                     <connections>
                         <action selector="broswerButtonPressed:" destination="-1" eventType="touchUpInside" id="2mm-I3-hld"/>
@@ -125,6 +125,9 @@
         <image name="newspaper" width="640" height="551"/>
         <namedColor name="appBlue">
             <color red="0.22699999809265137" green="0.66299998760223389" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appWhite">
+            <color red="0.92199999094009399" green="0.92199999094009399" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

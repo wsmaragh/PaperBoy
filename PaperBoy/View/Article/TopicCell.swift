@@ -19,8 +19,8 @@ class TopicCell: UICollectionViewCell {
     }
 
     private func roundedCorners() {
-        self.layer.cornerRadius = 8
-        self.layer.masksToBounds = true
+        layer.cornerRadius = 8
+        layer.masksToBounds = true
     }
     
     static var cellID: String {

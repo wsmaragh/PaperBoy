@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,30 +19,34 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-10-aTA">
                     <rect key="frame" x="12" y="12" width="101" height="101"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="PCc-10-aTA" secondAttribute="height" multiplier="1:1" id="Q7t-Q0-NMk"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="How Fed rate hikes affect your credit cards, mortgages, savings rates" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxe-HH-2VK">
-                    <rect key="frame" x="125" y="12" width="367" height="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxe-HH-2VK">
+                    <rect key="frame" x="125" y="12" width="367" height="18"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-ag-pOW">
-                    <rect key="frame" x="125" y="56" width="43" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-ag-pOW">
+                    <rect key="frame" x="125" y="38" width="304.5" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXU-Hu-yR5">
-                    <rect key="frame" x="125" y="77" width="73" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXU-Hu-yR5">
+                    <rect key="frame" x="125" y="59" width="304.5" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nZm-na-Vr3">
-                    <rect key="frame" x="441.5" y="63" width="50.5" height="21.5"/>
+                    <rect key="frame" x="441.5" y="45" width="50.5" height="21.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flL-OW-HQb">
                             <rect key="frame" x="0.0" y="0.0" width="21.5" height="21.5"/>
@@ -71,7 +76,9 @@
                 <constraint firstItem="aXU-Hu-yR5" firstAttribute="top" secondItem="6Nf-ag-pOW" secondAttribute="bottom" constant="5" id="1g8-kq-jwo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vxe-HH-2VK" secondAttribute="trailing" constant="12" id="2zp-9t-FVc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nZm-na-Vr3" secondAttribute="trailing" constant="12" id="3Sp-Ga-uzo"/>
+                <constraint firstItem="nZm-na-Vr3" firstAttribute="leading" secondItem="aXU-Hu-yR5" secondAttribute="trailing" constant="12" id="6UG-5a-d8C"/>
                 <constraint firstItem="PCc-10-aTA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="8AX-uT-bmx"/>
+                <constraint firstItem="nZm-na-Vr3" firstAttribute="leading" secondItem="6Nf-ag-pOW" secondAttribute="trailing" constant="12" id="EdF-RE-fhF"/>
                 <constraint firstItem="6Nf-ag-pOW" firstAttribute="top" secondItem="Vxe-HH-2VK" secondAttribute="bottom" constant="8" id="GhF-gX-E7a"/>
                 <constraint firstItem="aXU-Hu-yR5" firstAttribute="leading" secondItem="PCc-10-aTA" secondAttribute="trailing" constant="12" id="IDv-cc-rjB"/>
                 <constraint firstItem="nZm-na-Vr3" firstAttribute="top" secondItem="Vxe-HH-2VK" secondAttribute="bottom" constant="15" id="MsP-7f-1jb"/>
@@ -96,7 +103,10 @@
         </view>
     </objects>
     <resources>
-        <image name="button_star_empty" width="25" height="25"/>
-        <image name="share" width="25" height="25"/>
+        <image name="button_star_empty" width="50" height="50"/>
+        <image name="share" width="50" height="50"/>
+        <namedColor name="appGray">
+            <color red="0.82400000095367432" green="0.82400000095367432" blue="0.82400000095367432" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

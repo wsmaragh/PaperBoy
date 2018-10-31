@@ -13,6 +13,7 @@ extension UIColor {
     static let appYellow2 = UIColor(red: 229/255, green: 255/255, blue: 186/255, alpha: 0.9)
     static let appLightGray = UIColor(red: 199/255, green: 199/255, blue: 199/255, alpha: 1.0)
     static let appTableGray = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 0.9)
+    static let skeletonColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
     
     static var randomColor: UIColor {
         let red = CGFloat.random(in: 0...1)

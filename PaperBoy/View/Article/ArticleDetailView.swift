@@ -43,6 +43,7 @@ class ArticleDetailView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupXib()
+        roundedCorners()
     }
     
     private func roundedCorners() {

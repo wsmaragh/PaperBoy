@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,23 +17,27 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-tx-RPO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-tx-RPO">
                     <rect key="frame" x="16" y="32" width="331" height="252"/>
+                    <color key="backgroundColor" name="appGray"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trump Accuses China of Interfering in Miodterm Elections" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqD-aU-5SF">
-                    <rect key="frame" x="16" y="334" width="331" height="43"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqD-aU-5SF">
+                    <rect key="frame" x="16" y="334" width="331" height="21.5"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USA Today" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miO-q9-QDg">
-                    <rect key="frame" x="16" y="289" width="66.5" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miO-q9-QDg">
+                    <rect key="frame" x="16" y="289" width="282.5" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVN-Sj-R6f">
-                    <rect key="frame" x="16" y="382" width="331" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVN-Sj-R6f">
+                    <rect key="frame" x="16" y="360.5" width="331" height="14.5"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -65,15 +70,19 @@
                         <constraint firstItem="mhL-lE-SOw" firstAttribute="width" secondItem="6r2-vl-V89" secondAttribute="width" id="wfU-0D-BnO"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-lx-f3V">
-                    <rect key="frame" x="16" y="404.5" width="331" height="91.5"/>
-                    <string key="text">Unless you’ve spent the past year or so stuck under a rock with no signal, you have to be familiar with the “distracted boyfriend” meme and all its iterations. But is it hurtful or harmless? Swedish ad watchers weigh in.</string>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-lx-f3V">
+                    <rect key="frame" x="16" y="383" width="331" height="113"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYm-CJ-agc">
-                    <rect key="frame" x="16" y="310" width="71.5" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYm-CJ-agc">
+                    <rect key="frame" x="16" y="310" width="120" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="cHH-Ki-f0W"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -92,6 +101,7 @@
                 <constraint firstItem="miO-q9-QDg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="EqP-zr-dxo"/>
                 <constraint firstItem="J9q-xy-g3L" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.1" id="Pnz-Gs-bXO"/>
                 <constraint firstItem="XVN-Sj-R6f" firstAttribute="top" secondItem="kqD-aU-5SF" secondAttribute="bottom" constant="5" id="UbX-nw-QCZ"/>
+                <constraint firstItem="J9q-xy-g3L" firstAttribute="leading" secondItem="miO-q9-QDg" secondAttribute="trailing" constant="12" id="aRu-RC-OGN"/>
                 <constraint firstItem="mtm-tx-RPO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="agK-O6-taw"/>
                 <constraint firstItem="miO-q9-QDg" firstAttribute="top" secondItem="mtm-tx-RPO" secondAttribute="bottom" constant="5" id="b4E-xe-ywB"/>
                 <constraint firstItem="JYm-CJ-agc" firstAttribute="top" secondItem="miO-q9-QDg" secondAttribute="bottom" constant="5" id="cg9-dI-H6v"/>
@@ -120,8 +130,10 @@
         </view>
     </objects>
     <resources>
-        <image name="button_star_empty" width="25" height="25"/>
-        <image name="newspaper" width="320" height="275"/>
-        <image name="share" width="25" height="25"/>
+        <image name="button_star_empty" width="50" height="50"/>
+        <image name="share" width="50" height="50"/>
+        <namedColor name="appGray">
+            <color red="0.82400000095367432" green="0.82400000095367432" blue="0.82400000095367432" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

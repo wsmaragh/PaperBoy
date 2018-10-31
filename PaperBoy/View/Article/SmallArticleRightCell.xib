@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +17,22 @@
             <rect key="frame" x="0.0" y="0.0" width="379" height="108"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" translatesAutoresizingMaskIntoConstraints="NO" id="exz-3G-htx">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exz-3G-htx">
                     <rect key="frame" x="291" y="16" width="76" height="76"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="exz-3G-htx" secondAttribute="height" multiplier="1:1" id="8jv-CH-vt7"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="How Fed rate hikes affect your credit cards, mortgages, savings rates" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-wt-645">
-                    <rect key="frame" x="12" y="12" width="271" height="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-wt-645">
+                    <rect key="frame" x="12" y="12" width="271" height="18"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2tB-48-1EL">
-                    <rect key="frame" x="233.5" y="53" width="37.5" height="16.5"/>
+                    <rect key="frame" x="233.5" y="35" width="37.5" height="16.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSf-7E-fxP">
                             <rect key="frame" x="0.0" y="0.0" width="15" height="16.5"/>
@@ -52,14 +55,16 @@
                         <constraint firstItem="7g4-Ix-7iz" firstAttribute="height" secondItem="zSf-7E-fxP" secondAttribute="height" id="weq-mo-0dM"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyG-Qu-sdv">
-                    <rect key="frame" x="12" y="53" width="43" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyG-Qu-sdv">
+                    <rect key="frame" x="12" y="35" width="209.5" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="18 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHv-ph-JaN">
-                    <rect key="frame" x="12" y="74" width="73" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHv-ph-JaN">
+                    <rect key="frame" x="12" y="56" width="267" height="16"/>
+                    <color key="backgroundColor" name="appGray"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -69,10 +74,12 @@
             <constraints>
                 <constraint firstItem="exz-3G-htx" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.2" id="5hU-rO-a3l"/>
                 <constraint firstItem="b7M-wt-645" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="6J3-jx-3mT"/>
+                <constraint firstItem="exz-3G-htx" firstAttribute="leading" secondItem="aHv-ph-JaN" secondAttribute="trailing" constant="12" id="7aB-ZX-nYS"/>
                 <constraint firstItem="aHv-ph-JaN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="9ON-qQ-bgw"/>
                 <constraint firstItem="cyG-Qu-sdv" firstAttribute="top" secondItem="b7M-wt-645" secondAttribute="bottom" constant="5" id="NNt-5C-wjV"/>
                 <constraint firstItem="exz-3G-htx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Q1f-KQ-18E"/>
                 <constraint firstItem="exz-3G-htx" firstAttribute="leading" secondItem="b7M-wt-645" secondAttribute="trailing" constant="8" id="WUS-Ma-L7B"/>
+                <constraint firstItem="2tB-48-1EL" firstAttribute="leading" secondItem="cyG-Qu-sdv" secondAttribute="trailing" constant="12" id="XjP-0r-hXd"/>
                 <constraint firstItem="2tB-48-1EL" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.1" id="bUA-NP-Jea"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="exz-3G-htx" secondAttribute="trailing" constant="12" id="fzk-qM-aDD"/>
                 <constraint firstItem="cyG-Qu-sdv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="h4z-kf-zdZ"/>
@@ -95,8 +102,10 @@
         </view>
     </objects>
     <resources>
-        <image name="button_star_empty" width="25" height="25"/>
-        <image name="newspaper" width="320" height="275"/>
-        <image name="share" width="25" height="25"/>
+        <image name="button_star_empty" width="50" height="50"/>
+        <image name="share" width="50" height="50"/>
+        <namedColor name="appGray">
+            <color red="0.82400000095367432" green="0.82400000095367432" blue="0.82400000095367432" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

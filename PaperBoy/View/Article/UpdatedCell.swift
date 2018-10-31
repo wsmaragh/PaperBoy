@@ -41,6 +41,6 @@ class UpdatedHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.backgroundColor = UIColor.lightGray
+        contentView.backgroundColor = UIColor.lightGray
     }
 }

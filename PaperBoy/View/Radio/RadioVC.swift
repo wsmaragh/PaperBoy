@@ -25,7 +25,6 @@ class RadioVC: UIViewController {
     var searchedStations = [RadioStation]()
     var currentStation: RadioStation?
     
-    #warning("consider new implementation. weak deallocates too early")
     var currentStationVC: NowPlayingVC?
     
     private var refreshControl: UIRefreshControl!
@@ -46,15 +45,15 @@ class RadioVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = "Streaming Radio Stations"
+        navigationItem.title = "Streaming Radio Stations"
         configureNowPlayingView()
     }
     
     private func loadStationsFromJSON() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        self.stations = viewModel.stations
-        self.tableView.reloadData()
-        self.view.setNeedsLayout()
+        stations = viewModel.stations
+        tableView.reloadData()
+        view.setNeedsLayout()
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
@@ -224,7 +223,7 @@ extension RadioVC: UISearchResultsUpdating {
         searchedStations.removeAll(keepingCapacity: false)
         let searchPredicate = NSPredicate(format: "SELF.name CONTAINS[c] %@", searchController.searchBar.text!)
         searchedStations = (self.stations as NSArray).filtered(using: searchPredicate) as! [RadioStation]
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
 }

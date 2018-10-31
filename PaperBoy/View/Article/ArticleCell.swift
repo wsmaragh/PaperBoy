@@ -32,10 +32,10 @@ class ArticleCell: UITableViewCell {
         return String(describing: self)
     }
     
-    
     override func awakeFromNib(){
         super.awakeFromNib()
         roundedCorners()
+        addCustomSkeleton()
     }
     
     private func roundedCorners() {
@@ -43,17 +43,28 @@ class ArticleCell: UITableViewCell {
         articleImageView.layer.masksToBounds = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func addCustomSkeleton() {
+        isUserInteractionEnabled = false
+        articleImageView.backgroundColor = UIColor.skeletonColor
+        sourceLabel.backgroundColor = UIColor.skeletonColor
+        timeLabel.backgroundColor = UIColor.skeletonColor
+        titleLabel.backgroundColor = UIColor.skeletonColor
+        authorLabel.backgroundColor = UIColor.skeletonColor
+        descriptionLabel.backgroundColor = UIColor.skeletonColor
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        articleImageView.image = nil
-        sourceLabel.text  = nil
-        titleLabel.text  = nil
-        authorLabel.text = nil
-        timeLabel.text  = nil
+    func removeCustomSkeleton() {
+        isUserInteractionEnabled = true
+        articleImageView.backgroundColor = backgroundColor
+        sourceLabel.backgroundColor = backgroundColor
+        timeLabel.backgroundColor = backgroundColor
+        titleLabel.backgroundColor = backgroundColor
+        authorLabel.backgroundColor = backgroundColor
+        descriptionLabel.backgroundColor = backgroundColor
+    }
+        
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     public func configureCell(article: Article) {
@@ -63,7 +74,8 @@ class ArticleCell: UITableViewCell {
         descriptionLabel.text = article.subtitle
         authorLabel.text = article.author != nil ? "by \(article.author!)" : ""
         articleImageView.loadImage(imageURLString: article.imageStr, defaultImageStr: "newspaper")
-        timeLabel.text = (article.dateStr != nil) ? Date.timeAgoSinceDate(dateString: article.dateStr!) : ""            
+        timeLabel.text = (article.dateStr != nil) ? Date.timeAgoSinceDate(dateString: article.dateStr!) : ""
+        removeCustomSkeleton()
     }
     
     @IBAction func savePressed(_ sender: UIButton) {

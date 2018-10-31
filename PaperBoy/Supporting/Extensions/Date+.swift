@@ -121,7 +121,7 @@ extension Date {
     }
     
     static func getDateFromString(dateString: String) -> Date {
-        var formmater = DateFormatter()
+        let formmater = DateFormatter()
         formmater.dateFormat =  "yyyy-MM-dd'T'HH:mm:ssZ"
         guard let newDate = formmater.date(from: dateString) else {return Date()}
         return newDate

@@ -27,7 +27,7 @@ class NetworkAvailable: NSObject {
             object: reachability
         )
         
-        #warning("Remove- disabled cellular connection in order to test wifi")
+        #warning("Reminder: Remove- disabled cellular connection in order to test wifi")
         reachability.allowsCellularConnection = false
         
         do {

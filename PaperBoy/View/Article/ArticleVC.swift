@@ -23,6 +23,11 @@ class ArticleVC: UIViewController {
     var topics: [ArticleTopic] = ArticleTopic.allCases
     var selectedtopic: ArticleTopic!
     var initialTopicSet: Bool = false
+    var skeletonActive: Bool = false {
+        didSet {
+            view.isUserInteractionEnabled = skeletonActive
+        }
+    }
 
     var articles: [Article] = [] {
         didSet {
@@ -33,6 +38,7 @@ class ArticleVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkCheck()
         setupNavBar()
         setupTableView()
         addRefreshControl()
@@ -57,27 +63,34 @@ class ArticleVC: UIViewController {
     
     private func setupNavBar() {
         if let image = UIImage(named: "githubLogo") {
+            
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFit
             imageView.layer.masksToBounds = true
+            
             let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
             imageView.frame = titleView.bounds
             titleView.addSubview(imageView)
-            self.navigationItem.titleView = titleView
+            navigationItem.titleView = titleView
         }
     }
 
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.estimatedRowHeight = 120.0
         tableView.rowHeight = UITableView.automaticDimension
+        
         let updatedCellNib = UINib(nibName: UpdatedCell.cellID, bundle: nil)
         tableView.register(updatedCellNib, forCellReuseIdentifier: UpdatedCell.cellID)
+        
         let articleCellNib = UINib(nibName: ArticleCell.cellID, bundle: nil)
         tableView.register(articleCellNib, forCellReuseIdentifier: ArticleCell.cellID)
+        
         let smallArticleLeftCellNib = UINib(nibName: SmallArticleLeftCell.cellID, bundle: nil)
         tableView.register(smallArticleLeftCellNib, forCellReuseIdentifier: SmallArticleLeftCell.cellID)
+        
         let smallArticleRightCellNib = UINib(nibName: SmallArticleRightCell.cellID, bundle: nil)
         tableView.register(smallArticleRightCellNib, forCellReuseIdentifier: SmallArticleRightCell.cellID)
     }
@@ -88,6 +101,7 @@ class ArticleVC: UIViewController {
         } else {
             tableView.addSubview(refreshControl)
         }
+        
         refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.darkGray
         refreshControl.backgroundColor = UIColor.yellow
@@ -103,9 +117,12 @@ class ArticleVC: UIViewController {
     private func setupCollectionView() {
         topicCollectionView.delegate = self
         topicCollectionView.dataSource = self
+        
         let topicNib = UINib(nibName: TopicCell.cellID, bundle: nil)
         topicCollectionView.register(topicNib, forCellWithReuseIdentifier: TopicCell.cellID)
+        
         topicCollectionView.allowsMultipleSelection = false
+        
         let layout = topicCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .horizontal
         let cellSpacing: CGFloat = 5.0
@@ -116,14 +133,13 @@ class ArticleVC: UIViewController {
         let numSpaces: CGFloat = numberOfItemsPerRow + 1
         let screenWidth = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numberOfItemsPerRow, height: topicCollectionView.bounds.height - (cellSpacing * 3))
-
     }
     
     private func loadInitialArticles(){
         if topicCollectionView != nil {
             let indexPathForFirstRow = IndexPath(row: 0, section: 0)
             topicCollectionView.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
-            self.collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
+            collectionView(topicCollectionView, didSelectItemAt: indexPathForFirstRow)
         }
     }
 
@@ -154,6 +170,25 @@ class ArticleVC: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .default) {_ in }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func networkCheck() {
+        if NetworkAvailable.shared.reachability.connection != .none {
+            //fetch
+        } else {
+            showOfflineVC()
+        }
+        
+        NetworkAvailable.shared.reachability.whenUnreachable = { reachability in
+            self.showOfflineVC()
+        }
+    }
+    
+    private func showOfflineVC() {
+        let offlineVC = OfflineVC()
+        offlineVC.modalTransitionStyle = .crossDissolve
+        offlineVC.modalPresentationStyle = .overFullScreen
+        self.present(offlineVC, animated: true, completion: nil)
     }
     
     @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
@@ -203,6 +238,11 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if NetworkAvailable.shared.reachability.connection == .none {
+//            print("No internet")
+//            return 10
+//        }
+        if articles.isEmpty { return 10}
         return articles.count
     }
 
@@ -225,6 +265,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
         switch type {
         case .normal:
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.cellID, for: indexPath) as! ArticleCell
+            if articles.isEmpty {return cell}
             let article = articles[indexPath.row]
             cell.configureCell(article: article)
             cell.delegate = self
@@ -232,6 +273,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
 
         case .smallLeft:
             let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleLeftCell.cellID, for: indexPath) as! SmallArticleLeftCell
+            if articles.isEmpty {return cell}
             let article = articles[indexPath.row]
             cell.configureCell(article: article, hideButtons: false)
             cell.delegate = self
@@ -239,13 +281,13 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
 
         case .smallRight:
             let cell = tableView.dequeueReusableCell(withIdentifier: SmallArticleRightCell.cellID, for: indexPath) as! SmallArticleRightCell
+            if articles.isEmpty {return cell}
             let article = articles[indexPath.row]
             cell.configureCell(article: article, hideButtons: false)
             cell.delegate = self
             return cell
-
         }
-
+    
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -288,7 +330,7 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
             default: break
             }
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
-            refreshControl.backgroundColor = UIColor.appYellow
+            refreshControl.backgroundColor = UIColor.appLightGray
     }
 
 }
