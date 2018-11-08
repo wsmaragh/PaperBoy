@@ -6,22 +6,17 @@
 //  Copyright © 2018 Winston Maragh. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RealmSwift
-
 
 class RealmService {
     
     private init() {}
     static let shared = RealmService()
     
-    var realm = try! Realm()
+    private var realm = try! Realm()
     
     func create<T: Object>(_ realmObject: T) {
-//        let myPrimaryKey = (realmObject as! Article).title
-//        print("myPrimaryKey: ", myPrimaryKey)
-//        let articleExists = realm.object(ofType: Article.self, forPrimaryKey: myPrimaryKey)
-//        guard articleExists == nil else {return}
         do {
             try realm.write {
                 realm.add(realmObject, update: true)

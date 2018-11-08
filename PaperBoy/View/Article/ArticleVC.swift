@@ -9,20 +9,21 @@
 import UIKit
 import RealmSwift
 
-class ArticleVC: UIViewController {
+final class ArticleVC: UIViewController {
 
     @IBOutlet weak var sideMenu: UIBarButtonItem!
     @IBOutlet var viewForEmptyTableView: UIView!
     @IBOutlet weak var topicCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
 
-    let articleDataService = ArticleDataService()
+    private let articleDataService = ArticleDataService()
 
     private var refreshControl: UIRefreshControl = UIRefreshControl()
 
-    var topics: [ArticleTopic] = ArticleTopic.allCases
-    var selectedtopic: ArticleTopic!
-    var initialTopicSet: Bool = false
+    private var topics: [ArticleTopic] = ArticleTopic.allCases
+    private var selectedtopic: ArticleTopic!
+    private var initialTopicSet: Bool = false
+    
     var skeletonActive: Bool = false {
         didSet {
             view.isUserInteractionEnabled = skeletonActive
@@ -36,6 +37,16 @@ class ArticleVC: UIViewController {
         }
     }
 
+    
+    var startup: Bool = true
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if startup {
+            presentLaunchVideoScreen()
+            startup.toggle()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         networkCheck()
@@ -45,6 +56,13 @@ class ArticleVC: UIViewController {
         setupCollectionView()
         loadInitialArticles()
         addRightSwipeGestureToSideMenu()
+    }
+    
+    private func presentLaunchVideoScreen() {
+        let loadingVC = LoadingVC()
+        loadingVC.modalPresentationStyle = .overFullScreen
+        loadingVC.modalTransitionStyle = .crossDissolve
+        present(loadingVC, animated: true, completion: nil)
     }
 
     @IBAction func sideMenuPressed() {

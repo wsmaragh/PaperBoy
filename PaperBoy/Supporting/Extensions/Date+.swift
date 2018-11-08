@@ -6,21 +6,13 @@
 //  Copyright © 2018 Winston Maragh. All rights reserved.
 //
 
-import Foundation
+import Foundation.NSDate
 
 extension Date {
     
-    var month: Int {
-        return Calendar.current.component(.month, from: self)
-    }
-    
-    var day: Int {
-        return Calendar.current.component(.day, from: self)
-    }
-    
-    var year: Int {
-        return Calendar.current.component(.year, from: self)
-    }
+    var month: Int { return Calendar.current.component(.month, from: self) }
+    var day: Int { return Calendar.current.component(.day, from: self) }
+    var year: Int { return Calendar.current.component(.year, from: self) }
     
     var hour: Int {
         get {
@@ -53,9 +45,7 @@ extension Date {
         }
     }
     
-    var seconds: Int {
-        return  Calendar.current.component(.second, from: self)
-    }
+    var seconds: Int { return  Calendar.current.component(.second, from: self) }
     
     var dayName: String {
         let dateFormatter = DateFormatter()

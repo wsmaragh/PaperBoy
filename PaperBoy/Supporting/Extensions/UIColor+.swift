@@ -6,9 +6,10 @@
 //  Copyright © 2018 Winston Maragh. All rights reserved.
 //
 
-import UIKit
+import UIKit.UIColor
 
 extension UIColor {
+    
     static let appYellow = UIColor(red: 255/255, green: 255/255, blue: 75/255, alpha: 0.9)
     static let appYellow2 = UIColor(red: 229/255, green: 255/255, blue: 186/255, alpha: 0.9)
     static let appLightGray = UIColor(red: 199/255, green: 199/255, blue: 199/255, alpha: 1.0)

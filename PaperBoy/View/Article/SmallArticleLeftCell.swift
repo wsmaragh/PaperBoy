@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SmallArticleLeftCell: UITableViewCell {
+final class SmallArticleLeftCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var articleImageView: UIImageView!

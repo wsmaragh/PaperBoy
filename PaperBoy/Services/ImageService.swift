@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageCacheService {
+final class ImageCacheService {
     private init() {}
     static let shared = ImageCacheService()
     
@@ -24,7 +24,7 @@ class ImageCacheService {
     
 }
 
-class ImageService {
+final class ImageService {
     private init() {}
     static let shared = ImageService()
     

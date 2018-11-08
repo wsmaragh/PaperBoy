@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 
-class FaveArticlesVC: UIViewController {
+final class FaveArticlesVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var viewForEmptyTableView: UIView!

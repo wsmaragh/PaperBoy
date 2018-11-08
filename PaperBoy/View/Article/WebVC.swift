@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import AVFoundation
 
-class WebVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
+final class WebVC: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!

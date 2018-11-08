@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJz-QJ-CM1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJz-QJ-CM1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -207,7 +211,7 @@
                         <outlet property="dismissButton" destination="X75-NL-IsU" id="Q4l-o9-g9Z"/>
                         <outlet property="tableView" destination="H4H-ea-clv" id="N4l-RT-BaI"/>
                         <outlet property="viewForEmptyTableView" destination="dss-ZM-ZpT" id="cf1-41-nOR"/>
-                        <segue destination="TBN-oa-63T" kind="show" identifier="FaveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="faveArticlesVCToArticleVC" id="1Nt-Fj-Tjc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgg-TR-dL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,7 +312,7 @@
                         <outlet property="searchDisplayController" destination="nmr-Ty-wUh" id="8o3-lD-qAZ"/>
                         <outlet property="tableView" destination="Vuj-sJ-Ew0" id="imf-DI-nvI"/>
                         <outlet property="viewForEmptyTableView" destination="ZFl-Ik-d44" id="VQD-pK-Um5"/>
-                        <segue destination="TBN-oa-63T" kind="show" identifier="SearchVCToArticleVC" id="xHX-HW-PDs"/>
+                        <segue destination="TBN-oa-63T" kind="show" identifier="searchVCToArticleVC" id="xHX-HW-PDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krc-UH-4Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,11 +360,11 @@
             <objects>
                 <viewController id="PJz-QJ-CM1" customClass="ContainerVC" customModule="PaperBoy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A4f-U1-zcQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="El5-MX-xnd" userLabel="SideMenu">
-                                <rect key="frame" x="-350" y="0.0" width="350" height="600"/>
+                                <rect key="frame" x="-350" y="0.0" width="350" height="667"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="mIk-f0-LxP"/>
                                 </constraints>
@@ -369,7 +373,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnX-6J-4Fw" userLabel="Main">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="Azi-d6-fdF" kind="embed" identifier="containerToMainTabBarVC" id="dDE-H5-wpD"/>
                                 </connections>
@@ -486,7 +490,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StationCell" rowHeight="98" id="kEg-St-RTY" customClass="StationCell" customModule="PaperBoy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StationCell" rowHeight="98" id="kEg-St-RTY" customClass="StationCell" customModule="PaperBoy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kEg-St-RTY" id="tlM-fV-Izi">
@@ -501,16 +505,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CwH-ag-7gW">
-                                                    <rect key="frame" x="105" y="25.5" width="243" height="47"/>
+                                                    <rect key="frame" x="105" y="25.5" width="468" height="47"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jml-rH-X5M">
-                                                            <rect key="frame" x="0.0" y="0.0" width="243" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="468" height="21.5"/>
                                                             <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-lu-9cH">
-                                                            <rect key="frame" x="0.0" y="29.5" width="243" height="17.5"/>
+                                                            <rect key="frame" x="0.0" y="29.5" width="468" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -820,7 +824,7 @@
                                 <rect key="frame" x="0.0" y="64" width="350" height="403"/>
                                 <color key="backgroundColor" name="appWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="111" id="NlD-FL-lqf" customClass="MenuCell" customModule="PaperBoy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="350" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NlD-FL-lqf" id="Gs1-Th-WT9">
@@ -828,7 +832,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcH-Pw-Plu">
-                                                    <rect key="frame" x="82" y="45.5" width="241" height="20"/>
+                                                    <rect key="frame" x="82" y="45.5" width="216" height="20"/>
                                                     <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1044,6 +1048,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xE9-a3-Mip"/>
+        <segue reference="1Nt-Fj-Tjc"/>
     </inferredMetricsTieBreakers>
 </document>

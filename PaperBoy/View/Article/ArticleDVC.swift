@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ArticleDVC: UIViewController {
+final class ArticleDVC: UIViewController {
 
     @IBOutlet var articleView: ArticleDetailView!
 

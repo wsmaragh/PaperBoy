@@ -52,6 +52,9 @@
 		2398D3F621627A380098F96F /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2398D3F521627A380098F96F /* VideoCell.swift */; };
 		23B08394215D820B001A788F /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08393215D820B001A788F /* WebVC.swift */; };
 		23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B08395215D85FA001A788F /* FaveArticlesVC.swift */; };
+		23B6C399219371C2007346FA /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B6C398219371C2007346FA /* LoadingVC.swift */; };
+		23B6C39B21937277007346FA /* beep.mp3 in Sources */ = {isa = PBXBuildFile; fileRef = 23802F03216D69B7005F36E5 /* beep.mp3 */; };
+		23B6C39D21937439007346FA /* newsvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 23B6C39C21937439007346FA /* newsvideo.mp4 */; };
 		23BA03282173EEE300FFB0B0 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA03272173EEE300FFB0B0 /* String+.swift */; };
 		23BA032A2173EEF800FFB0B0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA03292173EEF800FFB0B0 /* UIColor+.swift */; };
 		23BA032C2173EF2C00FFB0B0 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA032B2173EF2C00FFB0B0 /* UIView+.swift */; };
@@ -65,7 +68,6 @@
 		23DE35DD217A069700854AC5 /* DownloadableVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DB217A069700854AC5 /* DownloadableVideos.json */; };
 		23DE35DE217A069700854AC5 /* StreamingVideos.json in Resources */ = {isa = PBXBuildFile; fileRef = 23DE35DC217A069700854AC5 /* StreamingVideos.json */; };
 		23DE35E0217A139300854AC5 /* VideoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE35DF217A139300854AC5 /* VideoDataService.swift */; };
-		23DF437C216FBE8C00135ED5 /* newsLoading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 23A5EB86216E557D004CDF6F /* newsLoading.mp4 */; };
 		23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1A2144236100F89F9D /* AppDelegate.swift */; };
 		23E06F1D2144236100F89F9D /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F1C2144236100F89F9D /* ArticleVC.swift */; };
 		23E06F202144236100F89F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F1E2144236100F89F9D /* Main.storyboard */; };
@@ -156,9 +158,10 @@
 		23802F0E216DF484005F36E5 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		2398D3F321626EC20098F96F /* StreamingVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideo.swift; sourceTree = "<group>"; };
 		2398D3F521627A380098F96F /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
-		23A5EB86216E557D004CDF6F /* newsLoading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = newsLoading.mp4; sourceTree = "<group>"; };
 		23B08393215D820B001A788F /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		23B08395215D85FA001A788F /* FaveArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveArticlesVC.swift; sourceTree = "<group>"; };
+		23B6C398219371C2007346FA /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
+		23B6C39C21937439007346FA /* newsvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = newsvideo.mp4; sourceTree = "<group>"; };
 		23BA03272173EEE300FFB0B0 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		23BA03292173EEF800FFB0B0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		23BA032B2173EF2C00FFB0B0 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -311,7 +314,7 @@
 		2387BE222182122800F57509 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				23A5EB86216E557D004CDF6F /* newsLoading.mp4 */,
+				23B6C39C21937439007346FA /* newsvideo.mp4 */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -327,6 +330,24 @@
 				231139F9216E7808004BF758 /* read.gif */,
 			);
 			path = Gifs;
+			sourceTree = "<group>";
+		};
+		23B6C39321936F2E007346FA /* JSONData */ = {
+			isa = PBXGroup;
+			children = (
+				237E530921690501004DB8B1 /* RadioStations.json */,
+				23DE35DC217A069700854AC5 /* StreamingVideos.json */,
+				23DE35DB217A069700854AC5 /* DownloadableVideos.json */,
+			);
+			path = JSONData;
+			sourceTree = "<group>";
+		};
+		23B6C397219371B3007346FA /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				23B6C398219371C2007346FA /* LoadingVC.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		23E06F0E2144236100F89F9D = {
@@ -400,6 +421,7 @@
 				23E06F262144236300F89F9D /* LaunchScreen.storyboard */,
 				23E06F1E2144236100F89F9D /* Main.storyboard */,
 				237E52F22168EEA4004DB8B1 /* ContainerVC.swift */,
+				23B6C397219371B3007346FA /* Loading */,
 				237E52FF216901C1004DB8B1 /* SideMenu */,
 				237E52FC21690148004DB8B1 /* Article */,
 				237E52FD2169016E004DB8B1 /* Video */,
@@ -417,9 +439,7 @@
 				237E0932215BED7D0039FE28 /* APIKeys.swift */,
 				23802F0E216DF484005F36E5 /* Enums.swift */,
 				23D3D3042170DF2C005D155F /* Animations.swift */,
-				237E530921690501004DB8B1 /* RadioStations.json */,
-				23DE35DC217A069700854AC5 /* StreamingVideos.json */,
-				23DE35DB217A069700854AC5 /* DownloadableVideos.json */,
+				23B6C39321936F2E007346FA /* JSONData */,
 				23E079D02173C42800C39FBE /* Extensions */,
 			);
 			path = Supporting;
@@ -595,11 +615,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23DF437C216FBE8C00135ED5 /* newsLoading.mp4 in Resources */,
 				231139F0216E6F00004BF758 /* start.gif in Resources */,
 				23802F08216D9F19005F36E5 /* Assets.xcassets in Resources */,
 				23802F04216D69B7005F36E5 /* beep.mp3 in Resources */,
 				237E530E21690501004DB8B1 /* RadioStations.json in Resources */,
+				23B6C39D21937439007346FA /* newsvideo.mp4 in Resources */,
 				231D70EF215FB91D00E2CCC9 /* SmallArticleLeftCell.xib in Resources */,
 				231139F8216E756E004BF758 /* search.gif in Resources */,
 				231139F6216E7440004BF758 /* radio.gif in Resources */,
@@ -723,6 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B6C39B21937277007346FA /* beep.mp3 in Sources */,
 				23C539D32180E1A700DDF9CB /* NetworkAvailable.swift in Sources */,
 				237E52F72168F0DC004DB8B1 /* VideoVC.swift in Sources */,
 				237E531B21690845004DB8B1 /* StationCell.swift in Sources */,
@@ -755,6 +776,7 @@
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
 				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
 				23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */,
+				23B6C399219371C2007346FA /* LoadingVC.swift in Sources */,
 				23BA03302173F6D700FFB0B0 /* VideoViewModel.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */,

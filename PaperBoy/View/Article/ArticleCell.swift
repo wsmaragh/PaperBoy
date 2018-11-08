@@ -14,7 +14,7 @@ import RealmSwift
     @objc func sharePressed(article: Article)
 }
 
-class ArticleCell: UITableViewCell {
+final class ArticleCell: UITableViewCell {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

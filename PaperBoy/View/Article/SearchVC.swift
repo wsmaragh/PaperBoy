@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchVC: UIViewController {
+final class SearchVC: UIViewController {
 
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
 

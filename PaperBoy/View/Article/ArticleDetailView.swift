@@ -8,14 +8,12 @@
 
 import UIKit
 
-
 @objc protocol ArticleViewDelegate {
     @objc func browserButtonPressed()
 }
 
-
 @IBDesignable
-class ArticleDetailView: UIView {
+final class ArticleDetailView: UIView {
     
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
