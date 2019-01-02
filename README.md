@@ -1,5 +1,5 @@
 <p align="center">
-    <img        src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Assets.xcassets/Logo/githubLogo.imageset/githubLogo.png" width="300" style="max-width:100%;">
+    <img        src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Assets.xcassets/Logo/githubLogo.imageset/githubLogo.png" width="300" style="max-width:100%;">
 </p>
 
 <a>
@@ -12,12 +12,12 @@
 
 
 <p align="center">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/start.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/video.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/radio.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/favorites.gif" width="300"> 
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/search.gif" width="300">
-    <img src="https://github.com/wsmaragh/PaperBoy/blob/master/PaperBoy/Resources/Gifs/read.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/start.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/video.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/radio.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/favorites.gif" width="300">     
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/search.gif" width="300">
+    <img src="https://github.com/wsmaragh/PaperBoy/blob/prod/PaperBoy/Resources/Gifs/read.gif" width="300">
 </p>
 
 
