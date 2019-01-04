@@ -78,6 +78,11 @@
 		23F33B66215D735400F7853C /* ArticleDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleDetailView.xib */; };
 		23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5DA3E216917200052E5CB /* NowPlayingVC.swift */; };
 		23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D50D217E0C710042B83D /* OfflineVC.swift */; };
+		448E404421E0101A0098679C /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E404321E0101A0098679C /* Localization.swift */; };
+		448E404621E010660098679C /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E404521E010660098679C /* Array+.swift */; };
+		448E404821E010830098679C /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E404721E010830098679C /* Identifiable.swift */; };
+		448E404A21E010DF0098679C /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E404921E010DF0098679C /* UITableView+.swift */; };
+		448E404C21E011470098679C /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E404B21E011470098679C /* UIViewController+.swift */; };
 		574BB9C6701A53FC014CE92A /* Pods_PaperBoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */; };
 		9F5C8FD66E997DA6CCAFB3DD /* Pods_PaperBoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */; };
 		A1EEB92BB257CDF3A7F08B0A /* Pods_PaperBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */; };
@@ -191,6 +196,11 @@
 		23F33B65215D735400F7853C /* ArticleDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleDetailView.xib; sourceTree = "<group>"; };
 		23F5DA3E216917200052E5CB /* NowPlayingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVC.swift; sourceTree = "<group>"; };
 		23F9D50D217E0C710042B83D /* OfflineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineVC.swift; sourceTree = "<group>"; };
+		448E404321E0101A0098679C /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		448E404521E010660098679C /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		448E404721E010830098679C /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		448E404921E010DF0098679C /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		448E404B21E011470098679C /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4CA2533F5F6123F7CCF38919 /* Pods-PaperBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaperBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaperBoy/Pods-PaperBoy.release.xcconfig"; sourceTree = "<group>"; };
 		6032A7DEC2A8F25CBBE85431 /* Pods_PaperBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA41908FAB8F38A09C23797 /* Pods_PaperBoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperBoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,11 +446,14 @@
 			children = (
 				23E06F292144236300F89F9D /* Info.plist */,
 				23E06F1A2144236100F89F9D /* AppDelegate.swift */,
-				237E0932215BED7D0039FE28 /* APIKeys.swift */,
+				23B6C39321936F2E007346FA /* JSONData */,
+				448E404221E00F0F0098679C /* UI Extensions */,
+				23E079D02173C42800C39FBE /* Extensions */,
+				448E404321E0101A0098679C /* Localization.swift */,
+				448E404721E010830098679C /* Identifiable.swift */,
 				23802F0E216DF484005F36E5 /* Enums.swift */,
 				23D3D3042170DF2C005D155F /* Animations.swift */,
-				23B6C39321936F2E007346FA /* JSONData */,
-				23E079D02173C42800C39FBE /* Extensions */,
+				237E0932215BED7D0039FE28 /* APIKeys.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -464,9 +477,7 @@
 			children = (
 				237E0944215C30B50039FE28 /* Date+.swift */,
 				23BA03272173EEE300FFB0B0 /* String+.swift */,
-				23BA032B2173EF2C00FFB0B0 /* UIView+.swift */,
-				23BA03292173EEF800FFB0B0 /* UIColor+.swift */,
-				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
+				448E404521E010660098679C /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -488,6 +499,18 @@
 				0205F543C7C65368FA2B6815 /* Pods_PaperBoyUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		448E404221E00F0F0098679C /* UI Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				23BA032B2173EF2C00FFB0B0 /* UIView+.swift */,
+				448E404B21E011470098679C /* UIViewController+.swift */,
+				448E404921E010DF0098679C /* UITableView+.swift */,
+				23BA03292173EEF800FFB0B0 /* UIColor+.swift */,
+				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
+			);
+			path = "UI Extensions";
 			sourceTree = "<group>";
 		};
 		B5615D1A3FE2F5F12E4E817C /* Pods */ = {
@@ -776,10 +799,13 @@
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
 				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
 				23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */,
+				448E404A21E010DF0098679C /* UITableView+.swift in Sources */,
 				23B6C399219371C2007346FA /* LoadingVC.swift in Sources */,
+				448E404821E010830098679C /* Identifiable.swift in Sources */,
 				23BA03302173F6D700FFB0B0 /* VideoViewModel.swift in Sources */,
 				23E06F1B2144236100F89F9D /* AppDelegate.swift in Sources */,
 				23B08396215D85FA001A788F /* FaveArticlesVC.swift in Sources */,
+				448E404C21E011470098679C /* UIViewController+.swift in Sources */,
 				237E094C215C5E2E0039FE28 /* ImageService.swift in Sources */,
 				23BA032E2173F66700FFB0B0 /* ArticleViewModel.swift in Sources */,
 				2361ABBF2174FF7E00C8F556 /* DownloadableVideo.swift in Sources */,
@@ -787,10 +813,12 @@
 				231D70ED215FB71900E2CCC9 /* SmallArticleLeftCell.swift in Sources */,
 				23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */,
 				23D3D3052170DF2C005D155F /* Animations.swift in Sources */,
+				448E404421E0101A0098679C /* Localization.swift in Sources */,
 				2398D3F421626EC20098F96F /* StreamingVideo.swift in Sources */,
 				23DE35E0217A139300854AC5 /* VideoDataService.swift in Sources */,
 				23802F0F216DF484005F36E5 /* Enums.swift in Sources */,
 				23C1BDBA216AF73C009B194C /* SettingsVC.swift in Sources */,
+				448E404621E010660098679C /* Array+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
