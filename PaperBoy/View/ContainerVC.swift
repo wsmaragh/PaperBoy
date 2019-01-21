@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerVC: UIViewController {
+final class ContainerVC: UIViewController {
 
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
     
@@ -70,8 +70,6 @@ class ContainerVC: UIViewController {
     
 }
 
-
-// MARK:- Delegate
 
 extension ContainerVC: SideMenuDelegate {
     

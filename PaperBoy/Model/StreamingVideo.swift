@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StreamingVideoJSON: Codable {
+struct StreamingVideoJSON: Codable {
     var streamingVideos: [StreamingVideo]
 }
 

@@ -10,12 +10,11 @@ import Foundation
 import Reachability
 
 
-class NetworkAvailable: NSObject {
+final class NetworkAvailable: NSObject {
     
     static let shared = NetworkAvailable()
     
     var reachability = Reachability()!
-    
     
     override init() {
         super.init()
@@ -27,8 +26,7 @@ class NetworkAvailable: NSObject {
             object: reachability
         )
         
-        #warning("Reminder: Remove- disabled cellular connection in order to test wifi")
-        reachability.allowsCellularConnection = false
+        reachability.allowsCellularConnection = true
         
         do {
             try reachability.startNotifier()

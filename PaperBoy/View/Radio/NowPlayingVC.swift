@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class NowPlayingVC: UIViewController {
+final class NowPlayingVC: UIViewController {
     
     @IBOutlet weak var stationImageView: UIImageView!
     @IBOutlet weak var stationLabel: UILabel!
@@ -33,10 +33,11 @@ class NowPlayingVC: UIViewController {
     }
     
     var newStation: Bool = true
-    var justBecameActive: Bool = false
     
-    fileprivate var isPlaying: Bool = false
-    fileprivate var nowPlayingBars: UIImageView!
+    private var justBecameActive: Bool = false
+    
+    private var isPlaying: Bool = false
+    private var nowPlayingBars: UIImageView!
     
     deinit {
         removeMyObservers()
@@ -75,7 +76,7 @@ class NowPlayingVC: UIViewController {
         radioPlayer.rate = 1
     }
     
-    @objc private func setupVolumeSlider() {
+    private func setupVolumeSlider() {
         volumeView.backgroundColor = UIColor.clear
         let mpLocalVolumeView = MPVolumeView(frame: volumeView.bounds)
 
@@ -98,7 +99,7 @@ class NowPlayingVC: UIViewController {
         }
     }
 
-    @objc private func playRadioStation() {
+    private func playRadioStation() {
         guard let streamURL = URL(string: currentStation.streamStr) else {return}
         let station = StationAVPlayerItem(url: streamURL)
         DispatchQueue.main.async {[unowned self] in

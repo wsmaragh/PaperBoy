@@ -8,11 +8,7 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+final class SettingsVC: UIViewController {
 
     @IBAction func dismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)

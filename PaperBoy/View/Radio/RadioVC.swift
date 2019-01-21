@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class RadioVC: UIViewController {
+final class RadioVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var stationNowPlayingButton: UIButton!
@@ -19,19 +19,16 @@ class RadioVC: UIViewController {
     @IBOutlet weak var stationViewNextButton: UIButton!
     @IBOutlet weak var stationViewPlayButton: UIButton!
     
-    fileprivate var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    private var searchController: UISearchController = UISearchController(searchResultsController: nil)
     private let viewModel = RadioViewModel()
-    var stations = [RadioStation]()
-    var searchedStations = [RadioStation]()
-    var currentStation: RadioStation?
     
-    var currentStationVC: NowPlayingVC?
+    private var stations = [RadioStation]()
+    private var searchedStations = [RadioStation]()
+    private var currentStation: RadioStation?
+    
+    private var currentStationVC: NowPlayingVC?
     
     private var refreshControl: UIRefreshControl!
-    
-    deinit {
-        //
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,7 +158,7 @@ class RadioVC: UIViewController {
         showNowPlayingStationVC()
     }
     
-    @objc func showNowPlayingStationVC() {
+    func showNowPlayingStationVC() {
         if let nowPlayingVC = currentStationVC {
             navigationController?.pushViewController(nowPlayingVC, animated: true)
         }
@@ -178,8 +175,6 @@ class RadioVC: UIViewController {
     
 }
 
-
-// MARK: - TableView
 
 extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -214,8 +209,6 @@ extension RadioVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
-// MARK: - UISearchControllerDelegate
 
 extension RadioVC: UISearchResultsUpdating {
     

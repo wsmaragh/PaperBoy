@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdatedCell: UITableViewCell {
+final class UpdatedCell: UITableViewCell {
 
     @IBOutlet weak var updatedLabel: UILabel!
     
@@ -20,27 +20,4 @@ class UpdatedCell: UITableViewCell {
         updatedLabel.text = DateFormatterService.shared.getUpdatedString(from: date)
     }
     
-}
-
-
-class UpdatedHeaderView: UITableViewHeaderFooterView {
-    
-    var date: Date!
-    
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configureView(date: Date) {
-        self.date = date
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.backgroundColor = UIColor.lightGray
-    }
 }

@@ -14,7 +14,7 @@ class RadioStationJSON: Codable {
 }
 
 @objcMembers
-class RadioStation: Object, Codable {
+final class RadioStation: Object, Codable {
     dynamic var name: String = ""
     dynamic var streamStr: String = ""
     dynamic var imageStr: String = ""

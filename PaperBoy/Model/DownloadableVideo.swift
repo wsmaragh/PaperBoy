@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DownloadableVideoJSON: Codable {
+struct DownloadableVideoJSON: Codable {
     var downloadableVideos: [DownloadableVideo]
 }
 

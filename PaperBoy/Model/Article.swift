@@ -9,13 +9,13 @@
 import Foundation
 import RealmSwift
 
-class ArticlesJSON: Codable {
+final class ArticlesJSON: Codable {
     var totalResults: Int
     var articles: [Article]
 }
 
 @objcMembers
-class Article: Object, Codable {
+final class Article: Object, Codable {
     dynamic var title: String = ""
     dynamic var author: String? = nil
     dynamic var subtitle: String? = nil
@@ -54,7 +54,7 @@ class Article: Object, Codable {
     }
 }
 
-class ArticleSource: Object, Codable {
+final class ArticleSource: Object, Codable {
     @objc dynamic var name: String?
 
     private enum CodingKeys: String, CodingKey {

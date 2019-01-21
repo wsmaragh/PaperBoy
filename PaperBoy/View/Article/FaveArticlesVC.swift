@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 final class FaveArticlesVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -18,8 +17,8 @@ final class FaveArticlesVC: UIViewController {
     @IBOutlet weak var deleteAllButton: UIBarButtonItem!
     @IBOutlet weak var dismissButton: UIButton!
 
-    var favoriteArticles: Results<Article>!
-    var favoriteArticlesRealmNotificationToken: NotificationToken?
+    private var favoriteArticles: Results<Article>!
+    private var favoriteArticlesRealmNotificationToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +111,7 @@ final class FaveArticlesVC: UIViewController {
 
 }
 
-// MARK: Tableview setup
+
 extension FaveArticlesVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

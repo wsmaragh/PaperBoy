@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicCell: UICollectionViewCell {
+final class TopicCell: UICollectionViewCell {
 
     @IBOutlet weak var topicImageView: UIImageView!
     @IBOutlet weak var topicTitleLabel: UILabel!
@@ -17,7 +17,7 @@ class TopicCell: UICollectionViewCell {
         super.awakeFromNib()
         roundedCorners()
     }
-
+    
     private func roundedCorners() {
         layer.cornerRadius = 8
         layer.masksToBounds = true

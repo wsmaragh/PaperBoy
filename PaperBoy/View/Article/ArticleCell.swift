@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-@objc protocol ArticleCellDelegate {
+@objc protocol ArticleCellDelegate: class {
     @objc func savePressed(article: Article)
     @objc func sharePressed(article: Article)
 }
@@ -36,6 +36,11 @@ final class ArticleCell: UITableViewCell {
         super.awakeFromNib()
         roundedCorners()
         addCustomSkeleton()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        articleImageView.image = nil
     }
     
     private func roundedCorners() {

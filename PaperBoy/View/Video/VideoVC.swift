@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class VideoVC: UIViewController {
+final class VideoVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,12 +18,12 @@ class VideoVC: UIViewController {
     
     var videoPlayerController: AVPlayerViewController?
     
-    var streamingVideos: [StreamingVideo] = []
-    var downloadableVideos: [DownloadableVideo] = []
+    private var streamingVideos: [StreamingVideo] = []
+    private var downloadableVideos: [DownloadableVideo] = []
 
-    var currentVideoPlayingIndex: Int = 0
-    var videoPlaying: Bool = false
-    var videoTimer = Timer()
+    private var currentVideoPlayingIndex: Int = 0
+    private var videoPlaying: Bool = false
+    private var videoTimer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +34,8 @@ class VideoVC: UIViewController {
     }
     
     private func getDownloadableVideos() {
-        videoDataService.getDownloadableVideosFromFile { (parsedDownloadableVideos) in
-            self.downloadableVideos = parsedDownloadableVideos
+        videoDataService.getDownloadableVideosFromFile { [weak self] (parsedDownloadableVideos) in
+            self?.downloadableVideos = parsedDownloadableVideos
         }
     }
     
@@ -47,7 +47,7 @@ class VideoVC: UIViewController {
         }
     }
     
-    private func setupTableView(){
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -73,12 +73,11 @@ class VideoVC: UIViewController {
         slideToMenu()
     }
     
-    @objc func slideToMenu(){
+    @objc func slideToMenu() {
         NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.toggleSideMenu.rawValue), object: nil)
     }
 
-    private func playVideo(video: StreamingVideo){
-        
+    func playVideo(video: StreamingVideo) {
         guard let url = URL(string: video.videoStr) else { return }
         let asset: AVURLAsset = AVURLAsset(url: url)
         let videoItem: AVPlayerItem = AVPlayerItem(asset: asset)
@@ -86,7 +85,7 @@ class VideoVC: UIViewController {
         videoPlayerController?.player?.play()
         videoPlaying = true
         let duration = videoPlayerController!.player!.currentItem!.duration.seconds
-        
+        print(); print("duration :", duration); print()
         videoTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { (timer) in
             self.videoPlayerController!.player!.pause()
             self.videoPlaying = false
@@ -94,7 +93,7 @@ class VideoVC: UIViewController {
         })
     }
     
-    private func pauseVideo(){
+    func pauseVideo() {
         self.videoPlayerController?.player?.pause()
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let cell = tableView.cellForRow(at: indexPath) as! VideoCell
@@ -104,7 +103,7 @@ class VideoVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "embeddedAVPlayer",
+        if segue.identifier == StoryboardIDs.embeddedAVPlayer.rawValue,
             let avPlayerVC = segue.destination as? AVPlayerViewController {
                 videoPlayerController = avPlayerVC
                 addChild(avPlayerVC)
@@ -113,8 +112,6 @@ class VideoVC: UIViewController {
     
 }
 
-
-// MARK: Tableview
 
 extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -143,9 +140,6 @@ extension VideoVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
-
-// MARK: VideoCellDelegate
 
 extension VideoVC: VideoCellDelegate {
     

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 final class ArticleDVC: UIViewController {
 
     @IBOutlet var articleView: ArticleDetailView!
@@ -54,7 +53,6 @@ final class ArticleDVC: UIViewController {
 
 }
 
-// MARK: - Delegate
 extension ArticleDVC: ArticleViewDelegate {
 
     func browserButtonPressed() {

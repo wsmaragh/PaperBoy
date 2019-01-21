@@ -10,8 +10,7 @@ import Foundation
 import Alamofire
 import Photos
 
-
-class VideoDataService {
+final class VideoDataService {
     
     func getStreamingVideosFromFile(completion: @escaping ([StreamingVideo]) -> Void) {
         guard let filePath = Bundle.main.path(forResource: "StreamingVideos", ofType:"json") else {return}
@@ -41,7 +40,6 @@ class VideoDataService {
     
     
     func saveVideo(videoUrlStr: String) {
-        
         DispatchQueue.global(qos: .background).async {
             guard let videoUrl = URL(string: videoUrlStr) else {return}
             var videoData: Data!
@@ -74,5 +72,3 @@ class VideoDataService {
     }
     
 }
-
-

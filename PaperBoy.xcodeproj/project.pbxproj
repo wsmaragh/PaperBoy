@@ -40,7 +40,6 @@
 		237E52F52168F0C5004DB8B1 /* RadioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52F42168F0C5004DB8B1 /* RadioVC.swift */; };
 		237E52F72168F0DC004DB8B1 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52F62168F0DC004DB8B1 /* VideoVC.swift */; };
 		237E52FB2168F54B004DB8B1 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E52FA2168F54B004DB8B1 /* MenuCell.swift */; };
-		237E530821690435004DB8B1 /* RadioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530721690435004DB8B1 /* RadioDataService.swift */; };
 		237E530E21690501004DB8B1 /* RadioStations.json in Resources */ = {isa = PBXBuildFile; fileRef = 237E530921690501004DB8B1 /* RadioStations.json */; };
 		237E530F21690501004DB8B1 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530A21690501004DB8B1 /* MediaPlayer.swift */; };
 		237E531221690501004DB8B1 /* RadioStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530D21690501004DB8B1 /* RadioStation.swift */; };
@@ -74,6 +73,11 @@
 		23E06F282144236300F89F9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E06F262144236300F89F9D /* LaunchScreen.storyboard */; };
 		23E06F332144236300F89F9D /* PaperBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F322144236300F89F9D /* PaperBoyTests.swift */; };
 		23E06F3E2144236300F89F9D /* PaperBoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */; };
+		23EA14652194D5270062A71D /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA14642194D5270062A71D /* UIImageView+.swift */; };
+		23EA14672194D5730062A71D /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA14662194D5730062A71D /* UIImage+.swift */; };
+		23EA14692194D6240062A71D /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA14682194D6240062A71D /* ImageCacheService.swift */; };
+		23EA146B2194E0E70062A71D /* UpdatedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA146A2194E0E70062A71D /* UpdatedHeaderView.swift */; };
+		23EA147621988BE90062A71D /* RadioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E530721690435004DB8B1 /* RadioDataService.swift */; };
 		23F33B64215D734900F7853C /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F33B63215D734900F7853C /* ArticleDetailView.swift */; };
 		23F33B66215D735400F7853C /* ArticleDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F33B65215D735400F7853C /* ArticleDetailView.xib */; };
 		23F5DA3F216917200052E5CB /* NowPlayingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5DA3E216917200052E5CB /* NowPlayingVC.swift */; };
@@ -187,6 +191,10 @@
 		23E06F392144236300F89F9D /* PaperBoyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaperBoyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E06F3D2144236300F89F9D /* PaperBoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperBoyUITests.swift; sourceTree = "<group>"; };
 		23E06F3F2144236300F89F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23EA14642194D5270062A71D /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		23EA14662194D5730062A71D /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		23EA14682194D6240062A71D /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		23EA146A2194E0E70062A71D /* UpdatedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedHeaderView.swift; sourceTree = "<group>"; };
 		23F33B63215D734900F7853C /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
 		23F33B65215D735400F7853C /* ArticleDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleDetailView.xib; sourceTree = "<group>"; };
 		23F5DA3E216917200052E5CB /* NowPlayingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVC.swift; sourceTree = "<group>"; };
@@ -252,6 +260,7 @@
 				23F33B65215D735400F7853C /* ArticleDetailView.xib */,
 				237E0934215C00A40039FE28 /* UpdatedCell.swift */,
 				237E0936215C04550039FE28 /* UpdatedCell.xib */,
+				23EA146A2194E0E70062A71D /* UpdatedHeaderView.swift */,
 				237E0949215C400E0039FE28 /* TopicCell.swift */,
 				237E0947215C3DF80039FE28 /* TopicCell.xib */,
 				23E06F1C2144236100F89F9D /* ArticleVC.swift */,
@@ -448,12 +457,13 @@
 		23E06F4F214423F900F89F9D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				237E530721690435004DB8B1 /* RadioDataService.swift */,
+				237E0930215BEA390039FE28 /* ArticleDataService.swift */,
+				23DE35DF217A139300854AC5 /* VideoDataService.swift */,
 				237E094B215C5E2E0039FE28 /* ImageService.swift */,
+				23EA14682194D6240062A71D /* ImageCacheService.swift */,
 				2308763C215EAB8800266F2A /* RealmService.swift */,
 				237E093C215C17260039FE28 /* DateformatterService.swift */,
-				237E0930215BEA390039FE28 /* ArticleDataService.swift */,
-				237E530721690435004DB8B1 /* RadioDataService.swift */,
-				23DE35DF217A139300854AC5 /* VideoDataService.swift */,
 				23C539D22180E1A700DDF9CB /* NetworkAvailable.swift */,
 			);
 			path = Services;
@@ -467,6 +477,8 @@
 				23BA032B2173EF2C00FFB0B0 /* UIView+.swift */,
 				23BA03292173EEF800FFB0B0 /* UIColor+.swift */,
 				2305898D216DFDB500BDAC42 /* UIFont+.swift */,
+				23EA14642194D5270062A71D /* UIImageView+.swift */,
+				23EA14662194D5730062A71D /* UIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -756,16 +768,19 @@
 				2308763D215EAB8800266F2A /* RealmService.swift in Sources */,
 				237E0933215BED7D0039FE28 /* APIKeys.swift in Sources */,
 				237E094E215C60FD0039FE28 /* ArticleDVC.swift in Sources */,
+				23EA146B2194E0E70062A71D /* UpdatedHeaderView.swift in Sources */,
 				237E52F52168F0C5004DB8B1 /* RadioVC.swift in Sources */,
-				237E530821690435004DB8B1 /* RadioDataService.swift in Sources */,
+				23EA147621988BE90062A71D /* RadioDataService.swift in Sources */,
 				237E52F32168EEA4004DB8B1 /* ContainerVC.swift in Sources */,
 				2398D3F621627A380098F96F /* VideoCell.swift in Sources */,
+				23EA14672194D5730062A71D /* UIImage+.swift in Sources */,
 				237E0935215C00A40039FE28 /* UpdatedCell.swift in Sources */,
 				237E094A215C400E0039FE28 /* TopicCell.swift in Sources */,
 				23E06F1D2144236100F89F9D /* ArticleVC.swift in Sources */,
 				23B08394215D820B001A788F /* WebVC.swift in Sources */,
 				237E530F21690501004DB8B1 /* MediaPlayer.swift in Sources */,
 				232617EC2171225600865D98 /* RadioViewModel.swift in Sources */,
+				23EA14652194D5270062A71D /* UIImageView+.swift in Sources */,
 				237E0941215C23C00039FE28 /* SmallArticleRightCell.swift in Sources */,
 				2305898E216DFDB500BDAC42 /* UIFont+.swift in Sources */,
 				23087637215E6BE200266F2A /* SearchVC.swift in Sources */,
@@ -773,6 +788,7 @@
 				23BA03282173EEE300FFB0B0 /* String+.swift in Sources */,
 				237E0939215C05090039FE28 /* ArticleCell.swift in Sources */,
 				237E092F215BEA1B0039FE28 /* Article.swift in Sources */,
+				23EA14692194D6240062A71D /* ImageCacheService.swift in Sources */,
 				237E093D215C17260039FE28 /* DateformatterService.swift in Sources */,
 				23D481C3215CA01E000DAEB0 /* SideMenuVC.swift in Sources */,
 				23F9D50E217E0C710042B83D /* OfflineVC.swift in Sources */,

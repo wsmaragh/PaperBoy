@@ -24,20 +24,19 @@ final class ArticleVC: UIViewController {
     private var selectedtopic: ArticleTopic!
     private var initialTopicSet: Bool = false
     
-    var skeletonActive: Bool = false {
+    private var skeletonActive: Bool = false {
         didSet {
             view.isUserInteractionEnabled = skeletonActive
         }
     }
 
-    var articles: [Article] = [] {
+    private var articles: [Article] = [] {
         didSet {
             tableView.reloadData()
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
         }
     }
 
-    
     var startup: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +68,7 @@ final class ArticleVC: UIViewController {
         slideToMenu()
     }
 
-    func addRightSwipeGestureToSideMenu() {
+    private func addRightSwipeGestureToSideMenu() {
         let swipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(slideToMenu))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
@@ -113,7 +112,7 @@ final class ArticleVC: UIViewController {
         tableView.register(smallArticleRightCellNib, forCellReuseIdentifier: SmallArticleRightCell.cellID)
     }
 
-    fileprivate func addRefreshControl() {
+    private func addRefreshControl() {
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
@@ -161,7 +160,7 @@ final class ArticleVC: UIViewController {
         }
     }
 
-    fileprivate func fetchArticles(topic: ArticleTopic) {
+    private func fetchArticles(topic: ArticleTopic) {
         articleDataService.getTopArticles(topic: topic) { [weak self] (onlineArticles) in
             guard let weakSelf = self else {return}
             weakSelf.articles = onlineArticles
@@ -171,7 +170,7 @@ final class ArticleVC: UIViewController {
         }
     }
 
-    fileprivate func animateTable() {
+    private func animateTable() {
         self.tableView.reloadData()
         let cells = tableView.visibleCells
         let tableHeight: CGFloat = tableView.bounds.size.height
@@ -183,7 +182,7 @@ final class ArticleVC: UIViewController {
         }
     }
     
-    fileprivate func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) {_ in }
         alertController.addAction(okAction)
@@ -209,9 +208,7 @@ final class ArticleVC: UIViewController {
         self.present(offlineVC, animated: true, completion: nil)
     }
     
-    @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
-
-    }
+    @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {}
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == StoryboardIDs.mainVCToArticleVC.rawValue {
@@ -227,7 +224,6 @@ final class ArticleVC: UIViewController {
 }
 
 
-// MARK: CollectionView setup
 extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -248,7 +244,6 @@ extension ArticleVC: UICollectionViewDataSource, UICollectionViewDelegate {
 }
 
 
-// MARK: TableView setup
 extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -333,19 +328,18 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //custom pull-to-refresh
             let offset = (scrollView.contentOffset.y * -1)
             var message: String = "Keep Pulling."
             switch offset {
-            case 0...25: message = "Keep Pulling."
-            case 26...40: message = "Keep Pulling..."
-            case 41...60: message = "Keep Pulling......"
-            case 61...80: message = "Keep Pulling........."
-            case 81...100: message = "Keep Pulling............"
-            case 101...120: message = "Keep Pulling..............."
-            case 121...150: message = "Keep Pulling.................."
-            case _ where offset > 150: message = "Getting data"
-            default: break
+                case 0...25: message = "Keep Pulling."
+                case 26...40: message = "Keep Pulling..."
+                case 41...60: message = "Keep Pulling......"
+                case 61...80: message = "Keep Pulling........."
+                case 81...100: message = "Keep Pulling............"
+                case 101...120: message = "Keep Pulling..............."
+                case 121...150: message = "Keep Pulling.................."
+                case _ where offset > 150: message = "Getting data"
+                default: break
             }
             refreshControl.attributedTitle = NSAttributedString(string: message, attributes: [NSAttributedString.Key.foregroundColor: refreshControl.tintColor])
             refreshControl.backgroundColor = UIColor.appLightGray
@@ -353,9 +347,6 @@ extension ArticleVC: UITableViewDataSource, UITableViewDelegate {
 
 }
 
-
-
-// MARK: Delegate
 
 extension ArticleVC: ArticleCellDelegate {
 

@@ -30,6 +30,11 @@ final class SmallArticleLeftCell: UITableViewCell {
         addCustomSkeleton()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        articleImageView.image = nil
+    }
+    
     private func roundedCorners() {
         articleImageView.layer.cornerRadius = 10
         articleImageView.layer.masksToBounds = true

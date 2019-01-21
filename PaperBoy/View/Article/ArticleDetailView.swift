@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol ArticleViewDelegate {
+@objc protocol ArticleViewDelegate: class {
     @objc func browserButtonPressed()
 }
 

@@ -18,7 +18,7 @@ final class SearchVC: UIViewController {
 
     @IBOutlet var viewForEmptyTableView: UIView!
 
-    var articles: [Article] = [] {
+    private var articles: [Article] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -75,7 +75,7 @@ final class SearchVC: UIViewController {
         tableView.register(smallArticleCellNib, forCellReuseIdentifier: SmallArticleRightCell.cellID)
     }
 
-    fileprivate func fetchArticles(searchTerm: String) {
+    private func fetchArticles(searchTerm: String) {
         articleDataService.getArticles(searchTerm: searchTerm) { [weak self] (onlineArticles) in
             guard let weakSelf = self else { return }
             weakSelf.articles = onlineArticles
@@ -93,19 +93,9 @@ final class SearchVC: UIViewController {
     
 }
 
-
-// MARK: SearchController
-
 extension SearchVC: UISearchResultsUpdating {
-
-    func updateSearchResults(for searchController: UISearchController) {
-
-    }
-
+    func updateSearchResults(for searchController: UISearchController) {}
 }
-
-
-// MARK: SearchBar
 
 extension SearchVC: UISearchBarDelegate {
 
@@ -127,9 +117,6 @@ extension SearchVC: UISearchBarDelegate {
     }
 
 }
-
-
-// MARK: TableView
 
 extension SearchVC: UITableViewDataSource, UITableViewDelegate {
 

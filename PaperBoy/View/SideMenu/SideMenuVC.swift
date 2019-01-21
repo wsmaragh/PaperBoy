@@ -8,13 +8,11 @@
 
 import UIKit
 
-
 @objc protocol SideMenuDelegate {
     @objc func selectedTabIndex(index: Int)
 }
 
-
-class SideMenuVC: UIViewController {
+final class SideMenuVC: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -26,6 +24,7 @@ class SideMenuVC: UIViewController {
     }
     
     var menuItems = MenuItem.allCases
+    
     weak var selectionDelegate: SideMenuDelegate?
     
     override func viewDidLoad() {
@@ -103,9 +102,11 @@ extension SideMenuVC: UITableViewDataSource {
 }
 
 extension SideMenuVC : UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectionDelegate?.selectedTabIndex(index: indexPath.row)
         closeSideMenu()
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }

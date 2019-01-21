@@ -15,7 +15,8 @@ protocol VideoCellDelegate: class {
     func didFinishPlayingVideoInCell()
 }
 
-class VideoCell: UITableViewCell {
+final class VideoCell: UITableViewCell {
+    
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
@@ -46,19 +47,19 @@ class VideoCell: UITableViewCell {
     override func awakeFromNib(){
         super.awakeFromNib()
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        sourceLabel.text  = nil
+        titleLabel.text  = nil
+        videoImageView.image = nil
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
             togglePlayPause()
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        sourceLabel.text  = nil
-        titleLabel.text  = nil
-        videoImageView.image = nil
     }
 
     func configureCell(video: StreamingVideo){
@@ -78,7 +79,7 @@ class VideoCell: UITableViewCell {
         }
     }
     
-    func startCountdown(){
+    private func startCountdown(){
         progressBar.progress = 0.00
         countdownTimer = Timer.scheduledTimer(timeInterval: timeUpdateInterval, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         isCurrentlyPlayingVideo = true

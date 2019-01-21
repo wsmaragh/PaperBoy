@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StationCell: UITableViewCell {
+final class StationCell: UITableViewCell {
 
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var stationDescLabel: UILabel!
@@ -18,14 +18,6 @@ class StationCell: UITableViewCell {
         return String(describing: self)
     }
     
-    override func awakeFromNib(){
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         stationNameLabel.text  = nil
@@ -33,7 +25,7 @@ class StationCell: UITableViewCell {
         stationImageView.image = nil
     }
     
-    @objc func configureStationCell(_ station: RadioStation) {
+    func configureStationCell(_ station: RadioStation) {
         stationNameLabel.text = station.name
         stationDescLabel.text = station.desc
         stationImageView.loadImage(imageURLString: station.imageStr)

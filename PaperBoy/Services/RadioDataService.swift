@@ -19,6 +19,7 @@ final class RadioDataService {
             print("Error getting filePath")
             return
         }
+        
         let filePathURL = URL(fileURLWithPath: filePath)
         
         do {
@@ -30,7 +31,6 @@ final class RadioDataService {
     
     }
 
-    
     func getRadioStationsFromURL(urlString: String, completion: @escaping ([RadioStation]) -> Void) {
         guard let url = URL(string: urlString) else {return}
         
